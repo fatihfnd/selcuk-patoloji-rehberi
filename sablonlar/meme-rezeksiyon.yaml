@@ -1,0 +1,248 @@
+id: meme-rezeksiyon
+baslik: Meme — invaziv karsinom, rezeksiyon (mastektomi / lumpektomi)
+organ: Meme
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Invasive Carcinoma of the Breast (Resection)"
+  - "ICCR — Invasive Carcinoma of the Breast"
+  - "RCPath — Dataset for histopathological reporting of breast cancer"
+  - "WHO Meme Tümörleri, 5. baskı (2019); AJCC 8"
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; {lateralite} meme, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); {lateralite} aksilla"
+epikriz:
+  - id: prosedur
+    etiket: Prosedür
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler: [Modifiye radikal mastektomi, Basit (total) mastektomi, Deri koruyucu mastektomi, Meme başı koruyucu mastektomi, Geniş lokal eksizyon (lumpektomi), Tel/işaretleyici eşliğinde eksizyon, Segmental mastektomi]
+  - id: aksiller_prosedur
+    etiket: Aksiller cerrahi
+    seviye: 1
+    tip: secim
+    secenekler: [Yok, Sentinel lenf nodu biyopsisi, Aksiller diseksiyon, Sentinel + aksiller diseksiyon, Hedefe yönelik aksiller diseksiyon]
+  - id: lateralite
+    etiket: Taraf
+    seviye: 0
+    tip: secim
+    secenekler: [Sağ, Sol]
+    gizli: true
+  - id: neoadjuvan
+    etiket: Neoadjuvan tedavi
+    seviye: 1
+    tip: secim
+    secenekler: [Yok, Var, Bilinmiyor]
+  - id: yerlesim
+    etiket: Tümör yerleşimi
+    seviye: 2
+    tip: metin
+    kalip: "… kadran, saat … hizası"
+  - id: boyut
+    etiket: Tümör boyutu (en büyük invaziv odak)
+    seviye: 1
+    tip: olcu
+    birim: mm
+    kalip: "…x…x… mm (en büyük boyut … mm)"
+    not: "Makroskopi mikroskopi ile doğrulanır; multifokalde en büyük odak evrelemeye esas alınır, (m) eki kullanılır."
+  - modul: ortak.fokalite
+  - id: histolojik_tip
+    etiket: Histolojik tip
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler:
+      - "İnvaziv karsinom, özel tip olmayan (NST)"
+      - "İnvaziv lobüler karsinom (klasik / pleomorfik / …)"
+      - "Tübüler karsinom"
+      - "Kribriform karsinom"
+      - "Müsinöz karsinom"
+      - "İnvaziv mikropapiller karsinom"
+      - "Metaplastik karsinom"
+      - "Apokrin diferansiasyonlu karsinom"
+      - "İnvaziv karsinom NST, medüller paternli"
+      - "Mikst tip (…% NST, …% …)"
+  - id: derece
+    etiket: Histolojik derece (Nottingham)
+    seviye: 1
+    tip: secim
+    secenekler: ["1", "2", "3"]
+    alt:
+      - {id: tubul, etiket: Tübül/bez formasyonu, seviye: 1, tip: secim, secenekler: [Skor 1 (>%75), Skor 2 (%10–75), Skor 3 (<%10)]}
+      - {id: pleomorfizm, etiket: Nükleer pleomorfizm, seviye: 1, tip: secim, secenekler: [Skor 1, Skor 2, Skor 3]}
+      - {id: mitoz, etiket: Mitoz, seviye: 1, tip: secim, secenekler: [Skor 1 (… /… mm²), Skor 2 (… /… mm²), Skor 3 (… /… mm²)]}
+  - id: dcis
+    etiket: Duktal karsinoma in situ
+    seviye: 1
+    tip: secim
+    secenekler: [Görülmedi, Görüldü]
+    alt:
+      - {id: dcis_eic, etiket: Yaygın intraduktal komponent (EIC), seviye: 2, tip: secim, secenekler: [Yok, Var], kosul: "dcis == Görüldü"}
+      - {id: dcis_boyut, etiket: DCIS yaygınlığı, seviye: 3, tip: olcu, birim: mm, kosul: "dcis == Görüldü"}
+      - {id: dcis_derece, etiket: Nükleer derece, seviye: 2, tip: secim, secenekler: [Düşük, Orta, Yüksek], kosul: "dcis == Görüldü"}
+      - {id: dcis_patern, etiket: Mimari patern, seviye: 3, tip: coklu, secenekler: [Kribriform, Solid, Mikropapiller, Papiller, Komedo tipi nekrozlu, Düz], kosul: "dcis == Görüldü"}
+      - {id: dcis_nekroz, etiket: Nekroz, seviye: 2, tip: secim, secenekler: [Yok, Punktat, Komedo], kosul: "dcis == Görüldü"}
+  - id: lcis
+    etiket: Lobüler neoplazi (ALH / LCIS)
+    seviye: 3
+    tip: secim
+    secenekler: [Görülmedi, Klasik LCIS görüldü, Pleomorfik / floridan LCIS görüldü, ALH görüldü]
+  - id: yayilim
+    etiket: Tümör yayılımı
+    seviye: 1
+    alt:
+      - {id: deri, etiket: Deri, seviye: 1, tip: secim, secenekler: [Tutulum görülmedi, Dermis invazyonu (pT4 değildir), Epidermis ülserasyonu (pT4b), Satellit deri nodülleri (pT4b), Dermal lenfatik tümör embolisi]}
+      - {id: meme_basi, etiket: Meme başı, seviye: 1, tip: secim, secenekler: [Tutulum görülmedi, Paget hastalığı, İnvaziv karsinom tutulumu, DCIS tutulumu]}
+      - {id: kas, etiket: İskelet kası / göğüs duvarı, seviye: 2, tip: secim, secenekler: [Örneklenmedi, Tutulum görülmedi, Pektoral kas invazyonu (pT4 değildir), Göğüs duvarı invazyonu (pT4a)]}
+  - modul: ortak.lvi
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    alt:
+      - id: sinir_invaziv
+        etiket: İnvaziv karsinom
+        seviye: 1
+        tip: secim
+        secenekler: ["Sınırlarda tümör görülmedi; en yakın sınır … (… mm)", "Tümör boyalı sınıra ulaşıyor (… sınır, … odak)"]
+      - id: sinir_dcis
+        etiket: DCIS
+        seviye: 1
+        kosul: "dcis == Görüldü"
+        tip: secim
+        secenekler: ["Sınırlarda DCIS görülmedi; en yakın sınır … (… mm)", "DCIS boyalı sınıra ulaşıyor (… sınır)"]
+  - id: lenf_nodu
+    etiket: Lenf nodları
+    seviye: 1
+    tip: metin
+    kalip: "… lenf nodu incelendi (… sentinel); …'inde metastaz görüldü / metastaz görülmedi"
+    alt:
+      - {id: ln_makro, etiket: Makrometastaz (>2 mm), seviye: 1, tip: metin, kalip: "… adet"}
+      - {id: ln_mikro, etiket: "Mikrometastaz (>0,2–2 mm veya >200 hücre)", seviye: 1, tip: metin, kalip: "… adet"}
+      - {id: ln_itc, etiket: "İzole tümör hücreleri (≤0,2 mm ve ≤200 hücre)", seviye: 1, tip: metin, kalip: "… adet"}
+      - {id: ln_depozit, etiket: En büyük metastatik depozit, seviye: 1, tip: olcu, birim: mm}
+      - {id: ene, etiket: Ekstranodal yayılım, seviye: 2, tip: secim, secenekler: [Görülmedi, "Görüldü (≤2 mm)", "Görüldü (>2 mm)"]}
+      - {id: ln_tedavi, etiket: Lenf nodunda tedavi etkisi, seviye: 2, tip: secim, secenekler: [Yok, Metastaz ve tedavi etkisi görüldü, Tedavi etkisi görüldü; rezidü metastaz yok], kosul: "neoadjuvan == Var"}
+  - id: tedavi_etkisi
+    etiket: Tedavi yanıtı
+    seviye: 1
+    kosul: "neoadjuvan == Var"
+    tip: secim
+    secenekler: ["Patolojik tam yanıt (ypT0/is ypN0)", "Kısmi yanıt; tümör yatağı …x… mm, sellülarite %…", "Belirgin yanıt yok"]
+    alt:
+      - {id: rcb, etiket: Rezidü kanser yükü (RCB), seviye: 2, tip: metin, kalip: "RCB indeksi …, sınıf 0 / I / II / III"}
+  - id: mikrokalsifikasyon
+    etiket: Mikrokalsifikasyon
+    seviye: 2
+    tip: secim
+    secenekler: [Görülmedi, İnvaziv karsinomda görüldü, DCIS'te görüldü, Benign parankimde görüldü]
+  - modul: ortak.ptnm
+  - id: bb_baslik
+    etiket: Biyobelirteçler
+    seviye: 1
+    not: "Önceki biyopside çalışılmışsa 'Biyopside (… no) çalışılmıştır' yazılabilir."
+    alt:
+      - modul: biyobelirtec.meme_er
+      - modul: biyobelirtec.meme_pr
+      - modul: biyobelirtec.meme_her2
+      - modul: biyobelirtec.meme_her2_ish
+      - modul: biyobelirtec.meme_ki67
+  - modul: ortak.ek_bulgular
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: taraf, etiket: Taraf, tip: secim, secenekler: [sağ, sol], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, tip: secim, secenekler: [modifiye radikal mastektomi, basit mastektomi, deri koruyucu mastektomi, meme başı koruyucu mastektomi], zorunlu: true}
+    - {id: lump_prosedur, etiket: Prosedür (koruyucu cerrahi), tip: secim, secenekler: [geniş lokal eksizyon, tel eşliğinde eksizyon, segmental mastektomi, reeksizyon], zorunlu: true}
+    - {id: agirlik, etiket: Ağırlık, tip: sayi, birim: g}
+    - {id: boyut, etiket: Materyal boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: deri_boyut, etiket: Deri elipsi boyutu, tip: olcu, birim: cm}
+    - {id: mb_cap, etiket: Meme başı çapı, tip: olcu, birim: cm}
+    - {id: mb_gorunum, etiket: Meme başı görünümü, tip: secim, secenekler: [olağan görünümdedir, retraksiyon göstermektedir, "ülsere / erozyonludur", invertedir]}
+    - {id: deri_bulgu, etiket: Deri bulgusu, tip: secim, secenekler: [özellik izlenmedi, "… cm uzunluğunda insizyon skarı izlendi", "ülserasyon izlendi", "portakal kabuğu görünümü izlendi"]}
+    - {id: aks_boyut, etiket: Aksiller uzanım boyutu, tip: olcu, birim: cm}
+    - {id: isaret, etiket: Oryantasyon, tip: secim, secenekler: ["kısa ip süperior, uzun ip lateral olmak üzere işaretlenerek", "işaretlenmeden"], zorunlu: true}
+    - {id: boya, etiket: Boyama şeması, zorunlu: true, not: "Ör. süperior mavi, inferior siyah, medial yeşil, lateral sarı, anterior kırmızı, posterior (derin) turuncu"}
+    - {id: kadran, etiket: Kadran, tip: secim, secenekler: [üst dış, üst iç, alt dış, alt iç, santral / retroareolar], zorunlu: true}
+    - {id: saat, etiket: Saat hizası}
+    - {id: mb_mesafe, etiket: Meme başına uzaklık, tip: olcu, birim: cm}
+    - {id: tumor_boyut, etiket: Tümör boyutu (3 boyut), tip: olcu, birim: cm, zorunlu: true}
+    - {id: tumor_sinir, etiket: Sınır, tip: secim, secenekler: [düzensiz, spiküler, düzgün]}
+    - {id: tumor_renk, etiket: Renk, tip: secim, secenekler: [kirli beyaz, gri-beyaz, krem]}
+    - {id: tumor_kivam, etiket: Kıvam, tip: secim, secenekler: [sert, elastik, yumuşak]}
+    - {id: d_deri, etiket: Deriye uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: d_derin, etiket: Derin (fasya) sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: d_sup, etiket: Süperior sınıra uzaklık, tip: olcu, birim: cm}
+    - {id: d_inf, etiket: İnferior sınıra uzaklık, tip: olcu, birim: cm}
+    - {id: d_med, etiket: Medial sınıra uzaklık, tip: olcu, birim: cm}
+    - {id: d_lat, etiket: Lateral sınıra uzaklık, tip: olcu, birim: cm}
+    - {id: d_ant, etiket: Anterior (yüzeyel) sınıra uzaklık, tip: olcu, birim: cm}
+    - {id: cevre, etiket: Çevre meme dokusu, tip: secim, secenekler: [özellik izlenmedi, "yağlı dokudan zengindir", "fibröz dokudan zengindir", "… cm boyutlarında ikinci lezyon izlendi"]}
+    - {id: klip, etiket: Klip / biyopsi yeri, tip: secim, secenekler: ["tümör içinde izlendi", "tümöre … cm uzaklıkta izlendi", "izlenmedi"]}
+    - {id: yatak, etiket: Neoadjuvan sonrası tümör yatağı, not: "Neoadjuvan sonrası: fibrotik yatak boyutu ve klip ilişkisi yazılır; yatak haritalanarak örneklenir."}
+    - {id: ln_max, etiket: En büyük lenf nodu, tip: olcu, birim: cm}
+    - {id: ln_min, etiket: En küçük lenf nodu, tip: olcu, birim: cm}
+    - {id: ln_adet, etiket: Lenf nodu sayısı, tip: sayi, zorunlu: true}
+  varyantlar:
+    - ad: Mastektomi
+      metin:
+        - >-
+          {fiksasyon_durumu} gönderilen, {agirlik} g ağırlığında, {boyut} cm boyutlarında {taraf} {prosedur}
+          materyalidir. Üzerinde {deri_boyut} cm boyutlarında deri elipsi ve {mb_cap} cm çapında meme başı
+          bulunmaktadır. Meme başı {mb_gorunum}. Deri yüzeyinde {deri_bulgu}. Materyalin lateralinde {aks_boyut} cm
+          boyutlarında aksiller uzanım mevcuttur.
+        - >-
+          Materyal {isaret} gönderilmiştir. Cerrahi sınırlar boyandı ({boya}); materyal 0,5–1 cm aralıklarla
+          dilimlendi.
+        - >-
+          Seri kesitlerde {kadran} kadranda, saat {saat} hizasında, meme başına {mb_mesafe} cm uzaklıkta,
+          {tumor_boyut} cm boyutlarında, {tumor_sinir} sınırlı, {tumor_renk} renkte, {tumor_kivam} kıvamda tümör
+          izlendi. Tümör deriye {d_deri} cm, derin (fasya) cerrahi sınıra {d_derin} cm, süperior cerrahi sınıra
+          {d_sup} cm, inferior cerrahi sınıra {d_inf} cm mesafededir. Klip / biyopsi yeri {klip}.
+        - Çevre meme dokusunda {cevre}.
+        - >-
+          Aksiller yağ dokuda en büyüğü {ln_max} cm, en küçüğü {ln_min} cm çapında {ln_adet} adet lenf nodu
+          diseke edildi.
+      ornekleme:
+        - {kod: MB, aciklama: "meme başı", parca: "…", kaset: "1", not: "Meme başı tabanından en face + dik kesit."}
+        - {kod: D, aciklama: "tümör üzeri deri / tümör-deri ilişkisi", parca: "1", kaset: "1"}
+        - {kod: T, aciklama: "tümör", not: "Tümör ≤2 cm ise tamamı; büyükse en büyük kesit + cm başına 1 kaset (en az 3). Tümör-derin sınır ilişkisi mutlaka."}
+        - {kod: TF, aciklama: "tümör-fasya, derin cerrahi sınır ilişkisi", parca: "1", kaset: "1"}
+        - {kod: SCS, aciklama: "süperior cerrahi sınır, en yakın kesim", parca: "1", kaset: "1"}
+        - {kod: ICS, aciklama: "inferior cerrahi sınır, en yakın kesim", parca: "1", kaset: "1"}
+        - {kod: K, aciklama: "klip / biyopsi yeri", not: "Tümörden ayrıysa."}
+        - {kod: ÜD, aciklama: "üst dış kadran", parca: "1", kaset: "1"}
+        - {kod: Üİ, aciklama: "üst iç kadran", parca: "1", kaset: "1"}
+        - {kod: AD, aciklama: "alt dış kadran", parca: "1", kaset: "1"}
+        - {kod: Aİ, aciklama: "alt iç kadran", parca: "1", kaset: "1"}
+        - {kod: LN, aciklama: "aksiller lenf nodları", not: "Tümü; >0,5 cm nodlar 2 mm aralıklarla dilimlenir."}
+    - ad: Koruyucu cerrahi (lumpektomi / geniş lokal eksizyon)
+      metin:
+        - >-
+          {fiksasyon_durumu} {isaret} gönderilen, {agirlik} g ağırlığında, {boyut} cm boyutlarında {taraf} meme
+          {lump_prosedur} materyalidir. Üzerinde {deri_boyut} cm boyutlarında deri elipsi bulunmaktadır.
+        - >-
+          Cerrahi sınırlar boyandı ({boya}); materyal medialden laterale 0,3–0,5 cm aralıklarla seri dilimlendi.
+        - >-
+          Kesitlerde {tumor_boyut} cm boyutlarında, {tumor_sinir} sınırlı, {tumor_renk} renkte, {tumor_kivam}
+          kıvamda tümör izlendi. Tümör süperior cerrahi sınıra {d_sup} cm, inferior cerrahi sınıra {d_inf} cm,
+          medial cerrahi sınıra {d_med} cm, lateral cerrahi sınıra {d_lat} cm, anterior (yüzeyel) cerrahi sınıra
+          {d_ant} cm, posterior (derin) cerrahi sınıra {d_derin} cm, deriye {d_deri} cm mesafededir.
+          Klip / biyopsi yeri {klip}.
+        - Çevre meme dokusunda {cevre}.
+      ornekleme:
+        - {kod: T, aciklama: "tümör", not: "Tümör ve en yakın sınırlar ilişkisi; küçük eksizyonlarda tamamı, dilim sırasıyla."}
+        - {kod: SCS, aciklama: "süperior cerrahi sınır", parca: "…", kaset: "…"}
+        - {kod: ICS, aciklama: "inferior cerrahi sınır", parca: "…", kaset: "…"}
+        - {kod: MCS, aciklama: "medial cerrahi sınır", parca: "…", kaset: "…", not: "İlk dilim en face ya da dik kesit — laboratuvar standardı tek tip olmalı."}
+        - {kod: LCS, aciklama: "lateral cerrahi sınır", parca: "…", kaset: "…", not: "Son dilim."}
+        - {kod: ACS, aciklama: "anterior cerrahi sınır", parca: "…", kaset: "…"}
+        - {kod: PCS, aciklama: "posterior, derin cerrahi sınır", parca: "…", kaset: "…"}
+        - {kod: K, aciklama: "klip / biyopsi yeri"}
+  ek_materyaller: [makro.sentinel, makro.ln_istasyon, makro.ek_cerrahi_sinir]
+  yapilacaklar:
+    - Oryante et (aksiller uzanım lateralde; ip işaretleri); fotoğrafla.
+    - Soğuk iskemi süresi ve fiksasyon başlangıcını kaydet (biyobelirteç için ≤1 saat, 6–72 saat fiksasyon).
+    - Sınırları boya; 0,5–1 cm aralıklarla dilimle, fiksasyonu tamamlamak için dilimler arası gazlı bez.
+    - Tümörün tüm sınırlara, deriye ve meme başına uzaklığını tek cümlede ver.
+    - Neoadjuvan sonrası — tümör yatağını ve klibi bul, yatağı haritalayarak (en büyük kesitte tam kesit) örnekle; RCB için iki boyut kaydet.
+    - Tutulmamış dört kadrandan, meme başından ve deriden örnek.

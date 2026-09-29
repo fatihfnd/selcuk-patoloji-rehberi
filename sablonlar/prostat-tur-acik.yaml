@@ -1,0 +1,47 @@
+id: prostat-tur-acik
+baslik: Prostat — TUR-P / HoLEP / açık (suprapubik) prostatektomi
+organ: Prostat
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Prostate Gland (TURP / Enucleation)"
+  - "ISUP 2019 / GUPS; WHO 5. baskı (2022); AJCC 8"
+not: "pT1a: tümör rezeke dokunun ≤%5'i; pT1b: >%5 (AJCC 8). Oran chip sayısı veya alan tahminiyle verilir; kullanılan yöntem belirtilir."
+tani_alternatif: true
+tani:
+  - "Nodüler hiperplazi; prostat, {prosedur}"
+  - "Nodüler hiperplazi, kronik prostatit; prostat, {prosedur}"
+  - "Asiner adenokarsinom, Gleason skor … (…+…), grade grup …, lütfen epikrizi okuyunuz; prostat, {prosedur}"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 0, gizli: true, tip: secim, secenekler: [transüretral rezeksiyon, holmiyum lazer enükleasyon, suprapubik prostatektomi]}
+  - {id: agirlik, etiket: Materyal ağırlığı, seviye: 2, tip: metin, kalip: "… g (… g'ı / tümü takibe alındı)"}
+  - {id: gleason, etiket: Gleason skor / grade grup, seviye: 1, tip: metin, kalip: "Gleason skor … (…+…), grade grup …"}
+  - {id: patern4, etiket: Patern 4 oranı, seviye: 2, tip: olcu, birim: "%", kosul: "GG 2–3"}
+  - {id: oran, etiket: Tümörün rezeke dokuya oranı, seviye: 1, tip: secim, secenekler: ["≤%5 (pT1a)", ">%5 (pT1b)"], alt: [{id: oran_deger, etiket: Değer, seviye: 2, tip: metin, kalip: "%… (… / … chip; alan tahmini)"}]}
+  - {id: kribriform, etiket: Kribriform patern, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {id: idc, etiket: İntraduktal karsinom, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {modul: ortak.pni, seviye: 2}
+  - {modul: ortak.lvi, seviye: 2}
+  - {id: epe, etiket: Periprostatik yağ doku / SV invazyonu, seviye: 2, tip: secim, secenekler: [Görülmedi, "Görüldü (…)"]}
+  - {id: ptnm, etiket: Patolojik evre, seviye: 1, tip: secim, secenekler: [pT1a, pT1b, "pT… (ekstraprostatik doku mevcut)"]}
+  - {id: ek_bulgular, etiket: Ek bulgular, seviye: 2, tip: coklu, secenekler: [Nodüler hiperplazi, Kronik prostatit, Granülomatöz prostatit, Enfarkt, Skuamöz metaplazi, "Yüksek dereceli PIN", Atipik küçük asiner proliferasyon (ASAP)]}
+makroskopi:
+  alanlar:
+    - {id: prosedur, etiket: Prosedür, tip: secim, secenekler: [TUR-P, HoLEP, suprapubik prostatektomi], zorunlu: true}
+    - {id: agirlik, etiket: Toplam ağırlık, tip: sayi, birim: g, zorunlu: true}
+    - {id: boyut, etiket: Toplam boyut / en büyük parça, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: ["krem-kahverengi, lastiksi kıvamlı, koterize yüzeyli", "nodüler kesit yüzlü"]}
+    - {id: ornek_miktari, etiket: Takibe alınan miktar, tip: secim, secenekler: [Tümü, "… g'ı rastgele seçilerek"], zorunlu: true}
+    - {id: sari_alan, etiket: Sarı-sert alan, tip: secim, secenekler: [izlenmedi, "izlendi; ayrı kasetlendi"]}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: TUR-P / HoLEP / açık prostatektomi
+      metin:
+        - >-
+          Topluca {boyut} cm boyutlarında, {agirlik} g ağırlığında, {gorunum} çok sayıda doku parçasından oluşan {prosedur}
+          materyalidir. Sarı renkli sert alan {sari_alan}. {ornek_miktari} {parca} parça {kaset} kasette takibe alındı.
+  yapilacaklar:
+    - Tartım zorunlu (pT1a/b oranı ve örnekleme miktarı için).
+    - Laboratuvar standardı — ≤12 g materyalin tamamı; daha büyük materyalde ilk 12 g (yaklaşık 6–8 kaset) + sonraki her 5 g için 1 kaset (CAP). İlk örneklemede karsinom (özellikle genç hastada / pT1a sınırında) saptanırsa kalan doku da takibe alınır.
+    - Sarı-sert alanlar ayrı kasetlenir.
+    - Açık prostatektomi / HoLEP nodülleri 3–5 mm aralıklarla dilimlenir.

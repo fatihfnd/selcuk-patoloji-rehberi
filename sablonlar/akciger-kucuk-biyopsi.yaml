@@ -1,0 +1,50 @@
+id: akciger-kucuk-biyopsi
+baslik: Akciğer — küçük biyopsi (bronkoskopik / tru-cut / EBUS doku)
+organ: Akciğer
+materyal: Biyopsi
+kaynaklar:
+  - "WHO Toraks Tümörleri, 5. baskı (2021) — küçük biyopsi ve sitoloji terminolojisi"
+  - "IASLC / ATS / ERS küçük örnek önerileri; CAP / IASLC / AMP moleküler test kılavuzu (2018)"
+not: "Doku koruma — ayırıcı tanı için sınırlı İHK (TTF-1 + p40 çoğu olguda yeterli); kalan doku moleküler testlere saklanır."
+tani_alternatif: true
+tani:
+  - "Adenokarsinom, lütfen epikrizi okuyunuz; {yer}, {islem}"
+  - "Küçük hücreli dışı karsinom, adenokarsinom lehine (TTF-1 pozitif), lütfen epikrizi okuyunuz; {yer}, {islem}"
+  - "Skuamöz hücreli karsinom, lütfen epikrizi okuyunuz; {yer}, {islem}"
+  - "Küçük hücreli dışı karsinom, skuamöz hücreli karsinom lehine (p40 pozitif), lütfen epikrizi okuyunuz; {yer}, {islem}"
+  - "Küçük hücreli dışı karsinom, başka türlü sınıflandırılamayan (NOS), lütfen epikrizi okuyunuz; {yer}, {islem}"
+  - "Küçük hücreli karsinom, lütfen epikrizi okuyunuz; {yer}, {islem}"
+  - "Karsinoid tümör (tipik / atipik ayrımı biyopside kesin değildir), lütfen epikrizi okuyunuz; {yer}, {islem}"
+  - "Metastatik karsinom (… ile uyumlu), lütfen epikrizi okuyunuz; {yer}, {islem}"
+  - "Nonnekrotizan granülomatöz inflamasyon; {yer}, {islem}"
+  - "Organize pnömoni paterni; {yer}, {islem}"
+  - "Tümör içermeyen akciğer / bronş dokusu, lütfen epikrizi okuyunuz; {yer}, {islem}"
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: islem, etiket: İşlem, seviye: 0, gizli: true, tip: secim, secenekler: [bronkoskopik biyopsi, transbronşiyal biyopsi, "BT eşliğinde tru-cut biyopsi", "EBUS-TBİA hücre bloğu / kor"]}
+  - {id: materyal, etiket: Materyal, seviye: 1, tip: metin, kalip: "… parça; tümör parçaların …'inde; yaklaşık … tümör hücresi, tümör hücre oranı %…"}
+  - {id: patern, etiket: Görülebilen patern (adenokarsinom), seviye: 3, tip: coklu, secenekler: [Lepidik, Asiner, Papiller, Mikropapiller, Solid, Kribriform], not: "Küçük biyopside predominant patern / derece verilmez; görülen paternler listelenir."}
+  - {id: ihk, etiket: İmmünohistokimya, seviye: 1, tip: metin, kalip: "TTF-1 …, napsin A …, p40 …, CK5/6 …, sinaptofizin …, kromogranin …, INSM1 …, Ki-67 %…"}
+  - {id: histokimya, etiket: Histokimya, seviye: 3, tip: metin, kalip: "Müsikarmin / PAS-D …; EZN / GMS …"}
+  - {id: karsinoid, etiket: Karsinoid — mitoz / nekroz / Ki-67, seviye: 2, kosul: "karsinoid", tip: metin, kalip: "Mitoz …/2 mm²; nekroz görülmedi / görüldü; Ki-67 %…"}
+  - {modul: biyobelirtec.akciger_panel, kosul: "NSCLC"}
+  - {id: yorum, etiket: Yorum, seviye: 2, tip: secim, secenekler: ["Materyal moleküler test için tümör hücresi açısından yeterli görünmektedir.", "Materyal moleküler test için sınırlıdır; tekrar örnekleme veya sıvı biyopsi düşünülebilir.", "Tümör saptanmamıştır; lezyonun örneklenmemiş olabileceği göz önünde bulundurularak klinik-radyolojik korelasyon önerilir."]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: adet, etiket: Parça sayısı, tip: sayi, zorunlu: true}
+    - {id: en_buyuk, etiket: En büyük parça, tip: olcu, birim: cm, zorunlu: true}
+    - {id: en_kucuk, etiket: En küçük parça, tip: olcu, birim: cm}
+    - {id: renk, etiket: Renk, tip: secim, secenekler: [gri-beyaz, "kahverengi-siyah (antrakotik)", kanamalı]}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: Küçük biyopsi
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): En büyüğü {en_buyuk} cm, en küçüğü {en_kucuk} cm boyutlarında, {renk} renkte {adet} adet doku parçası. Tümü {parca} parça {kaset} kasette takibe alındı."
+  yapilacaklar:
+    - Parçalar tek blokta toplanmaz; çok parçalıysa 2 bloğa bölünür (moleküler için yedek).
+    - İlk kesimde boş (ünstained) lamlar ayrılır; gereksiz derin kesimden kaçınılır.
+    - İHK sınırlı tutulur (TTF-1, p40 ± nöroendokrin paneli).

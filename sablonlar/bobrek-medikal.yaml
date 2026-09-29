@@ -1,0 +1,89 @@
+id: bobrek-medikal
+baslik: Medikal (native) böbrek biyopsisi
+organ: Böbrek
+materyal: Biyopsi
+kaynaklar:
+  - "Renal Pathology Society / KDIGO 2021 glomerüler hastalık kılavuzu"
+  - "Oxford MEST-C (IgA nefropatisi, 2016); ISN/RPS 2018 revize lupus nefriti + NIH aktivite/kronisite"
+  - "Berden sınıflaması (ANCA GN, 2010); RPS diyabetik nefropati sınıflaması (Tervaert, 2010)"
+  - "Mayo Clinic / RPS konsensusu — GN raporlama formatı (Sethi ve ark., 2016)"
+not: >
+  Tanı satırı etiyolojik/patogenetik tanı + patern (+ skor/sınıf) biçimindedir (Mayo/RPS önerisi).
+  IF ve EM bulguları ayrı başlıklarda verilir; EM bekleniyorsa tanı 'ön rapor' olarak işaretlenir.
+tani_alternatif: true
+tani:
+  - "IgA nefropatisi, mezangial proliferatif patern, Oxford M… E… S… T… C…, lütfen epikrizi okuyunuz; böbrek, iğne biyopsi"
+  - "Lupus nefriti, ISN/RPS sınıf …, aktivite indeksi …/24, kronisite indeksi …/12, lütfen epikrizi okuyunuz; böbrek, iğne biyopsi"
+  - "Membranöz nefropati (PLA2R pozitif / negatif), lütfen epikrizi okuyunuz; böbrek, iğne biyopsi"
+  - "Fokal segmental glomerüloskleroz, … varyant, lütfen epikrizi okuyunuz; böbrek, iğne biyopsi"
+  - "Minimal değişiklik hastalığı ile uyumlu (EM ile doğrulanması önerilir), lütfen epikrizi okuyunuz; böbrek, iğne biyopsi"
+  - "Pauci-immün nekrotizan ve kresentik glomerülonefrit (ANCA ilişkili), Berden … sınıf, lütfen epikrizi okuyunuz; böbrek, iğne biyopsi"
+  - "Diyabetik nefropati, RPS sınıf …, lütfen epikrizi okuyunuz; böbrek, iğne biyopsi"
+  - "Amiloidoz (… tip), lütfen epikrizi okuyunuz; böbrek, iğne biyopsi"
+  - "Akut tübüler hasar, lütfen epikrizi okuyunuz; böbrek, iğne biyopsi"
+  - "Akut interstisyel nefrit, lütfen epikrizi okuyunuz; böbrek, iğne biyopsi"
+  - "Arterionefroskleroz, lütfen epikrizi okuyunuz; böbrek, iğne biyopsi"
+epikriz:
+  - id: yeterlilik
+    etiket: Materyal
+    seviye: 1
+    tip: metin
+    kalip: "Işık mikroskopisi için … kor (korteks / medulla), … glomerül; IF için … glomerül; EM için materyal ayrıldı / ayrılmadı"
+  - id: glomeruller
+    etiket: Glomerüller
+    seviye: 1
+    alt:
+      - {id: gs_global, etiket: Global skleroz, seviye: 1, tip: metin, kalip: "… / … glomerül"}
+      - {id: gs_segmental, etiket: Segmental skleroz, seviye: 1, tip: metin, kalip: "… / … glomerül (… lokalizasyon / varyant)"}
+      - {id: kresent, etiket: Kresent, seviye: 1, tip: metin, kalip: "Görülmedi / … glomerülde (sellüler …, fibrosellüler …, fibröz …)"}
+      - {id: nekroz_g, etiket: Fibrinoid nekroz / karyoreksis, seviye: 1, tip: metin, kalip: "Görülmedi / … glomerülde"}
+      - {id: endokapiller, etiket: Endokapiller hipersellülarite, seviye: 1, tip: secim, secenekler: [Görülmedi, "Segmental (… glomerül)", Global]}
+      - {id: mezangial, etiket: Mezangial hipersellülarite / matriks artışı, seviye: 1, tip: secim, secenekler: [Görülmedi, Hafif, Orta, Belirgin]}
+      - {id: gbm, etiket: Kapiller duvar / GBM, seviye: 1, tip: secim, secenekler: ["Olağan", "Kalınlaşmış", "Spike / vakuolizasyon (gümüş)", "Çift kontur", "Tel halka (wire-loop)"]}
+      - {id: nodul, etiket: Nodüler mezangial genişleme / hiyalin, seviye: 2, tip: secim, secenekler: [Görülmedi, "Görüldü (Kimmelstiel-Wilson)", "Amorf eozinofilik madde"]}
+  - id: tubulointerstisyum
+    etiket: Tübülointerstisyum
+    seviye: 1
+    alt:
+      - {id: ifta, etiket: İnterstisyel fibrozis / tübüler atrofi, seviye: 1, tip: secim, secenekler: ["Yok / minimal (<%10)", "Hafif (%10–25)", "Orta (%26–50)", "Belirgin (>%50)"]}
+      - {id: interstisyel_inf, etiket: İnterstisyel inflamasyon, seviye: 1, tip: metin, kalip: "Görülmedi / korteksin %…'inde; hücre tipi (lenfosit / eozinofil / plazma hücresi / nötrofil)"}
+      - {id: tubulit, etiket: Tübülit, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+      - {id: ath, etiket: Akut tübüler hasar, seviye: 1, tip: secim, secenekler: [Görülmedi, Hafif, Orta, Belirgin]}
+      - {id: silendir, etiket: Silendir / kristal, seviye: 2, tip: metin, kalip: "Görülmedi / eritrosit silendiri / … kristali / hafif zincir silendiri"}
+  - id: damarlar
+    etiket: Damarlar
+    seviye: 1
+    alt:
+      - {id: arterioskleroz, etiket: Arterioskleroz (intimal fibrozis), seviye: 1, tip: secim, secenekler: [Görülmedi, Hafif, Orta, Belirgin]}
+      - {id: hiyalinoz, etiket: Arteriolar hiyalinoz, seviye: 1, tip: secim, secenekler: [Görülmedi, Hafif, Orta, Belirgin]}
+      - {id: vaskulit, etiket: Vaskülit / TMA, seviye: 1, tip: secim, secenekler: [Görülmedi, "Nekrotizan arterit", "Trombotik mikroanjiyopati bulguları"]}
+  - modul: ortak.bobrek_if
+  - {id: ozel_boya, etiket: Histokimya, seviye: 2, tip: metin, kalip: "PAS, gümüş (Jones), Masson trikrom, Kongo kırmızısı (polarizan ile …)"}
+  - {id: em, etiket: Elektron mikroskopi, seviye: 1, tip: secim, secenekler: ["Yapılmadı", "Materyal gönderildi; sonuç ek raporda bildirilecektir", "Bulgular: …"]}
+  - id: skorlar
+    etiket: Sınıflama / skorlar
+    seviye: 1
+    alt:
+      - {id: oxford, etiket: Oxford MEST-C, seviye: 1, tip: metin, kalip: "M0/1, E0/1, S0/1 (podosit hiperplazisi/tip lezyon: var/yok), T0/1/2, C0/1/2", kosul: "IgA nefropatisi"}
+      - {id: lupus, etiket: ISN/RPS sınıfı ve NIH indeksleri, seviye: 1, tip: metin, kalip: "Sınıf …; aktivite indeksi …/24 (endokapiller …, nötrofil/karyoreksis …, fibrinoid nekroz …×2, hiyalin depozit …, sellüler/fibrosellüler kresent …×2, interstisyel inflamasyon …); kronisite indeksi …/12 (global glomerüloskleroz …, fibröz kresent …, tübüler atrofi …, interstisyel fibrozis …)", kosul: "lupus nefriti"}
+      - {id: berden, etiket: Berden sınıfı, seviye: 1, tip: secim, secenekler: ["Fokal (≥%50 normal glomerül)", "Kresentik (≥%50 sellüler kresent)", "Mikst", "Sklerotik (≥%50 global skleroz)"], kosul: "ANCA GN"}
+      - {id: rps_dn, etiket: RPS diyabetik nefropati sınıfı, seviye: 1, tip: secim, secenekler: ["I (yalnız GBM kalınlaşması)", "IIa (hafif mezangial genişleme)", "IIb (belirgin mezangial genişleme)", "III (en az bir Kimmelstiel-Wilson lezyonu)", "IV (ileri diyabetik glomerüloskleroz, >%50 global skleroz)"], kosul: "diyabetik nefropati"}
+      - {id: fsgs_varyant, etiket: FSGS varyantı (Columbia), seviye: 2, tip: secim, secenekler: [NOS, Perihiler, Hücresel, Tip, Kollapsing], kosul: "FSGS"}
+  - {id: yorum, etiket: Yorum, seviye: 1, tip: metin, not: "Klinik-serolojik korelasyon (ANCA, anti-GBM, C3/C4, PLA2R, serum/idrar immünfiksasyon vb.)."}
+makroskopi:
+  alanlar:
+    - {id: adet, etiket: Kor sayısı (ışık mikroskopisi), tip: sayi, zorunlu: true}
+    - {id: uzunluk, etiket: Kor uzunlukları, tip: olcu, birim: cm, zorunlu: true}
+    - {id: if_materyal, etiket: IF için ayrılan materyal, tip: secim, secenekler: ["… cm uzunluğunda kor Michel solüsyonunda / taze olarak IF için ayrıldı", "IF için ayrı materyal gönderilmedi"], zorunlu: true}
+    - {id: em_materyal, etiket: EM için ayrılan materyal, tip: secim, secenekler: ["… mm'lik parça glutaraldehit içinde EM için ayrıldı", "EM için materyal ayrılmadı"], zorunlu: true}
+    - {id: stereo, etiket: Stereomikroskop / glomerül varlığı, tip: secim, secenekler: ["glomerül içerdiği gözlendi", "glomerül ayırt edilemedi (medulla ağırlıklı olabilir)", "değerlendirilmedi"]}
+  varyantlar:
+    - ad: Medikal böbrek biyopsisi
+      metin:
+        - "Formalin içinde {uzunluk} cm uzunluğunda {adet} adet iğne biyopsi materyali; stereomikroskopta {stereo}. {if_materyal}. {em_materyal}."
+      ornekleme:
+        - {kod: T, aciklama: "tümü, seri kesitler", tek: true}
+  yapilacaklar:
+    - Taze materyal stereomikroskopta incelenip korteks — IF (taze / Michel), EM (glutaraldehit, 1 mm³), ışık (formalin) — olarak paylaştırılır.
+    - Işık mikroskopisi için ince (2–3 µm) seri kesitler — H&E, PAS, gümüş (Jones), Masson trikrom, gerekirse Kongo kırmızısı.
+    - IF paneli — IgG, IgA, IgM, C3, C1q, kappa, lambda, fibrinojen (+ gerekirse PLA2R, C4d, IgG alt sınıfları).

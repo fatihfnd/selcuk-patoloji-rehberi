@@ -1,0 +1,45 @@
+id: yumusak-doku-biyopsi
+baslik: Yumuşak doku tümörü — kor / insizyonel biyopsi
+organ: Yumuşak doku
+materyal: Biyopsi
+kaynaklar:
+  - "CAP — Soft Tissue (Biopsy)"
+  - "WHO Yumuşak Doku ve Kemik Tümörleri, 5. baskı (2020)"
+  - "FNCLCC derecelendirme sistemi"
+not: "Tanı satırında WHO biyolojik kategorisi (benign / intermediate-lokal agresif / intermediate-nadiren metastaz yapan / malign) belirtilmesi önerilir."
+tani_alternatif: true
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; {yer}, {islem}"
+  - "İğsi hücreli neoplazm, lütfen epikrizi okuyunuz (kesin sınıflama rezeksiyon materyalinde); {yer}, {islem}"
+  - "Yüksek dereceli sarkom, alt tip sınıflandırılamadı, lütfen epikrizi okuyunuz; {yer}, {islem}"
+  - "Tanı için yetersiz materyal (nekroz / reaktif doku), lütfen epikrizi okuyunuz; {yer}, {islem}"
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: islem, etiket: İşlem, seviye: 0, gizli: true, tip: secim, secenekler: ["kor iğne biyopsi", "insizyonel biyopsi", "eksizyonel biyopsi"]}
+  - {id: histolojik_tip, etiket: Histolojik tip, seviye: 1, tip: metin, kalip: "… (WHO 2020)"}
+  - {id: kategori, etiket: WHO biyolojik kategori, seviye: 1, tip: secim, secenekler: [Benign, "İntermediate (lokal agresif)", "İntermediate (nadiren metastaz yapan)", Malign, Belirlenemedi]}
+  - {id: materyal, etiket: Materyal, seviye: 2, tip: metin, kalip: "… kor, toplam … cm; canlı tümör %…, nekroz %…"}
+  - {id: mitoz, etiket: Mitoz, seviye: 1, tip: metin, kalip: "…/10 BBA (… mm²) veya …/mm²"}
+  - {id: nekroz, etiket: Nekroz, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü (%…)", Belirlenemedi]}
+  - {modul: ortak.fnclcc, kosul: "malign"}
+  - {id: ihk, etiket: İmmünohistokimya, seviye: 1, tip: metin, kalip: "…"}
+  - {id: molekuler, etiket: Moleküler, seviye: 2, tip: metin, kalip: "FISH / NGS / RT-PCR: … (… yeniden düzenlenmesi / MDM2 amplifikasyonu …)"}
+  - {id: yorum, etiket: Yorum, seviye: 1, tip: secim, secenekler: ["Biyopsi materyalinde derece ve alt tip rezeksiyon materyalinde değişebilir.", "Ayırıcı tanı için moleküler inceleme önerilir / sürmektedir; sonuç ek raporda bildirilecektir.", "Bulgular sarkom referans merkezinde multidisipliner değerlendirme gerektirir."]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: adet, etiket: Kor / parça sayısı, tip: sayi, zorunlu: true}
+    - {id: en_buyuk, etiket: En büyük parça, tip: olcu, birim: cm, zorunlu: true}
+    - {id: en_kucuk, etiket: En küçük parça, tip: olcu, birim: cm}
+    - {id: renk, etiket: Renk / kıvam, tip: secim, secenekler: ["gri-beyaz, elastik", "sarı, yağlı", "miksoid, jelatinöz", "kanamalı / nekrotik"]}
+    - {id: taze, etiket: Taze doku, tip: secim, secenekler: ["moleküler çalışma için ayrılmadı", "… mm'lik parça moleküler çalışma / sitogenetik için ayrıldı"]}
+  varyantlar:
+    - ad: Kor / insizyonel biyopsi
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): En büyüğü {en_buyuk} cm, en küçüğü {en_kucuk} cm boyutlarında, {renk} {adet} adet doku parçası; {taze}. Tümü takibe alındı."
+  yapilacaklar:
+    - Korlar ayrı bloklara dağıtılır (moleküler için yedek blok).
+    - Boş lamlar ilk kesimde ayrılır; gereksiz derin kesimden kaçınılır.
+    - Taze geldiyse sitogenetik / moleküler için doku ayrılabilir.

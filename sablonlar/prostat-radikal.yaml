@@ -1,0 +1,120 @@
+id: prostat-radikal
+baslik: Prostat — radikal prostatektomi, adenokarsinom
+organ: Prostat
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Prostate Gland (Radical Prostatectomy)"
+  - "ICCR — Prostate Cancer, Radical Prostatectomy"
+  - "RCPath — Dataset for prostate cancer"
+  - "ISUP 2019 / GUPS 2019; WHO 5. baskı (2022); AJCC 8"
+tani:
+  - "Asiner adenokarsinom, Gleason skor … (…+…), grade grup …, lütfen epikrizi okuyunuz; prostat, radikal prostatektomi"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); pelvik lenf nodu diseksiyonu"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [Radikal prostatektomi, Radikal prostatektomi + bilateral pelvik lenf nodu diseksiyonu, Radikal sistoprostatektomi]}
+  - {id: agirlik, etiket: Prostat ağırlığı / boyutu, seviye: 2, tip: metin, kalip: "… g; …x…x… cm"}
+  - {id: neoadjuvan, etiket: Neoadjuvan tedavi, seviye: 1, tip: secim, secenekler: [Yok, Var, Bilinmiyor], gizli: true}
+  - id: histolojik_tip
+    etiket: Histolojik tip
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler: [Asiner adenokarsinom, "Asiner adenokarsinom, … alt tipi (ör. köpüksü bezli / psödohiperplastik / müsinöz)", Duktal adenokarsinom, "Asiner ve duktal adenokarsinom (duktal %…)", "Nöroendokrin karsinom / tedavi ilişkili nöroendokrin karsinom"]
+  - id: derece
+    etiket: Histolojik derece
+    seviye: 1
+    tip: metin
+    kalip: "Gleason skor … (…+…), grade grup …"
+    alt:
+      - {id: patern4, etiket: Patern 4 oranı, seviye: 1, tip: olcu, birim: "%", kosul: "GG 2–3"}
+      - {id: tersiyer5, etiket: Minör tersiyer patern 5 (<%5), seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü]}
+      - {id: kribriform, etiket: Kribriform patern, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - id: idc
+    etiket: İntraduktal karsinom
+    seviye: 2
+    tip: secim
+    secenekler: [Görülmedi, Görüldü]
+    not: "ISUP: derecelendirmeye katılır; GUPS: dahil edilmez — hangisi kullanıldığı belirtilmeli."
+  - {id: tedavi_etkisi, etiket: Tedavi etkisi, seviye: 1, tip: secim, kosul: "neoadjuvan == Var", secenekler: [Görülmedi, "Görüldü (…); tedavi etkili alanlar derecelendirilmedi"]}
+  - id: yerlesim
+    etiket: Tümör yerleşimi
+    seviye: 2
+    tip: coklu
+    secenekler: [Sağ lob, Sol lob, Anterior, Posterior, Apeks, Orta bez, Baz, Transizyonel zon]
+  - {id: oran, etiket: Tümörün prostat dokusuna oranı, seviye: 1, tip: olcu, birim: "%"}
+  - {id: dominant_cap, etiket: Dominant nodülün en büyük çapı, seviye: 2, tip: olcu, birim: mm}
+  - {id: dominant_yer, etiket: Dominant nodülün yerleşimi, seviye: 3, tip: metin}
+  - id: epe
+    etiket: Ekstraprostatik yayılım
+    seviye: 1
+    tip: secim
+    secenekler: [Görülmedi, "Görüldü, fokal (… lokalizasyon)", "Görüldü, yaygın/belirgin (… lokalizasyon)"]
+  - {id: mesane_boynu, etiket: Mesane boynu kas invazyonu, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü (pT3a)]}
+  - {id: sv, etiket: Seminal vezikül invazyonu, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü (sağ / sol / bilateral) (pT3b)"]}
+  - modul: ortak.lvi
+  - {modul: ortak.pni, seviye: 3}
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    tip: secim
+    secenekler: ["Tümör görülmedi; en yakın sınır … (… mm)", "Tümör boyalı sınıra ulaşıyor"]
+    alt:
+      - {id: sinir_yer, etiket: Pozitif sınır yeri, seviye: 1, tip: coklu, secenekler: [Apeks, Baz / mesane boynu, Posterolateral, Anterior, Sağ, Sol], kosul: "sinir == pozitif"}
+      - {id: sinir_uzunluk, etiket: Pozitif sınır uzunluğu, seviye: 1, tip: metin, kalip: "… mm (tek odak / multifokal, toplam … mm)", kosul: "sinir == pozitif"}
+      - {id: sinir_derece, etiket: Sınırda Gleason paterni, seviye: 2, tip: secim, secenekler: [Patern 3, Patern 4, Patern 5], kosul: "sinir == pozitif"}
+      - {id: sinir_tip, etiket: Sınır pozitifliği yeri, seviye: 3, tip: secim, secenekler: [İntraprostatik (kapsüler insizyon), Ekstraprostatik], kosul: "sinir == pozitif"}
+  - modul: ortak.lenf_nodu
+  - modul: ortak.ptnm
+  - id: ek_bulgular
+    etiket: Ek patolojik bulgular
+    seviye: 2
+    tip: coklu
+    secenekler: [Yüksek dereceli PIN, Nodüler hiperplazi, Kronik prostatit, Atrofi, …]
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: agirlik, etiket: Prostat ağırlığı (SV hariç), tip: sayi, birim: g, zorunlu: true}
+    - {id: ab, etiket: Apeks-baz boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: tr, etiket: Transvers boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: oa, etiket: Ön-arka boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: rsv, etiket: Sağ seminal vezikül, tip: olcu, birim: cm}
+    - {id: lsv, etiket: Sol seminal vezikül, tip: olcu, birim: cm}
+    - {id: rvd, etiket: Sağ vaz deferens uzunluğu, tip: olcu, birim: cm}
+    - {id: lvd, etiket: Sol vaz deferens uzunluğu, tip: olcu, birim: cm}
+    - {id: boya_sag, etiket: Sağ yarı boya rengi, zorunlu: true}
+    - {id: boya_sol, etiket: Sol yarı boya rengi, zorunlu: true}
+    - {id: dilim_kalinlik, etiket: Dilim aralığı, tip: olcu, birim: cm}
+    - {id: dilim_sayi, etiket: Dilim sayısı, tip: sayi}
+    - {id: tumor, etiket: Makroskopik tümör, tip: secim, secenekler: ["… yerleşimli, … cm boyutlarında, sarı-beyaz renkte, belirsiz sınırlı, sert kıvamlı alan izlendi", "makroskopik olarak tümör ayırt edilemedi"], zorunlu: true}
+    - {id: epe_makro, etiket: Makroskopik ekstraprostatik uzanım, tip: secim, secenekler: [izlenmedi, "… bölgesinde şüpheli uzanım izlendi"]}
+    - {id: sv_mb, etiket: SV ve mesane boynu görünümü, tip: secim, secenekler: [olağan görünümdedir, "… izlendi"]}
+    - {id: nodul, etiket: Tümör dışı bez, tip: secim, secenekler: [nodüler hiperplazi ile uyumlu görünümdedir, özellik izlenmedi]}
+  varyantlar:
+    - ad: Radikal prostatektomi
+      metin:
+        - >-
+          {fiksasyon_durumu} gönderilen, {agirlik} g ağırlığında (seminal veziküller hariç), apeks-baz {ab} cm,
+          transvers {tr} cm, ön-arka {oa} cm boyutlarında radikal prostatektomi materyalidir. Sağ seminal vezikül
+          {rsv} cm, sol seminal vezikül {lsv} cm; sağ vaz deferens {rvd} cm, sol vaz deferens {lvd} cm
+          uzunluğundadır.
+        - >-
+          Materyalin sağ yarısı {boya_sag}, sol yarısı {boya_sol} renkli doku boyası ile boyandı. Apeks ve mesane
+          boynu cerrahi sınırları koni biçiminde ayrılarak radyal (parasagital) dilimlendi; bez apeksten baza
+          doğru {dilim_kalinlik} cm aralıklarla {dilim_sayi} dilime ayrıldı.
+        - >-
+          Kesitlerde {tumor}. Makroskopik ekstraprostatik uzanım {epe_makro}. Seminal veziküller ve mesane boynu
+          {sv_mb}. Tümör dışı bez {nodul}.
+      ornekleme:
+        - {kod: APX, aciklama: "apeks cerrahi sınırı, koni biçiminde radyal dilimler", parca: "…", kaset: "…"}
+        - {kod: MB, aciklama: "mesane boynu cerrahi sınırı, koni biçiminde radyal dilimler", parca: "…", kaset: "…"}
+        - {kod: RSV, aciklama: "sağ seminal vezikül bazı-prostat birleşimi", parca: "1", kaset: "1"}
+        - {kod: LSV, aciklama: "sol seminal vezikül bazı-prostat birleşimi", parca: "1", kaset: "1"}
+        - {kod: VD, aciklama: "vaz deferens cerrahi sınırları", parca: "2", kaset: "1"}
+        - {kod: "A–…", aciklama: "apeksten baza dilimler, RA / RP / LA / LP kadran kodlu", not: "Tamamı önerilir; kısmi örneklemede tüm posterior yarı + her dilimin anterior orta kesimi + palpabl/şüpheli alanlar (ICCR/ISUP)."}
+  ek_materyaller: [makro.ln_istasyon, makro.ek_cerrahi_sinir]
+  yapilacaklar:
+    - Tartım SV hariç; üç boyut; SV ve vaz uzunlukları.
+    - Sağ/sol farklı renk boya; SV'ler ve vaz ayrılmadan önce boya.
+    - Apeks ve baz sınırı koni biçiminde ayrılıp radyal dilimlenir.
+    - Bez 3–5 mm aralıklarla apeksten baza dilimlenir, dilim haritası (şema) çizilir.
+    - Tamamı tercih edilir; kısmi örnekleme yapılıyorsa şema raporla birlikte arşivlenir.

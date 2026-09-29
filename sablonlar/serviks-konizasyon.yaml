@@ -1,0 +1,73 @@
+id: serviks-konizasyon
+baslik: Serviks — biyopsi / LEEP / konizasyon
+organ: Serviks
+materyal: Biyopsi / eksizyon
+kaynaklar:
+  - "LAST projesi (CAP/ASCCP, 2012) — skuamöz lezyon terminolojisi"
+  - "WHO Kadın Genital Tümörleri, 5. baskı (2020)"
+  - "ICCR — Carcinoma of the Cervix (eksizyon bölümü); FIGO 2018"
+tani_alternatif: true
+tani:
+  - "Kronik servisit, skuamöz metaplazi; serviks uteri, {islem}"
+  - "Düşük dereceli skuamöz intraepitelyal lezyon (LSIL / CIN 1); serviks uteri, {islem}"
+  - "Yüksek dereceli skuamöz intraepitelyal lezyon (HSIL / CIN 2), lütfen epikrizi okuyunuz; serviks uteri, {islem}"
+  - "Yüksek dereceli skuamöz intraepitelyal lezyon (HSIL / CIN 3), lütfen epikrizi okuyunuz; serviks uteri, {islem}"
+  - "Adenokarsinoma in situ, HPV ilişkili, lütfen epikrizi okuyunuz; serviks uteri, {islem}"
+  - "Skuamöz hücreli karsinom, HPV ilişkili, yüzeyel invaziv, lütfen epikrizi okuyunuz; serviks uteri, {islem}"
+epikriz:
+  - {id: islem, etiket: İşlem, seviye: 0, gizli: true, tip: secim, secenekler: [punch biyopsi, endoservikal küretaj, LEEP, "soğuk bıçak konizasyon"]}
+  - {id: materyal, etiket: Materyal, seviye: 2, tip: secim, secenekler: ["Tek parça, oryante (saat 12 işaretli)", "Tek parça, oryante edilmemiş", "Parçalı (… parça); sınır değerlendirmesi sınırlı"]}
+  - {id: lezyon, etiket: Lezyon, seviye: 1, tip: secim, secenekler: [Görülmedi, LSIL (CIN 1), HSIL (CIN 2), HSIL (CIN 3), Adenokarsinoma in situ, "Stratifiye müsin üreten intraepitelyal lezyon (SMILE)", İnvaziv karsinom]}
+  - {id: yayginlik, etiket: Lezyon yaygınlığı, seviye: 2, tip: metin, kalip: "Saat … – … arası (… kadran); endoservikal bez tutulumu görüldü / görülmedi"}
+  - {id: p16, etiket: p16 (İHK), seviye: 2, tip: secim, secenekler: [Çalışılmadı, "Blok tipi pozitif", "Negatif / yamalı"], not: "LAST: CIN 2 ayırıcı tanısı ve HSIL taklitçilerinde."}
+  - id: sinirlar
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    alt:
+      - {id: s_ekto, etiket: Ektoservikal (dış) sınır, seviye: 1, tip: secim, secenekler: ["Lezyon görülmedi (… mm)", "LSIL görüldü", "HSIL görüldü", "AIS görüldü", "Değerlendirilemedi (koter)"]}
+      - {id: s_endo, etiket: Endoservikal (iç) sınır, seviye: 1, tip: secim, secenekler: ["Lezyon görülmedi (… mm)", "LSIL görüldü", "HSIL görüldü", "AIS görüldü", "Değerlendirilemedi (koter)"]}
+      - {id: s_derin, etiket: Derin stromal sınır, seviye: 1, tip: secim, secenekler: ["Lezyon görülmedi (… mm)", "Lezyon / invaziv karsinom görüldü", "Değerlendirilemedi"]}
+  - id: invaziv
+    etiket: İnvaziv karsinom
+    seviye: 1
+    kosul: "lezyon == İnvaziv karsinom"
+    alt:
+      - {id: inv_tip, etiket: Histolojik tip, seviye: 1, tip: secim, serbest: true, secenekler: ["Skuamöz hücreli karsinom, HPV ilişkili", "Skuamöz hücreli karsinom, HPV bağımsız", "Adenokarsinom, HPV ilişkili", "Adenokarsinom, HPV bağımsız (gastrik tip / …)"]}
+      - {id: inv_derinlik, etiket: Stromal invazyon derinliği, seviye: 1, tip: olcu, birim: mm, not: "FIGO 2018: IA1 ≤3 mm, IA2 >3–≤5 mm; yüzeyden değil, köken aldığı epitel/bez bazalinden ölçülür."}
+      - {id: inv_yatay, etiket: Yatay yayılım, seviye: 1, tip: metin, kalip: "… mm × … mm (evrelemede kullanılmaz; raporlanır)"}
+      - {id: inv_odak, etiket: Odak sayısı, seviye: 2, tip: secim, secenekler: [Tek odak, "Çok odaklı (… odak)"]}
+      - {id: inv_lvsi, etiket: Lenfovasküler alan invazyonu, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü, Belirlenemedi]}
+      - {id: inv_silva, etiket: Silva paterni (HPV ilişkili adenokarsinom), seviye: 2, tip: secim, secenekler: [Patern A, Patern B, Patern C]}
+      - {id: inv_figo, etiket: FIGO 2018 (en az), seviye: 1, tip: secim, secenekler: ["IA1", "IA2", "≥IB1 (derinlik >5 mm)"]}
+  - {id: diger, etiket: Diğer bulgular, seviye: 3, tip: coklu, secenekler: [Kondilomatöz değişiklik, Tübal / tuboendometrioid metaplazi, Mikroglandüler hiperplazi, "Endometriozis", "…"]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: islem, etiket: İşlem, tip: secim, secenekler: [LEEP, konizasyon], zorunlu: true}
+    - {id: isaret, etiket: Oryantasyon, tip: secim, secenekler: ["saat 12 ip ile işaretlenmiş", "işaretlenmemiş"], zorunlu: true}
+    - {id: boyut, etiket: Boyut (ektoservikal çap × derinlik), tip: olcu, birim: cm, zorunlu: true}
+    - {id: kanal, etiket: Endoservikal kanal uzunluğu, tip: olcu, birim: cm}
+    - {id: mukoza, etiket: Ektoservikal mukoza, tip: secim, secenekler: [düzgündür, "saat … hizasında beyaz / eritemli / ülsere alan izlendi"]}
+    - {id: dilim, etiket: Dilim sayısı, tip: sayi, zorunlu: true}
+    - {id: biyopsi_boyut, etiket: Biyopsi boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: biyopsi_adet, etiket: Biyopsi parça sayısı, tip: sayi, zorunlu: true}
+  varyantlar:
+    - ad: LEEP / konizasyon
+      metin:
+        - >-
+          {kod}: {isaret} gönderilen, {boyut} cm boyutlarında {islem} materyalidir; endoservikal kanal {kanal} cm
+          uzunluğundadır. Ektoservikal mukoza {mukoza}. Ektoservikal ve endoservikal sınırlar ile derin stromal yüz
+          farklı renklerde boyandı; materyal saat yönünde radyal olarak {dilim} dilime ayrıldı. Dilimler saat
+          sırasıyla takibe alındı.
+      ornekleme:
+        - {kod: "S1–S12", aciklama: "saat dilimleri, sırayla (ör. S1: saat 12–1)", not: "Tümü takibe alınır; her kasette 1–2 dilim, saat bilgisi korunur."}
+    - ad: Punch biyopsi / endoservikal küretaj
+      metin:
+        - "{kod}: En büyüğü {biyopsi_boyut} cm çapında {biyopsi_adet} adet krem-beyaz renkte doku parçası."
+      ornekleme:
+        - {kod: T, aciklama: tümü, tek: true}
+  yapilacaklar:
+    - Oryantasyon ipini koru; ektoservikal, endoservikal ve derin sınırları farklı renkte boya.
+    - Parçalı LEEP'te her parça ayrı değerlendirilir; sınır yorumunda sınırlılık belirtilir.
+    - Konizasyon açılmadan radyal dilimlenir (açılacaksa saat 12'den); tümü takibe alınır.
+    - İnvazyon şüphesinde ek düzey kesitler.

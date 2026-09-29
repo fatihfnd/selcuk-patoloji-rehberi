@@ -1,0 +1,70 @@
+id: sinonazal
+baslik: Nazal kavite ve paranazal sinüsler — tümör (biyopsi / rezeksiyon)
+organ: Sinonazal
+materyal: Biyopsi / rezeksiyon
+kaynaklar:
+  - "CAP — Nasal Cavity and Paranasal Sinuses (Resection)"
+  - "ICCR — Carcinomas of the Nasal Cavity and Paranasal Sinuses"
+  - "WHO Baş ve Boyun Tümörleri, 5. baskı (2022); AJCC 8"
+not: "Sinonazal rezeksiyonlar çoğunlukla parçalı gelir; sınır değerlendirmesi ayrı gönderilen sınır örneklerine dayanır. pT tanımları maksiller sinüs ile nazal kavite / etmoid için farklıdır."
+tani_alternatif: true
+tani:
+  - "Sinonazal papillom, inverted tip; {yer}, {islem}"
+  - "Sinonazal papillom, onkositik tip; {yer}, {islem}"
+  - "Sinonazal papillom, ekzofitik tip; {yer}, {islem}"
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; {yer}, {islem}"
+  - "İnflamatuar sinonazal polip; {yer}, {islem}"
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: secim, secenekler: [sağ nazal kavite, sol nazal kavite, "sağ / sol maksiller sinüs", etmoid sinüs, sfenoid sinüs, frontal sinüs, nazal septum]}
+  - {id: islem, etiket: İşlem, seviye: 0, gizli: true, tip: secim, secenekler: [biyopsi, endoskopik rezeksiyon, "medial / total maksillektomi", kraniofasiyal rezeksiyon]}
+  - id: histolojik_tip
+    etiket: Histolojik tip
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler:
+      - "Keratinize skuamöz hücreli karsinom"
+      - "Nonkeratinize skuamöz hücreli karsinom (HPV ilişkili / DEK::AFF2 / …)"
+      - "Sinonazal papillom zemininde skuamöz hücreli karsinom"
+      - "Sinonazal indiferansiye karsinom (SNUC)"
+      - "NUT karsinomu"
+      - "SMARCB1-eksik sinonazal karsinom"
+      - "SMARCA4-eksik sinonazal karsinom"
+      - "İntestinal tip sinonazal adenokarsinom"
+      - "Non-intestinal tip sinonazal adenokarsinom"
+      - "Olfaktör nöroblastom (Hyams derece …)"
+      - "Nöroendokrin karsinom (küçük / büyük hücreli)"
+      - "Sinonazal mukozal melanom"
+      - "Tükürük bezi tipi karsinom (…)"
+  - {id: derece, etiket: Histolojik derece, seviye: 2, tip: secim, secenekler: [İyi diferansiye, Orta derecede diferansiye, Az diferansiye, "Hyams I / II / III / IV (olfaktör nöroblastom)", Uygulanmaz]}
+  - {id: displazi_papillom, etiket: Papillomda displazi / karsinom, seviye: 1, kosul: "papillom", tip: secim, secenekler: [Görülmedi, "Düşük dereceli displazi", "Yüksek dereceli displazi / karsinoma in situ", "İnvaziv karsinom"]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 2, tip: olcu, birim: cm, kosul: "rezeksiyon"}
+  - {id: yayilim, etiket: Tümör yayılımı, seviye: 1, kosul: "karsinom", tip: coklu, secenekler: ["Tek alt bölgeye sınırlı", "Birden fazla alt bölge / komşu sinüs", "Kemik erozyonu / destrüksiyonu", "Medial orbita duvarı / orbita tabanı", "Orbita içeriği (ön)", "Pterigoid plaklar / ön kafa tabanı / deri", "Orbita apeksi / dura / beyin / orta kafa tabanı / kranial sinir (pT4b)"]}
+  - modul: ortak.lvi
+  - {modul: ortak.pni, seviye: 1}
+  - {id: sinir, etiket: Cerrahi sınırlar, seviye: 1, kosul: "rezeksiyon", tip: secim, secenekler: ["Tümör görülmedi (… mm)", "Tümör görüldü (… sınır)", "Değerlendirilemedi (parçalı materyal); ayrı sınır örnekleri: …"]}
+  - id: ihk
+    etiket: İHK / moleküler
+    seviye: 1
+    kosul: "karsinom / ayırıcı tanı"
+    tip: metin
+    kalip: "Pansitokeratin …, p40 …, p16 / HPV …, NUT …, INI1 (SMARCB1) …, BRG1 (SMARCA4) …, sinaptofizin …, kromogranin …, S100 (sustentaküler) …, CDX2 …, SOX10 / HMB45 …, EBER …"
+  - {modul: ortak.bb_lenf_nodu, kosul: "boyun diseksiyonu"}
+  - {modul: ortak.ptnm, kosul: "karsinom"}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: boyut, etiket: Toplam boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: ["polipoid, gri-pembe, yarı saydam", "papiller, kırmızı-kahverengi", "gri-beyaz, frajil, kanamalı", "kemik parçaları içeren"]}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: Biyopsi / endoskopik rezeksiyon
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): Topluca {boyut} cm boyutlarında, {gorunum} çok sayıda doku parçası. {parca} parça {kaset} kasette takibe alındı."
+  yapilacaklar:
+    - Polip / papillom materyallerinde tümü takibe alınır (papillom içinde karsinom odakları için).
+    - Kemik içeren parçalar ayrı kasette, dekalsifikasyon sonrası.
+    - Ayrı gönderilen sınır örnekleri kendi kodlarıyla raporlanır.

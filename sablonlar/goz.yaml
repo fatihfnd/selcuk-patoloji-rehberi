@@ -1,0 +1,73 @@
+id: goz
+baslik: Göz — enükleasyon (retinoblastom / uveal melanom)
+organ: Göz
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Retinoblastoma; Uveal Melanoma"
+  - "ICCR — Retinoblastoma; Uveal Melanoma"
+  - "WHO Göz ve Orbita Tümörleri, 5. baskı (2023); AJCC 8"
+tani_alternatif: true
+tani:
+  - "Retinoblastom, lütfen epikrizi okuyunuz; {taraf} göz, enükleasyon"
+  - "Uveal melanom ({uvea_yer}), lütfen epikrizi okuyunuz; {taraf} göz, enükleasyon"
+epikriz:
+  - {id: taraf, etiket: Taraf, seviye: 0, gizli: true, tip: secim, secenekler: [sağ, sol]}
+  - {id: uvea_yer, etiket: Uveal yerleşim, seviye: 0, gizli: true, tip: secim, secenekler: [koroid, siliyer cisim, iris]}
+  - {id: neoadjuvan, etiket: Önceki tedavi, seviye: 1, tip: secim, secenekler: [Yok, "Kemoterapi (intraarteriyel / sistemik / intravitreal)", "Brakiterapi / radyoterapi", Bilinmiyor]}
+  - id: rb
+    etiket: Retinoblastom
+    seviye: 1
+    kosul: "retinoblastom"
+    alt:
+      - {id: rb_boyut, etiket: Tümör boyutu, seviye: 1, tip: metin, kalip: "Taban … mm, yükseklik … mm"}
+      - {id: rb_buyume, etiket: Büyüme paterni, seviye: 2, tip: secim, secenekler: [Endofitik, Ekzofitik, Mikst, "Diffüz infiltratif"]}
+      - {id: rb_anaplazi, etiket: Anaplazi derecesi, seviye: 2, tip: secim, secenekler: [Hafif, Orta, Belirgin, Anaplastik]}
+      - {id: rb_on, etiket: Optik sinir invazyonu, seviye: 1, tip: secim, secenekler: [Görülmedi, "Prelaminar", "Laminar", "Postlaminar", "Cerrahi sınırda"]}
+      - {id: rb_koroid, etiket: Koroid invazyonu, seviye: 1, tip: secim, secenekler: [Görülmedi, "Fokal (<3 mm)", "Masif (≥3 mm)"]}
+      - {id: rb_sklera, etiket: Sklera / ekstraskleral yayılım, seviye: 1, tip: secim, secenekler: [Görülmedi, "Skleral invazyon", "Ekstraskleral yayılım"]}
+      - {id: rb_on_segment, etiket: Ön segment tutulumu, seviye: 1, tip: coklu, secenekler: [Görülmedi, Ön kamara, Iris, Siliyer cisim, Trabeküler ağ]}
+  - id: um
+    etiket: Uveal melanom
+    seviye: 1
+    kosul: "uveal melanom"
+    alt:
+      - {id: um_boyut, etiket: En büyük taban çapı (LBD) / yükseklik, seviye: 1, tip: metin, kalip: "LBD … mm, yükseklik … mm (AJCC 8 boyut kategorisi …)"}
+      - {id: um_hucre, etiket: Hücre tipi, seviye: 1, tip: secim, secenekler: ["İğsi hücreli", "Epiteloid hücreli", "Mikst (epiteloid %…)"]}
+      - {id: um_mitoz, etiket: Mitoz, seviye: 1, tip: metin, kalip: "…/40 BBA (… mm²)"}
+      - {id: um_siliyer, etiket: Siliyer cisim tutulumu, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü]}
+      - {id: um_ekstraskleral, etiket: Ekstraskleral yayılım, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü (≤5 mm)", "Görüldü (>5 mm)"]}
+      - {id: um_vaskuler_patern, etiket: Mikrovasküler loop paterni, seviye: 3, tip: secim, secenekler: [Görülmedi, Görüldü]}
+      - {id: um_til, etiket: Tümör infiltre eden lenfosit / makrofaj, seviye: 3, tip: secim, secenekler: [Az, Belirgin]}
+      - {id: um_bap1, etiket: BAP1 İHK / moleküler, seviye: 2, tip: metin, kalip: "BAP1 nükleer ekspresyon korunmuş / kayıp; monozomi 3 / 8q kazanımı / GEP sınıfı …"}
+  - modul: ortak.lvi
+  - {id: sinir, etiket: Optik sinir cerrahi sınırı, seviye: 1, tip: secim, secenekler: [Tümör görülmedi, Tümör görüldü]}
+  - {id: tedavi_etkisi, etiket: Tedavi etkisi, seviye: 1, kosul: "önceki tedavi", tip: metin, kalip: "Canlı tümör %…; nekroz / kalsifikasyon / fibrozis …"}
+  - modul: ortak.ptnm
+  - {id: diger, etiket: Diğer bulgular, seviye: 3, tip: coklu, secenekler: [Retina dekolmanı, "Neovasküler glokom / iris neovaskülarizasyonu", Vitreus tohumlanması, Kanama]}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: taraf, etiket: Taraf, tip: secim, secenekler: [sağ, sol], zorunlu: true}
+    - {id: glob_boyut, etiket: Glob boyutu (ön-arka × horizontal × vertikal), tip: olcu, birim: mm, zorunlu: true}
+    - {id: kornea, etiket: Kornea çapı, tip: olcu, birim: mm}
+    - {id: on_uzunluk, etiket: Optik sinir uzunluğu / çapı, tip: olcu, birim: mm, zorunlu: true}
+    - {id: transilluminasyon, etiket: Transillüminasyon, tip: secim, secenekler: ["… kadranda gölge izlendi", gölge izlenmedi]}
+    - {id: ekstraskleral, etiket: Ekstraskleral nodül, tip: secim, secenekler: [izlenmedi, "… bölgesinde … mm nodül izlendi"], zorunlu: true}
+    - {id: kesim, etiket: Kesim düzlemi, tip: secim, secenekler: ["pupil-optik sinir (PO) düzleminde horizontal / vertikal açıldı; iki kalot ayrıldı"], zorunlu: true}
+    - {id: tumor, etiket: İntraoküler tümör, zorunlu: true, not: "… kadranda, taban … mm, yükseklik … mm, beyaz kalsifik / kahverengi-pigmente; ora serrata / optik diske uzaklık …"}
+  varyantlar:
+    - ad: Enükleasyon
+      metin:
+        - >-
+          {fiksasyon_durumu} gönderilen {taraf} enükleasyon materyali. Glob {glob_boyut} mm, kornea {kornea} mm çapında; optik
+          sinir {on_uzunluk} mm. Transillüminasyonda {transilluminasyon}. Ekstraskleral nodül {ekstraskleral}.
+        - "Optik sinir cerrahi sınırı alındıktan sonra glob {kesim}. Kesitlerde {tumor}."
+      ornekleme:
+        - {kod: ONS, aciklama: "optik sinir cerrahi sınırı, transvers", parca: "1", kaset: "1", not: "Glob açılmadan önce; retinoblastomda tümör kontaminasyonunu önlemek için ilk iş."}
+        - {kod: PO, aciklama: "pupil-optik sinir santral dilimi (optik sinir longitudinal dahil)", parca: "1", kaset: "1"}
+        - {kod: K, aciklama: "kalotlar", parca: "2", kaset: "2", not: "Tümör kalotta devam ediyorsa ek dilimler."}
+  yapilacaklar:
+    - Optik sinir sınırını glob açılmadan önce al (retinoblastom — ilk adım).
+    - Taze retinoblastomda genetik çalışma için tümör alınacaksa sklera açılmadan kontaminasyonsuz yöntemle.
+    - Transillüminasyonla tümör gölgesini işaretle; kesim düzlemini tümörü ve optik siniri içerecek şekilde seç.
+    - Uveal melanomda ekstraskleral uzanım ve vorteks venleri incelenir.

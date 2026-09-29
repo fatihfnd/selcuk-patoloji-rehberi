@@ -1,0 +1,37 @@
+id: sito-lenf-nodu
+baslik: Lenf nodu ince iğne aspirasyonu (Sydney sistemi, 2020)
+organ: Lenf nodu
+materyal: Sitoloji
+makro_baslik: Materyal ve preparat
+kaynaklar:
+  - "The Sydney System for Performance, Classification and Reporting of Lymph Node Cytopathology (2020)"
+tani_alternatif: true
+tani:
+  - "Yetersiz / tanısal değil (Sydney L1), lütfen epikrizi okuyunuz; {yer} lenf nodu, ince iğne aspirasyonu"
+  - "Reaktif lenfoid popülasyon / granülomatöz inflamasyon / … (Sydney L2 — benign); {yer} lenf nodu, ince iğne aspirasyonu"
+  - "Önemi belirsiz atipik lenfoid hücreler / atipik hücreler (Sydney L3 — AUS / ALUS), lütfen epikrizi okuyunuz; {yer} lenf nodu, ince iğne aspirasyonu"
+  - "Malignite şüphesi (Sydney L4), lütfen epikrizi okuyunuz; {yer} lenf nodu, ince iğne aspirasyonu"
+  - "Metastatik karsinom / lenfoma / … (Sydney L5 — malign), lütfen epikrizi okuyunuz; {yer} lenf nodu, ince iğne aspirasyonu"
+mikroskopi:
+  - "Yaymalar az / orta / yoğun hücresel olup polimorf lenfoid popülasyon (küçük lenfositler, sentrositler, sentroblastlar, tingible-body makrofajlar) / monomorf lenfoid popülasyon izlenmiştir."
+  - "Lenfoid dışı hücreler (kohezif epitelyal gruplar / epiteloid histiyosit kümeleri / nekroz / Reed-Sternberg benzeri hücreler) izlenmiştir / izlenmemiştir."
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: yeterlilik, etiket: Yeterlilik, seviye: 1, tip: secim, secenekler: [Yeterli, "Yetersiz (az hücreli / kan / ezilme)"]}
+  - {id: ek_test, etiket: Ek testler, seviye: 1, tip: metin, kalip: "Akım sitometri: …; hücre bloğu İHK: …; FISH / klonalite: …"}
+  - {id: rom, etiket: Malignite riski, seviye: 3, tip: metin, kalip: "Kurum / Sydney sistemi tablosuna göre …"}
+  - {id: yorum, etiket: Yorum / öneri, seviye: 1, tip: secim, secenekler: ["Klinik-radyolojik korelasyon önerilir.", "Lenfoma sınıflaması için eksizyonel biyopsi önerilir.", "Kor / eksizyonel biyopsi önerilir.", "Tekrar İİAB (akım sitometri için ayrı materyal) önerilir."]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: konvansiyonel, etiket: Yayma sayısı, tip: sayi, zorunlu: true}
+    - {id: boyama, etiket: Boyama, tip: secim, secenekler: [Papanicolaou, "May-Grünwald-Giemsa / Diff-Quik", "Papanicolaou ve Giemsa"], zorunlu: true}
+    - {id: sivi, etiket: İğne yıkama, not: "Akım sitometri için RPMI / hücre bloğu için … ml"}
+  varyantlar:
+    - ad: Lenf nodu İİAB
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): {boyama} ile boyanmış {konvansiyonel} adet yayma; iğne yıkama {sivi}."
+  yapilacaklar:
+    - Lenfoma şüphesinde ayrı iğne geçişi akım sitometri için (RPMI) ayrılır.

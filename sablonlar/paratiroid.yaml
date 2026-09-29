@@ -1,0 +1,50 @@
+id: paratiroid
+baslik: Paratiroid — paratiroidektomi
+organ: Paratiroid
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Parathyroid Gland (Resection)"
+  - "WHO Endokrin ve Nöroendokrin Tümörler, 5. baskı (2022); AJCC 8"
+not: "Adenom-hiperplazi ayrımı tek bezde histolojik olarak güvenilir değildir; bez sayısı, ağırlık ve intraoperatif PTH düşüşü ile birlikte yorumlanır."
+tani_alternatif: true
+tani:
+  - "Paratiroid adenomu (… mg), lütfen epikrizi okuyunuz; {yer} paratiroid bez, paratiroidektomi"
+  - "Hipersellüler paratiroid bez (multiglandüler hastalık / hiperplazi ile uyumlu, … mg); {yer} paratiroid bez, paratiroidektomi"
+  - "Normosellüler paratiroid bez (… mg); {yer} paratiroid bez, biyopsi / eksizyon"
+  - "Atipik paratiroid tümörü, lütfen epikrizi okuyunuz; {yer} paratiroid bez, paratiroidektomi"
+  - "Paratiroid karsinomu, lütfen epikrizi okuyunuz; {yer} paratiroid bez, en blok rezeksiyon"
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: secim, secenekler: [sağ üst, sağ alt, sol üst, sol alt, "ektopik (…)"]}
+  - {id: agirlik, etiket: Bez ağırlığı, seviye: 1, tip: metin, kalip: "… mg (normal üst sınır ≈40–60 mg)"}
+  - {id: boyut, etiket: Boyut, seviye: 2, tip: olcu, birim: cm}
+  - {id: normal_rim, etiket: Normal / baskılanmış paratiroid kenarı, seviye: 2, tip: secim, secenekler: [Görüldü, Görülmedi]}
+  - {id: klinik, etiket: İntraoperatif PTH / klinik, seviye: 3, tip: metin, kalip: "PTH … → … pg/mL (%… düşüş)"}
+  - id: atipik
+    etiket: Atipik / malign özellikler
+    seviye: 1
+    kosul: "atipik tümör / karsinom"
+    alt:
+      - {id: a_invazyon, etiket: İnvazyon, seviye: 1, tip: coklu, secenekler: [Görülmedi, "Kapsül invazyonu (tam kat)", "Anjioinvazyon (kapsül / kapsül dışı damar, trombüse yapışık)", Perinöral invazyon, "Komşu yapı invazyonu (tiroid / yumuşak doku / …)", "Lenf nodu / uzak metastaz"]}
+      - {id: a_diger, etiket: Diğer atipik bulgular, seviye: 1, tip: coklu, secenekler: [Fibröz bantlar, Trabeküler büyüme, "Kapsül içinde tümör yuvaları", "Mitoz artışı (…/10 mm²)", Nekroz, "Belirgin nükleoller / pleomorfizm"]}
+      - {id: a_parafibromin, etiket: Parafibromin (CDC73) İHK, seviye: 1, tip: secim, secenekler: [Çalışılmadı, "Nükleer ekspresyon korunmuş", "Nükleer ekspresyon kaybı (CDC73 germline mutasyonu açısından genetik danışmanlık önerilir)"]}
+      - {id: a_ki67, etiket: Ki-67, seviye: 2, tip: olcu, birim: "%"}
+  - {id: sinir, etiket: Cerrahi sınır, seviye: 1, kosul: "karsinom", tip: secim, secenekler: ["Tümör görülmedi (… mm)", Tümör görüldü]}
+  - {modul: ortak.lenf_nodu, kosul: "karsinom"}
+  - {modul: ortak.ptnm, kosul: "karsinom"}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: agirlik, etiket: Ağırlık (yağ doku ayıklanmış), tip: sayi, birim: mg, zorunlu: true}
+    - {id: boyut, etiket: Boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: ["kırmızı-kahverengi, kapsüllü, düzgün yüzeyli", "sarı-kahverengi", "gri-beyaz, sert, çevre dokuya yapışık"]}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: Paratiroidektomi
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): Yağ dokudan ayıklandıktan sonra {agirlik} mg ağırlığında, {boyut} cm boyutlarında, {gorunum} doku. Tümü {parca} parça {kaset} kasette takibe alındı."
+  yapilacaklar:
+    - Çevre yağ doku ayıklandıktan sonra mg hassasiyetinde tart (ağırlık tanısal).
+    - Bezin tamamı takibe alınır; karsinom şüphesinde kapsül ve çevre yumuşak doku boyanarak.

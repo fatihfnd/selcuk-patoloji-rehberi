@@ -1,0 +1,75 @@
+id: larinks
+baslik: Larinks / hipofarinks — skuamöz hücreli karsinom, rezeksiyon
+organ: Larinks
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Larynx (Resection)"
+  - "ICCR — Carcinomas of the Larynx and Hypopharynx"
+  - "WHO Baş ve Boyun Tümörleri, 5. baskı (2022); AJCC 8"
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; larinks, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); sağ / sol boyun diseksiyonu"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [total larenjektomi, supraglottik larenjektomi, vertikal parsiyel larenjektomi, "transoral lazer kordektomi", "larengofarenjektomi"]}
+  - {id: neoadjuvan, etiket: Önceki (kemo)radyoterapi, seviye: 1, tip: secim, secenekler: [Yok, Var, Bilinmiyor], gizli: true}
+  - {id: alt_bolge, etiket: Tümör yerleşimi (alt bölge), seviye: 1, tip: coklu, secenekler: [Supraglottik, Glottik, Subglottik, Transglottik, "Hipofarinks (piriform sinüs / postkrikoid / arka duvar)"]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: olcu, birim: cm}
+  - {id: histolojik_tip, etiket: Histolojik tip, seviye: 1, tip: secim, serbest: true, secenekler: ["Skuamöz hücreli karsinom, keratinize", "Skuamöz hücreli karsinom, nonkeratinize", "Bazaloid skuamöz hücreli karsinom", "Verrüköz karsinom", "Papiller skuamöz hücreli karsinom", "İğsi hücreli (sarkomatoid) skuamöz hücreli karsinom", "Nöroendokrin karsinom"]}
+  - {id: derece, etiket: Histolojik derece, seviye: 1, tip: secim, secenekler: [İyi diferansiye, Orta derecede diferansiye, Az diferansiye]}
+  - id: yayilim
+    etiket: Tümör yayılımı
+    seviye: 1
+    tip: coklu
+    secenekler:
+      - "Tek alt bölgeye sınırlı"
+      - "Birden fazla alt bölge"
+      - "Paraglottik boşluk"
+      - "Preepiglottik boşluk"
+      - "Tiroid kıkırdak — iç korteks"
+      - "Tiroid kıkırdak — tam kat / dış korteks (pT4a)"
+      - "Krikoid kıkırdak"
+      - "Trakea / tiroid bez / özofagus / boyun yumuşak dokusu / strap kasları (pT4a)"
+      - "Prevertebral boşluk / mediasten / karotis (pT4b)"
+  - modul: ortak.lvi
+  - {modul: ortak.pni, seviye: 1}
+  - {id: tedavi_etkisi, etiket: Tedavi etkisi, seviye: 1, kosul: "neoadjuvan == Var", tip: metin, kalip: "Rezidü canlı tümör …; radyasyon ilişkili değişiklikler …"}
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    not: "Yakın sınır — <5 mm (RCPath: >5 mm temiz, 1–5 mm yakın, <1 mm pozitif)."
+    alt:
+      - {id: s_mukozal, etiket: Mukozal sınırlar, seviye: 1, tip: secim, secenekler: ["İnvaziv karsinom / displazi görülmedi (en yakın … mm, … sınır)", "Yüksek dereceli displazi görüldü (… sınır)", "İnvaziv karsinom görüldü (… sınır)"]}
+      - {id: s_derin, etiket: Derin / yumuşak doku sınırı, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (… mm)", "Tümör görüldü"]}
+  - modul: ortak.bb_lenf_nodu
+  - modul: ortak.ptnm
+  - {id: diger, etiket: Diğer bulgular, seviye: 3, tip: coklu, secenekler: [Tümör dışı displazi, Tiroid bez (tutulum yok / var), Paratiroid, "Radyasyon kondronekrozu"]}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: parcalar, etiket: Materyali oluşturan yapılar, zorunlu: true, not: "Ör. …x…x… cm larinks; hyoid kemik, … trakeal halka, sağ / sol tiroid lob, strap kasları"}
+    - {id: acma, etiket: Açılma / kesim, tip: secim, secenekler: ["posterior orta hattan açıldı", "fiksasyon ve dekalsifikasyon sonrası sagital / aksiyel dilimlendi"]}
+    - {id: yerlesim, etiket: Tümör yerleşimi, zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: [ülserovejetan, ekzofitik, "ülsere-infiltratif", "düz, beyaz plak"]}
+    - {id: yayilim, etiket: Makroskopik yayılım, zorunlu: true, not: "Karşı taraf / ön komissür / preepiglottik / paraglottik / kıkırdak / ekstralaringeal"}
+    - {id: mesafeler, etiket: Sınırlara uzaklıklar, zorunlu: true, not: "Superior (dil kökü / farinks) … cm, inferior (trakea) … cm, sağ / sol mukozal … cm, derin … cm"}
+  varyantlar:
+    - ad: Larenjektomi
+      metin:
+        - "{fiksasyon_durumu} gönderilen {prosedur} materyalidir; {parcalar} içermektedir. Dış yüz boyandı; materyal {acma}."
+        - "{yerlesim} yerleşimli, {tumor_boyut} cm boyutlarında, {gorunum} tümör izlendi. Makroskopik yayılım: {yayilim}. {mesafeler}."
+      ornekleme:
+        - {kod: SMS, aciklama: "mukozal sınırlar (süperior, inferior, sağ, sol)", parca: "…", kaset: "…", not: "Dilimlemeden önce, dik kesit."}
+        - {kod: T, aciklama: "tümör, tam kat (kıkırdak ilişkisi dahil)", not: "Tümör-paraglottik / preepiglottik boşluk ve kıkırdak ilişkisi; kıkırdak için dekalsifikasyon."}
+        - {kod: TK, aciklama: "tümör-tiroid / krikoid kıkırdak", parca: "…", kaset: "…"}
+        - {kod: ÖK, aciklama: ön komissür, parca: "…", kaset: "…"}
+        - {kod: KT, aciklama: "karşı taraf kord / ventrikül", parca: "…", kaset: "…"}
+        - {kod: TİR, aciklama: tiroid lob, parca: "…", kaset: "…"}
+        - {kod: TR, aciklama: trakeal sınır, parca: "1", kaset: "1"}
+  ek_materyaller: [makro.ln_istasyon, makro.ek_cerrahi_sinir]
+  yapilacaklar:
+    - Mukozal sınırları dilimlemeden önce al; dış yüzü boya.
+    - Tümörün ön komissür, subglottik uzanım ve kıkırdak ilişkisini kaydet.
+    - Kıkırdak içeren kesitler dekalsifiye edilir; mümkünse tümörlü yumuşak doku ayrı kasetlenir (dekalsifikasyon İHK/moleküleri bozar).
+    - Boyun diseksiyonu seviye bazında ayrı kaplarda.

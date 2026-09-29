@@ -1,0 +1,44 @@
+id: sito-tukuruk
+baslik: Tükürük bezi ince iğne aspirasyonu (Milan sistemi, 2. baskı)
+organ: Tükürük bezi
+materyal: Sitoloji
+makro_baslik: Materyal ve preparat
+kaynaklar:
+  - "The Milan System for Reporting Salivary Gland Cytopathology, 2. baskı (2023)"
+not: "Malignite riski (ROM) değerleri Milan 2. baskı yaklaşık değerleridir; kurumun güncel tablosuyla karşılaştırılmalıdır."
+tani_alternatif: true
+tani:
+  - "Tanısal değil (Milan kategori I), lütfen epikrizi okuyunuz; {yer}, ince iğne aspirasyonu"
+  - "… ile uyumlu (Milan kategori II — non-neoplastik); {yer}, ince iğne aspirasyonu"
+  - "Önemi belirsiz atipi (Milan kategori III — AUS), lütfen epikrizi okuyunuz; {yer}, ince iğne aspirasyonu"
+  - "Pleomorfik adenom / Warthin tümörü / … (Milan kategori IVA — benign neoplazm); {yer}, ince iğne aspirasyonu"
+  - "Belirsiz malign potansiyelli tükürük bezi neoplazmı (Milan kategori IVB — SUMP), lütfen epikrizi okuyunuz; {yer}, ince iğne aspirasyonu"
+  - "… şüphesi (Milan kategori V — malignite şüphesi), lütfen epikrizi okuyunuz; {yer}, ince iğne aspirasyonu"
+  - "…, düşük / yüksek dereceli (Milan kategori VI — malign), lütfen epikrizi okuyunuz; {yer}, ince iğne aspirasyonu"
+mikroskopi:
+  - "Yaymalar az / orta / yoğun hücresel olup zeminde fibriller metakromatik matriks / müsin / lenfositler / nekroz izlenmiştir."
+  - "Epitelyal / miyoepitelyal / onkositik / bazaloid hücreler tek tek ve gruplar halinde dağılmıştır; nükleer atipi belirgin değildir / hafif / belirgin."
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: yeterlilik, etiket: Yeterlilik, seviye: 1, tip: secim, secenekler: [Yeterli, "Yetersiz: az hücreli", "Yetersiz: yalnız müsin / kistik sıvı (lezyonel epitel yok)", "Yetersiz: artefakt / kan"]}
+  - {id: kategori, etiket: Milan kategorisi, seviye: 1, tip: secim, secenekler: ["I — Tanısal değil", "II — Non-neoplastik", "III — AUS", "IVA — Neoplazm: benign", "IVB — SUMP", "V — Malignite şüphesi", "VI — Malign"]}
+  - {id: spesifik, etiket: Spesifik tanı / ayırıcı tanı, seviye: 1, tip: metin}
+  - {id: rom, etiket: Malignite riski (yaklaşık), seviye: 3, tip: secim, secenekler: ["I: ≈%15", "II: ≈%11", "III: ≈%30", "IVA: <%3", "IVB: ≈%35", "V: ≈%83", "VI: ≈%99"]}
+  - {id: ek_test, etiket: Ek testler, seviye: 2, tip: metin, kalip: "Hücre bloğu İHK: PLAG1 …, HMGA2 …, MYB …, SOX10 …, DOG1 …, pan-TRK …; FISH / NGS …"}
+  - {id: yorum, etiket: Yorum / öneri, seviye: 1, tip: secim, secenekler: ["Klinik-radyolojik korelasyon önerilir.", "Tekrar İİAB / kor biyopsi önerilir.", "Cerrahi eksizyon açısından değerlendirilmesi önerilir."]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: konvansiyonel, etiket: Konvansiyonel yayma sayısı, tip: sayi, zorunlu: true}
+    - {id: boyama, etiket: Boyama, tip: secim, secenekler: [Papanicolaou, "May-Grünwald-Giemsa / Diff-Quik", "Papanicolaou ve Giemsa"], zorunlu: true}
+    - {id: sivi, etiket: İğne yıkama materyali, tip: secim, secenekler: ["gönderilmedi", "… ml; sıvı bazlı preparat hazırlandı", "… ml; hücre bloğu hazırlandı"]}
+  varyantlar:
+    - ad: Tükürük bezi İİAB
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): {boyama} ile boyanmış {konvansiyonel} adet yayma; iğne yıkama materyali {sivi}."
+  ek_materyaller: [makro.sito_preparat]
+  yapilacaklar:
+    - Giemsa boyası matriks (pleomorfik adenom / adenoid kistik karsinom) değerlendirmesi için önerilir.
+    - Hücre bloğu İHK ve füzyon testleri için hazırlanır.

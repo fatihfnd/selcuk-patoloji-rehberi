@@ -1,0 +1,96 @@
+id: tiroidektomi
+baslik: Tiroidektomi / lobektomi
+organ: Tiroid
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Thyroid Gland (Resection)"
+  - "ICCR — Carcinoma of the Thyroid"
+  - "WHO Endokrin ve Nöroendokrin Tümörler, 5. baskı (2022); AJCC 8"
+not: >
+  AJCC 8'de yalnız mikroskopik ekstratiroidal yayılım pT'yi değiştirmez; strap kaslara makroskopik yayılım pT3b'dir.
+  Her lob / nodül ayrı tanı satırı alabilir; malign tümör için epikriz yazılır.
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; tiroid {lob}, {prosedur}"
+  - "Foliküler nodüler hastalık (multinodüler guatr) / kronik lenfositik (Hashimoto) tiroidit / özellik göstermeyen tiroid dokusu; tiroid karşı lob, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); santral / lateral boyun (seviye …)"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [total tiroidektomi, "lobektomi (+ isthmusektomi)", tamamlayıcı tiroidektomi, "+ santral / lateral boyun diseksiyonu"]}
+  - {id: lob, etiket: Lob, seviye: 0, gizli: true, tip: secim, secenekler: [sağ lob, sol lob, isthmus]}
+  - id: histolojik_tip
+    etiket: Histolojik tip (WHO 2022)
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler:
+      - "Papiller tiroid karsinomu, klasik alt tip"
+      - "Papiller tiroid karsinomu, infiltratif foliküler alt tip"
+      - "Papiller tiroid karsinomu, uzun hücreli (tall cell) alt tip"
+      - "Papiller tiroid karsinomu, çivi başı (hobnail) alt tip"
+      - "Papiller tiroid karsinomu, kolumnar hücreli alt tip"
+      - "Papiller tiroid karsinomu, diffüz sklerozan alt tip"
+      - "Papiller tiroid karsinomu, solid / trabeküler alt tip"
+      - "Papiller tiroid karsinomu, onkositik alt tip"
+      - "İnvaziv enkapsüle foliküler varyant papiller tiroid karsinomu (minimal invaziv / anjioinvaziv / yaygın invaziv)"
+      - "Foliküler tiroid karsinomu (minimal invaziv / enkapsüle anjioinvaziv / yaygın invaziv)"
+      - "Onkositik karsinom (minimal invaziv / enkapsüle anjioinvaziv / yaygın invaziv)"
+      - "Yüksek dereceli diferansiye tiroid karsinomu"
+      - "Az diferansiye tiroid karsinomu"
+      - "Anaplastik tiroid karsinomu"
+      - "Medüller tiroid karsinomu"
+      - "Papiller nükleer özellikleri olan non-invaziv foliküler tiroid neoplazmı (NIFTP)"
+      - "Foliküler adenom / onkositik adenom"
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: olcu, birim: cm, kalip: "…x…x… cm (en büyük boyut … cm)"}
+  - {id: fokalite, etiket: Tümör fokalitesi, seviye: 1, tip: secim, secenekler: [Unifokal, "Multifokal, ipsilateral (… odak; en büyüğü … cm)", "Multifokal, bilateral (… odak)"]}
+  - {id: kapsul, etiket: Tümör kapsülü, seviye: 1, tip: secim, secenekler: [Kapsülsüz / infiltratif, "Kapsüllü; kapsül invazyonu yok", "Kapsüllü; kapsül invazyonu var (… odak)", "Parsiyel kapsüllü"]}
+  - {id: anjioinvazyon, etiket: Vasküler invazyon, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü, sınırlı (<4 damar)", "Görüldü, yaygın (≥4 damar)"], not: "Kapsülde veya kapsül dışındaki damarlarda, endotelle örtülü trombüse yapışık tümör / fibrin trombüsü ile birlikte."}
+  - {id: lenfatik, etiket: Lenfatik invazyon, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {id: ete, etiket: Ekstratiroidal yayılım, seviye: 1, tip: secim, secenekler: ["Görülmedi", "Yalnız mikroskopik (perityroidal yumuşak doku; pT'yi değiştirmez)", "Makroskopik, strap kaslara (pT3b)", "Subkutan doku / larinks / trakea / özofagus / rekürren laringeal sinir (pT4a)", "Prevertebral fasya / karotis arter / mediastinal damarlar (pT4b)"]}
+  - {id: yuksek_derece, etiket: Yüksek dereceli özellikler, seviye: 1, tip: metin, kalip: "Mitoz …/2 mm²; tümör nekrozu görülmedi / görüldü", not: "DHGTC: ≥5 mitoz / 2 mm² ve/veya nekroz (anaplastik özellik olmaksızın)."}
+  - {id: mtc_derece, etiket: Medüller karsinom derecesi, seviye: 1, kosul: "medüller", tip: secim, secenekler: ["Düşük derece", "Yüksek derece (mitoz ≥5/2 mm², Ki-67 ≥%5 ve/veya nekroz)"]}
+  - {id: sinir, etiket: Cerrahi sınır, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (… mm)", "Tümör boyalı sınıra ulaşıyor (… bölge)"]}
+  - id: lenf_nodu
+    etiket: Lenf nodları
+    seviye: 1
+    tip: metin
+    kalip: "Santral (seviye VI) …, lateral (seviye …) … lenf nodu incelendi; …'inde metastaz görüldü / metastaz görülmedi"
+    alt:
+      - {id: ln_depozit, etiket: En büyük metastatik depozit, seviye: 1, tip: olcu, birim: mm}
+      - {id: ene, etiket: Ekstranodal yayılım, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {id: paratiroid, etiket: Paratiroid bez, seviye: 2, tip: secim, secenekler: [Görülmedi, "… adet paratiroid bez görüldü (yerleşimi: …)"]}
+  - modul: ortak.ptnm
+  - {id: zemin, etiket: Tümör dışı tiroid, seviye: 2, tip: coklu, secenekler: [Özellik yok, Kronik lenfositik tiroidit, Foliküler nodüler hastalık, "C hücre hiperplazisi", "Graves hastalığı ile uyumlu değişiklikler"]}
+  - {id: molekuler, etiket: İHK / moleküler, seviye: 3, tip: metin, kalip: "BRAF V600E (VE1) …; kalsitonin …; CEA …; Ki-67 %…; RAS / TERT …"}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: isaret, etiket: Oryantasyon, tip: secim, secenekler: ["… lob ip ile işaretlenmiş", "işaretlenmemiş"]}
+    - {id: agirlik, etiket: Ağırlık, tip: sayi, birim: g, zorunlu: true}
+    - {id: sag_boyut, etiket: Sağ lob boyutu, tip: olcu, birim: cm}
+    - {id: sol_boyut, etiket: Sol lob boyutu, tip: olcu, birim: cm}
+    - {id: isthmus, etiket: İsthmus boyutu, tip: olcu, birim: cm}
+    - {id: dis_yuz, etiket: Dış yüz, tip: secim, secenekler: [düzgündür, "… bölgesinde iskelet kası / yumuşak doku yapışıklığı izlendi"]}
+    - {id: nodul, etiket: Nodül(ler), zorunlu: true, not: "… lob … kesiminde …x…x… cm boyutlarında, kapsüllü / kapsülsüz, … kesit yüzlü nodül; kapsüle / boyalı sınıra … cm"}
+    - {id: parankim, etiket: Nodül dışı parankim, tip: secim, secenekler: ["kırmızı-kahverengi, kolloid görünümlü", "soluk, lobüle (tiroidit?)", "multinodüler görünümlü"]}
+    - {id: paratiroid, etiket: Paratiroid benzeri yapı, tip: secim, secenekler: [izlenmedi, "… bölgesinde … cm'lik paratiroid benzeri yapı izlendi"]}
+  varyantlar:
+    - ad: Tiroidektomi / lobektomi
+      metin:
+        - >-
+          {fiksasyon_durumu} {isaret} gönderilen, {agirlik} g ağırlığında {prosedur} materyalidir. Sağ lob {sag_boyut} cm,
+          sol lob {sol_boyut} cm, isthmus {isthmus} cm boyutlarındadır. Dış yüz {dis_yuz}. Dış yüz boyandı; loblar
+          süperiordan inferiora 0,3–0,5 cm aralıklarla transvers dilimlendi.
+        - "Kesitlerde {nodul}. Nodül dışı parankim {parankim}. Paratiroid benzeri yapı {paratiroid}."
+      ornekleme:
+        - {kod: T, aciklama: "tümör / nodül ve kapsül-çevre parankim geçişi", not: "Kapsüllü foliküler lezyonda kapsülün TAMAMI (tüm çevre); ≤1 cm tümörde tamamı; diğerlerinde cm başına 1 kaset + kapsül."}
+        - {kod: TS, aciklama: "tümör-dış yüz (boyalı sınır) ilişkisi", parca: "…", kaset: "…"}
+        - {kod: SL, aciklama: "sağ lob, tümör dışı (süperior / orta / inferior)", parca: "…", kaset: "…"}
+        - {kod: LL, aciklama: "sol lob, tümör dışı (süperior / orta / inferior)", parca: "…", kaset: "…"}
+        - {kod: İ, aciklama: isthmus, parca: "1", kaset: "1"}
+        - {kod: PT, aciklama: paratiroid benzeri yapı, parca: "…", kaset: "…"}
+  ek_materyaller: [makro.ln_istasyon]
+  yapilacaklar:
+    - Ağırlık ve lob boyutları; dış yüzü boya.
+    - Nodüllerin yerini (üst / orta / alt, anterior / posterior) ve boyalı yüze uzaklığı kaydet.
+    - Kapsüllü foliküler paternli nodülde kapsülün tamamını örnekle (vasküler / kapsül invazyonu için).
+    - Makroskopik ekstratiroidal yayılım şüphesi (iskelet kası yapışıklığı) ayrıca kasetlenir.

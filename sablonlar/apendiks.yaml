@@ -1,0 +1,67 @@
+id: apendiks
+baslik: Apendektomi (inflamatuar ve neoplastik)
+organ: Apendiks
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Appendix (Carcinoma) ve Appendix NET protokolleri"
+  - "PSOGI 2016 apendiks müsinöz neoplazm terminolojisi"
+  - "WHO Sindirim Sistemi Tümörleri, 5. baskı (2019); AJCC 8; ENETS"
+tani_alternatif: true
+tani:
+  - "Akut apandisit, periapandisit; apendiks vermiformis, apendektomi"
+  - "Akut gangrenöz apandisit, perforasyon, periapandisit; apendiks vermiformis, apendektomi"
+  - "Fibröz obliterasyon; apendiks vermiformis, apendektomi"
+  - "Belirgin patolojik değişiklik göstermeyen apendiks vermiformis; apendektomi"
+  - "Enterobius vermicularis, lenfoid hiperplazi; apendiks vermiformis, apendektomi"
+  - "İyi diferansiye nöroendokrin tümör, grade …, lütfen epikrizi okuyunuz; apendiks vermiformis, apendektomi"
+  - "Düşük dereceli apendiks müsinöz neoplazmı (LAMN), lütfen epikrizi okuyunuz; apendiks vermiformis, apendektomi"
+epikriz:
+  - {id: tumor_tipi, etiket: Tümör tipi, seviye: 0, gizli: true, tip: secim, secenekler: [NET, LAMN / HAMN, Adenokarsinom, Goblet hücreli adenokarsinom]}
+  - {id: yerlesim, etiket: Tümör yerleşimi, seviye: 2, tip: secim, secenekler: [Uç, Gövde, Taban]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: olcu, birim: mm}
+  - {id: net_grade, etiket: "Derece (NET; Ki-67 / mitoz)", seviye: 1, tip: secim, secenekler: ["G1 (Ki-67 <%3; mitoz <2/2 mm²)", "G2 (Ki-67 %3–20; mitoz 2–20/2 mm²)", "G3 (Ki-67 >%20; mitoz >20/2 mm²)"], kosul: "tumor_tipi == NET"}
+  - {id: ki67, etiket: Ki-67 indeksi, seviye: 1, tip: olcu, birim: "%", kosul: "tumor_tipi == NET"}
+  - {id: mitoz, etiket: Mitoz, seviye: 2, tip: metin, kalip: "…/2 mm²", kosul: "tumor_tipi == NET"}
+  - id: yayilim
+    etiket: Tümör yayılımı
+    seviye: 1
+    tip: secim
+    secenekler:
+      - "Submukoza / muskularis propriaya sınırlı"
+      - "Subseroza / mezoapendikse … mm invazyon"
+      - "Viseral peritona ulaşmış"
+      - "Komşu organ invazyonu"
+      - "Müsin ve/veya neoplastik epitel apendiks dışında (LAMN: pT4a)"
+  - {id: lamn_duvar, etiket: Apendiks duvarı (LAMN), seviye: 1, tip: secim, secenekler: ["Müsin duvar içinde, epitel duvara sınırlı (pTis(LAMN))", "Müsin muskularis propriada (pT3)", "Aselüler müsin periapendiks dokuda", "Neoplastik epitel içeren müsin periapendiks dokuda"], kosul: "tumor_tipi == LAMN"}
+  - {id: perforasyon, etiket: Perforasyon, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - modul: ortak.lvi
+  - modul: ortak.pni
+  - {id: sinir, etiket: Proksimal (apendiks tabanı) cerrahi sınır, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi; mesafe … mm", Tümör görüldü]}
+  - {id: mezo_sinir, etiket: Mezoapendiks sınırı, seviye: 2, tip: secim, secenekler: [Tümör görülmedi, Tümör görüldü]}
+  - modul: ortak.ptnm
+  - {id: arka_plan, etiket: Eşlik eden bulgular, seviye: 2, tip: coklu, secenekler: [Akut apandisit, Fibröz obliterasyon, Özellik yok]}
+  - {id: yorum, etiket: Not, seviye: 3, tip: secim, secenekler: ["NET ≤2 cm, mezoapendiks invazyonu <3 mm, LVI yok ve G1 ise apendektomi genellikle yeterlidir; >2 cm, mezoapendiks invazyonu ≥3 mm, LVI veya G2 varlığında sağ hemikolektomi açısından değerlendirme önerilir (ENETS).", "LAMN'de apendiks dışı müsin/epitel varlığında psödomiksoma peritonei açısından takip önerilir."]}
+makroskopi:
+  alanlar:
+    - {id: uzunluk, etiket: Uzunluk, tip: olcu, birim: cm, zorunlu: true}
+    - {id: cap, etiket: En geniş çap, tip: olcu, birim: cm, zorunlu: true}
+    - {id: mezo, etiket: Mezoapendiks, tip: secim, secenekler: ["… cm boyutlarında mezoapendiks izlendi", mezoapendiks izlenmedi]}
+    - {id: seroza, etiket: Seroza, tip: secim, secenekler: [düzgün ve parlaktır, "hiperemik, yer yer fibrinlidir", "yer yer siyah-yeşil renkte (gangrenöz) görünümdedir", "… cm'lik alanda perforedir"], zorunlu: true}
+    - {id: lumen, etiket: Lümen, tip: secim, secenekler: [boştur, fekalit içermektedir, "müsinöz materyal ile dolu / genişlemiştir", oblitere görünümdedir]}
+    - {id: duvar, etiket: Duvar kalınlığı, tip: olcu, birim: cm}
+    - {id: lezyon, etiket: Lezyon, tip: secim, secenekler: [izlenmedi, "uçta … cm çapında sarı renkli, sınırlı nodüler lezyon izlendi; tabana … cm mesafededir"]}
+  varyantlar:
+    - ad: Apendektomi
+      metin:
+        - >-
+          {uzunluk} cm uzunluğunda, en geniş yerinde {cap} cm çapında apendektomi materyalidir; {mezo}. Seroza {seroza}.
+          Kesitlerde lümen {lumen}; duvar {duvar} cm kalınlığındadır. Lezyon {lezyon}.
+      ornekleme:
+        - {kod: TS, aciklama: "taban cerrahi sınırı, transvers", parca: "1", kaset: "1"}
+        - {kod: G, aciklama: "gövde, transvers", parca: "…", kaset: "…"}
+        - {kod: U, aciklama: "uç, longitudinal", parca: "1", kaset: "1"}
+        - {kod: L, aciklama: "lezyon ve mezoapendiks ilişkisi", parca: "…", kaset: "…", not: "Lezyon ya da müsinöz apendikste tamamı takibe alınır."}
+  yapilacaklar:
+    - Seroza, perforasyon ve mezoapendiks değerlendirilir; müsinöz görünümde dış yüz boyanır ve apendiks tamamen örneklenir.
+    - Taban sınırı transvers, uç longitudinal, gövdeden en az bir transvers kesit.
+    - Nodüler lezyonda tabana ve mezoapendikse uzaklık ölçülür.

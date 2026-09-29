@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Selçuk Patoloji Rehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F5F8; --surface:#FFFFFF; --ink:#1B1F2E; --muted:#5B6173; --rule:#D6DAE3;
+  --hema:#3D3B93; --hema-soft:#E7E6F6; --eosin:#C4466F; --eosin-soft:#F9E3EB; --focus:#3D3B93;
+  --sans:"IBM Plex Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --serif:"IBM Plex Serif", Georgia, "Times New Roman", serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#13151C; --surface:#1B1E27; --ink:#E6E8EF; --muted:#9CA2B3; --rule:#2E3240;
+    --hema:#A9A7F3; --hema-soft:#262546; --eosin:#F18EAC; --eosin-soft:#3A2230; --focus:#A9A7F3;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#13151C; --surface:#1B1E27; --ink:#E6E8EF; --muted:#9CA2B3; --rule:#2E3240;
+  --hema:#A9A7F3; --hema-soft:#262546; --eosin:#F18EAC; --eosin-soft:#3A2230; --focus:#A9A7F3;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans)}
+a{color:var(--hema)}
+button,select,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--surface);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px 20px}
+.brand{font-weight:600;font-size:17px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:10px}
+.brand i{display:inline-block;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--eosin) 0 45%,var(--hema) 46%)}
+.bar .sp{flex:1}
+.theme{background:none;border:1px solid var(--rule);border-radius:6px;padding:4px 10px;cursor:pointer;color:var(--muted)}
+main{max-width:1400px;margin:0 auto;padding:20px}
+h1{font-size:26px;line-height:1.2;margin:0 0 6px;font-weight:600}
+h2{font-size:18px;margin:28px 0 10px;font-weight:600}
+h3{font-size:15px;margin:18px 0 6px;font-weight:600}
+.muted{color:var(--muted)}
+.tag{display:inline-block;font-family:var(--sans);font-size:12px;padding:1px 8px;border-radius:10px;border:1px solid var(--rule);color:var(--muted);white-space:nowrap}
+.tag.N{background:var(--eosin-soft);border-color:transparent;color:var(--eosin)}
+.tag.NN{background:var(--hema-soft);border-color:transparent;color:var(--hema)}
+.tag.K{background:linear-gradient(90deg,var(--eosin-soft),var(--hema-soft));border-color:transparent;color:var(--ink)}
+.btn{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:6px 12px;cursor:pointer;text-decoration:none;color:var(--ink);display:inline-flex;align-items:center;gap:6px;font-size:14px}
+.btn:hover{border-color:var(--hema)}
+.btn.primary{background:var(--hema);border-color:var(--hema);color:var(--surface)}
+.btn.small{padding:2px 8px;font-size:12px}
+/* home */
+.home{display:grid;grid-template-columns:240px 1fr;gap:28px}
+.side{position:sticky;top:76px;align-self:start}
+.side h3{margin-top:0;color:var(--muted);font-weight:500;font-size:13px}
+.side ul{list-style:none;padding:0;margin:0 0 18px}
+.side li button{all:unset;cursor:pointer;display:flex;justify-content:space-between;width:100%;padding:5px 8px;border-radius:6px;font-size:14px}
+.side li button:hover{background:var(--hema-soft)}
+.side li button[aria-pressed="true"]{background:var(--hema);color:var(--surface)}
+.side li button:focus-visible{outline:2px solid var(--focus)}
+.search{width:100%;padding:9px 12px;border:1px solid var(--rule);border-radius:8px;background:var(--surface);margin-bottom:18px}
+.intro{max-width:70ch;color:var(--muted);margin:0 0 18px}
+.sys{margin-bottom:26px}
+.sys h2{margin:0 0 6px;padding-bottom:6px;border-bottom:2px solid var(--ink);font-size:16px}
+.row{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:9px 4px;border-bottom:1px solid var(--rule)}
+.row .t{font-weight:500}
+.row .t small{display:block;color:var(--muted);font-weight:400;font-size:13px}
+.row .acts{display:flex;gap:6px}
+.empty{padding:30px 0;color:var(--muted)}
+/* template page */
+.head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;justify-content:space-between;margin-bottom:14px}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:none;padding:6px 12px;cursor:pointer;font-size:14px}
+.seg button[aria-pressed="true"]{background:var(--hema);color:var(--surface)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.work{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.form{min-width:0}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;margin-bottom:16px}
+.panel>h2{margin:0 0 10px;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.fld{padding:8px 0;border-top:1px solid var(--rule)}
+.fld:first-of-type{border-top:0}
+.fld .lbl{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;font-weight:500;font-size:14px;margin-bottom:4px}
+.core{width:7px;height:7px;border-radius:50%;background:var(--eosin);display:inline-block;transform:translateY(-1px)}
+.kosul{font-size:12px;color:var(--muted);font-weight:400}
+.fld details{font-size:13px;color:var(--muted);margin-top:4px}
+.fld details summary{cursor:pointer;width:max-content}
+.kids{margin-left:14px;padding-left:12px;border-left:2px solid var(--hema-soft)}
+.ctl{display:flex;flex-direction:column;gap:6px}
+select,input[type=text],textarea{width:100%;background:var(--bg);border:1px solid var(--rule);border-radius:6px;padding:6px 8px;font-size:14px}
+textarea{resize:vertical;min-height:38px}
+.unit{display:flex;gap:6px;align-items:center}
+.unit input{max-width:220px}
+.checks{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:14px}
+.checks label{display:flex;gap:5px;align-items:flex-start}
+.alt label{display:flex;gap:8px;align-items:flex-start;padding:5px 0;font-size:14px;border-top:1px dashed var(--rule)}
+.alt label:first-child{border-top:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px 14px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th,.tbl td{border-bottom:1px solid var(--rule);padding:5px 6px;text-align:left;vertical-align:top}
+.tbl input[type=text]{padding:3px 6px}
+.scroll{overflow-x:auto}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.chip{border:1px dashed var(--rule);background:none;border-radius:6px;padding:4px 8px;font-size:12.5px;cursor:pointer;text-align:left;color:var(--muted)}
+.chip:hover{border-color:var(--hema);color:var(--ink)}
+.opts{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;align-items:center}
+/* the report sheet */
+.sheetwrap{position:sticky;top:76px}
+.sheet{background:var(--surface);border:1px solid var(--rule);border-left:5px solid var(--eosin);border-radius:4px 10px 10px 4px;padding:22px 24px;max-height:calc(100vh - 150px);overflow:auto}
+.sheet pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font:14.5px/1.65 var(--serif)}
+.sheet .sec{font-weight:600}
+.sheethead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}
+.sheethead span{color:var(--muted);font-size:13px}
+/* guide */
+.guide{display:grid;grid-template-columns:220px minmax(0,1fr);gap:36px}
+.toc{position:sticky;top:76px;align-self:start;font-size:14px}
+.toc a{display:block;padding:3px 0;text-decoration:none;color:var(--muted)}
+.toc a:hover{color:var(--hema)}
+.read{max-width:78ch;font-family:var(--serif);font-size:16px;line-height:1.7}
+.read h2{font-family:var(--sans);border-top:1px solid var(--rule);padding-top:18px}
+.read h3{font-family:var(--sans)}
+.read .fb{border-left:3px solid var(--hema-soft);padding:2px 0 2px 14px;margin:14px 0}
+.read .fb.core{border-left-color:var(--eosin)}
+.read .fb h4{font-family:var(--sans);font-size:15px;margin:0 0 4px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.read ul{margin:4px 0 8px;padding-left:20px}
+.read .note{font-size:14.5px;color:var(--muted)}
+.read pre{white-space:pre-wrap;font:14px/1.6 var(--serif);background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px 14px}
+.read .tbl{font-family:var(--sans)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--sans);font-size:13px;color:var(--muted)}
+#print-area{display:none}
+@media (max-width:980px){
+  .work{grid-template-columns:1fr}
+  .sheetwrap{position:static}
+  .sheet{max-height:none}
+  .home,.guide{grid-template-columns:1fr}
+  .side,.toc{position:static}
+  .row{grid-template-columns:1fr;gap:6px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{
+  body{background:#fff;color:#000}
+  .bar,main{display:none!important}
+  #print-area{display:block!important;font:11pt/1.55 var(--serif);color:#000}
+  #print-area pre{white-space:pre-wrap;font:inherit;margin:0}
+  #print-area h1{font:600 14pt var(--sans);margin:0 0 4pt}
+  #print-area .pm{font:9pt var(--sans);color:#444;margin-bottom:10pt}
+  #print-area .guideprint{font-size:10.5pt}
+}
+</style>
+</head>
+<body>
+<header class="bar"><div class="bar-in">
+  <a class="brand" href="#/"><i aria-hidden="true"></i><span id="site-ad">Selçuk Patoloji Rehberi</span></a>
+  <span class="sp"></span>
+  <button class="theme" id="theme" type="button" aria-label="Renk temasını değiştir">Tema</button>
+</div></header>
+<main id="app"></main>
+<div id="print-area"></div>
+<script>const DATA = /*__DATA__*/null;</script>
+<script>
+(function(){
+"use strict";
+if (DATA.site){ document.title = DATA.site.ad; document.getElementById("site-ad").textContent = DATA.site.ad; }
+const S = DATA.sablonlar, BY = {}, MOD = DATA.makro_moduller, SIN = DATA.siniflama;
+S.forEach(s => BY[s.id] = s);
+const GRUP = SIN.gruplar, GKISA = {N:"Neoplastik", NN:"Non-neoplastik", K:"Karma", S:"Sitoloji", E:"Ek test"}, SEVIYE = {1:"Kısa", 2:"Standart", 3:"Tam"}, SEV_AD = {0:"gizli",1:"çekirdek",2:"standart",3:"geniş"};
+const app = document.getElementById("app");
+const TOKEN = /\{(\w+)\}/g;
+const states = {};
+const home = {sistem:null, grup:null, q:""};
+
+/* ---------- helpers ---------- */
+function h(tag, attrs, ...kids){
+  const e = document.createElement(tag);
+  if (attrs) for (const k in attrs){
+    const v = attrs[k];
+    if (v == null || v === false) continue;
+    if (k === "class") e.className = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2), v);
+    else if (k === "html") e.innerHTML = v;
+    else e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const k of kids.flat()){ if (k == null || k === false) continue; e.append(k.nodeType ? k : document.createTextNode(k)); }
+  return e;
+}
+function cap(x){ return x ? x.charAt(0).toLocaleUpperCase("tr") + x.slice(1) : x; }
+function visible(a, lvl){ return !a.gizli && a.seviye !== 0 && a.seviye <= lvl; }
+function degerMetni(a){
+  if (a.kalip) return a.kalip;
+  const t = a.tip;
+  if (t === "secim" || t === "coklu"){
+    const s = a.secenekler || [], j = s.join(" / ");
+    const kisa = s.every(x => x.length <= 4) && s.length <= 10;
+    return (kisa || (s.length <= 6 && j.length <= 140)) ? j : "…";
+  }
+  if (t === "olcu") return a.birim === "%" ? "%…" : ("… " + (a.birim || "")).trim();
+  return t ? "…" : "";
+}
+function withUnit(a, v){
+  if (!v || !a.birim) return v;
+  if (!/^[\d\s.,x×\-–]+$/.test(v)) return v;
+  return a.birim === "%" ? "%" + v.trim() : v.trim() + " " + a.birim;
+}
+function allFields(list, out){ out = out || []; (list || []).forEach(a => { out.push(a); allFields(a.alt, out); }); return out; }
+function copyText(t, btn){
+  const done = () => { if (btn){ const o = btn.textContent; btn.textContent = "Kopyalandı"; setTimeout(() => btn.textContent = o, 1400); } };
+  const fb = () => { const ta = h("textarea"); ta.value = t; document.body.append(ta); ta.select(); try{ document.execCommand("copy"); }catch(e){} ta.remove(); done(); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, fb); else fb();
+}
+function printDoc(title, meta, body, isGuide){
+  const pa = document.getElementById("print-area");
+  pa.innerHTML = "";
+  pa.append(h("h1", null, title), h("div", {class:"pm"}, meta));
+  if (isGuide) pa.append(h("div", {class:"guideprint"}, body)); else pa.append(h("pre", null, body));
+  window.print();
+}
+
+/* ---------- theme ---------- */
+(function(){
+  const btn = document.getElementById("theme");
+  let t = null; try { t = localStorage.getItem("spr-tema"); } catch(e){}
+  if (t) document.documentElement.setAttribute("data-theme", t);
+  btn.addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme") ||
+      (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const nx = cur === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", nx);
+    try { localStorage.setItem("spr-tema", nx); } catch(e){}
+  });
+})();
+
+/* ---------- home ---------- */
+function renderHome(){
+  app.innerHTML = "";
+  const counts = {}; S.forEach(s => { const k = s._sistem; counts[k] = (counts[k]||0) + 1; });
+  const gcounts = {}; S.forEach(s => { gcounts[s._grup] = (gcounts[s._grup]||0) + 1; });
+  const list = h("div");
+  const side = h("aside", {class:"side"},
+    h("input", {class:"search", type:"search", placeholder:"Şablon ara (ör. tiroid, Bethesda, nefrektomi)", "aria-label":"Şablon ara", value:home.q,
+      oninput:e => { home.q = e.target.value; draw(); }}),
+    h("h3", null, "Kategori"),
+    h("ul", null, h("li", null, btnF("Tümü", S.length, home.grup === null, () => { home.grup = null; redraw(); })),
+      Object.keys(GRUP).map(g => h("li", null, btnF(GRUP[g], gcounts[g]||0, home.grup === g, () => { home.grup = g; redraw(); })))),
+    h("h3", null, "Organ sistemi"),
+    h("ul", null, h("li", null, btnF("Tüm sistemler", S.length, home.sistem === null, () => { home.sistem = null; redraw(); })),
+      SIN.sistemler.map(x => h("li", null, btnF(x, counts[x]||0, home.sistem === x, () => { home.sistem = x; redraw(); }))))
+  );
+  function btnF(label, n, on, fn){ return h("button", {type:"button", "aria-pressed": on ? "true" : "false", onclick:fn}, h("span", null, label), h("span", null, String(n))); }
+  function redraw(){ renderHome(); }
+  function draw(){
+    list.innerHTML = "";
+    const q = home.q.trim().toLocaleLowerCase("tr");
+    const f = S.filter(s => (!home.grup || s._grup === home.grup) && (!home.sistem || s._sistem === home.sistem) &&
+      (!q || (s.baslik + " " + s.organ + " " + s.id + " " + s._sistem + " " + (s.kaynaklar||[]).join(" ")).toLocaleLowerCase("tr").includes(q)));
+    if (!f.length){ list.append(h("p", {class:"empty"}, "Bu filtrelerle eşleşen şablon yok. Aramayı kısaltmayı ya da kategoriyi “Tümü” yapmayı deneyin.")); return; }
+    SIN.sistemler.forEach(sys => {
+      const ss = f.filter(s => s._sistem === sys); if (!ss.length) return;
+      list.append(h("section", {class:"sys"}, h("h2", null, sys),
+        ss.map(s => h("div", {class:"row"},
+          h("div", {class:"t"}, s.baslik, h("small", null, s.materyal + " · " + (s.kaynaklar||[])[0])),
+          h("span", {class:"tag " + s._grup, title:GRUP[s._grup]}, GKISA[s._grup]),
+          h("div", {class:"acts"}, h("a", {class:"btn small primary", href:"#/s/" + s.id}, "Şablon"), h("a", {class:"btn small", href:"#/r/" + s.id}, "Rehber"))
+        ))));
+    });
+  }
+  draw();
+  app.append(h("div", {class:"home"}, side, h("div", null,
+    h("h1", null, "Raporlama şablonları"),
+    DATA.site ? h("p", {class:"muted", style:"margin:0 0 8px"}, DATA.site.alt_baslik) : null,
+    h("p", {class:"intro"}, S.length + " şablon; CAP, ICCR, RCPath ve WHO kaynaklarına göre hazırlandı. Şablon sayfasında alanları doldurup raporu kopyalayabilir ya da boş şablonu basabilirsiniz; rehber sayfası her alanın seçeneklerini, notlarını ve makroskopi örnekleme kurallarını ayrıntılı gösterir."),
+    list)));
+  const si = side.querySelector(".search"); if (home.q){ si.focus(); si.setSelectionRange(home.q.length, home.q.length); }
+}
+
+/* ---------- template state ---------- */
+function stateFor(s){
+  if (states[s.id]) return states[s.id];
+  const st = {lvl:2, vals:{}, showEmpty:false, tani:null, taniEdit:null, varyant:0, mvals:{}, rows:[{}], orn:null, kisa:false, ek:[], mikro:""};
+  const lines = s.tani || [];
+  if (s.tani_alternatif){ st.tani = {sec: lines.findIndex(l => !l.startsWith("-")), dash: lines.map(l => l.startsWith("-"))}; }
+  else st.tani = {inc: lines.map(() => true)};
+  states[s.id] = st; return st;
+}
+function ornFor(s, st){
+  const v = s.makroskopi && s.makroskopi.varyantlar[st.varyant];
+  if (!v) return [];
+  if (!st.orn || st.orn.v !== st.varyant){
+    st.orn = {v:st.varyant, rows:(v.ornekleme||[]).map(o => ({kod:o.kod, aciklama:o.aciklama, parca:o.parca||"", kaset:o.kaset||"", tek:!!o.tek, inc:true}))};
+  }
+  return st.orn.rows;
+}
+
+/* ---------- text builders ---------- */
+function taniTokens(s, st, blank){
+  const fs = {}; allFields(s.epikriz).forEach(a => fs[a.id] = a);
+  return line => line.replace(TOKEN, (m, id) => {
+    const a = fs[id], mv = st.mvals || {};
+    const v = st.vals[id] || mv[id] || (id === "lateralite" ? mv.taraf : "") || (id === "taraf" ? mv.taraf : "");
+    if (!blank && v) return v;
+    if (a && a.secenekler && a.secenekler.length <= 3) return a.secenekler.map(x => x.toLocaleLowerCase("tr")).join(" / ");
+    return "…";
+  });
+}
+function taniText(s, st, blank){
+  const lines = s.tani || [], f = taniTokens(s, st, blank), out = [];
+  if (blank){
+    let no = 0;
+    lines.forEach(l => { if (l.startsWith("-")) out.push("   " + f(l)); else if (s.tani_alternatif) out.push("1- " + f(l)); else out.push((++no) + "- " + f(l)); });
+    return out.join("\n");
+  }
+  if (st.taniEdit != null) return st.taniEdit;
+  let no = 0;
+  if (s.tani_alternatif){
+    if (st.tani.sec >= 0) out.push("1- " + f(lines[st.tani.sec]));
+    lines.forEach((l, i) => { if (l.startsWith("-") && st.tani.dash[i]) out.push("   " + f(l)); });
+  } else {
+    lines.forEach((l, i) => { if (!st.tani.inc[i]) return; if (l.startsWith("-")) out.push("   " + f(l)); else out.push((++no) + "- " + f(l)); });
+  }
+  return out.join("\n");
+}
+function hasValue(a, st){ return !!st.vals[a.id] || (a.alt || []).some(b => hasValue(b, st)); }
+function epikrizLines(list, st, lvl, blank, depth, out){
+  (list || []).forEach(a => {
+    if (!visible(a, lvl)) return;
+    const v = blank ? degerMetni(a) : withUnit(a, st.vals[a.id] || "");
+    if (!blank && !st.showEmpty && !hasValue(a, st)) return;
+    const shown = blank ? v : (v || (st.showEmpty && a.tip ? degerMetni(a) : ""));
+    out.push("   ".repeat(depth) + "- " + a.etiket + ":" + (shown ? " " + shown : ""));
+    epikrizLines(a.alt, st, lvl, blank, depth + 1, out);
+  });
+  return out;
+}
+function epikrizText(s, st, blank){
+  const out = [];
+  if (s.tekrar_blok){
+    const tb = s.tekrar_blok;
+    if (blank){ out.push("- " + tb.etiket.replace("{kor_kodu}", "… (kod)") + ":  [" + tb.aciklama + "]"); epikrizLines(tb.alanlar, st, st.lvl, true, 1, out); }
+    else (st.tekrar || []).forEach(r => {
+      const sub = {vals:r.vals, showEmpty:st.showEmpty};
+      const lines = epikrizLines(tb.alanlar, sub, st.lvl, false, 1, []);
+      if (lines.length || r.kod){ out.push("- " + (r.kod || "…") + ":"); out.push(...lines); }
+    });
+  }
+  epikrizLines(s.epikriz, st, st.lvl, blank, 0, out);
+  return out.join("\n");
+}
+function makroToken(alanlar, vals, blank){
+  const ids = {}; alanlar.forEach(a => ids[a.id] = a);
+  return m => m.replace(TOKEN, (x, id) => {
+    if (!blank && vals && vals[id]) return vals[id];
+    const a = ids[id] || {}, s = a.secenekler || [];
+    if (a.tip === "secim" && s.length && s.length <= 3 && s.every(y => y.length <= 25)) return s.join(" / ");
+    return "…";
+  });
+}
+function ornText(rows, kisa){
+  rows = rows.filter(r => r.inc);
+  if (!rows.length) return "";
+  if (rows.length === 1 && rows[0].tek){
+    const r = rows[0];
+    return kisa ? (r.kod + (r.parca || "…") + "P" + (r.kaset || "…") + "K") : ("Tümü " + (r.parca || "…") + " parça " + (r.kaset || "…") + " kasette takibe alındı.");
+  }
+  const p = rows.map(r => r.kod + " (" + r.aciklama + "): " + (kisa ? (r.parca || "…") + "P" + (r.kaset || "…") + "K" : (r.parca || "…") + " parça " + (r.kaset || "…") + " kasette"));
+  return (kisa ? "" : "Alınan parçalar: ") + p.join(", ") + (kisa ? "" : " takibe alındı.");
+}
+function makroText(s, st, blank){
+  const m = s.makroskopi; if (!m) return "";
+  const v = m.varyantlar[st.varyant] || m.varyantlar[0], out = [];
+  const f = makroToken(m.alanlar, st.mvals, blank);
+  (v.metin || []).forEach(t => out.push(cap(f(t))));
+  if (v.tekrar){
+    if (blank) out.push(cap(makroToken(m.alanlar, null, true)(v.tekrar.metin)) + "   [" + v.tekrar.etiket + "]");
+    else st.rows.forEach(r => out.push(cap(makroToken(m.alanlar, r, false)(v.tekrar.metin))));
+  }
+  const orn = blank ? (v.ornekleme || []).map(o => ({kod:o.kod, aciklama:o.aciklama, parca:o.parca||"", kaset:o.kaset||"", tek:!!o.tek, inc:true})) : ornFor(s, st);
+  const ot = ornText(orn, st.kisa); if (ot) out.push(ot);
+  if (!blank) st.ek.forEach(e => {
+    const md = MOD[e.ref]; let t = cap(makroToken(md.alanlar, e.vals, false)(md.metin));
+    if (st.kisa) t = t.replace(/Tümü (\S+) parça (\S+) kasette takibe alındı\./, (x, p, k) => "T" + p + "P" + k + "K");
+    out.push(t);
+  });
+  return out.join("\n");
+}
+function fullText(s, st, blank){
+  const parts = [];
+  const mk = makroText(s, st, blank);
+  if (mk) parts.push("MAKROSKOPİ:\n" + mk);
+  const mik = blank ? (s.mikroskopi || []).join("\n") : st.mikro.trim();
+  if (mik) parts.push("MİKROSKOPİ:\n" + mik);
+  parts.push("TANI:" + (blank && s.tani_alternatif ? "  [seçeneklerden birini bırakın]" : "") + "\n" + taniText(s, st, blank));
+  const ep = epikrizText(s, st, blank);
+  if (ep) parts.push("EPİKRİZ:\n1-\n" + ep);
+  return parts.join("\n\n");
+}
+
+/* ---------- controls ---------- */
+function ctlFor(a, vals, onchg){
+  const cur = vals[a.id] || "";
+  const set = v => { vals[a.id] = v; onchg(); };
+  if (a.tip === "secim"){
+    const inp = h("input", {type:"text", value:cur, "aria-label":a.etiket, placeholder:"Seçin ya da yazın", oninput:e => set(e.target.value)});
+    const sel = h("select", {"aria-label":a.etiket + " seçenekleri", onchange:e => {
+        const o = e.target.value; if (o === "") return;
+        inp.value = o; set(o);
+        const i = o.indexOf("…"); if (i >= 0){ inp.focus(); inp.setSelectionRange(i, i + 1); }
+        e.target.value = "";
+      }},
+      h("option", {value:""}, "— seçenek —"), (a.secenekler || []).map(o => h("option", {value:o}, o)));
+    return h("div", {class:"ctl"}, sel, inp);
+  }
+  if (a.tip === "coklu"){
+    const chosen = new Set(cur ? cur.split(", ") : []);
+    const inp = h("input", {type:"text", value:cur, "aria-label":a.etiket, placeholder:"İşaretleyin ya da yazın", oninput:e => set(e.target.value)});
+    const box = h("div", {class:"checks"}, (a.secenekler || []).map(o => h("label", null,
+      h("input", {type:"checkbox", checked:chosen.has(o), onchange:e => {
+        const parts = inp.value ? inp.value.split(", ").filter(Boolean) : [];
+        const i = parts.indexOf(o);
+        if (e.target.checked && i < 0) parts.push(o); if (!e.target.checked && i >= 0) parts.splice(i, 1);
+        inp.value = parts.join(", "); set(inp.value);
+      }}), o)));
+    return h("div", {class:"ctl"}, box, inp);
+  }
+  if (a.tip === "olcu" || a.tip === "sayi"){
+    return h("div", {class:"unit"}, h("input", {type:"text", inputmode:"decimal", value:cur, "aria-label":a.etiket, placeholder:a.kalip || "", oninput:e => set(e.target.value)}), a.birim ? h("span", {class:"muted"}, a.birim) : null);
+  }
+  if (a.tip === "metin"){
+    const ta = h("textarea", {rows:a.kalip && a.kalip.length > 60 ? 2 : 1, "aria-label":a.etiket, placeholder:a.kalip || "", oninput:e => set(e.target.value)});
+    ta.value = cur;
+    const kids = [ta];
+    if (a.kalip) kids.unshift(h("div", null, h("button", {type:"button", class:"btn small", onclick:() => { ta.value = a.kalip; set(a.kalip); ta.focus(); const i = a.kalip.indexOf("…"); if (i >= 0) ta.setSelectionRange(i, i + 1); }}, "Kalıbı ekle")));
+    return h("div", {class:"ctl"}, kids);
+  }
+  if (!a.alt) return h("input", {type:"text", value:cur, "aria-label":a.etiket, placeholder:a.not || "", oninput:e => set(e.target.value)});
+  return null;
+}
+function fieldBlock(a, st, lvl, onchg, vals){
+  vals = vals || st.vals;
+  const kids = (a.alt || []).filter(b => visible(b, lvl)).map(b => fieldBlock(b, st, lvl, onchg, vals));
+  const info = [];
+  if (a.not) info.push(h("p", {style:"margin:2px 0"}, a.not));
+  return h("div", {class:"fld"},
+    h("div", {class:"lbl"}, a.seviye === 1 ? h("span", {class:"core", title:"Çekirdek alan"}) : null, a.etiket,
+      a.kosul ? h("span", {class:"kosul"}, "koşul: " + a.kosul) : null),
+    ctlFor(a, vals, onchg),
+    info.length ? h("details", null, h("summary", null, "Not"), info) : null,
+    kids.length ? h("div", {class:"kids"}, kids) : null);
+}
+
+/* ---------- template page ---------- */
+function renderSablon(s){
+  const st = stateFor(s);
+  app.innerHTML = "";
+  const pre = h("pre");
+  const upd = () => { pre.textContent = fullText(s, st, false); taniBox.update(); };
+  const levelSeg = h("div", {class:"seg", role:"group", "aria-label":"Rapor seviyesi"},
+    [1,2,3].map(l => h("button", {type:"button", "aria-pressed": st.lvl === l ? "true" : "false", onclick:() => { st.lvl = l; renderSablon(s); }}, SEVIYE[l])));
+  const head = h("div", {class:"head"},
+    h("div", null, h("div", {class:"muted", style:"font-size:13px"}, h("a", {href:"#/"}, "Şablonlar"), " / " + s._sistem),
+      h("h1", null, s.baslik), h("span", {class:"tag " + s._grup}, GRUP[s._grup])),
+    h("div", {class:"tools"}, levelSeg,
+      h("a", {class:"btn", href:"#/r/" + s.id}, "Rehber"),
+      h("button", {type:"button", class:"btn", onclick:() => printDoc(s.baslik, "Boş şablon · " + SEVIYE[st.lvl] + " seviye", fullText(s, st, true))}, "Boş şablonu yazdır"),
+      h("button", {type:"button", class:"btn", onclick:() => printDoc(s.baslik, "Doldurulmuş rapor", fullText(s, st, false))}, "Raporu yazdır")));
+
+  // tanı
+  const taniBox = (() => {
+    const lines = s.tani || [], f = () => taniTokens(s, st, false);
+    const wrap = h("div", {class:"alt"}), ta = h("textarea", {rows:3, "aria-label":"Tanı metni"});
+    const reset = h("button", {type:"button", class:"btn small", onclick:() => { st.taniEdit = null; upd(); }}, "Otomatik metne dön");
+    ta.addEventListener("input", () => { st.taniEdit = ta.value; pre.textContent = fullText(s, st, false); reset.hidden = false; });
+    const labels = lines.map((l, i) => {
+      const dash = l.startsWith("-");
+      const inp = s.tani_alternatif && !dash
+        ? h("input", {type:"radio", name:"tani-" + s.id, checked: st.tani.sec === i, onchange:() => { st.tani.sec = i; st.taniEdit = null; upd(); }})
+        : h("input", {type:"checkbox", checked: s.tani_alternatif ? st.tani.dash[i] : st.tani.inc[i], onchange:e => { if (s.tani_alternatif) st.tani.dash[i] = e.target.checked; else st.tani.inc[i] = e.target.checked; st.taniEdit = null; upd(); }});
+      const sp = h("span"); const lab = h("label", null, inp, sp); lab._sp = sp; lab._l = l; return lab;
+    });
+    wrap.append(...labels);
+    const box = h("section", {class:"panel"}, h("h2", null, "Tanı", h("span", {class:"muted", style:"font-weight:400;font-size:13px"}, s.tani_alternatif ? "bir tanı seçin" : "rapora girecek satırlar")),
+      wrap, h("div", {style:"margin-top:10px"}, h("div", {class:"lbl muted", style:"font-size:13px;margin-bottom:4px"}, "Tanı metni — gerekirse elle düzeltin"), ta, reset));
+    box.update = () => { const g = f(); labels.forEach(l => l._sp.textContent = g(l._l)); if (st.taniEdit == null){ ta.value = taniText(s, st, false); reset.hidden = true; } else reset.hidden = false; };
+    return box;
+  })();
+
+  // gizli alanlar (tanı satırını besleyen)
+  const hidden = allFields(s.epikriz).filter(a => a.gizli || a.seviye === 0);
+  const hidPanel = hidden.length ? h("section", {class:"panel"}, h("h2", null, "Tanı satırı bilgileri"),
+    h("div", {class:"grid2"}, hidden.map(a => h("div", null, h("div", {class:"lbl", style:"font-weight:500;font-size:14px;margin-bottom:4px"}, a.etiket), ctlFor(a, st.vals, upd))))) : null;
+
+  // epikriz
+  const epPanel = h("section", {class:"panel"}, h("h2", null, "Epikriz",
+    h("label", {class:"opts", style:"font-weight:400"}, h("input", {type:"checkbox", checked:st.showEmpty, onchange:e => { st.showEmpty = e.target.checked; upd(); }}), "Boş alanları da göster")));
+  if (s.tekrar_blok){
+    st.tekrar = st.tekrar || [{kod:"", vals:{}}];
+    const tb = s.tekrar_blok, box = h("div");
+    const drawT = () => {
+      box.innerHTML = "";
+      st.tekrar.forEach((r, i) => {
+        box.append(h("div", {class:"panel", style:"background:var(--bg)"},
+          h("h2", null, h("input", {type:"text", value:r.kod, placeholder:"Kod (ör. R1)", "aria-label":"Tekrar blok kodu", style:"max-width:180px", oninput:e => { r.kod = e.target.value; upd(); }}),
+            st.tekrar.length > 1 ? h("button", {type:"button", class:"btn small", onclick:() => { st.tekrar.splice(i, 1); drawT(); upd(); }}, "Kaldır") : null),
+          tb.alanlar.filter(a => visible(a, st.lvl)).map(a => fieldBlock(a, st, st.lvl, upd, r.vals))));
+      });
+      box.append(h("button", {type:"button", class:"btn small", onclick:() => { st.tekrar.push({kod:"", vals:{}}); drawT(); upd(); }}, "+ " + (tb.aciklama || "Satır ekle")));
+    };
+    drawT();
+    epPanel.append(h("h3", null, "Tekrarlanan blok: " + tb.aciklama), box, h("h3", null, "Genel alanlar"));
+  }
+  s.epikriz.filter(a => visible(a, st.lvl)).forEach(a => epPanel.append(fieldBlock(a, st, st.lvl, upd)));
+
+  // mikroskopi
+  const mta = h("textarea", {rows:4, "aria-label":"Mikroskopi metni", placeholder:"Mikroskopik bulgular (isteğe bağlı)", oninput:e => { st.mikro = e.target.value; upd(); }});
+  mta.value = st.mikro;
+  const mikPanel = h("section", {class:"panel"}, h("h2", null, "Mikroskopi"),
+    (s.mikroskopi && s.mikroskopi.length) ? h("div", {class:"chips"}, s.mikroskopi.map(l => h("button", {type:"button", class:"chip", title:"Metne ekle", onclick:() => { st.mikro = (st.mikro ? st.mikro.replace(/\s*$/, "") + "\n" : "") + l; mta.value = st.mikro; upd(); }}, l))) : null,
+    mta);
+
+  // makroskopi
+  let mkPanel = null;
+  if (s.makroskopi){
+    const m = s.makroskopi, v = m.varyantlar[st.varyant] || m.varyantlar[0];
+    const used = new Set(), tUsed = new Set();
+    (v.metin || []).forEach(t => t.replace(TOKEN, (x, id) => used.add(id)));
+    if (v.tekrar) v.tekrar.metin.replace(TOKEN, (x, id) => tUsed.add(id));
+    const mf = m.alanlar.filter(a => used.has(a.id));
+    const tf = m.alanlar.filter(a => tUsed.has(a.id));
+    mkPanel = h("section", {class:"panel"}, h("h2", null, s.makro_baslik || "Makroskopi",
+      m.varyantlar.length > 1 ? h("select", {"aria-label":"Varyant", style:"max-width:280px", onchange:e => { st.varyant = +e.target.value; renderSablon(s); }},
+        m.varyantlar.map((x, i) => h("option", {value:i, selected:i === st.varyant}, x.ad))) : h("span", {class:"muted", style:"font-weight:400;font-size:13px"}, v.ad)));
+    if (mf.length) mkPanel.append(h("div", {class:"grid2"}, mf.map(a => h("div", null,
+      h("div", {class:"lbl", style:"font-weight:500;font-size:14px;margin-bottom:4px;display:flex;gap:6px;align-items:baseline"}, a.zorunlu ? h("span", {class:"core", title:"Zorunlu"}) : null, a.etiket),
+      ctlFor(a, st.mvals, upd), a.not ? h("div", {class:"muted", style:"font-size:12px;margin-top:3px"}, a.not) : null))));
+    if (v.tekrar){
+      const rb = h("div");
+      const drawR = () => {
+        rb.innerHTML = "";
+        st.rows.forEach((r, i) => rb.append(h("div", {class:"panel", style:"background:var(--bg)"},
+          h("h2", null, h("span", null, "Kap " + (i + 1)), st.rows.length > 1 ? h("button", {type:"button", class:"btn small", onclick:() => { st.rows.splice(i, 1); drawR(); upd(); }}, "Kaldır") : null),
+          h("div", {class:"grid2"}, tf.map(a => h("div", null, h("div", {class:"lbl", style:"font-size:13px;margin-bottom:3px"}, a.etiket), ctlFor(a, r, upd)))))));
+        rb.append(h("button", {type:"button", class:"btn small", onclick:() => { st.rows.push({}); drawR(); upd(); }}, "+ Kap ekle"));
+      };
+      drawR();
+      mkPanel.append(h("h3", null, v.tekrar.etiket), rb);
+    }
+    const rows = ornFor(s, st);
+    if (rows.length){
+      mkPanel.append(h("h3", {style:"display:flex;gap:12px;align-items:center;flex-wrap:wrap"}, "Örnekleme",
+        h("span", {class:"seg"}, h("button", {type:"button", "aria-pressed": !st.kisa ? "true" : "false", onclick:() => { st.kisa = false; renderSablon(s); }}, "Uzun yazım"),
+          h("button", {type:"button", "aria-pressed": st.kisa ? "true" : "false", onclick:() => { st.kisa = true; renderSablon(s); }}, "Kısa kod"))),
+        h("div", {class:"scroll"}, h("table", {class:"tbl"},
+          h("thead", null, h("tr", null, h("th", null, ""), h("th", null, "Kod"), h("th", null, "Açıklama"), h("th", null, "Parça"), h("th", null, "Kaset"))),
+          h("tbody", null, rows.map(r => h("tr", null,
+            h("td", null, h("input", {type:"checkbox", checked:r.inc, "aria-label":"Rapora ekle", onchange:e => { r.inc = e.target.checked; upd(); }})),
+            h("td", null, h("input", {type:"text", value:r.kod, style:"width:80px", "aria-label":"Kod", oninput:e => { r.kod = e.target.value; upd(); }})),
+            h("td", null, h("input", {type:"text", value:r.aciklama, "aria-label":"Açıklama", oninput:e => { r.aciklama = e.target.value; upd(); }})),
+            h("td", null, h("input", {type:"text", value:r.parca, style:"width:60px", "aria-label":"Parça", oninput:e => { r.parca = e.target.value; upd(); }})),
+            h("td", null, h("input", {type:"text", value:r.kaset, style:"width:60px", "aria-label":"Kaset", oninput:e => { r.kaset = e.target.value; upd(); }}))
+          ))))));
+    }
+    if ((m.ek_materyaller || []).length){
+      const eb = h("div");
+      const drawE = () => {
+        eb.innerHTML = "";
+        st.ek.forEach((e, i) => {
+          const md = MOD[e.ref];
+          eb.append(h("div", {class:"panel", style:"background:var(--bg)"}, h("h2", null, md.ad, h("button", {type:"button", class:"btn small", onclick:() => { st.ek.splice(i, 1); drawE(); upd(); }}, "Kaldır")),
+            h("div", {class:"grid2"}, md.alanlar.map(a => h("div", null, h("div", {class:"lbl", style:"font-size:13px;margin-bottom:3px"}, a.etiket), ctlFor(a, e.vals, upd))))));
+        });
+        eb.append(h("div", {class:"tools"}, m.ek_materyaller.map(r => h("button", {type:"button", class:"btn small", onclick:() => { st.ek.push({ref:r, vals:{}}); drawE(); upd(); }}, "+ " + MOD[r].ad))));
+      };
+      drawE();
+      mkPanel.append(h("h3", null, "Ayrı kapta gelen materyaller"), eb);
+    }
+  }
+
+  const sheet = h("div", {class:"sheetwrap"},
+    h("div", {class:"sheethead"}, h("span", null, "Rapor önizlemesi · " + SEVIYE[st.lvl]),
+      h("span", {class:"tools"}, h("button", {type:"button", class:"btn small primary", onclick:e => copyText(pre.textContent, e.currentTarget)}, "Tümünü kopyala"))),
+    h("div", {class:"sheet"}, pre));
+  const form = h("div", {class:"form"}, mkPanel, mikPanel, hidPanel, taniBox, epPanel,
+    h("p", {class:"muted", style:"font-size:13px"}, h("span", {class:"core"}), " çekirdek / zorunlu alan. Kısa seviye yalnızca çekirdek alanları, Tam seviye isteğe bağlı alanları da gösterir."));
+  app.append(head, h("div", {class:"work"}, form, sheet));
+  upd();
+}
+
+/* ---------- guide page ---------- */
+function renderRehber(s){
+  app.innerHTML = "";
+  const secs = [];
+  const sec = (id, title, ...kids) => { secs.push([id, title]); return h("section", {id:"g-" + id}, h("h2", null, title), kids); };
+  function fb(a, depth){
+    return h("div", {class:"fb" + (a.seviye === 1 ? " core" : ""), style: depth ? "margin-left:" + (depth * 16) + "px" : null},
+      h("h4", null, a.etiket, h("span", {class:"tag"}, SEV_AD[a.seviye] || ""), a.tip ? h("span", {class:"tag"}, {secim:"tek seçim", coklu:"çoklu seçim", metin:"metin", sayi:"sayı", olcu:"ölçüm"}[a.tip] + (a.birim ? " (" + a.birim + ")" : "")) : h("span", {class:"tag"}, "başlık"), a.serbest ? h("span", {class:"tag"}, "listede yoksa serbest") : null),
+      a.secenekler ? h("ul", null, a.secenekler.map(o => h("li", null, o))) : null,
+      a.kalip ? h("p", {class:"note"}, "Kalıp: " + a.kalip) : null,
+      a.not ? h("p", {class:"note"}, a.not) : null,
+      a.kosul ? h("p", {class:"note"}, "Koşul: " + a.kosul) : null,
+      (a.alt || []).map(b => fb(b, 1)));
+  }
+  const body = [];
+  body.push(sec("genel", "Genel bilgi",
+    h("p", null, h("span", {class:"tag " + s._grup}, GRUP[s._grup]), " ", h("span", {class:"tag"}, s._sistem), " ", h("span", {class:"tag"}, s.materyal)),
+    s.not ? h("p", null, s.not) : null,
+    (s.rehber || []).map(p => h("p", null, p)),
+    h("h3", null, "Kaynaklar"), h("ul", null, (s.kaynaklar || []).map(k => h("li", null, k))),
+    h("h3", null, "Seviyeler"),
+    h("div", {class:"legend"}, h("span", null, "Kısa: çekirdek alanlar (ICCR core / CAP required)"), h("span", null, "Standart: rutin raporlananlar"), h("span", null, "Tam: isteğe bağlı / araştırma"))));
+  body.push(sec("tani", "Tanı satırı",
+    h("p", {class:"note"}, s.tani_alternatif ? "Aşağıdaki satırlardan olguya uyan biri seçilir; “-” ile başlayan satırlar üstteki tanıya bağlıdır." : "Satırlar organ / materyal sırasıyla numaralandırılır; “-” ile başlayan satırlar üstteki tanıya bağlıdır."),
+    h("ul", null, (s.tani || []).map(l => h("li", null, l.replace(TOKEN, (x, id) => "‹" + id + "›")))),
+    (() => { const hid = allFields(s.epikriz).filter(a => a.gizli || a.seviye === 0); return hid.length ? [h("h3", null, "Tanı satırını besleyen alanlar"), hid.map(a => fb(a, 0))] : null; })()));
+  if (s.mikroskopi && s.mikroskopi.length) body.push(sec("mikro", "Mikroskopi kalıpları", h("ul", null, s.mikroskopi.map(l => h("li", null, l)))));
+  if (s.tekrar_blok) body.push(sec("tekrar", "Tekrarlanan blok: " + s.tekrar_blok.aciklama, s.tekrar_blok.alanlar.map(a => fb(a, 0))));
+  body.push(sec("epikriz", "Epikriz alanları", s.epikriz.filter(a => !(a.gizli || a.seviye === 0)).map(a => fb(a, 0))));
+  if (s.makroskopi){
+    const m = s.makroskopi;
+    const zor = m.alanlar.filter(a => a.zorunlu);
+    body.push(sec("makro", s.makro_baslik || "Makroskopi",
+      zor.length ? [h("h3", null, "Zorunlu veriler"), h("ul", null, zor.map(a => h("li", null, a.etiket + (a.birim ? " (" + a.birim + ")" : "") + (a.not ? " — " + a.not : ""))))] : null,
+      m.varyantlar.map(v => [h("h3", null, v.ad),
+        h("pre", null, [(v.metin || []).map(t => cap(makroToken(m.alanlar, null, true)(t))).join("\n"), v.tekrar ? cap(makroToken(m.alanlar, null, true)(v.tekrar.metin)) + "   [" + v.tekrar.etiket + "]" : ""].filter(Boolean).join("\n")),
+        (v.ornekleme || []).length ? h("div", {class:"scroll"}, h("table", {class:"tbl"},
+          h("thead", null, h("tr", null, h("th", null, "Kod"), h("th", null, "Açıklama"), h("th", null, "Varsayılan"), h("th", null, "Örnekleme kuralı"))),
+          h("tbody", null, v.ornekleme.map(o => h("tr", null, h("td", null, o.kod), h("td", null, o.aciklama), h("td", null, (o.parca || "…") + "P" + (o.kaset || "…") + "K"), h("td", null, o.not || "")))))) : null]),
+      (m.yapilacaklar || []).length ? [h("h3", null, "Makroskopi kontrol listesi"), h("ul", null, m.yapilacaklar.map(y => h("li", null, y)))] : null,
+      (m.ek_materyaller || []).length ? [h("h3", null, "Ayrı kapta gelebilecek materyaller"),
+        m.ek_materyaller.map(r => { const md = MOD[r]; return h("div", {class:"fb"}, h("h4", null, md.ad), h("pre", null, cap(makroToken(md.alanlar, null, true)(md.metin))), (md.yapilacaklar || []).length ? h("ul", null, md.yapilacaklar.map(y => h("li", null, y))) : null); })] : null));
+  }
+  const read = h("article", {class:"read"}, h("div", {class:"muted", style:"font:13px var(--sans)"}, h("a", {href:"#/"}, "Şablonlar"), " / " + s._sistem),
+    h("h1", {style:"font-family:var(--sans)"}, s.baslik + " — rehber"),
+    h("div", {class:"tools", style:"font-family:var(--sans);margin:10px 0"}, h("a", {class:"btn primary", href:"#/s/" + s.id}, "Şablonu aç"),
+      h("button", {type:"button", class:"btn", onclick:() => printDoc(s.baslik + " — rehber", s._sistem + " · " + GRUP[s._grup], read.cloneNode(true), true)}, "Rehberi yazdır")),
+    body);
+  const toc = h("nav", {class:"toc", "aria-label":"Rehber bölümleri"}, secs.map(([id, t]) => h("a", {href:"#g-" + id, onclick:e => { e.preventDefault(); document.getElementById("g-" + id).scrollIntoView({behavior:"smooth"}); }}, t)));
+  app.append(h("div", {class:"guide"}, toc, read));
+}
+
+/* ---------- router ---------- */
+function route(){
+  const p = (location.hash.slice(1) || "/").split("/");
+  if (p[1] === "s" && BY[p[2]]) renderSablon(BY[p[2]]);
+  else if (p[1] === "r" && BY[p[2]]) renderRehber(BY[p[2]]);
+  else renderHome();
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", route);
+route();
+})();
+</script>
+</body>
+</html>

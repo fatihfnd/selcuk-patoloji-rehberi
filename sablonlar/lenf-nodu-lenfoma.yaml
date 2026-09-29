@@ -1,0 +1,56 @@
+id: lenf-nodu-lenfoma
+baslik: Lenf nodu eksizyonu / kor biyopsi (lenfoma değerlendirmesi)
+organ: Lenf nodu
+materyal: Biyopsi / eksizyon
+kaynaklar:
+  - "WHO Hematolenfoid Tümörler, 5. baskı (WHO-HAEM5, 2022)"
+  - "International Consensus Classification (ICC, 2022)"
+  - "CAP — Hodgkin / non-Hodgkin lenfoma protokolleri"
+not: "WHO-HAEM5 ve ICC terminolojisi birkaç antitede farklıdır (ör. NLPHL / 'nodüler lenfosit predominant B hücreli lenfoma'; FL derecelendirmesi). Hangi sistemin kullanıldığı raporda belirtilir."
+tani_alternatif: true
+tani:
+  - "Reaktif lenfoid hiperplazi (foliküler / parakortikal / sinüs histiyositozu), lütfen epikrizi okuyunuz; {yer} lenf nodu, {islem}"
+  - "Granülomatöz lenfadenit (nekrotizan / nonnekrotizan), lütfen epikrizi okuyunuz; {yer} lenf nodu, {islem}"
+  - "Histiyositik nekrotizan lenfadenit (Kikuchi-Fujimoto) ile uyumlu; {yer} lenf nodu, {islem}"
+  - "Metastatik karsinom (… ile uyumlu), lütfen epikrizi okuyunuz; {yer} lenf nodu, {islem}"
+  - "Klasik Hodgkin lenfoma, … alt tip, lütfen epikrizi okuyunuz; {yer} lenf nodu, {islem}"
+  - "Diffüz büyük B hücreli lenfoma, NOS (… hücre kökenli), lütfen epikrizi okuyunuz; {yer} lenf nodu, {islem}"
+  - "Foliküler lenfoma, derece …, lütfen epikrizi okuyunuz; {yer} lenf nodu, {islem}"
+  - "{lenfoma_tipi}, lütfen epikrizi okuyunuz; {yer} lenf nodu, {islem}"
+  - "Atipik lenfoid proliferasyon; kesin sınıflama için ek inceleme / konsültasyon önerilir, lütfen epikrizi okuyunuz; {yer} lenf nodu, {islem}"
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: islem, etiket: İşlem, seviye: 0, gizli: true, tip: secim, secenekler: [eksizyonel biyopsi, kor iğne biyopsi, insizyonel biyopsi]}
+  - {id: lenfoma_tipi, etiket: Lenfoma tipi (diğer), seviye: 0, gizli: true, tip: secim, secenekler: ["Mantle hücreli lenfoma", "Kronik lenfositik lösemi / küçük lenfositik lenfoma", "Nodal marjinal zon lenfoma", "Periferik T hücreli lenfoma, NOS", "Anjiyoimmünoblastik (foliküler yardımcı T hücreli) lenfoma", "Anaplastik büyük hücreli lenfoma (ALK+ / ALK−)", "Yüksek dereceli B hücreli lenfoma, MYC ve BCL2 yeniden düzenlenmeli", "Burkitt lenfoma"]}
+  - {id: siniflama, etiket: Kullanılan sınıflama, seviye: 2, tip: secim, secenekler: [WHO-HAEM5 (2022), ICC (2022)]}
+  - {id: yeterlilik, etiket: Materyal, seviye: 2, tip: metin, kalip: "… cm'lik lenf nodu / … kor; ezilme / fiksasyon artefaktı …"}
+  - {id: mimari, etiket: Nodal mimari, seviye: 1, tip: secim, secenekler: [Korunmuş, "Kısmen silinmiş", "Tamamen silinmiş", "Kor biyopside değerlendirilemedi"]}
+  - {id: patern, etiket: Büyüme paterni, seviye: 1, tip: secim, secenekler: [Foliküler, "Nodüler", "Diffüz", "İnterfoliküler / parakortikal", "Sinüzoidal", "Mikst"]}
+  - {id: hucre, etiket: Hücre boyutu / sitoloji, seviye: 1, tip: metin, kalip: "Küçük / orta / büyük hücreler; blastoid / pleomorfik / Reed-Sternberg / hallmark hücreler …"}
+  - {id: ihk, etiket: İmmünohistokimya, seviye: 1, tip: metin, kalip: "CD20 …, PAX5 …, CD3 …, CD5 …, CD10 …, BCL6 …, MUM1 …, BCL2 …, MYC %…, CD30 …, CD15 …, cyclin D1 …, SOX11 …, CD23 …, LEF1 …, ALK …, PD1 / CXCL13 / ICOS …, Ki-67 %…"}
+  - {id: hans, etiket: Hücre kökeni (Hans), seviye: 1, kosul: "DLBCL", tip: secim, secenekler: ["Germinal merkez B hücresi (GCB)", "Non-GCB (aktive B hücresi benzeri)"]}
+  - {id: ciftli_ekspresyon, etiket: MYC / BCL2 ekspresyonu, seviye: 2, kosul: "DLBCL", tip: secim, secenekler: ["Çift ekspresör (MYC ≥%40, BCL2 ≥%50)", "Çift ekspresör değil"]}
+  - {id: fl_derece, etiket: Foliküler lenfoma derecesi, seviye: 1, kosul: "FL", tip: secim, secenekler: ["Derece 1–2 (düşük)", "Derece 3A", "Derece 3B / foliküler büyük B hücreli lenfoma", "Klasik FL (WHO-HAEM5; derece verilmez)"], alt: [{id: fl_diffuz, etiket: Diffüz alan, seviye: 2, tip: metin, kalip: "%… (derece 3B'de diffüz alan DLBCL olarak raporlanır)"}]}
+  - {id: ebv, etiket: EBV (EBER-ISH), seviye: 2, tip: secim, secenekler: [Çalışılmadı, Negatif, "Pozitif (… hücrelerde)"]}
+  - {id: fish, etiket: FISH / moleküler, seviye: 2, tip: metin, kalip: "MYC …, BCL2 …, BCL6 …, IGH::CCND1 …; IG / TCR klonalite …"}
+  - {id: flow, etiket: Akım sitometri, seviye: 3, tip: metin, kalip: "… no'lu rapor: …"}
+  - {id: yorum, etiket: Yorum, seviye: 1, tip: metin, not: "Kor biyopside sınırlılık; eksizyonel biyopsi / ek test önerisi; klinik-laboratuvar korelasyonu."}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: gelis, etiket: Geliş durumu, tip: secim, secenekler: [taze, formalin içinde], zorunlu: true}
+    - {id: boyut, etiket: Boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: kesit, etiket: Kesit yüzü, tip: secim, secenekler: ["homojen, krem-beyaz, balık eti görünümlü", "nodüler", "nekrotik alanlar içeren", "kahverengi, olağan görünümde"]}
+    - {id: taze_ayrim, etiket: Taze doku kullanımı, tip: secim, secenekler: ["taze dokudan akım sitometri ve sitogenetik için örnek ayrıldı; dokunma preparatı hazırlandı", "taze doku ayrılmadı"]}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: Lenf nodu eksizyonu / kor
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): {gelis} gönderilen, {boyut} cm boyutlarında, kesit yüzü {kesit} lenf nodu / doku; {taze_ayrim}. 2–3 mm aralıklarla dilimlenerek {parca} parça {kaset} kasette takibe alındı."
+  yapilacaklar:
+    - Taze gelirse — akım sitometri, sitogenetik, dondurulmuş doku; dokunma preparatı.
+    - İnce (2–3 mm) dilim, iyi fiksasyon (en az 6–8 saat); nod tamamı takibe alınır.
+    - Kor biyopside korlar ayrı bloklara dağıtılır (İHK / FISH için).

@@ -1,0 +1,68 @@
+id: yumusak-doku-rezeksiyon
+baslik: Yumuşak doku sarkomu — rezeksiyon
+organ: Yumuşak doku
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Soft Tissue (Resection)"
+  - "ICCR — Soft Tissue Sarcoma"
+  - "WHO Yumuşak Doku ve Kemik Tümörleri, 5. baskı (2020); AJCC 8 (bölgeye özgü pT)"
+not: "AJCC 8'de pT bölgeye göre farklıdır — gövde / ekstremite ve retroperiton: ≤5 / >5–10 / >10–15 / >15 cm; baş-boyun ve visseral organlar ayrı tanımlanır."
+tani:
+  - "{histolojik_tip}, FNCLCC derece …, lütfen epikrizi okuyunuz; {yer}, {prosedur}"
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [geniş lokal eksizyon, radikal rezeksiyon, kompartman rezeksiyonu, amputasyon, "re-eksizyon (önceki … no)"]}
+  - {id: neoadjuvan, etiket: Neoadjuvan tedavi, seviye: 1, tip: secim, secenekler: [Yok, "Radyoterapi", "Kemoterapi", "Kemoradyoterapi", Bilinmiyor], gizli: true}
+  - {id: bolge, etiket: Anatomik bölge, seviye: 1, tip: secim, secenekler: [Alt ekstremite, Üst ekstremite, Gövde, Retroperiton, Baş-boyun, "Toraks / abdomen içi organ", Diğer]}
+  - {id: derinlik, etiket: Derinlik, seviye: 1, tip: secim, secenekler: [Yüzeyel (fasya üstü), "Derin (fasya altı / fasyayı tutan)", "Retroperitoneal / intraabdominal"]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: olcu, birim: cm, kalip: "…x…x… cm (en büyük boyut … cm)"}
+  - {id: histolojik_tip, etiket: Histolojik tip (WHO 2020), seviye: 1, tip: metin, kalip: "…"}
+  - {id: kategori, etiket: WHO biyolojik kategori, seviye: 2, tip: secim, secenekler: ["İntermediate (lokal agresif)", "İntermediate (nadiren metastaz yapan)", Malign]}
+  - modul: ortak.fnclcc
+  - {id: mitoz, etiket: Mitoz sayısı, seviye: 2, tip: metin, kalip: "…/10 BBA (…/mm²)"}
+  - {id: nekroz_oran, etiket: Tümör nekrozu, seviye: 1, tip: metin, kalip: "%… (tedavi ilişkili / spontan)"}
+  - {id: tedavi_etkisi, etiket: Tedavi yanıtı, seviye: 1, kosul: "neoadjuvan != Yok", tip: metin, kalip: "Canlı tümör %…, nekroz %…, fibrozis / hiyalinizasyon %… (haritalanan kesitlerde)"}
+  - modul: ortak.lvi
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    tip: secim
+    secenekler: ["Tümör görülmedi; en yakın sınır … (… mm)", "Tümör boyalı sınıra ulaşıyor (… sınır)"]
+    alt:
+      - {id: s_bariyer, etiket: En yakın sınırdaki doku, seviye: 2, tip: secim, secenekler: ["Fasya / periost / epinöryum (anatomik bariyer)", "Yağ doku / kas (bariyer değil)"]}
+      - {id: s_liste, etiket: Sınır listesi, seviye: 3, tip: metin, kalip: "Proksimal … mm, distal … mm, derin … mm, medial … mm, lateral … mm, deri … mm"}
+  - {id: lenf_nodu, etiket: Lenf nodları, seviye: 2, tip: metin, kalip: "Örneklenmedi / … incelendi, …'inde metastaz"}
+  - modul: ortak.ptnm
+  - {id: ihk_mol, etiket: İHK / moleküler, seviye: 2, tip: metin, kalip: "…"}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: isaret, etiket: Oryantasyon, tip: secim, secenekler: ["cerrah tarafından … işaretlenmiş", işaretlenmemiş], zorunlu: true}
+    - {id: agirlik, etiket: Ağırlık, tip: sayi, birim: g}
+    - {id: boyut, etiket: Materyal boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: yapilar, etiket: Materyali oluşturan yapılar, not: "Deri elipsi …x… cm, kas, fasya, kemik / damar-sinir yapıları"}
+    - {id: boya, etiket: Boyama şeması, zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: iliski, etiket: Tümör-anatomik yapı ilişkisi, zorunlu: true, not: "Deri altı / fasya üstü / kas içi; fasyayı aşıyor / aşmıyor; biyopsi trakti izleniyor / izlenmiyor"}
+    - {id: kesit, etiket: Kesit yüzü, tip: secim, secenekler: ["gri-beyaz, balık eti görünümlü", "miksoid, jelatinöz", "sarı, lobüle (yağlı)", "heterojen; nekroz ve kanama alanları içeren"]}
+    - {id: nekroz_makro, etiket: Makroskopik nekroz, tip: secim, secenekler: [izlenmedi, "yaklaşık %… alanda izlendi"], zorunlu: true}
+    - {id: mesafeler, etiket: Sınırlara uzaklıklar, zorunlu: true, not: "Proksimal … cm, distal … cm, derin … cm, medial … cm, lateral … cm, deri … cm"}
+  varyantlar:
+    - ad: Sarkom rezeksiyonu
+      metin:
+        - "{fiksasyon_durumu} {isaret} gönderilen, {agirlik} g ağırlığında, {boyut} cm boyutlarında rezeksiyon materyalidir; {yapilar}. Yüzeyler boyandı ({boya})."
+        - >-
+          Seri kesitlerde {tumor_boyut} cm boyutlarında, {kesit} tümör izlendi; {iliski}. Makroskopik nekroz {nekroz_makro}.
+          Tümör {mesafeler} mesafededir.
+      ornekleme:
+        - {kod: T, aciklama: tümör, not: "En büyük boyutun cm'i başına 1 kaset; farklı görünümlü alanlar (dediferansiasyon!) ayrı. Neoadjuvan sonrası en büyük kesitte tam dilim haritalanarak."}
+        - {kod: TS, aciklama: "tümör-en yakın sınırlar, dik kesit", parca: "…", kaset: "…"}
+        - {kod: S, aciklama: "diğer sınırlar (proksimal, distal, derin, medial, lateral)", parca: "…", kaset: "…"}
+        - {kod: BT, aciklama: biyopsi trakti, parca: "…", kaset: "…"}
+        - {kod: DS, aciklama: "damar / sinir / kemik yapıları", parca: "…", kaset: "…"}
+  ek_materyaller: [makro.ek_cerrahi_sinir, makro.ln_istasyon]
+  yapilacaklar:
+    - Cerrahla oryantasyonu netleştir; tüm yüzleri farklı renklerle boya, fotoğrafla.
+    - Tümörün tüm sınırlara uzaklığını ve en yakın sınırdaki doku tipini (fasya / yağ / kas) kaydet.
+    - Taze geldiyse moleküler / biyobanka için canlı tümör ayrılabilir.
+    - Neoadjuvan sonrası en büyük kesitte haritalama (şema + kaset haritası).

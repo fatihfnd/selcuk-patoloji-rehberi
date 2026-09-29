@@ -1,0 +1,67 @@
+id: deri-melanom
+baslik: Deri — invaziv melanom (eksizyon / geniş re-eksizyon)
+organ: Deri
+materyal: Eksizyon
+kaynaklar:
+  - "CAP — Melanoma of the Skin (Excision)"
+  - "ICCR — Invasive Melanoma"
+  - "WHO Deri Tümörleri, 5. baskı (2023); AJCC 8"
+not: "Breslow kalınlığı 0,1 mm hassasiyetle verilir; pT1a/pT1b eşiği 0,8 mm ve ülserasyon. Mitoz AJCC 8'de pT'ye girmez ama zorunlu olarak raporlanır."
+tani:
+  - "{tani_melanom}, Breslow kalınlığı … mm, lütfen epikrizi okuyunuz; {yer}, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); sentinel lenf nodu (… bölgesi)"
+epikriz:
+  - {id: tani_melanom, etiket: Tanı, seviye: 0, gizli: true, tip: secim, secenekler: ["Malign melanom, invaziv", "Malign melanom in situ"]}
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [eksizyonel biyopsi, geniş re-eksizyon, punch biyopsi, "shave (tanjansiyel) biyopsi", insizyonel biyopsi]}
+  - {id: alt_tip, etiket: Histolojik alt tip, seviye: 1, tip: secim, serbest: true, secenekler: ["Süperfisyal yayılan melanom (düşük kümülatif güneş hasarı)", "Lentigo maligna melanom (yüksek kümülatif güneş hasarı)", "Nodüler melanom", "Akral melanom", "Desmoplastik melanom (saf / mikst: desmoplastik %…)", "Spitz melanom", "Nevüs zemininde melanom", "Melanom, NOS"]}
+  - {id: breslow, etiket: Breslow kalınlığı, seviye: 1, tip: metin, kalip: "… mm (en az … mm — transeksiyon / biyopsi sınırında)"}
+  - {id: ulser, etiket: Ülserasyon, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü (… mm)", Belirlenemedi]}
+  - {id: mitoz, etiket: Dermal mitoz oranı, seviye: 1, tip: metin, kalip: "…/mm² (en aktif alandan)"}
+  - {id: clark, etiket: Anatomik düzey (Clark), seviye: 3, tip: secim, secenekler: [I, II, III, IV, V]}
+  - {id: mikrosatellit, etiket: Mikrosatellit, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü], not: "Mikrosatellit / satellit / in-transit varlığı pN kategorisini (N1c / N2c / N3c) belirler."}
+  - modul: ortak.lvi
+  - {id: norotropizm, etiket: Nörotropizm, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {id: til, etiket: Tümör infiltre eden lenfositler, seviye: 2, tip: secim, secenekler: [Yok, "Yoğun olmayan (non-brisk)", "Yoğun (brisk)"]}
+  - {id: regresyon, etiket: Regresyon, seviye: 2, tip: secim, secenekler: [Görülmedi, "Görüldü (%…, …)"]}
+  - {id: faz, etiket: Büyüme fazı, seviye: 3, tip: secim, secenekler: [Radyal, Vertikal (tümörijenik)]}
+  - {id: nevus, etiket: Eşlik eden nevüs, seviye: 3, tip: secim, secenekler: [Görülmedi, "Görüldü (…)"]}
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    alt:
+      - {id: s_periferik_inv, etiket: Periferik — invaziv melanom, seviye: 1, tip: secim, secenekler: ["Görülmedi (en yakın … mm)", Görüldü]}
+      - {id: s_periferik_insitu, etiket: Periferik — melanom in situ, seviye: 1, tip: secim, secenekler: ["Görülmedi (en yakın … mm)", Görüldü]}
+      - {id: s_derin, etiket: Derin, seviye: 1, tip: secim, secenekler: ["Görülmedi (… mm)", Görüldü]}
+  - id: lenf_nodu
+    etiket: Lenf nodları
+    seviye: 1
+    tip: metin
+    kalip: "Sentinel … (… bölgesi), diseksiyon … lenf nodu incelendi; …'inde metastaz görüldü / metastaz görülmedi"
+    alt:
+      - {id: ln_depozit, etiket: En büyük metastatik depozit, seviye: 1, tip: olcu, birim: mm}
+      - {id: ln_yer, etiket: Depozit yerleşimi, seviye: 2, tip: secim, secenekler: [Subkapsüler, Parankimal, Multifokal, Ekstensif]}
+      - {id: ene, etiket: Ekstranodal yayılım, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü]}
+      - {id: matted, etiket: Birbirine yapışık (matted) nodlar, seviye: 2, tip: secim, secenekler: [Yok, Var]}
+  - modul: ortak.ptnm
+  - {id: ihk, etiket: İHK / moleküler, seviye: 3, tip: metin, kalip: "SOX10 …, Melan-A …, HMB45 …, PRAME …, Ki-67 …; BRAF V600E …"}
+makroskopi:
+  alanlar:
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: tip, etiket: Materyal tipi, tip: secim, secenekler: [eliptik deri eksizyonu, punch biyopsi, shave biyopsi, "geniş re-eksizyon"], zorunlu: true}
+    - {id: isaret, etiket: Oryantasyon, tip: secim, secenekler: ["saat 12 ip ile işaretli", işaretlenmemiş]}
+    - {id: boyut, etiket: Materyal boyutu (uzunluk × genişlik × derinlik), tip: olcu, birim: cm, zorunlu: true}
+    - {id: lezyon, etiket: Lezyon, zorunlu: true, not: "…x… cm boyutlarında, kahverengi-siyah, düzensiz sınırlı, asimetrik, makül / papül / nodül / ülsere lezyon; skar"}
+    - {id: mesafe, etiket: Lezyonun sınırlara uzaklığı, tip: olcu, birim: cm, zorunlu: true, not: "En yakın periferik sınır … cm (… yönü)"}
+  varyantlar:
+    - ad: Deri eksizyonu
+      metin:
+        - "{yer} kayıtlı materyal: {isaret} gönderilen, {boyut} cm boyutlarında {tip}. Epidermiste {lezyon} izlendi; lezyon en yakın periferik sınıra {mesafe} cm mesafededir. Sınırlar boyandı."
+      ornekleme:
+        - {kod: U, aciklama: "uçlar (longitudinal)", parca: "2", kaset: "1"}
+        - {kod: T, aciklama: "lezyon, 2–3 mm aralıklı transvers seri dilimler, tümü", parca: "…", kaset: "…"}
+  ek_materyaller: [makro.sentinel, makro.ln_istasyon]
+  yapilacaklar:
+    - Pigmente lezyonda tümü takibe alınır; transvers seri dilimler, uçlar longitudinal.
+    - Oryantasyon varsa sınırlar farklı renklerle boyanır.
+    - Sentinel nod 2 mm aralıklarla dilimlenip tümü; seri kesit + İHK (laboratuvar protokolü).

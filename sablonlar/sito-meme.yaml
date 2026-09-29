@@ -1,0 +1,39 @@
+id: sito-meme
+baslik: Meme ince iğne aspirasyonu (Yokohama sistemi, IAC 2020)
+organ: Meme
+materyal: Sitoloji
+makro_baslik: Materyal ve preparat
+kaynaklar:
+  - "IAC Yokohama System for Reporting Breast Fine Needle Aspiration Biopsy Cytopathology (2020)"
+tani_alternatif: true
+tani:
+  - "Yetersiz / tanısal değil (Yokohama kategori 1), lütfen epikrizi okuyunuz; {taraf} meme {yer}, ince iğne aspirasyonu"
+  - "Fibroadenom / fibrokistik değişiklik / … ile uyumlu (Yokohama kategori 2 — benign); {taraf} meme {yer}, ince iğne aspirasyonu"
+  - "Atipik (Yokohama kategori 3), lütfen epikrizi okuyunuz; {taraf} meme {yer}, ince iğne aspirasyonu"
+  - "Malignite şüphesi (Yokohama kategori 4), lütfen epikrizi okuyunuz; {taraf} meme {yer}, ince iğne aspirasyonu"
+  - "Karsinom / … (Yokohama kategori 5 — malign), lütfen epikrizi okuyunuz; {taraf} meme {yer}, ince iğne aspirasyonu"
+  - "Metastatik karsinom, … (Yokohama kategori 5 — malign), lütfen epikrizi okuyunuz; {taraf} aksilla, ince iğne aspirasyonu"
+mikroskopi:
+  - "Yaymalar az / orta / yoğun hücresel olup kohezif / dağınık epitelyal gruplar, miyoepitelyal hücreler ve çıplak bipolar nükleuslar izlenmiştir / izlenmemiştir."
+  - "Epitelyal hücrelerde nükleer büyüme, pleomorfizm, belirgin nükleol, kohezyon kaybı izlenmiştir / izlenmemiştir; zeminde stromal fragmanlar / müsin / nekroz / köpüksü makrofajlar mevcuttur / mevcut değildir."
+epikriz:
+  - {id: taraf, etiket: Taraf, seviye: 0, gizli: true, tip: secim, secenekler: [sağ, sol]}
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: yeterlilik, etiket: Yeterlilik, seviye: 1, tip: secim, secenekler: [Yeterli, "Yetersiz (az hücreli / kan / artefakt)", "Kist sıvısı (epitel yok) — klinik-radyolojik korelasyonla"]}
+  - {id: ek_test, etiket: Ek testler, seviye: 2, tip: metin, kalip: "Hücre bloğu: ER …, PR …, HER2 …, p63 / CK5/6 …; metastazda GATA3 / TTF-1 …"}
+  - {id: rom, etiket: Malignite riski (yaklaşık), seviye: 3, tip: secim, secenekler: ["1: ≈%3–5", "2: ≈%1–2", "3: ≈%13–16", "4: ≈%85–97", "5: ≈%99–100"], not: "Değerler yayımlanmış serilere göre değişir; kurum verisiyle karşılaştırılmalıdır."}
+  - {id: yorum, etiket: Yorum / öneri, seviye: 1, tip: secim, secenekler: ["Klinik-radyolojik (üçlü test) korelasyon önerilir.", "Kor biyopsi önerilir.", "Tekrar İİAB önerilir."]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: konvansiyonel, etiket: Yayma sayısı, tip: sayi, zorunlu: true}
+    - {id: boyama, etiket: Boyama, tip: secim, secenekler: [Papanicolaou, "May-Grünwald-Giemsa / Diff-Quik", "Papanicolaou ve Giemsa"], zorunlu: true}
+    - {id: sivi, etiket: Kist sıvısı / iğne yıkama, not: "… ml, … renkte; sıvı bazlı preparat / hücre bloğu"}
+  varyantlar:
+    - ad: Meme İİAB
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): {boyama} ile boyanmış {konvansiyonel} adet yayma; kist sıvısı / iğne yıkama {sivi}."
+  yapilacaklar:
+    - Görüntüleme (BI-RADS) ve klinik bilgi kaydedilir; üçlü test yaklaşımı.

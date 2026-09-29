@@ -1,0 +1,67 @@
+id: karaciger-igne-biyopsi
+baslik: Karaciğer iğne biyopsisi (medikal karaciğer)
+organ: Karaciğer
+materyal: Biyopsi
+kaynaklar:
+  - "İshak modifiye HAI ve fibrozis evrelemesi (Ishak ve ark., 1995)"
+  - "NASH CRN — NAS ve fibrozis (Kleiner ve ark., 2005); SAF skoru (Bedossa, 2012)"
+  - "MASLD / MASH terminolojisi (çok-toplumlu Delphi konsensusu, 2023)"
+  - "METAVIR (alternatif)"
+tani_alternatif: true
+tani:
+  - "Kronik hepatit, lütfen epikrizi okuyunuz; karaciğer, iğne biyopsi"
+  - "Steatohepatit (MASH), lütfen epikrizi okuyunuz; karaciğer, iğne biyopsi"
+  - "Steatoz, belirgin inflamasyon / balonlaşma yok (MASL), lütfen epikrizi okuyunuz; karaciğer, iğne biyopsi"
+  - "Siroz, lütfen epikrizi okuyunuz; karaciğer, iğne biyopsi"
+  - "Minimal nonspesifik değişiklikler, lütfen epikrizi okuyunuz; karaciğer, iğne biyopsi"
+epikriz:
+  - {id: yeterlilik, etiket: Materyal yeterliliği, seviye: 1, tip: metin, kalip: "… mm uzunluğunda … kor; … portal alan (≥10–11 portal alan ve ≥15 mm önerilir) — yeterli / sınırlı"}
+  - {id: sema, etiket: Skorlama sistemi, seviye: 0, gizli: true, tip: secim, secenekler: [İshak, NAS, METAVIR]}
+  - id: ishak
+    etiket: Modifiye histolojik aktivite indeksi (İshak)
+    seviye: 1
+    kosul: "kronik hepatit"
+    tip: metin
+    kalip: "…/18"
+    alt:
+      - {id: ish_a, etiket: A — Periportal / periseptal interfaz hepatit, seviye: 1, tip: secim, secenekler: ["0", "1", "2", "3", "4"]}
+      - {id: ish_b, etiket: B — Konfluent nekroz, seviye: 1, tip: secim, secenekler: ["0", "1", "2", "3", "4", "5", "6"]}
+      - {id: ish_c, etiket: C — Fokal litik nekroz / apoptoz / fokal inflamasyon, seviye: 1, tip: secim, secenekler: ["0", "1", "2", "3", "4"]}
+      - {id: ish_d, etiket: D — Portal inflamasyon, seviye: 1, tip: secim, secenekler: ["0", "1", "2", "3", "4"]}
+  - {id: ishak_f, etiket: Fibrozis evresi (İshak), seviye: 1, tip: secim, secenekler: ["0 — fibrozis yok", "1 — bazı portal alanlarda fibröz genişleme", "2 — çoğu portal alanda fibröz genişleme", "3 — ara sıra portoportal köprüleşme", "4 — belirgin köprüleşme", "5 — belirgin köprüleşme, ara sıra nodül (inkomplet siroz)", "6 — siroz"], kosul: "kronik hepatit"}
+  - id: nas
+    etiket: MASLD aktivite skoru (NAS)
+    seviye: 1
+    kosul: "steatoz / steatohepatit"
+    tip: metin
+    kalip: "…/8"
+    alt:
+      - {id: nas_steatoz, etiket: "Steatoz (%…)", seviye: 1, tip: secim, secenekler: ["0 (<%5)", "1 (%5–33)", "2 (%34–66)", "3 (>%66)"]}
+      - {id: nas_lobuler, etiket: Lobüler inflamasyon, seviye: 1, tip: secim, secenekler: ["0 (odak yok)", "1 (<2 odak / 200x)", "2 (2–4 odak)", "3 (>4 odak)"]}
+      - {id: nas_balon, etiket: Hepatosit balonlaşması, seviye: 1, tip: secim, secenekler: ["0 (yok)", "1 (az)", "2 (çok / belirgin)"]}
+  - {id: kleiner_f, etiket: Fibrozis evresi (NASH CRN), seviye: 1, tip: secim, secenekler: ["0", "1a (hafif perisinüzoidal, zon 3)", "1b (orta perisinüzoidal, zon 3)", "1c (yalnız portal / periportal)", "2 (perisinüzoidal + portal/periportal)", "3 (köprüleşme)", "4 (siroz)"], kosul: "steatoz / steatohepatit"}
+  - {id: metavir, etiket: METAVIR, seviye: 3, tip: metin, kalip: "A… F…"}
+  - {id: kolestaz, etiket: Kolestaz, seviye: 2, tip: secim, secenekler: [Görülmedi, "Hepatoselüler / kanaliküler", Duktuler]}
+  - {id: safra_kanal, etiket: Safra kanalları, seviye: 2, tip: secim, secenekler: [Olağan, "Duktopeni (… portal alanın …'inde kanal yok)", Duktuler reaksiyon, Kanal hasarı / lenfositik kolanjit, Florid kanal lezyonu]}
+  - {id: plazma, etiket: Plazma hücreleri / emperipolezis / rozet, seviye: 2, tip: secim, secenekler: [Belirgin değil, "Belirgin (otoimmün hepatit açısından değerlendirilmeli)"]}
+  - {id: demir, etiket: Demir (Perls), seviye: 2, tip: secim, secenekler: [Görülmedi, "Hepatoselüler, derece …/4", Kupffer hücresi]}
+  - {id: ozel_boyalar, etiket: Uygulanan histokimya, seviye: 2, tip: metin, kalip: "Masson trikrom, retikülin, Perls, PAS, PAS-diastaz, rodanin / orsein: …"}
+  - {id: ek_bulgular, etiket: Ek bulgular, seviye: 3, tip: coklu, secenekler: [Glikojenik nükleus, Mallory-Denk cisimciği, Buzlu cam hepatosit, PAS-D pozitif globül, Granülom, Venöz çıkış tıkanıklığı bulguları, "…"]}
+  - {id: yorum, etiket: Yorum, seviye: 2, tip: metin, not: "Etiyolojiye yönelik klinik-serolojik korelasyon cümlesi."}
+makroskopi:
+  alanlar:
+    - {id: adet, etiket: Kor sayısı, tip: sayi, zorunlu: true}
+    - {id: en_buyuk, etiket: En uzun kor, tip: olcu, birim: cm, zorunlu: true}
+    - {id: en_kucuk, etiket: En kısa kor, tip: olcu, birim: cm}
+    - {id: cap, etiket: Çap, tip: olcu, birim: cm}
+    - {id: renk, etiket: Renk, tip: secim, secenekler: [kahverengi, sarı-kahverengi, yeşil-kahverengi]}
+  varyantlar:
+    - ad: İğne biyopsi
+      metin:
+        - "En uzunu {en_buyuk} cm, en kısası {en_kucuk} cm uzunluğunda, {cap} cm çapında, {renk} renkte {adet} adet iğne biyopsi materyali."
+      ornekleme:
+        - {kod: T, aciklama: tümü, tek: true}
+  yapilacaklar:
+    - Kor dilimlenmeden, düz gömülür; ≤2 kor / kaset.
+    - Rutin panel — H&E, Masson trikrom, retikülin, Perls, PAS, PAS-D; gerekirse rodanin/orsein.
+    - Ara lamlar İHK (HBsAg, HBcAg, CK7 vb.) için saklanır.

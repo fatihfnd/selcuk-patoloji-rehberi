@@ -1,0 +1,75 @@
+id: kolon-biyopsi-inflamatuar
+baslik: Kolon / ileum biyopsi — inflamatuar barsak hastalığı ve mikroskopik kolit
+organ: Kolorektal
+materyal: Biyopsi
+kaynaklar:
+  - "ECCO — İBH histopatoloji konsensusu (Magro ve ark., 2013; 2020 güncellemeleri)"
+  - "BSG — İBH biyopsi raporlama kılavuzu (Feakins, 2013)"
+  - "Nancy histolojik indeksi (Marchal-Bressenot, 2017); Geboes skoru"
+  - "Avrupa Mikroskopik Kolit Grubu (EMCG) kriterleri"
+not: "Her kap ayrı değerlendirilir; dağılım (diffüz / yama tarzı, proksimal-distal gradiyent) ancak tüm kaplar birlikte yorumlanabilir — son kaba ortak yorum eklenir."
+tani_alternatif: true
+tani:
+  - "Kronik aktif kolit, lütfen epikrizi okuyunuz; {yer}, endoskopik biyopsi"
+  - "Kronik inaktif (sessiz) kolit, lütfen epikrizi okuyunuz; {yer}, endoskopik biyopsi"
+  - "Akut (kendini sınırlayan) kolit paterni, lütfen epikrizi okuyunuz; {yer}, endoskopik biyopsi"
+  - "Kollajenöz kolit, lütfen epikrizi okuyunuz; {yer}, endoskopik biyopsi"
+  - "Lenfositik kolit, lütfen epikrizi okuyunuz; {yer}, endoskopik biyopsi"
+  - "Granülomatöz kronik aktif ileit / kolit, lütfen epikrizi okuyunuz; {yer}, endoskopik biyopsi"
+  - "Belirgin patolojik değişiklik göstermeyen kolon mukozası; {yer}, endoskopik biyopsi"
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - id: kronisite
+    etiket: Kronisite bulguları
+    seviye: 1
+    alt:
+      - {id: mimari, etiket: Kript mimari bozukluğu, seviye: 1, tip: secim, secenekler: [Görülmedi, Hafif, Belirgin]}
+      - {id: bazal_plazma, etiket: Bazal plazmositoz, seviye: 1, tip: secim, secenekler: [Görülmedi, Fokal, Diffüz]}
+      - {id: paneth, etiket: Paneth hücre metaplazisi (sol kolon), seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü, Uygulanmaz]}
+      - {id: lp_sellularite, etiket: Lamina propria sellülaritesi, seviye: 2, tip: secim, secenekler: [Normal, Artmış]}
+  - id: aktivite
+    etiket: Aktivite bulguları
+    seviye: 1
+    alt:
+      - {id: kriptit, etiket: Kriptit / kript absesi, seviye: 1, tip: secim, secenekler: [Görülmedi, Kriptit, Kript absesi]}
+      - {id: erozyon, etiket: Erozyon / ülser, seviye: 1, tip: secim, secenekler: [Görülmedi, Erozyon, Ülser]}
+      - {id: nancy, etiket: Nancy histolojik indeksi, seviye: 2, tip: secim, secenekler: ["0 (kronik inflamasyon yok / hafif)", "1 (orta-belirgin kronik inflamasyon, aktivite yok)", "2 (hafif aktivite)", "3 (orta-şiddetli aktivite)", "4 (ülserasyon)"], kosul: "ülseratif kolit"}
+  - {id: dagilim, etiket: Dağılım (tüm örnekler), seviye: 1, tip: secim, secenekler: ["Diffüz, sürekli", "Yama tarzı / segmental", "Distalde belirgin gradiyent", "Değerlendirilemedi (tek bölge)"]}
+  - {id: granulom, etiket: Granülom, seviye: 1, tip: secim, secenekler: [Görülmedi, "Kripte bağlı olmayan epiteloid granülom görüldü", "Kript rüptürüne bağlı granülom görüldü"]}
+  - {id: displazi, etiket: Displazi, seviye: 1, tip: secim, secenekler: [Görülmedi, Belirsiz (indefinite), Düşük dereceli, Yüksek dereceli]}
+  - id: mikroskopik_kolit
+    etiket: Mikroskopik kolit parametreleri
+    seviye: 2
+    kosul: "mikroskopik kolit"
+    alt:
+      - {id: kollajen, etiket: Subepitelyal kollajen bant kalınlığı, seviye: 1, tip: metin, kalip: "… µm (>10 µm anlamlı; Masson trikrom)"}
+      - {id: iel, etiket: Yüzey epitelinde İEL, seviye: 1, tip: metin, kalip: "…/100 epitel hücresi (>20 anlamlı)"}
+      - {id: yuzey_hasar, etiket: Yüzey epitel hasarı, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {id: cmv, etiket: CMV (İHK), seviye: 3, tip: secim, secenekler: [Çalışılmadı, Negatif, "Pozitif (… hücre / biyopsi)"]}
+  - id: yorum
+    etiket: Yorum
+    seviye: 1
+    tip: secim
+    secenekler:
+      - "Bulgular kronik İBH ile uyumludur; diffüz dağılım ve granülom yokluğu ülseratif kolit lehinedir, klinik-endoskopik korelasyon önerilir."
+      - "Bulgular kronik İBH ile uyumludur; yama tarzı tutulum / granülom Crohn hastalığı lehinedir, klinik-endoskopik korelasyon önerilir."
+      - "Kronisite bulgusu olmayan aktif kolit enfeksiyöz / ilaç ilişkili (akut kendini sınırlayan) kolit ile uyumludur."
+      - "Bulgular mikroskopik kolit ile uyumludur; klinik (sulu ishal) korelasyon önerilir."
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: adet, etiket: Parça sayısı, tip: sayi, zorunlu: true}
+    - {id: en_buyuk, etiket: En büyük parça, tip: olcu, birim: cm, zorunlu: true}
+    - {id: en_kucuk, etiket: En küçük parça, tip: olcu, birim: cm}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: Endoskopik biyopsi (segment bazlı)
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): En büyüğü {en_buyuk} cm, en küçüğü {en_kucuk} cm çapında, krem renkte {adet} adet mukozal doku parçası. Tümü {parca} parça {kaset} kasette takibe alındı."
+  yapilacaklar:
+    - Her segment ayrı kasette; yönlendirme mümkünse mukoza yüzü dik.
+    - En az 3 düzeyde kesit; mikroskopik kolit şüphesinde Masson trikrom.
+    - Klinik bilgi (süre, tedavi, endoskopik bulgu) istemde yoksa not edilir — yorumu doğrudan etkiler.

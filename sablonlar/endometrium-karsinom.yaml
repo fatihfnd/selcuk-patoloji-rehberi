@@ -1,0 +1,109 @@
+id: endometrium-karsinom
+baslik: Endometrium karsinomu — histerektomi (moleküler sınıflama dahil)
+organ: Endometrium
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Endometrium (Hysterectomy)"
+  - "ICCR — Endometrial Cancer (Hysterectomy)"
+  - "WHO Kadın Genital Tümörleri, 5. baskı (2020); ESGO/ESTRO/ESP 2020 kılavuzu"
+  - "FIGO 2023 endometrium kanseri evrelemesi (moleküler); FIGO 2009 / AJCC 8"
+not: "Geçiş döneminde FIGO 2023 ve FIGO 2009 (pTNM) birlikte verilebilir; hangisinin kullanıldığı belirtilir. Moleküler sınıf bilinmiyorsa FIGO 2023 evresine 'm' eki eklenmez."
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; uterus, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); pelvik / paraaortik / sentinel lenf nodu"
+  - "Tümör görülmedi; sağ / sol over ve tuba uterina, salpingo-ooferektomi"
+  - "Tümör görülmedi; omentum, omentektomi"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [total histerektomi ve bilateral salpingo-ooferektomi, radikal histerektomi, "total histerektomi + BSO + sentinel lenf nodu", "+ omentektomi / pelvik-paraaortik lenfadenektomi"]}
+  - {id: histolojik_tip, etiket: Histolojik tip, seviye: 1, tip: secim, serbest: true, secenekler: [Endometrioid karsinom, Seröz karsinom, Berrak hücreli karsinom, Karsinosarkom, İndiferansiye karsinom, Dediferansiye karsinom, "Mikst karsinom (… %…, … %…)", Mezonefrik benzeri adenokarsinom, "Müsinöz karsinom, gastrointestinal tip"]}
+  - {id: derece, etiket: Histolojik derece, seviye: 1, tip: secim, secenekler: ["FIGO derece 1 (düşük dereceli)", "FIGO derece 2 (düşük dereceli)", "FIGO derece 3 (yüksek dereceli)", "Uygulanmaz (non-endometrioid; yüksek dereceli kabul edilir)"]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 2, tip: olcu, birim: cm}
+  - {id: yerlesim, etiket: Tümör yerleşimi, seviye: 3, tip: coklu, secenekler: [Fundus, Korpus anterior, Korpus posterior, Alt uterin segment, Polip içinde sınırlı]}
+  - id: miyometrium
+    etiket: Miyometriyal invazyon
+    seviye: 1
+    tip: secim
+    secenekler: ["Görülmedi (endometriuma / polipe sınırlı)", "<%50", "≥%50"]
+    alt:
+      - {id: mi_olcum, etiket: Ölçüm, seviye: 1, tip: metin, kalip: "İnvazyon derinliği … mm / miyometrium kalınlığı … mm (%…)"}
+      - {id: mi_patern, etiket: İnvazyon paterni, seviye: 3, tip: secim, secenekler: [İnfiltratif glandüler, "MELF", Geniş itici (pushing), Adenomiyoid, "Mikrokistik"]}
+      - {id: adenomiyozis, etiket: Adenomiyozis tutulumu, seviye: 2, tip: secim, secenekler: [Görülmedi, "Adenomiyozis odaklarında tümör (invazyon sayılmaz)", "Adenomiyozis kaynaklı invazyon"]}
+  - {id: lvsi, etiket: Lenfovasküler alan invazyonu (LVSI), seviye: 1, tip: secim, secenekler: [Görülmedi, "Fokal (<5 damar)", "Yaygın / belirgin (≥5 damar)"], not: "FIGO 2023'te yaygın LVSI evreyi (IIB) değiştirir."}
+  - {id: serviks, etiket: Serviks stromal invazyonu, seviye: 1, tip: secim, secenekler: [Görülmedi, "Yalnız endoservikal glandüler / mukozal tutulum (stromal invazyon yok)", "Stromal invazyon görüldü"]}
+  - {id: seroza, etiket: Uterin seroza / subseroza, seviye: 1, tip: secim, secenekler: [Tutulum görülmedi, Subserozal tutulum, Serozal tutulum]}
+  - id: yayilim_diger
+    etiket: Diğer yapılar
+    seviye: 1
+    alt:
+      - {id: adneks, etiket: Over / tuba, seviye: 1, tip: secim, secenekler: [Tutulum görülmedi, "Tutulum görüldü (…)", "Eşzamanlı düşük dereceli endometrioid over karsinomu (FIGO IA3 kriterleri)"]}
+      - {id: parametrium, etiket: Parametrium, seviye: 1, tip: secim, secenekler: [Tutulum görülmedi, Tutulum görüldü, Örneklenmedi]}
+      - {id: vajen, etiket: Vajinal kaf, seviye: 2, tip: secim, secenekler: [Tutulum görülmedi, Tutulum görüldü, Örneklenmedi]}
+      - {id: omentum, etiket: Omentum / periton, seviye: 1, tip: secim, secenekler: [Örneklenmedi, Tutulum görülmedi, "Tutulum görüldü (en büyük odak … cm)"]}
+  - {id: sitoloji, etiket: Peritoneal sitoloji, seviye: 3, tip: secim, secenekler: [Gönderilmedi, Negatif, Pozitif, "… no'lu raporda"]}
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    tip: secim
+    secenekler: ["Tümör görülmedi (en yakın: … , … mm)", "Tümör görüldü (vajinal kaf / parametrium / …)"]
+  - id: lenf_nodu
+    etiket: Lenf nodları
+    seviye: 1
+    tip: metin
+    kalip: "Sentinel … (sağ … / sol …), pelvik …, paraaortik … lenf nodu incelendi; …'inde metastaz görüldü / metastaz görülmedi"
+    alt:
+      - {id: ln_boyut, etiket: Metastaz boyutu, seviye: 1, tip: secim, secenekler: ["Makrometastaz (>2 mm)", "Mikrometastaz (>0,2–2 mm)", "İzole tümör hücreleri (≤0,2 mm)"], kosul: "ln_pozitif > 0"}
+      - {id: ultrastaging, etiket: Sentinel ultraevreleme, seviye: 2, tip: secim, secenekler: [Uygulanmadı, "Uygulandı (seri kesit + pansitokeratin)"]}
+  - id: bb_baslik
+    etiket: Moleküler sınıflama / biyobelirteçler
+    seviye: 1
+    alt:
+      - {id: pole, etiket: POLE, seviye: 1, tip: secim, secenekler: [Çalışılmadı, "Patojenik mutasyon saptandı (POLEmut)", "Patojenik mutasyon saptanmadı"]}
+      - {modul: biyobelirtec.mmr, seviye: 1}
+      - {id: p53, etiket: p53 (İHK), seviye: 1, tip: secim, secenekler: ["Yabanıl tip patern", "Anormal: diffüz güçlü nükleer", "Anormal: tam kayıp (null)", "Anormal: sitoplazmik", "Subklonal anormal (…%)"]}
+      - {id: mol_sinif, etiket: Moleküler sınıf, seviye: 1, tip: secim, secenekler: [POLEmut, MMRd, "NSMP (spesifik moleküler profil yok)", p53abn, "Çoklu sınıflayıcı (…); öncelik sırası POLEmut > MMRd > p53abn", "Belirlenemedi"]}
+      - {id: er_pr, etiket: ER / PR, seviye: 2, tip: metin, kalip: "ER %…, PR %…"}
+      - {id: her2, etiket: HER2 (seröz / p53abn), seviye: 2, tip: metin, kalip: "Skor … (ISH …)"}
+      - {id: l1cam, etiket: L1CAM, seviye: 3, tip: metin}
+  - {id: figo2023, etiket: FIGO 2023 evresi, seviye: 1, tip: secim, serbest: true, secenekler: ["IA1 — non-agresif histoloji, polip / endometriuma sınırlı", "IA2 — non-agresif, <%50 miyometriyal invazyon, LVSI yok / fokal", "IA3 — düşük dereceli endometrioid, uterus ve overe sınırlı", "IB — non-agresif, ≥%50 invazyon, LVSI yok / fokal", "IC — agresif histoloji, polip / endometriuma sınırlı", "IIA — non-agresif, serviks stromal invazyonu", "IIB — non-agresif, yaygın LVSI", "IIC — agresif histoloji, miyometriyal invazyon", "IIIA1 — over / tuba", "IIIA2 — uterin subseroza / seroza", "IIIB1 — vajen / parametrium", "IIIB2 — pelvik periton", "IIIC1i / IIIC1ii — pelvik lenf nodu mikro / makro", "IIIC2i / IIIC2ii — paraaortik lenf nodu mikro / makro", "IVA — mesane / barsak mukozası", "IVB — pelvis dışı abdominal periton", "IVC — uzak metastaz", "IAmPOLEmut", "IICmp53abn"]}
+  - {id: figo2009, etiket: FIGO 2009 / pTNM (AJCC 8), seviye: 1, tip: metin, kalip: "FIGO …; pT… pN… (sn / i+ / mi)"}
+  - {id: tumor_disi, etiket: Tümör dışı endometrium / uterus, seviye: 3, tip: coklu, secenekler: [Atipik hiperplazi / EIN, Atrofik endometrium, Leiyomyom, Adenomiyozis, "…"]}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: agirlik, etiket: Uterus ağırlığı, tip: sayi, birim: g, zorunlu: true}
+    - {id: uterus_boyut, etiket: Uterus boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: seroza, etiket: Seroza, tip: secim, secenekler: [düzgün ve parlaktır, "… bölgesinde düzensizlik / tümör izlendi"], zorunlu: true}
+    - {id: yerlesim, etiket: Tümör yerleşimi, zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: [ekzofitik-polipoid, "düz, endometriumu kalınlaştıran", "ülsere-infiltratif"]}
+    - {id: mi_makro, etiket: Makroskopik miyometriyal invazyon, tip: metin, zorunlu: true, not: "Makroskopik olarak … cm / … cm (%…) derinliğe ulaşmaktadır; seroza mesafesi … cm"}
+    - {id: alu_serviks, etiket: Alt uterin segment / serviks ilişkisi, tip: secim, secenekler: ["tümör alt uterin segmente / servikse uzanmamaktadır", "tümör alt uterin segmente uzanmaktadır", "tümör endoservikal kanala uzanmaktadır"], zorunlu: true}
+    - {id: sag_adneks, etiket: Sağ tuba ve over}
+    - {id: sol_adneks, etiket: Sol tuba ve over}
+  varyantlar:
+    - ad: Histerektomi
+      metin:
+        - "{fiksasyon_durumu} gönderilen, {agirlik} g ağırlığında, {uterus_boyut} cm boyutlarında {prosedur} materyalidir. Seroza {seroza}. Seroza ve parametriumlar boyandı."
+        - >-
+          Uterus lateral duvarlardan açıldığında {yerlesim} yerleşimli, {tumor_boyut} cm boyutlarında, {gorunum} görünümde
+          tümör izlendi. Tümör {mi_makro}; {alu_serviks}.
+        - "Sağ adneks: {sag_adneks}. Sol adneks: {sol_adneks}."
+      ornekleme:
+        - {kod: T, aciklama: "tümör-miyometrium-seroza, tam kat", not: "En derin invazyon alanından tam kat (gerekirse bölünmüş); tümör ≤2 cm ise tamamı. En az 4 kaset."}
+        - {kod: ALU, aciklama: alt uterin segment, parca: "…", kaset: "…"}
+        - {kod: SA, aciklama: "serviks anterior, endoserviks-ALU bileşkesi dahil", parca: "…", kaset: "…"}
+        - {kod: SP, aciklama: "serviks posterior, endoserviks-ALU bileşkesi dahil", parca: "…", kaset: "…"}
+        - {kod: PS, aciklama: sağ parametrium, parca: "…", kaset: "…"}
+        - {kod: PL, aciklama: sol parametrium, parca: "…", kaset: "…"}
+        - {kod: VK, aciklama: vajinal kaf, parca: "…", kaset: "…"}
+        - {kod: E, aciklama: tümör dışı endometrium, parca: "1", kaset: "1"}
+        - {kod: STO, aciklama: "sağ tuba (fimbria) ve over", parca: "…", kaset: "…"}
+        - {kod: LTO, aciklama: "sol tuba (fimbria) ve over", parca: "…", kaset: "…"}
+  ek_materyaller: [makro.sentinel, makro.ln_istasyon]
+  yapilacaklar:
+    - Seroza ve parametriumu boya; uterusu lateral duvarlardan aç (tümör ön/arka duvardaysa).
+    - Endometrium ve miyometrium kalınlığı ile tümörün en derin invazyonunu ölç.
+    - Alt uterin segment ve serviks ilişkisini ayrı kasetlerle göster.
+    - Taze materyal alınacaksa (moleküler / biyobanka) invazyon derinliği bozulmayacak alandan.
+    - Sentinel nodlar ultraevreleme protokolüyle.

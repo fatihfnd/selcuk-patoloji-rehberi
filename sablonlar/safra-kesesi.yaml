@@ -1,0 +1,75 @@
+id: safra-kesesi
+baslik: Kolesistektomi (benign ve karsinom)
+organ: Safra kesesi
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Gallbladder (Resection)"
+  - "ICCR — Carcinoma of the Gallbladder"
+  - "WHO Sindirim Sistemi Tümörleri, 5. baskı (2019); AJCC 8"
+tani_alternatif: true
+tani:
+  - "Kronik kolesistit, kolelitiazis; safra kesesi, kolesistektomi"
+  - "Akut ve kronik kolesistit, kolelitiazis; safra kesesi, kolesistektomi"
+  - "Kolesterolozis; safra kesesi, kolesistektomi"
+  - "Adenomiyomatöz hiperplazi; safra kesesi, kolesistektomi"
+  - "Yüksek dereceli displazi / intrakolesistik papiller neoplazm, lütfen epikrizi okuyunuz; safra kesesi, kolesistektomi"
+  - "Adenokarsinom, lütfen epikrizi okuyunuz; safra kesesi, kolesistektomi"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); sistik kanal / perikoledokal"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [Kolesistektomi, "Genişletilmiş kolesistektomi (karaciğer yatağı rezeksiyonu)", Kolesistektomi + lenf nodu diseksiyonu]}
+  - {id: yerlesim, etiket: Tümör yerleşimi, seviye: 2, tip: secim, secenekler: [Fundus, Gövde, Boyun, Sistik kanal]}
+  - {id: taraf, etiket: Tümör yüzü, seviye: 1, tip: secim, secenekler: [Peritoneal taraf, Hepatik taraf, Her iki taraf, Belirlenemedi], not: "pT2a / pT2b ayrımı için gerekli."}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 2, tip: olcu, birim: cm}
+  - {id: histolojik_tip, etiket: Histolojik tip, seviye: 1, tip: secim, serbest: true, secenekler: [Adenokarsinom, "Adenokarsinom, intestinal tip", Müsinöz adenokarsinom, Az kohezif karsinom, Adenoskuamöz karsinom, Nöroendokrin karsinom, "İntrakolesistik papiller neoplazm ilişkili invaziv karsinom"]}
+  - {id: derece, etiket: Histolojik derece, seviye: 1, tip: secim, secenekler: ["G1, iyi diferansiye", "G2, orta derecede diferansiye", "G3, az diferansiye"]}
+  - id: yayilim
+    etiket: Tümör yayılımı
+    seviye: 1
+    tip: secim
+    secenekler:
+      - "Lamina propria (pT1a)"
+      - "Kas tabakası (pT1b)"
+      - "Perimüsküler bağ doku, peritoneal taraf, serozaya ulaşmadan (pT2a)"
+      - "Perimüsküler bağ doku, hepatik taraf, karaciğere uzanmadan (pT2b)"
+      - "Seroza ve/veya karaciğer ve/veya tek komşu organ (pT3)"
+      - "Ana portal ven / hepatik arter veya ≥2 ekstrahepatik organ (pT4)"
+  - modul: ortak.lvi
+  - modul: ortak.pni
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    alt:
+      - {id: sinir_sistik, etiket: Sistik kanal, seviye: 1, tip: secim, secenekler: ["İnvaziv karsinom / displazi görülmedi", Yüksek dereceli displazi görüldü, İnvaziv karsinom görüldü]}
+      - {id: sinir_hepatik, etiket: Hepatik yatak (karaciğer) yüzü, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi; mesafe … mm", Tümör görüldü]}
+  - modul: ortak.lenf_nodu
+  - modul: ortak.ptnm
+  - {id: arka_plan, etiket: Tümör dışı kese, seviye: 2, tip: coklu, secenekler: [Kronik kolesistit, Kolelitiazis, Displazi, İntestinal / pilorik metaplazi, Porselen kese, "…"]}
+  - {id: displazi_not, etiket: Displazi / öncül lezyon, seviye: 2, tip: secim, secenekler: [Görülmedi, Düşük dereceli biliyer intraepitelyal neoplazi, Yüksek dereceli biliyer intraepitelyal neoplazi, İntrakolesistik papiller neoplazm (düşük / yüksek dereceli)]}
+makroskopi:
+  alanlar:
+    - {id: durum, etiket: Geliş durumu, tip: secim, secenekler: [bütünlüğü korunmuş olarak, açılmış olarak, parçalı halde], zorunlu: true}
+    - {id: boyut, etiket: Boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: seroza, etiket: Seroza, tip: secim, secenekler: [düzgün ve parlaktır, "mat, yer yer fibrinlidir", "yapışıklıklar içermektedir"]}
+    - {id: tas, etiket: Taş, tip: secim, secenekler: ["en büyüğü … cm çapında … adet / çok sayıda taş izlendi", taş izlenmedi], zorunlu: true}
+    - {id: duvar, etiket: Duvar kalınlığı (en kalın), tip: olcu, birim: cm, zorunlu: true}
+    - {id: mukoza, etiket: Mukoza, tip: secim, secenekler: ["kadifemsi, yeşil renktedir", "sarı beneklidir (kolesterolozis)", "yer yer düzleşmiş / ülsere görünümdedir"]}
+    - {id: lezyon, etiket: Lezyon, tip: secim, secenekler: [izlenmedi, "… yerleşimli, … cm boyutlarında, duvarı … kalınlaştıran / polipoid lezyon izlendi; sistik kanal sınırına … cm, hepatik yüze … cm mesafededir"], zorunlu: true}
+    - {id: sistik_ln, etiket: Sistik lenf nodu, tip: secim, secenekler: [izlenmedi, "… cm çapında 1 adet izlendi"]}
+  varyantlar:
+    - ad: Kolesistektomi
+      metin:
+        - >-
+          {durum} gönderilen, {boyut} cm boyutlarında kolesistektomi materyalidir. Seroza {seroza}. Kese açıldığında
+          {tas}. Duvar en kalın yerinde {duvar} cm'dir. Mukoza {mukoza}. Lezyon {lezyon}. Sistik kanal çevresinde lenf nodu {sistik_ln}.
+      ornekleme:
+        - {kod: SK, aciklama: "sistik kanal cerrahi sınırı, transvers", parca: "1", kaset: "1"}
+        - {kod: B, aciklama: boyun, parca: "1", kaset: "1"}
+        - {kod: G, aciklama: gövde, parca: "1", kaset: "1"}
+        - {kod: F, aciklama: fundus, parca: "1", kaset: "1"}
+        - {kod: L, aciklama: "lezyon / kalın duvar alanı", parca: "…", kaset: "…", not: "Karsinom şüphesinde lezyon tamamı + hepatik yüz boyanarak örneklenir."}
+        - {kod: LN, aciklama: sistik lenf nodu, parca: "…", kaset: "…"}
+  yapilacaklar:
+    - Açmadan önce hepatik (nonperitoneal) yüz boyanır; sistik kanal sınırı ayrılır.
+    - Taşlar sayılır/ölçülür; duvar kalınlığı ve mukoza değerlendirilir.
+    - Rutin: sistik kanal sınırı + boyun, gövde, fundus.
+    - Makroskopik şüphe veya histolojide displazi/karsinom saptanırsa kese tamamen örneklenir (insidental karsinomda pT evresi için).

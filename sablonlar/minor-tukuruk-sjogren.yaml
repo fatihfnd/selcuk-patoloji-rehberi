@@ -1,0 +1,38 @@
+id: minor-tukuruk-sjogren
+baslik: Minör tükürük bezi biyopsisi (Sjögren değerlendirmesi)
+organ: Tükürük bezi
+materyal: Biyopsi
+kaynaklar:
+  - "ACR / EULAR 2016 primer Sjögren sendromu sınıflama kriterleri"
+  - "Fisher ve ark. (2017) — minör tükürük bezi histopatolojisi için konsensus kılavuzu"
+not: "Fokus: ≥50 lenfositten oluşan, periduktal / perivasküler, normal görünümlü asinuslara komşu küme. Fokus skoru = fokus sayısı / toplam glandüler alan (mm²) × 4. FS ≥1 sınıflama kriterlerinde pozitiftir."
+tani_alternatif: true
+tani:
+  - "Fokal lenfositik sialadenit, fokus skoru …, lütfen epikrizi okuyunuz; minör tükürük bezi, biyopsi"
+  - "Nonspesifik kronik sialadenit (fokus skoru hesaplanamaz / <1), lütfen epikrizi okuyunuz; minör tükürük bezi, biyopsi"
+  - "Sklerozan kronik sialadenit; minör tükürük bezi, biyopsi"
+  - "Belirgin patolojik değişiklik göstermeyen minör tükürük bezi dokusu, lütfen epikrizi okuyunuz; minör tükürük bezi, biyopsi"
+  - "Değerlendirme için yetersiz materyal (glandüler alan <8 mm²); minör tükürük bezi, biyopsi"
+epikriz:
+  - {id: yeterlilik, etiket: Materyal, seviye: 1, tip: metin, kalip: "… bez / lobül; toplam glandüler alan … mm² (≥4 lobül ve ≥8 mm² önerilir)"}
+  - {id: fokus_sayi, etiket: Fokus sayısı, seviye: 1, tip: sayi}
+  - {id: fokus_skoru, etiket: Fokus skoru, seviye: 1, tip: metin, kalip: "… fokus / 4 mm² (≥1: pozitif)"}
+  - {id: germinal, etiket: Germinal merkez oluşumu, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {id: nonspesifik, etiket: Nonspesifik değişiklikler, seviye: 2, tip: coklu, secenekler: [Görülmedi, Asiner atrofi, İnterstisyel fibrozis, Duktal dilatasyon, "Dağınık lenfosit / plazma hücresi"]}
+  - {id: lel, etiket: Lenfoepitelyal lezyon, seviye: 3, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {id: lenfoma, etiket: Lenfoma açısından, seviye: 3, tip: secim, secenekler: ["Şüpheli bulgu yok", "MALT lenfoma açısından ek inceleme önerilir (…)"]}
+  - {id: yorum, etiket: Yorum, seviye: 1, tip: secim, secenekler: ["Bulgular ACR/EULAR kriterlerinde histopatolojik ölçütü karşılamaktadır (FS ≥1); klinik ve serolojik (anti-Ro/SSA) korelasyon önerilir.", "Histopatolojik ölçüt karşılanmamaktadır (FS <1); tek başına Sjögren sendromunu dışlamaz."]}
+makroskopi:
+  alanlar:
+    - {id: adet, etiket: Bez / lobül sayısı, tip: sayi, zorunlu: true}
+    - {id: en_buyuk, etiket: En büyük parça, tip: olcu, birim: cm, zorunlu: true}
+    - {id: en_kucuk, etiket: En küçük parça, tip: olcu, birim: cm}
+  varyantlar:
+    - ad: Minör tükürük bezi biyopsisi
+      metin:
+        - "En büyüğü {en_buyuk} cm, en küçüğü {en_kucuk} cm çapında, krem-pembe renkte, lobüle görünümlü {adet} adet doku parçası."
+      ornekleme:
+        - {kod: T, aciklama: tümü, tek: true}
+  yapilacaklar:
+    - Tüm lobüller aynı düzlemde gömülür; en az 3 düzey kesit.
+    - Glandüler alan dijital ölçümle (mm²) hesaplanır; mukoza ve yağ doku dahil edilmez.

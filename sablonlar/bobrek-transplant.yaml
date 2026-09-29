@@ -1,0 +1,73 @@
+id: bobrek-transplant
+baslik: Transplant böbrek biyopsisi (Banff)
+organ: Böbrek
+materyal: Biyopsi
+kaynaklar:
+  - "Banff Allograft Pathology — 2022 güncellemesi (Naesens ve ark., 2024) ve önceki Banff raporları"
+  - "Banff yeterlilik kriterleri (≥10 glomerül ve ≥2 arter)"
+not: >
+  Banff tanı kategorileri birlikte bulunabilir (ör. aktif AMR + borderline); her biri ayrı tanı satırı alır.
+  DSA sonucu klinik bilgiden eklenir; C4d ve DSA durumu AMR kategorisini belirler.
+tani_alternatif: true
+tani:
+  - "Rejeksiyon bulgusu görülmedi (Banff kategori 1), lütfen epikrizi okuyunuz; transplant böbrek, iğne biyopsi"
+  - "Aktif antikor aracılı rejeksiyon (Banff kategori 2), lütfen epikrizi okuyunuz; transplant böbrek, iğne biyopsi"
+  - "Kronik aktif antikor aracılı rejeksiyon (Banff kategori 2), lütfen epikrizi okuyunuz; transplant böbrek, iğne biyopsi"
+  - "Olası (probable) antikor aracılı rejeksiyon (Banff kategori 2), lütfen epikrizi okuyunuz; transplant böbrek, iğne biyopsi"
+  - "Mikrovasküler inflamasyon, DSA-negatif ve C4d-negatif (Banff kategori 2), lütfen epikrizi okuyunuz; transplant böbrek, iğne biyopsi"
+  - "Sınırda (borderline) değişiklikler, T hücre aracılı rejeksiyon açısından şüpheli (Banff kategori 3), lütfen epikrizi okuyunuz; transplant böbrek, iğne biyopsi"
+  - "Akut T hücre aracılı rejeksiyon, Banff … (IA / IB / IIA / IIB / III) (kategori 4), lütfen epikrizi okuyunuz; transplant böbrek, iğne biyopsi"
+  - "Kronik aktif T hücre aracılı rejeksiyon, Banff … (IA / IB / II) (kategori 4), lütfen epikrizi okuyunuz; transplant böbrek, iğne biyopsi"
+  - "İnterstisyel fibrozis ve tübüler atrofi, belirgin etiyoloji saptanmadı (Banff kategori 5), lütfen epikrizi okuyunuz; transplant böbrek, iğne biyopsi"
+  - "Poliomavirüs (BK virüs) nefropatisi (Banff kategori 6), lütfen epikrizi okuyunuz; transplant böbrek, iğne biyopsi"
+  - "Akut tübüler hasar (Banff kategori 6), lütfen epikrizi okuyunuz; transplant böbrek, iğne biyopsi"
+epikriz:
+  - {id: yeterlilik, etiket: Yeterlilik, seviye: 1, tip: secim, secenekler: ["Yeterli (… glomerül, … arter)", "Marjinal (7–9 glomerül ve/veya 1 arter)", "Yetersiz (<7 glomerül veya arter yok)"]}
+  - {id: klinik, etiket: Klinik bilgi, seviye: 2, tip: metin, kalip: "Transplant sonrası … gün / ay; kreatinin …; DSA: pozitif (…) / negatif / bilinmiyor; protokol / endikasyon biyopsisi"}
+  - id: banff_akut
+    etiket: Banff akut lezyon skorları
+    seviye: 1
+    alt:
+      - {id: b_i, etiket: "i (interstisyel inflamasyon, skarsız korteks)", seviye: 1, tip: secim, secenekler: [i0, i1, i2, i3]}
+      - {id: b_t, etiket: t (tübülit), seviye: 1, tip: secim, secenekler: [t0, t1, t2, t3]}
+      - {id: b_v, etiket: v (intimal arterit), seviye: 1, tip: secim, secenekler: [v0, v1, v2, v3]}
+      - {id: b_g, etiket: g (glomerülit), seviye: 1, tip: secim, secenekler: [g0, g1, g2, g3]}
+      - {id: b_ptc, etiket: ptc (peritübüler kapillerit), seviye: 1, tip: secim, secenekler: [ptc0, ptc1, ptc2, ptc3]}
+      - {id: b_c4d, etiket: C4d (PTC; IF / İHK), seviye: 1, tip: secim, secenekler: [C4d0, C4d1, C4d2, C4d3]}
+  - id: banff_kronik
+    etiket: Banff kronik lezyon skorları
+    seviye: 1
+    alt:
+      - {id: b_ti, etiket: "ti (total inflamasyon)", seviye: 1, tip: secim, secenekler: [ti0, ti1, ti2, ti3]}
+      - {id: b_iifta, etiket: "i-IFTA (skarlı alanda inflamasyon)", seviye: 1, tip: secim, secenekler: [i-IFTA0, i-IFTA1, i-IFTA2, i-IFTA3]}
+      - {id: b_tifta, etiket: "t-IFTA (atrofik tübüllerde tübülit)", seviye: 2, tip: secim, secenekler: [t-IFTA0, t-IFTA1, t-IFTA2, t-IFTA3]}
+      - {id: b_ci, etiket: ci (interstisyel fibrozis), seviye: 1, tip: secim, secenekler: [ci0, ci1, ci2, ci3]}
+      - {id: b_ct, etiket: ct (tübüler atrofi), seviye: 1, tip: secim, secenekler: [ct0, ct1, ct2, ct3]}
+      - {id: b_cv, etiket: cv (vasküler fibröz intimal kalınlaşma), seviye: 1, tip: secim, secenekler: [cv0, cv1, cv2, cv3]}
+      - {id: b_cg, etiket: cg (transplant glomerülopatisi; ışık / EM), seviye: 1, tip: secim, secenekler: [cg0, cg1a, cg1b, cg2, cg3]}
+      - {id: b_mm, etiket: mm (mezangial matriks artışı), seviye: 2, tip: secim, secenekler: [mm0, mm1, mm2, mm3]}
+      - {id: b_ah, etiket: ah (arteriolar hiyalinoz), seviye: 1, tip: secim, secenekler: [ah0, ah1, ah2, ah3]}
+      - {id: b_aah, etiket: "aah (hiyalin arteriolar kalınlaşma; KNİ)", seviye: 2, tip: secim, secenekler: [aah0, aah1, aah2, aah3]}
+      - {id: b_ptcml, etiket: ptcml (PTC bazal membran çoklaşması; EM), seviye: 3, tip: secim, secenekler: [ptcml0, ptcml1]}
+  - {id: mvi, etiket: Mikrovasküler inflamasyon (g + ptc), seviye: 1, tip: metin, kalip: "g+ptc = …"}
+  - {id: bk, etiket: Poliomavirüs (SV40 İHK), seviye: 1, tip: secim, secenekler: [Negatif, "Pozitif; Banff PVN sınıf 1 / 2 / 3 (pvl … , ci …)"]}
+  - {id: diger, etiket: Diğer bulgular, seviye: 2, tip: coklu, secenekler: [Akut tübüler hasar, "Kalsinörin inhibitörü toksisitesi ile uyumlu değişiklikler (izometrik vakuolizasyon, arteriolopati)", "Trombotik mikroanjiyopati", "Rekürren / de novo glomerüler hastalık (…)", "Piyelonefrit", "PTLD şüphesi", "Donör kaynaklı arterioskleroz"]}
+  - modul: ortak.bobrek_if
+  - {id: em, etiket: Elektron mikroskopi, seviye: 2, tip: secim, secenekler: ["Yapılmadı", "Materyal gönderildi; sonuç ek raporda bildirilecektir", "Bulgular: …"]}
+  - {id: yorum, etiket: Yorum, seviye: 1, tip: metin, not: "Banff kategorisi, DSA / C4d ilişkisi ve önceki biyopsilerle karşılaştırma."}
+makroskopi:
+  alanlar:
+    - {id: adet, etiket: Kor sayısı, tip: sayi, zorunlu: true}
+    - {id: uzunluk, etiket: Kor uzunlukları, tip: olcu, birim: cm, zorunlu: true}
+    - {id: if_materyal, etiket: IF için ayrılan materyal, tip: secim, secenekler: ["… cm uzunluğunda kor IF (C4d dahil) için ayrıldı", "IF için ayrı materyal gönderilmedi (C4d İHK ile değerlendirilecek)"], zorunlu: true}
+    - {id: em_materyal, etiket: EM için ayrılan materyal, tip: secim, secenekler: ["EM için materyal ayrıldı", "EM için materyal ayrılmadı"]}
+  varyantlar:
+    - ad: Transplant böbrek biyopsisi
+      metin:
+        - "Formalin içinde {uzunluk} cm uzunluğunda {adet} adet iğne biyopsi materyali. {if_materyal}. {em_materyal}."
+      ornekleme:
+        - {kod: T, aciklama: "tümü, seri kesitler", tek: true}
+  yapilacaklar:
+    - En az 2 kor önerilir (korteks; yeterlilik ≥10 glomerül, ≥2 arter).
+    - H&E, PAS (en az 2 düzey), gümüş, Masson trikrom; C4d (IF veya İHK); SV40 İHK.
+    - Seri kesitlerin farklı düzeylerinde arter aranır (v lezyonu kaçırılmamalı).

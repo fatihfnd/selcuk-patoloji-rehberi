@@ -1,0 +1,59 @@
+id: deri-inflamatuar
+baslik: Deri — inflamatuar dermatoz biyopsisi (patern yaklaşımı ± DIF)
+organ: Deri
+materyal: Biyopsi
+kaynaklar:
+  - "Ackerman patern analizi; Weedon's Skin Pathology; Lever's Histopathology of the Skin"
+  - "DIF raporlama — yoğunluk / patern / lokalizasyon standardı"
+not: "Tanı satırı patern + (varsa) klinik tanıyla uyum ifadesi biçimindedir: 'Spongiotik dermatit; klinik olarak allerjik kontakt dermatit ile uyumlu olabilir.' Klinik ön tanı ve dağılım bilgisi yorumu doğrudan değiştirir."
+tani_alternatif: true
+tani:
+  - "Spongiotik dermatit, lütfen epikrizi okuyunuz; {yer}, punch biyopsi"
+  - "Psoriaziform dermatit (psoriazis ile uyumlu), lütfen epikrizi okuyunuz; {yer}, punch biyopsi"
+  - "Likenoid interfaz dermatit (liken planus ile uyumlu), lütfen epikrizi okuyunuz; {yer}, punch biyopsi"
+  - "Vakuoler interfaz dermatit, lütfen epikrizi okuyunuz; {yer}, punch biyopsi"
+  - "Yüzeyel ve derin perivasküler / periadneksiyel dermatit, lütfen epikrizi okuyunuz; {yer}, punch biyopsi"
+  - "Lökositoklastik vaskülit, lütfen epikrizi okuyunuz; {yer}, punch biyopsi"
+  - "Subepidermal bül, eozinofilden zengin (büllöz pemfigoid ile uyumlu), lütfen epikrizi okuyunuz; {yer}, punch biyopsi"
+  - "İntraepidermal (suprabazal) akantolitik bül (pemfigus vulgaris ile uyumlu), lütfen epikrizi okuyunuz; {yer}, punch biyopsi"
+  - "Granülomatöz dermatit, lütfen epikrizi okuyunuz; {yer}, punch biyopsi"
+  - "Septal panikülit (eritema nodozum ile uyumlu), lütfen epikrizi okuyunuz; {yer}, insizyonel biyopsi"
+  - "Lobüler panikülit, lütfen epikrizi okuyunuz; {yer}, insizyonel biyopsi"
+  - "Minimal değişiklikler gösteren deri, lütfen epikrizi okuyunuz; {yer}, punch biyopsi"
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: klinik, etiket: Klinik bilgi, seviye: 2, tip: metin, kalip: "Ön tanı: …; dağılım / süre / tedavi: …"}
+  - {id: epidermis, etiket: Epidermis, seviye: 1, tip: coklu, secenekler: [Olağan, Ortokeratoz, Parakeratoz, "Nötrofil içeren parakeratoz / Munro mikroabsesi", Hipergranüloz, "Granüler tabaka kaybı", Akantoz, "Psoriaziform hiperplazi", Spongiyoz, "Vakuoler bazal hasar / diskeratotik keratinositler", "Likenoid bant", Atrofi, Akantoliz, "Bül / vezikül (intraepidermal / subepidermal)"]}
+  - {id: infiltrat_dagilim, etiket: Dermal infiltrat dağılımı, seviye: 1, tip: secim, secenekler: [Yüzeyel perivasküler, "Yüzeyel ve derin perivasküler", Periadneksiyel, İnterstisyel, "Nodüler / diffüz", Likenoid bant, "Subkutan (septal / lobüler)"]}
+  - {id: infiltrat_hucre, etiket: İnfiltrat hücre tipi, seviye: 1, tip: coklu, secenekler: [Lenfosit, Histiyosit, Eozinofil, Nötrofil, Plazma hücresi, "Çok çekirdekli dev hücre"]}
+  - {id: dermis_diger, etiket: Diğer dermal bulgular, seviye: 2, tip: coklu, secenekler: [Papiller dermal ödem, "Müsin artışı", "Kollajen değişiklikleri (skleroz / homojenizasyon)", "Solar elastoz", "Melanofaj / pigment inkontinansı", "Eritrosit ekstravazasyonu"]}
+  - {id: vaskulit, etiket: Vaskülit, seviye: 1, tip: secim, secenekler: [Görülmedi, "Küçük damar (lökositoklastik) vasküliti", "Orta çaplı damar vasküliti", "Lenfositik vaskülit / vaskülopati", "Trombotik vaskülopati"]}
+  - {id: granulom, etiket: Granülom, seviye: 2, tip: secim, secenekler: [Görülmedi, "Sarkoidal (çıplak)", "Tüberküloid / nekrotizan", "Palizatlı (nekrobiyotik)", "Yabancı cisim tipi", "Süpüratif"]}
+  - {id: histokimya, etiket: Histokimya, seviye: 2, tip: metin, kalip: "PAS (mantar) …; Giemsa / EZN / Fite …; Alcian mavisi (müsin) …; Verhoeff-van Gieson …; Kongo kırmızısı …"}
+  - id: dif
+    etiket: Direkt immünfloresan
+    seviye: 1
+    kosul: "DIF materyali gönderildiyse"
+    tip: metin
+    kalip: "IgG …, IgA …, IgM …, C3 …, fibrinojen … — patern: intersellüler / BMZ boyunca lineer / granüler / kolloid cisimcikleri / damar duvarı; lokalizasyon …"
+  - {id: yorum, etiket: Yorum, seviye: 1, tip: metin, not: "Ayırıcı tanı listesi ve klinik korelasyon önerisi."}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: tip, etiket: Biyopsi tipi, tip: secim, secenekler: [punch biyopsi, insizyonel biyopsi, eliptik eksizyon, shave biyopsi], zorunlu: true}
+    - {id: boyut, etiket: Boyut (çap × derinlik), tip: olcu, birim: cm, zorunlu: true}
+    - {id: yuzey, etiket: Yüzey, tip: secim, secenekler: [özellik izlenmedi, "skuamlı", "krutlu", "vezikül / bül içeren", "hiperpigmente"]}
+    - {id: dif_materyal, etiket: DIF materyali, tip: secim, secenekler: ["DIF için ayrı materyal (Michel / taze) gönderildi", "DIF için materyal gönderilmedi"]}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: Deri biyopsisi
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): {boyut} cm boyutlarında, yüzeyi {yuzey} {tip}. Uzun ekseni boyunca ikiye bölünerek tümü {parca} parça {kaset} kasette takibe alındı. {dif_materyal}."
+  yapilacaklar:
+    - Punch ≤4 mm ise bölünmeden, >4 mm ise uzun ekseninden ikiye bölünerek dik gömülür.
+    - Panikülit şüphesinde derin insizyonel biyopsi (subkutan yağ dahil) gerekir; punch yetersizliği belirtilir.
+    - Büllöz lezyonda H&E için bül kenarından, DIF için perilezyonel sağlam deriden örnek.
+    - En az 3 düzey kesit; fungal şüphede PAS.

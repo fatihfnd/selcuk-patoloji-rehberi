@@ -1,0 +1,54 @@
+id: duodenum-biyopsi
+baslik: Duodenum — endoskopik biyopsi (çölyak değerlendirmesi)
+organ: Duodenum
+materyal: Biyopsi
+kaynaklar:
+  - "Marsh-Oberhuber sınıflaması (Oberhuber ve ark., 1999)"
+  - "Corazza-Villanacci sınıflaması (2005)"
+  - "ESsCD / ESPGHAN çölyak kılavuzları; BSG 2014"
+not: "Bulbus ve distal duodenum ayrı kaplarda raporlanır. İEL değerlendirmesi iyi yönlenmiş villuslarda, 100 epitel hücresi başına yapılır."
+tani_alternatif: true
+tani:
+  - "Belirgin patolojik değişiklik göstermeyen duodenum mukozası; duodenum {bolge}, endoskopik biyopsi"
+  - "İntraepitelyal lenfositozis, lütfen epikrizi okuyunuz; duodenum {bolge}, endoskopik biyopsi"
+  - "Villus atrofisi ve intraepitelyal lenfositozis, çölyak hastalığı ile uyumlu, lütfen epikrizi okuyunuz; duodenum {bolge}, endoskopik biyopsi"
+  - "Kronik aktif (peptik) duodenit, foveolar metaplazi; duodenum {bolge}, endoskopik biyopsi"
+  - "Hafif derecede nonspesifik kronik duodenit, lütfen epikrizi okuyunuz; duodenum {bolge}, endoskopik biyopsi"
+epikriz:
+  - {id: bolge, etiket: Bölge, seviye: 0, gizli: true, tip: secim, secenekler: [bulbus, ikinci kısım, distal]}
+  - {id: yonlenme, etiket: Yönlenme / değerlendirilebilirlik, seviye: 2, tip: secim, secenekler: [İyi yönlenmiş villuslar değerlendirilebildi, Yönlenme suboptimal; değerlendirme sınırlı]}
+  - {id: villus, etiket: Villus yapısı, seviye: 1, tip: secim, secenekler: ["Normal (villus/kript oranı ≥3:1)", Hafif (parsiyel) villus atrofisi, Orta (subtotal) villus atrofisi, Total villus atrofisi]}
+  - {id: kript, etiket: Kript hiperplazisi, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {id: iel, etiket: İntraepitelyal lenfosit, seviye: 1, tip: metin, kalip: "…/100 epitel hücresi (artmış: ≥25) — CD3 ile değerlendirildi / değerlendirilmedi"}
+  - {id: marsh, etiket: Marsh-Oberhuber, seviye: 1, tip: secim, secenekler: ["Tip 0", "Tip 1", "Tip 2", "Tip 3a", "Tip 3b", "Tip 3c"]}
+  - {id: corazza, etiket: Corazza-Villanacci, seviye: 2, tip: secim, secenekler: ["Uygulanmaz (normal)", "Derece A (atrofisiz İEL artışı)", "Derece B1 (villus/kript <3:1, villus korunmuş)", "Derece B2 (total atrofi)"]}
+  - {id: brunner, etiket: Brunner bezleri, seviye: 3, tip: secim, secenekler: [Görüldü, Görülmedi]}
+  - {id: foveolar, etiket: Foveolar / gastrik metaplazi, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {id: lamina_propria, etiket: Lamina propria, seviye: 2, tip: metin, kalip: "Plazma hücreleri: korunmuş / azalmış; eozinofil: …/BBA; nötrofil: görülmedi / görüldü"}
+  - {id: mikroorganizma, etiket: Mikroorganizma (Giardia vb.), seviye: 2, tip: secim, secenekler: [Görülmedi, "Görüldü (…)"]}
+  - id: yorum
+    etiket: Yorum
+    seviye: 1
+    tip: secim
+    secenekler:
+      - "Bulgular çölyak hastalığı ile uyumludur; serolojik (tTG-IgA, total IgA) ve klinik korelasyon önerilir."
+      - "Atrofi olmaksızın İEL artışı nonspesifiktir; çölyak hastalığının yanı sıra H. pylori gastriti, NSAİİ, enfeksiyon, ince barsak bakteriyel aşırı çoğalması gibi durumlarda görülebilir; serolojik korelasyon önerilir."
+      - "Çölyak hastalığı lehine belirgin bulgu izlenmemiştir; klinik ve serolojik korelasyon önerilir."
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: adet, etiket: Parça sayısı, tip: sayi, zorunlu: true}
+    - {id: en_buyuk, etiket: En büyük parça, tip: olcu, birim: cm, zorunlu: true}
+    - {id: en_kucuk, etiket: En küçük parça, tip: olcu, birim: cm}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: Endoskopik biyopsi
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): En büyüğü {en_buyuk} cm, en küçüğü {en_kucuk} cm çapında, krem renkte {adet} adet mukozal doku parçası. Tümü {parca} parça {kaset} kasette takibe alındı."
+  yapilacaklar:
+    - Parçalar mukozal yüz yukarı, filtre kağıdı üzerinde yönlendirilerek gömülür (villus değerlendirmesi için kritik).
+    - Bulbus ve distal duodenum ayrı kasette.
+    - Seri kesit (en az 3 düzey); İEL şüphesinde CD3.

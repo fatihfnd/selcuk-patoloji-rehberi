@@ -1,0 +1,58 @@
+id: mide-endoskopik-biyopsi
+baslik: Mide — endoskopik biyopsi (gastrit, güncellenmiş Sidney, OLGA/OLGIM)
+organ: Mide
+materyal: Biyopsi
+kaynaklar:
+  - "Güncellenmiş Sidney Sistemi (Dixon ve ark., 1996)"
+  - "OLGA / OLGIM evreleme (Rugge ve ark.)"
+  - "WHO Sindirim Sistemi Tümörleri, 5. baskı (2019) — displazi terminolojisi"
+  - "MAPS II kılavuzu (2019) — prekanseröz lezyon izlemi"
+not: "Her kap ayrı numaralı tanı ve epikriz alır. OLGA/OLGIM yalnızca antrum/insisura ve korpus örnekleri birlikte geldiğinde verilir."
+tani_alternatif: true
+tani:
+  - "Kronik aktif gastrit, Helicobacter pylori ile ilişkili, lütfen epikrizi okuyunuz; mide {bolge}, endoskopik biyopsi"
+  - "Kronik gastrit, lütfen epikrizi okuyunuz; mide {bolge}, endoskopik biyopsi"
+  - "Kronik atrofik gastrit, intestinal metaplazi, lütfen epikrizi okuyunuz; mide {bolge}, endoskopik biyopsi"
+  - "Reaktif (kimyasal) gastropati; mide {bolge}, endoskopik biyopsi"
+  - "Fundik gland polibi; mide {bolge}, endoskopik biyopsi"
+  - "Hiperplastik polip; mide {bolge}, endoskopik biyopsi"
+  - "Düşük / yüksek dereceli displazi (intraepitelyal neoplazi), lütfen epikrizi okuyunuz; mide {bolge}, endoskopik biyopsi"
+  - "Belirgin patolojik değişiklik göstermeyen mide mukozası; mide {bolge}, endoskopik biyopsi"
+epikriz:
+  - {id: bolge, etiket: Bölge, seviye: 0, gizli: true, tip: secim, secenekler: [antrum, insisura angularis, korpus, fundus, kardiya]}
+  - {id: mukoza_tipi, etiket: Mukoza tipi, seviye: 2, tip: secim, secenekler: [Antral tip, Oksintik (korpus-fundus) tip, Geçiş zonu, Kardiyak tip]}
+  - id: sidney
+    etiket: Güncellenmiş Sidney sistemine göre
+    seviye: 1
+    alt:
+      - {id: hp, etiket: Helicobacter pylori, seviye: 1, tip: secim, secenekler: [Görülmedi, Hafif, Orta, Yoğun]}
+      - {id: aktivite, etiket: Aktivite (nötrofil), seviye: 1, tip: secim, secenekler: [Görülmedi, Hafif, Orta, Şiddetli]}
+      - {id: inflamasyon, etiket: Kronik inflamasyon, seviye: 1, tip: secim, secenekler: [Görülmedi, Hafif, Orta, Şiddetli]}
+      - {id: atrofi, etiket: Atrofi, seviye: 1, tip: secim, secenekler: [Görülmedi, Hafif, Orta, Şiddetli, Değerlendirilemedi]}
+      - {id: im, etiket: İntestinal metaplazi, seviye: 1, tip: secim, secenekler: [Görülmedi, Hafif, Orta, Şiddetli]}
+  - {id: im_tip, etiket: İntestinal metaplazi tipi, seviye: 3, tip: secim, secenekler: [Komplet, İnkomplet, Mikst], kosul: "im != Görülmedi"}
+  - {id: lenfoid, etiket: Lenfoid follikül, seviye: 3, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {id: displazi, etiket: Displazi, seviye: 1, tip: secim, secenekler: [Görülmedi, Belirsiz (indefinite), Düşük dereceli, Yüksek dereceli]}
+  - {id: olga, etiket: OLGA evresi, seviye: 2, tip: secim, secenekler: ["Evre 0", "Evre I", "Evre II", "Evre III", "Evre IV", "Uygulanmadı (tek bölge örneklenmiş)"], not: "Evre III–IV yüksek risk; endoskopik izlem önerilir (MAPS II)."}
+  - {id: olgim, etiket: OLGIM evresi, seviye: 2, tip: secim, secenekler: ["Evre 0", "Evre I", "Evre II", "Evre III", "Evre IV", "Uygulanmadı (tek bölge örneklenmiş)"]}
+  - {id: histokimya, etiket: Histokimya, seviye: 2, tip: metin, kalip: "Giemsa ile H. pylori görüldü / görülmedi; PAS-AB ile intestinal metaplazi görüldü / görülmedi"}
+  - {id: ek_bulgular, etiket: Ek bulgular, seviye: 3, tip: coklu, secenekler: [Erozyon / ülser, Foveolar hiperplazi, Enterokromaffin benzeri hücre hiperplazisi, Lenfositik gastrit paterni, Granülom, "…"]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: adet, etiket: Parça sayısı, tip: sayi, zorunlu: true}
+    - {id: en_buyuk, etiket: En büyük parça, tip: olcu, birim: cm, zorunlu: true}
+    - {id: en_kucuk, etiket: En küçük parça, tip: olcu, birim: cm}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+    - {id: boya, etiket: Uygulanan histokimya, tip: secim, secenekler: [Giemsa ve PAS-AB boyaları uygulandı, Giemsa boyası uygulandı, "Ek boya uygulanmadı"]}
+  varyantlar:
+    - ad: Endoskopik biyopsi
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): En büyüğü {en_buyuk} cm, en küçüğü {en_kucuk} cm çapında, krem renkte {adet} adet mukozal doku parçası. Tümü {parca} parça {kaset} kasette takibe alındı. {boya}."
+  yapilacaklar:
+    - Antrum/insisura ve korpus ayrı kaplarda geldiyse ayrı kasetlenir (OLGA/OLGIM için şart).
+    - Parçalar yüzeye dik gömülecek şekilde yönlendirilir.
+    - Rutin H&E + Giemsa (veya İHK H. pylori); IM şüphesinde PAS-AB.

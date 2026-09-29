@@ -1,0 +1,143 @@
+id: bobrek-nefrektomi
+baslik: Böbrek — renal hücreli karsinom, radikal / parsiyel nefrektomi
+organ: Böbrek
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Kidney (Nephrectomy)"
+  - "ICCR — Carcinoma of the Kidney"
+  - "RCPath — Dataset for tumours of the kidney"
+  - "WHO Üriner ve Erkek Genital Tümörleri, 5. baskı (2022); AJCC 8; WHO/ISUP nükleer derece"
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; {lateralite} böbrek, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); hiler / perirenal yağ doku"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [Radikal nefrektomi, Parsiyel nefrektomi, Basit nefrektomi, Nefroüreterektomi]}
+  - {id: lateralite, etiket: Taraf, seviye: 0, tip: secim, secenekler: [Sağ, Sol], gizli: true}
+  - {id: yerlesim, etiket: Tümör yerleşimi, seviye: 2, tip: coklu, secenekler: [Üst pol, Orta zon, Alt pol, …]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: olcu, birim: cm, kalip: "…x…x… cm (en büyük boyut … cm)"}
+  - modul: ortak.fokalite
+  - id: histolojik_tip
+    etiket: Histolojik tip (WHO 2022)
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler:
+      - Berrak hücreli renal hücreli karsinom
+      - Papiller renal hücreli karsinom
+      - Kromofob renal hücreli karsinom
+      - Toplayıcı kanal karsinomu
+      - Multiloküler kistik düşük malign potansiyelli renal neoplazm
+      - Berrak hücreli papiller renal hücreli tümör
+      - SDH-eksik renal hücreli karsinom
+      - FH-eksik renal hücreli karsinom
+      - TFE3-yeniden düzenlenmiş renal hücreli karsinom
+      - TFEB-değişikliği gösteren renal hücreli karsinom
+      - ELOC-mutant renal hücreli karsinom
+      - Eozinofilik solid ve kistik renal hücreli karsinom
+      - Müsinöz tübüler ve iğsi hücreli karsinom
+      - Tübülokistik renal hücreli karsinom
+      - Edinsel kistik hastalık ilişkili renal hücreli karsinom
+      - SMARCB1-eksik renal medüller karsinom
+      - "Renal hücreli karsinom, NOS"
+  - id: derece
+    etiket: WHO/ISUP nükleer derece
+    seviye: 1
+    tip: secim
+    secenekler: ["Derece 1", "Derece 2", "Derece 3", "Derece 4", "Uygulanmaz (kromofob RCC vb.)"]
+    not: "Fuhrman kullanılmaz; derece 4 = belirgin nükleer pleomorfizm, sarkomatoid ve/veya rabdoid diferansiasyon."
+  - {id: sarkomatoid, etiket: Sarkomatoid özellik, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü (%…)"]}
+  - {id: rabdoid, etiket: Rabdoid özellik, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü (%…)"]}
+  - {modul: ortak.nekroz, seviye: 1}
+  - id: yayilim
+    etiket: Tümör yayılımı
+    seviye: 1
+    tip: coklu
+    secenekler: [Böbreğe sınırlı, Perirenal yağ doku invazyonu, Renal sinüs yağ doku invazyonu, "Renal ven / segmental (kas içeren) dalları", Pelvikaliseal sistem invazyonu, Gerota fasyası ötesine yayılım, İpsilateral adrenal beze doğrudan yayılım, "Vena kava (diyafram altı / üstü)"]
+  - modul: ortak.lvi
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    tip: secim
+    secenekler: ["Tümör görülmedi; en yakın sınır … (… mm)", "Tümör görüldü (parankimal / renal sinüs / Gerota / renal ven / üreter)"]
+  - modul: ortak.lenf_nodu
+  - modul: ortak.ptnm
+  - {id: adrenal, etiket: Adrenal bez, seviye: 2, tip: secim, secenekler: [Örneklenmedi, Tutulum görülmedi, Doğrudan invazyon (pT4), Nonkontigüöz metastaz (pM1)]}
+  - id: nonneoplastik
+    etiket: Tümör dışı böbrek
+    seviye: 1
+    tip: coklu
+    secenekler: [Belirgin özellik yok, Arterionefroskleroz, Diyabetik nefropati bulguları, "Glomerüloskleroz (%…)", İnterstisyel fibrozis / tübüler atrofi (%…), …]
+    not: "CAP/ICCR: tümör dışı parankimde medikal böbrek hastalığı değerlendirilmelidir."
+  - {id: ihk, etiket: İmmünohistokimya, seviye: 3, tip: metin, kalip: "PAX8 …, CA-IX …, CK7 …, AMACR …, CD117 …"}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: taraf, etiket: Taraf, tip: secim, secenekler: [sağ, sol], zorunlu: true}
+    - {id: agirlik, etiket: Ağırlık, tip: sayi, birim: g, zorunlu: true}
+    - {id: boyut, etiket: Materyal boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: bobrek_boyut, etiket: Böbrek boyutu, tip: olcu, birim: cm}
+    - {id: ureter, etiket: Üreter uzunluk / çap, not: "… cm uzunluğunda, … cm çapında"}
+    - {id: ven, etiket: Renal ven, tip: secim, secenekler: ["lümeni boştur", "lümeninde … cm tümör trombüsü izlendi; trombüs ven cerrahi sınırına ulaşmaktadır / ulaşmamaktadır"], zorunlu: true}
+    - {id: adrenal, etiket: Adrenal bez, tip: secim, secenekler: ["izlenmedi", "… cm boyutlarında adrenal bez izlendi; kesit yüzü olağan görünümdedir", "… cm boyutlarında adrenal bezde … izlendi"]}
+    - {id: gerota, etiket: Gerota fasyası / perirenal yağ, tip: secim, secenekler: [intakttır, "… bölgesinde tümör ile bütünlüğü bozulmuştur"]}
+    - {id: parankim_sinir_boyut, etiket: Parankimal sınır yüzü boyutu, tip: olcu, birim: cm}
+    - {id: yerlesim, etiket: Tümör yerleşimi, tip: secim, secenekler: [üst pol, orta zon, alt pol, "…"], zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: kesit, etiket: Kesit yüzü, tip: secim, secenekler: ["sarı-turuncu, heterojen, kanamalı", "kahverengi, homojen", "gri-beyaz, solid", "multikistik"], zorunlu: true}
+    - {id: sinir, etiket: Sınır, tip: secim, secenekler: [düzgün sınırlı / kapsüllü, düzensiz sınırlı]}
+    - {id: nekroz, etiket: Makroskopik nekroz, tip: sayi, birim: "%"}
+    - {id: perirenal, etiket: Perirenal yağ doku ilişkisi, tip: secim, secenekler: [kapsülü aşmamaktadır, "kapsülü aşarak perirenal yağ dokuya uzanmaktadır"], zorunlu: true}
+    - {id: sinus, etiket: Renal sinüs yağ doku ilişkisi, tip: secim, secenekler: [uzanım izlenmedi, uzanmaktadır, "… cm mesafededir"], zorunlu: true}
+    - {id: pelvis, etiket: Pelvikaliseal sistem, tip: secim, secenekler: [uzanım izlenmedi, uzanmaktadır]}
+    - {id: en_yakin, etiket: En yakın cerrahi sınır adı}
+    - {id: d_sinir, etiket: En yakın sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: parankim, etiket: Tümör dışı parankim, tip: secim, secenekler: [olağan görünümdedir, "korteks incelmiştir", "… cm çapında basit kist(ler) izlendi"]}
+    - {id: ln, etiket: Hiler lenf nodu, tip: secim, secenekler: [izlenmedi, "en büyüğü … cm çapında … adet lenf nodu diseke edildi"]}
+  varyantlar:
+    - ad: Radikal nefrektomi
+      metin:
+        - >-
+          {fiksasyon_durumu} gönderilen, perirenal yağ doku ile birlikte {agirlik} g ağırlığında, {boyut} cm
+          boyutlarında {taraf} radikal nefrektomi materyalidir. Böbrek {bobrek_boyut} cm boyutlarındadır. Hilusta
+          renal arter, renal ven ve {ureter} üreter izlendi; renal ven {ven}. Adrenal bez {adrenal}. Gerota fasyası
+          {gerota}. Dış yüz boyandı.
+        - >-
+          Böbrek uzun ekseninde bivalve edildiğinde {yerlesim} yerleşimli, {tumor_boyut} cm boyutlarında, {sinir},
+          {kesit} kesit yüzlü tümör izlendi; makroskopik nekroz yaklaşık %{nekroz}. Tümör {perirenal}. Renal sinüs
+          yağ dokusuna {sinus}; pelvikaliseal sisteme {pelvis}. Tümör en yakın cerrahi sınıra ({en_yakin})
+          {d_sinir} cm mesafededir.
+        - Tümör dışı böbrek parankimi {parankim}. Hiler yağ dokuda lenf nodu {ln}.
+      ornekleme:
+        - {kod: T, aciklama: "tümör", not: "En büyük boyutun her cm'i için 1 kaset (en az 3); farklı renk / kıvamdaki alanlar ayrı."}
+        - {kod: TS, aciklama: "tümör-renal sinüs ilişkisi", parca: "…", kaset: "…", not: "pT3a'nın en sık kaçırıldığı yer; en az 3 kaset önerilir."}
+        - {kod: TK, aciklama: "tümör-kapsül / perirenal yağ ilişkisi", parca: "…", kaset: "…"}
+        - {kod: TPE, aciklama: "tümör-pelvis ilişkisi", parca: "…", kaset: "…"}
+        - {kod: RV, aciklama: "renal ven cerrahi sınırı ve trombüs", parca: "…", kaset: "…"}
+        - {kod: RA, aciklama: "renal arter cerrahi sınırı", parca: "1", kaset: "1"}
+        - {kod: ÜCS, aciklama: "üreter cerrahi sınırı", parca: "1", kaset: "1"}
+        - {kod: B, aciklama: "tümör dışı böbrek, korteks içeren", parca: "…", kaset: "…", not: "Medikal böbrek değerlendirmesi için tümörden uzak korteks; gerekirse PAS / trikrom."}
+        - {kod: A, aciklama: "adrenal bez", parca: "…", kaset: "…"}
+        - {kod: LN, aciklama: "hiler lenf nodları", not: "Tümü."}
+    - ad: Parsiyel nefrektomi
+      metin:
+        - >-
+          {fiksasyon_durumu} gönderilen, {agirlik} g ağırlığında, {boyut} cm boyutlarında {taraf} parsiyel
+          nefrektomi materyalidir; parankimal cerrahi sınır yüzü {parankim_sinir_boyut} cm boyutlarındadır.
+          Parankimal sınır ve perirenal yağ yüzü farklı renklerde boyandı.
+        - >-
+          Kesitlerde {tumor_boyut} cm boyutlarında, {sinir}, {kesit} kesit yüzlü tümör izlendi; makroskopik
+          nekroz yaklaşık %{nekroz}. Tümör {perirenal}. Renal sinüs yağ dokusuna {sinus}. Tümör parankimal cerrahi
+          sınıra {d_sinir} cm mesafededir.
+        - Tümör dışı böbrek parankimi {parankim}.
+      ornekleme:
+        - {kod: T, aciklama: "tümör", not: "Cm başına 1 kaset (en az 3); küçük tümörlerde tamamı."}
+        - {kod: TCS, aciklama: "tümör-parankimal cerrahi sınır ilişkisi", parca: "…", kaset: "…"}
+        - {kod: TK, aciklama: "tümör-kapsül / perirenal yağ ilişkisi", parca: "…", kaset: "…"}
+        - {kod: B, aciklama: "tümör dışı böbrek", parca: "1", kaset: "1"}
+  ek_materyaller: [makro.ln_istasyon, makro.ek_cerrahi_sinir]
+  yapilacaklar:
+    - Açmadan önce renal ven, arter ve üreter sınırlarını ayır / işaretle; ven trombüsünü yerinde değerlendir.
+    - Perirenal yağ dış yüzünü boya; böbreği uzun eksende bivalve et, sonra 1 cm aralıklarla dilimle.
+    - Tümör-renal sinüs ilişkisinden en az 3 kaset (pT3a).
+    - Tümör dışı parankimden korteks içeren örnek (medikal böbrek).
+    - Adrenal ve hiler lenf nodlarını ayrı kodla.

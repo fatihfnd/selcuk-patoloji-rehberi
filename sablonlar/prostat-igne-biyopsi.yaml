@@ -1,0 +1,65 @@
+id: prostat-igne-biyopsi
+baslik: Prostat — iğne (kor) biyopsi, adenokarsinom
+organ: Prostat
+materyal: Biyopsi
+kaynaklar:
+  - "CAP — Prostate Needle Biopsy"
+  - "ICCR — Prostate Core Needle Biopsy"
+  - "ISUP 2019 / GUPS 2019 derecelendirme önerileri; WHO Üriner ve Erkek Genital Tümörleri, 5. baskı (2022)"
+not: >
+  Her kor/kap ayrı numaralı tanı satırı alır (ör. 12 kor = 12 satır). Tümörsüz korlar
+  'Tümör içermeyen prostat dokusu, (…) ; …, iğne biyopsi' satırıyla toplanabilir.
+  Epikrizde yalnızca tümörlü korlar satır alır, ardından 'Genel değerlendirme' gelir.
+tani:
+  - "Asiner adenokarsinom, Gleason skor … (…+…), grade grup …, lütfen epikrizi okuyunuz; prostat {kor_yeri} ({kor_kodu}), iğne biyopsi"
+  - "Tümör içermeyen prostat dokusu; prostat {kor_yeri} ({kor_kodu}), iğne biyopsi"
+tekrar_blok:
+  id: kor
+  etiket: "{kor_kodu}"
+  aciklama: Her tümörlü kor için tekrar edilir
+  alanlar:
+    - {id: kor_gleason, etiket: Gleason skor / grade grup, seviye: 1, tip: metin, kalip: "Gleason skor … (…+…), grade grup …"}
+    - {id: kor_tumor_miktari, etiket: Tümör miktarı, seviye: 1, tip: metin, kalip: "Korun %…'inde, … mm (toplam kor uzunluğu … mm); devamlı / kesintili"}
+    - {id: kor_patern4, etiket: Patern 4 oranı, seviye: 1, tip: olcu, birim: "%", kosul: "GG 2–3"}
+    - {id: kor_kribriform, etiket: Kribriform patern, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+    - {id: kor_idc, etiket: İntraduktal karsinom, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+    - {id: kor_pni, etiket: Perinöral invazyon, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+    - {id: kor_epe, etiket: Periprostatik yağ doku invazyonu, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü], kosul: "yağ doku içeriyorsa"}
+    - {id: kor_sv, etiket: Seminal vezikül invazyonu, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü], kosul: "SV dokusu içeriyorsa"}
+epikriz:
+  - id: genel
+    etiket: Genel değerlendirme
+    seviye: 1
+    alt:
+      - {id: tumorlu_kor, etiket: Tümör içeren kor sayısı, seviye: 1, tip: metin, kalip: "… / … kor"}
+      - {id: en_yuksek, etiket: En yüksek Gleason skoru / grade grup, seviye: 1, tip: metin, kalip: "Gleason skor … (…+…), grade grup … (… kodlu kor)"}
+      - {id: toplam_oran, etiket: Tümörün toplam biyopsi materyaline oranı, seviye: 2, tip: olcu, birim: "%"}
+      - {id: tersiyer, etiket: Yüksek dereceli minör patern, seviye: 3, tip: metin, kalip: "Görülmedi / Görüldü (patern …, <%5)"}
+      - modul: ortak.lvi
+      - {modul: ortak.pni, seviye: 2}
+  - id: ihk_bulgu
+    etiket: İmmünohistokimya
+    seviye: 3
+    tip: metin
+    kalip: "… kodlu korlarda HMWCK / p63 ile bazal hücre kaybı, AMACR ile pozitiflik görüldü"
+makroskopi:
+  alanlar:
+    - {id: kap_sayisi, etiket: Kap sayısı, tip: sayi, zorunlu: true}
+    - {id: kod, etiket: Kor kodu (R1…R6 / L7…L12), zorunlu: true}
+    - {id: kor_yeri, etiket: Kayıtlı yer (ör. sağ apeks lateral)}
+    - {id: uzunluk, etiket: Kor uzunluğu (tek) / en büyük–en küçük, tip: olcu, birim: cm, zorunlu: true}
+    - {id: adet, etiket: Kor sayısı, tip: sayi, zorunlu: true}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: Sistematik / hedefe yönelik kor biyopsi
+      metin:
+        - "Hastaya ait materyal {kap_sayisi} ayrı kap halinde, kodlanarak gönderilmiştir."
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({kor_yeri} kayıtlı materyal): {uzunluk} cm uzunluğunda {adet} adet krem renkte iğne biyopsi materyali. Tümü {parca} parça {kaset} kasette takibe alındı."
+  yapilacaklar:
+    - Her kap ayrı kasete; korlar dilimlenmeden, düz ve tam boy gömülür (sünger / kağıt arası).
+    - Bir kapta birden fazla kor varsa her kor ayrı ölçülür; parçalıysa toplam uzunluk verilir.
+    - MR-hedefli korlar sistematik korlardan ayrı kodlanır.
+    - Seri kesitlerde ara boş lamlar (İHK için) ayrılır.

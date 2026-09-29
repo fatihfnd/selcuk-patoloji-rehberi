@@ -1,0 +1,65 @@
+id: deri-karsinom
+baslik: Deri — bazal hücreli karsinom / skuamöz hücreli karsinom / Merkel hücreli karsinom
+organ: Deri
+materyal: Eksizyon
+kaynaklar:
+  - "CAP — Cutaneous Squamous Cell Carcinoma of the Head and Neck; Merkel Cell Carcinoma"
+  - "ICCR — Primary Cutaneous Squamous Cell Carcinoma / Basal Cell Carcinoma / Merkel Cell Carcinoma"
+  - "WHO Deri Tümörleri, 5. baskı (2023); AJCC 8 (baş-boyun kutanöz SHK; Merkel)"
+  - "RCPath — Datasets for BCC / cSCC"
+tani_alternatif: true
+tani:
+  - "Bazal hücreli karsinom, {bhk_alt_tip}, lütfen epikrizi okuyunuz; {yer}, {prosedur}"
+  - "Skuamöz hücreli karsinom, {derece_tani}, lütfen epikrizi okuyunuz; {yer}, {prosedur}"
+  - "Skuamöz hücreli karsinoma in situ (Bowen hastalığı); {yer}, {prosedur}"
+  - "Keratoakantom tipi skuamöz hücreli karsinom (iyi diferansiye), lütfen epikrizi okuyunuz; {yer}, {prosedur}"
+  - "Merkel hücreli karsinom, lütfen epikrizi okuyunuz; {yer}, {prosedur}"
+  - "Aktinik keratoz; {yer}, {prosedur}"
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: prosedur, etiket: Prosedür, seviye: 0, gizli: true, tip: secim, secenekler: [eksizyon, re-eksizyon, punch biyopsi, shave biyopsi, "Mohs debulk"]}
+  - {id: bhk_alt_tip, etiket: BHK alt tipi, seviye: 1, tip: secim, secenekler: ["nodüler tip (düşük risk)", "yüzeyel tip (düşük risk)", "mikronodüler tip (yüksek risk)", "infiltratif tip (yüksek risk)", "sklerozan / morfeaform tip (yüksek risk)", "bazoskuamöz tip (yüksek risk)", "fibroepitelyal tip (düşük risk)", "mikst tip (…)"], kosul: "BHK"}
+  - {id: derece_tani, etiket: SHK derecesi, seviye: 1, tip: secim, secenekler: [iyi diferansiye, orta derecede diferansiye, az diferansiye], kosul: "SHK"}
+  - {id: shk_alt_tip, etiket: SHK alt tipi, seviye: 2, tip: secim, secenekler: [Konvansiyonel, Akantolitik, "İğsi hücreli (sarkomatoid)", Desmoplastik, Verrüköz, Adenoskuamöz], kosul: "SHK"}
+  - {id: boyut, etiket: Tümör boyutu (klinik / makroskopik çap), seviye: 1, tip: olcu, birim: mm}
+  - {id: derinlik, etiket: Tümör kalınlığı / invazyon derinliği, seviye: 1, tip: metin, kalip: "… mm; en derin anatomik düzey: dermis / subkutan yağ / fasya-kas / kemik", not: "SHK: >6 mm veya subkutan yağ ötesi derin invazyon pT3 kriteridir (AJCC 8, baş-boyun)."}
+  - {id: pni, etiket: Perinöral invazyon, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü — küçük dermal sinirler (<0,1 mm)", "Görüldü — ≥0,1 mm çaplı veya dermis altındaki sinir (pT3)"]}
+  - modul: ortak.lvi
+  - {id: kemik, etiket: Kemik invazyonu, seviye: 1, tip: secim, secenekler: [Görülmedi / örneklenmedi, "Minör kemik erozyonu (pT3)", "Kortikal / medüller invazyon (pT4a)", "Kafa tabanı / foramen (pT4b)"]}
+  - id: merkel
+    etiket: Merkel hücreli karsinom
+    seviye: 1
+    kosul: "Merkel"
+    alt:
+      - {id: m_ihk, etiket: İHK, seviye: 1, tip: metin, kalip: "CK20 (paranükleer nokta) …, sinaptofizin …, INSM1 …, TTF-1 negatif …, MCPyV (CM2B4) …"}
+      - {id: m_patern, etiket: Büyüme paterni, seviye: 2, tip: secim, secenekler: [Nodüler, İnfiltratif]}
+      - {id: m_til, etiket: TIL, seviye: 3, tip: secim, secenekler: [Yok, Non-brisk, Brisk]}
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    alt:
+      - {id: s_periferik, etiket: Periferik, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (en yakın … mm, … yönü)", "Tümör görüldü", "Yalnız in situ / aktinik keratoz görüldü"]}
+      - {id: s_derin, etiket: Derin, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (… mm)", "Tümör görüldü"]}
+  - {id: risk, etiket: Risk değerlendirmesi, seviye: 2, tip: secim, secenekler: ["Düşük risk özellikleri", "Yüksek risk özellikleri: … (alt tip / derinlik / PNI / derece / yer / boyut)"]}
+  - {modul: ortak.lenf_nodu, kosul: "SHK / Merkel ve lenf nodu örneklendiyse"}
+  - {id: ptnm, etiket: Patolojik evre, seviye: 1, kosul: "SHK baş-boyun / Merkel", tip: metin, kalip: "pT… pN… (AJCC 8 — baş-boyun kutanöz SHK / Merkel); BWH: …"}
+makroskopi:
+  alanlar:
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: tip, etiket: Materyal tipi, tip: secim, secenekler: [eliptik deri eksizyonu, punch biyopsi, shave biyopsi, "re-eksizyon"], zorunlu: true}
+    - {id: isaret, etiket: Oryantasyon, tip: secim, secenekler: ["saat 12 ip ile işaretli", işaretlenmemiş]}
+    - {id: boyut, etiket: Materyal boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: lezyon, etiket: Lezyon, zorunlu: true, not: "…x… cm boyutlarında, inci renkli / ülsere / nodüler / krutlu / keratotik lezyon; skar"}
+    - {id: mesafe, etiket: Lezyonun sınırlara uzaklığı, tip: olcu, birim: cm, zorunlu: true}
+  varyantlar:
+    - ad: Deri eksizyonu
+      metin:
+        - "{yer} kayıtlı materyal: {isaret} gönderilen, {boyut} cm boyutlarında {tip}. Epidermiste {lezyon} izlendi; lezyon en yakın periferik sınıra {mesafe} cm mesafededir. Sınırlar boyandı."
+      ornekleme:
+        - {kod: U, aciklama: "uçlar (longitudinal)", parca: "2", kaset: "1"}
+        - {kod: T, aciklama: "lezyon, 2–3 mm aralıklı transvers seri dilimler", parca: "…", kaset: "…", not: "≤2 cm lezyonda tümü; büyük lezyonda en derin alan + en yakın sınırlar."}
+  ek_materyaller: [makro.sentinel, makro.ln_istasyon]
+  yapilacaklar:
+    - Oryantasyon varsa sınırlar farklı renklerle boyanır; şema.
+    - Uçlar longitudinal, gövde transvers seri dilimlerle.
+    - Derin sınır ve en derin invazyon aynı kesitte gösterilmeli (derinlik ölçümü).

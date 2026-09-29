@@ -1,0 +1,63 @@
+id: gist
+baslik: Gastrointestinal stromal tümör (GİST) — rezeksiyon
+organ: Gastrointestinal
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Gastrointestinal Stromal Tumor (Resection)"
+  - "WHO Yumuşak Doku ve Kemik Tümörleri / Sindirim Sistemi Tümörleri, 5. baskı"
+  - "Miettinen-Lasota (AFIP) risk sınıflaması; modifiye NIH (Joensuu); AJCC 8"
+tani:
+  - "Gastrointestinal stromal tümör, {alt_tip}, lütfen epikrizi okuyunuz; {yer}, {prosedur}"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [wedge rezeksiyon, parsiyel gastrektomi, segmenter ince barsak rezeksiyonu, "…"]}
+  - {id: yer, etiket: Tümör yerleşimi, seviye: 1, tip: secim, serbest: true, secenekler: [mide, duodenum, jejunum / ileum, kolon, rektum, özofagus, "ekstragastrointestinal (…)"]}
+  - {id: neoadjuvan, etiket: Neoadjuvan tedavi (TKİ), seviye: 1, tip: secim, secenekler: [Yok, Var, Bilinmiyor], gizli: true}
+  - {id: fokalite, etiket: Tümör fokalitesi, seviye: 2, tip: secim, secenekler: [Unifokal, "Multifokal (… odak)"]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: olcu, birim: cm, kalip: "…x…x… cm (en büyük boyut … cm)"}
+  - {id: alt_tip, etiket: Histolojik alt tip, seviye: 1, tip: secim, secenekler: [iğsi hücreli tip, epiteloid tip, mikst tip]}
+  - {id: mitoz, etiket: Mitoz, seviye: 1, tip: metin, kalip: "…/5 mm² (≈50 BBA, … mm² alan / BBA)", not: "Toplam 5 mm² alanda sayılır; en aktif alandan başlanır."}
+  - {id: nekroz, etiket: Tümör nekrozu, seviye: 2, tip: secim, secenekler: [Görülmedi, "Görüldü (%…)"]}
+  - {id: ruptur, etiket: Tümör rüptürü, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü, Belirlenemedi], not: "Rüptür boyut ve mitozdan bağımsız yüksek risk kriteridir (modifiye NIH)."}
+  - {id: risk, etiket: Risk sınıflaması (Miettinen-Lasota / AFIP), seviye: 1, tip: secim, secenekler: [Risk yok / çok düşük, Düşük risk, Orta risk, Yüksek risk], not: "Yer + boyut + mitoz tablosu kullanılır (mide ve ince barsak için farklı)."}
+  - {id: derece, etiket: Histolojik derece (AJCC), seviye: 2, tip: secim, secenekler: ["G1 (düşük; ≤5/5 mm²)", "G2 (yüksek; >5/5 mm²)"]}
+  - {id: tedavi_etkisi, etiket: Tedavi etkisi, seviye: 1, kosul: "neoadjuvan == Var", tip: metin, kalip: "Canlı tümör oranı yaklaşık %…"}
+  - {id: sinir, etiket: Cerrahi sınırlar, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi; en yakın sınır … (… cm)", "Tümör görüldü (… sınır)"]}
+  - {id: lenf_nodu, etiket: Lenf nodları, seviye: 3, tip: metin, kalip: "Örneklenmedi / … incelendi, metastaz görüldü / görülmedi", not: "SDH-eksik GİST dışında nadiren metastaz yapar."}
+  - modul: ortak.ptnm
+  - id: ihk
+    etiket: İmmünohistokimya
+    seviye: 1
+    alt:
+      - {id: cd117, etiket: CD117 (KIT), seviye: 1, tip: secim, secenekler: ["Pozitif (diffüz / fokal; sitoplazmik / membranöz / dot-benzeri)", Negatif]}
+      - {id: dog1, etiket: DOG1, seviye: 1, tip: secim, secenekler: [Pozitif, Negatif]}
+      - {id: cd34, etiket: CD34, seviye: 2, tip: secim, secenekler: [Pozitif, Negatif]}
+      - {id: sdhb, etiket: SDHB, seviye: 2, tip: secim, secenekler: [Ekspresyon korunmuş, "Ekspresyon kaybı (SDH-eksik GİST; genetik danışmanlık önerilir)"], kosul: "mide, epiteloid / multifokal / genç hasta"}
+      - {id: diger_ihk, etiket: "Diğer (SMA, desmin, S100 …)", seviye: 3, tip: metin}
+  - {id: molekuler, etiket: Moleküler, seviye: 3, tip: metin, kalip: "KIT ekson … / PDGFRA ekson … mutasyonu (…)", not: "Orta-yüksek riskte adjuvan tedavi seçimi için önerilir (PDGFRA D842V imatinibe dirençli)."}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: boyut, etiket: Materyal boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: yerlesim_duvar, etiket: Duvara göre yerleşim, tip: secim, secenekler: [intramural, "subserozal / ekzofitik", "submukozal / intraluminal", transmural]}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: kesit, etiket: Kesit yüzü, tip: secim, secenekler: ["gri-beyaz, homojen, lobüle", "kanamalı, kistik alanlar içeren", "nekrotik alanlar içeren"]}
+    - {id: mukoza, etiket: Üzerindeki mukoza, tip: secim, secenekler: [intakttır, "… cm çapında ülsere görünümdedir"]}
+    - {id: ruptur, etiket: Kapsül / seroza bütünlüğü, tip: secim, secenekler: [intakttır, "… bölgesinde yırtık / rüptür izlendi", "parçalı gönderildiğinden değerlendirilemedi"], zorunlu: true}
+    - {id: d_sinir, etiket: En yakın sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+  varyantlar:
+    - ad: Rezeksiyon
+      metin:
+        - "{fiksasyon_durumu} gönderilen, {boyut} cm boyutlarında {prosedur} materyalidir. Dış yüz boyandı."
+        - >-
+          Kesitlerde {yerlesim_duvar} yerleşimli, {tumor_boyut} cm boyutlarında, {kesit} tümör izlendi. Üzerindeki
+          mukoza {mukoza}. Tümör kapsülü / serozası {ruptur}. Tümör en yakın cerrahi sınıra {d_sinir} cm mesafededir.
+      ornekleme:
+        - {kod: T, aciklama: tümör, not: "En büyük boyutun her cm'i için 1 kaset; nekrotik olmayan canlı alanlar tercih (mitoz sayımı için)."}
+        - {kod: TM, aciklama: tümör-mukoza ilişkisi, parca: "1", kaset: "1"}
+        - {kod: TS, aciklama: tümör-seroza / kapsül, parca: "…", kaset: "…"}
+        - {kod: CS, aciklama: cerrahi sınırlar, parca: "…", kaset: "…"}
+  yapilacaklar:
+    - Rüptür / parçalanma durumu kaydedilir (risk kriteri).
+    - Canlı tümörden yeterli örnek — mitoz 5 mm²'de sayılacak.
+    - Taze geldiyse moleküler test için ayrı parafin blok veya donmuş doku planlanabilir.

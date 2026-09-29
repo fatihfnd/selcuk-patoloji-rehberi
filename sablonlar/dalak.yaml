@@ -1,0 +1,49 @@
+id: dalak
+baslik: Splenektomi
+organ: Dalak
+materyal: Rezeksiyon
+kaynaklar:
+  - "WHO Hematolenfoid Tümörler, 5. baskı (2022) / ICC 2022 — splenik lenfomalar"
+  - "Dalak makroskopi önerileri (O'Malley; Rosai & Ackerman)"
+tani_alternatif: true
+tani:
+  - "Travmatik rüptür (kapsül yırtığı ve subkapsüler hematom), lütfen epikrizi okuyunuz; dalak, splenektomi"
+  - "Beyaz pulpa hiperplazisi (immün trombositopeni ile uyumlu olabilir), lütfen epikrizi okuyunuz; dalak, splenektomi"
+  - "Konjestif splenomegali, lütfen epikrizi okuyunuz; dalak, splenektomi"
+  - "Splenik marjinal zon lenfoma, lütfen epikrizi okuyunuz; dalak, splenektomi"
+  - "{lezyon}; dalak, splenektomi"
+  - "Özellik göstermeyen dalak dokusu; dalak, splenektomi (… nedeniyle)"
+epikriz:
+  - {id: lezyon, etiket: Lezyon, seviye: 0, gizli: true, tip: secim, secenekler: ["Epidermoid (mezotelyal) kist", "Psödokist", "Hemanjiyom", "Littoral hücreli anjiyom", "Sklerozan anjiyomatoid nodüler transformasyon (SANT)", "Hamartom", "Metastatik tümör (…)", "Lenfoma tutulumu (…)"]}
+  - {id: endikasyon, etiket: Endikasyon (klinik), seviye: 2, tip: secim, secenekler: [Travma, "ITP / hematolojik", "Splenomegali / kitle", "Distal pankreatektomi ile birlikte", Diğer]}
+  - {id: agirlik, etiket: Ağırlık, seviye: 1, tip: metin, kalip: "… g (erişkinde normal ≈150 g)"}
+  - {id: beyaz_pulpa, etiket: Beyaz pulpa, seviye: 1, tip: secim, secenekler: [Olağan, "Hiperplazik (reaktif germinal merkezler)", "Atrofik", "Nodüler genişleme / marjinal zon genişlemesi", "Silinmiş"]}
+  - {id: kirmizi_pulpa, etiket: Kırmızı pulpa, seviye: 1, tip: secim, secenekler: [Olağan, Konjesyon, "Kordon genişlemesi / fibrozis", "Ekstramedüller hematopoez", "Sinüzoidal / kordonal infiltrasyon", "Hemofagositoz"]}
+  - {id: kapsul, etiket: Kapsül, seviye: 1, tip: secim, secenekler: [Bütün, "Yırtık (… cm) — travmatik", "Subkapsüler hematom", "Kalınlaşmış / hiyalinize"]}
+  - {id: infiltrat, etiket: Neoplastik infiltrasyon, seviye: 1, tip: metin, kosul: "lenfoma / metastaz", kalip: "Patern: mikronodüler / makronodüler / kırmızı pulpa diffüz; İHK: …"}
+  - {id: ihk, etiket: İmmünohistokimya, seviye: 2, tip: metin, kalip: "CD20 …, CD3 …, CD5 …, CD10 …, cyclin D1 …, CD103 / annexin A1 …, CD8 (sinüzoid) …, CD34 …"}
+  - {id: hiler_ln, etiket: Hiler lenf nodları, seviye: 2, tip: metin, kalip: "… adet; …"}
+  - {id: aksesuar, etiket: Aksesuar dalak, seviye: 3, tip: secim, secenekler: [Gönderilmedi, "… adet gönderildi"]}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: agirlik, etiket: Ağırlık, tip: sayi, birim: g, zorunlu: true}
+    - {id: boyut, etiket: Boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: kapsul, etiket: Kapsül, tip: secim, secenekler: ["düzgün, bütündür", "… cm uzunluğunda yırtık ve subkapsüler hematom izlendi", "kalınlaşmış, yer yer beyaz plaklar içermektedir"], zorunlu: true}
+    - {id: kesit, etiket: Kesit yüzü, tip: secim, secenekler: ["koyu kırmızı, homojen; beyaz pulpa ayırt edilebilir", "belirgin beyaz pulpa nodülleri (miliyer)", "… cm çapında … lezyon izlendi", "yumuşak, dağılabilir"], zorunlu: true}
+    - {id: hilus, etiket: Hilus, tip: secim, secenekler: ["hiler yağ dokuda en büyüğü … cm çapında … adet lenf nodu izlendi", "hiler lenf nodu izlenmedi"]}
+    - {id: taze, etiket: Taze doku, tip: secim, secenekler: ["akım sitometri / dokunma preparatı için örnek ayrıldı", ayrılmadı]}
+  varyantlar:
+    - ad: Splenektomi
+      metin:
+        - "{fiksasyon_durumu} gönderilen, {agirlik} g ağırlığında, {boyut} cm boyutlarında splenektomi materyalidir. Kapsül {kapsul}."
+        - "0,5–1 cm aralıklarla dilimlendiğinde kesit yüzü {kesit}. Hilus: {hilus}. {taze}."
+      ornekleme:
+        - {kod: D, aciklama: "dalak parankimi (kapsül dahil)", parca: "3", kaset: "3", not: "Lenfoma şüphesinde ince dilim + daha fazla kaset."}
+        - {kod: L, aciklama: lezyon, parca: "…", kaset: "…"}
+        - {kod: R, aciklama: "rüptür / hematom alanı", parca: "…", kaset: "…"}
+        - {kod: HLN, aciklama: hiler lenf nodları, parca: "…", kaset: "…"}
+  yapilacaklar:
+    - Tart ve ölç; kapsül yırtığı / hematomu açmadan kaydet.
+    - Lenfoma / sitopeni endikasyonunda taze doku (akım sitometri), ince dilim (≤3 mm), iyi fiksasyon.
+    - Hiler lenf nodlarını ve aksesuar dalağı ayrı kodla.

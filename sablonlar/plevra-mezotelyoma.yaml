@@ -1,0 +1,59 @@
+id: plevra-mezotelyoma
+baslik: Plevra — mezotelyoma (biyopsi ve rezeksiyon)
+organ: Plevra
+materyal: Biyopsi / rezeksiyon
+kaynaklar:
+  - "CAP — Pleura (Mesothelioma)"
+  - "ICCR — Mesothelioma"
+  - "WHO Toraks Tümörleri, 5. baskı (2021); IMIG / IASLC; AJCC 8"
+  - "IMIG 2021 patolojik tanı kılavuzu (BAP1 / MTAP / CDKN2A)"
+tani_alternatif: true
+tani:
+  - "Epiteloid mezotelyoma, lütfen epikrizi okuyunuz; {taraf} plevra, {islem}"
+  - "Bifazik mezotelyoma (epiteloid %…, sarkomatoid %…), lütfen epikrizi okuyunuz; {taraf} plevra, {islem}"
+  - "Sarkomatoid mezotelyoma, lütfen epikrizi okuyunuz; {taraf} plevra, {islem}"
+  - "Mezotelyoma in situ, lütfen epikrizi okuyunuz; {taraf} plevra, {islem}"
+  - "Atipik mezotelyal proliferasyon; malignite açısından kesin değerlendirme yapılamadı, lütfen epikrizi okuyunuz; {taraf} plevra, {islem}"
+  - "Metastatik karsinom (… ile uyumlu), lütfen epikrizi okuyunuz; {taraf} plevra, {islem}"
+  - "Fibrinöz plörit / kronik fibrozan plörit; {taraf} plevra, {islem}"
+epikriz:
+  - {id: taraf, etiket: Taraf, seviye: 0, gizli: true, tip: secim, secenekler: [sağ, sol]}
+  - {id: islem, etiket: İşlem, seviye: 0, gizli: true, tip: secim, secenekler: [biyopsi, "VATS biyopsi", "pleurektomi / dekortikasyon", "genişletilmiş pleurektomi / dekortikasyon", "ekstraplevral pnömonektomi"]}
+  - {id: invazyon, etiket: Stromal / yağ doku invazyonu, seviye: 1, tip: secim, secenekler: ["Görüldü (yağ doku / iskelet kası / akciğer parankimi)", Görülmedi, "Değerlendirilemedi (yüzeyel materyal)"]}
+  - {id: alt_tip, etiket: Mimari patern / sitolojik özellik, seviye: 2, tip: coklu, secenekler: [Tübülopapiller, Trabeküler, Solid, Mikropapiller, "Adenomatoid", "Pleomorfik", "Rabdoid", Berrak hücreli, Desmoplastik], kosul: "epiteloid"}
+  - {id: derece, etiket: Nükleer derece (epiteloid; iki basamaklı), seviye: 1, tip: secim, secenekler: ["Düşük derece", "Yüksek derece"], not: "Nükleer atipi + mitoz skoru ve nekroz ile (IMIG / WHO 2021)."}
+  - {id: sarkomatoid_oran, etiket: Sarkomatoid komponent oranı, seviye: 1, tip: olcu, birim: "%", kosul: "bifazik"}
+  - id: ihk
+    etiket: İmmünohistokimya
+    seviye: 1
+    alt:
+      - {id: mezotelyal, etiket: Mezotelyal belirteçler, seviye: 1, tip: metin, kalip: "Kalretinin …, WT1 …, D2-40 …, CK5/6 …"}
+      - {id: karsinom, etiket: Karsinom belirteçleri, seviye: 1, tip: metin, kalip: "Claudin-4 …, MOC31 …, BerEP4 …, TTF-1 …, …"}
+      - {id: bap1, etiket: BAP1, seviye: 1, tip: secim, secenekler: ["Nükleer ekspresyon korunmuş", "Nükleer ekspresyon kaybı (malignite lehine)"]}
+      - {id: mtap, etiket: MTAP, seviye: 1, tip: secim, secenekler: ["Korunmuş", "Sitoplazmik ekspresyon kaybı (CDKN2A delesyonu ile ilişkili)"]}
+      - {id: cdkn2a, etiket: CDKN2A (p16) FISH, seviye: 2, tip: secim, secenekler: [Çalışılmadı, "Homozigot delesyon saptandı", "Homozigot delesyon saptanmadı"]}
+  - {id: boyut, etiket: Tümör yaygınlığı / kalınlığı, seviye: 2, tip: metin, kosul: "rezeksiyon", kalip: "Maksimum plevral kalınlık … cm"}
+  - {id: yayilim, etiket: Tümör yayılımı, seviye: 1, kosul: "rezeksiyon", tip: coklu, secenekler: ["İpsilateral parietal ± viseral plevra (pT1)", "Diyafram kası / akciğer parankimi (pT2)", "Endotorasik fasya / mediastinal yağ / göğüs duvarında soliter odak / perikard, transmural olmayan (pT3)", "Göğüs duvarında yaygın / periton / karşı plevra / mediastinal organ / vertebra / perikard iç yüzü / miyokard (pT4)"]}
+  - {id: sinir, etiket: Cerrahi sınırlar, seviye: 1, kosul: "rezeksiyon", tip: secim, secenekler: ["Makroskopik tam rezeksiyon; mikroskopik tümör … sınırda", "Makroskopik rezidü"], not: "P/D materyalinde sınır değerlendirmesi çoğunlukla sınırlıdır."}
+  - {modul: ortak.lvi, seviye: 3}
+  - {modul: ortak.lenf_nodu, kosul: "rezeksiyon"}
+  - {modul: ortak.ptnm, kosul: "rezeksiyon"}
+  - {id: asbest, etiket: Asbest cisimciği / plevral plak, seviye: 3, tip: secim, secenekler: [Görülmedi, Görüldü]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer}
+    - {id: boyut, etiket: Boyut / toplam boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: ["beyaz-gri, sert, kalınlaşmış plevral doku", "nodüler", "fibrinöz, kırmızı-kahverengi"]}
+    - {id: kalinlik, etiket: Maksimum kalınlık, tip: olcu, birim: cm}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: Biyopsi / pleurektomi
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): Topluca {boyut} cm boyutlarında, en kalın yerinde {kalinlik} cm, {gorunum}. {parca} parça {kaset} kasette takibe alındı."
+  yapilacaklar:
+    - Biyopside yağ doku içeren derin parçalar ayrı kasette (invazyon kanıtı).
+    - P/D / EPP materyalinde bölgesel kodlama (apikal, anterior, posterior, diyafragmatik, mediastinal, fissür) ve her bölgeden 1–2 kaset.
+    - Tüm lenf nodları istasyon bazında.

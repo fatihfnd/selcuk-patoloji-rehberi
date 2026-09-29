@@ -1,0 +1,105 @@
+id: sistektomi
+baslik: Radikal sistektomi / sistoprostatektomi — ürotelyal karsinom
+organ: Mesane
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Urinary Bladder (Cystectomy)"
+  - "ICCR — Carcinoma of the Bladder, Cystectomy"
+  - "RCPath — Dataset for tumours of the urinary collecting system"
+  - "WHO 5. baskı (2022); AJCC 8"
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; mesane, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); pelvik lenf nodu diseksiyonu"
+  - "Asiner adenokarsinom, Gleason skor … (…+…), grade grup …, lütfen epikrizi okuyunuz; prostat, sistoprostatektomi"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [radikal sistoprostatektomi, radikal sistektomi, anterior pelvik eksenterasyon, parsiyel sistektomi]}
+  - {id: neoadjuvan, etiket: Neoadjuvan tedavi, seviye: 1, tip: secim, secenekler: [Yok, Var, Bilinmiyor], gizli: true}
+  - {id: yerlesim, etiket: Tümör yerleşimi, seviye: 2, tip: coklu, secenekler: [Trigon, Sağ lateral duvar, Sol lateral duvar, Anterior duvar, Posterior duvar, Kubbe, Mesane boynu, "Divertikül içi"]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 2, tip: olcu, birim: cm}
+  - modul: ortak.fokalite
+  - {id: histolojik_tip, etiket: Histolojik tip, seviye: 1, tip: secim, serbest: true, secenekler: [Ürotelyal karsinom, "Ürotelyal karsinom, … alt tip / diferansiasyon (%…)", Skuamöz hücreli karsinom, Adenokarsinom, "Nöroendokrin karsinom (küçük hücreli)", "Rezidü tümör görülmedi (ypT0)"]}
+  - {id: derece, etiket: Histolojik derece, seviye: 1, tip: secim, secenekler: [Düşük dereceli, Yüksek dereceli]}
+  - id: yayilim
+    etiket: Tümör yayılımı
+    seviye: 1
+    tip: secim
+    secenekler:
+      - "Non-invaziv papiller (pTa) / in situ (pTis)"
+      - "Lamina propria (pT1)"
+      - "Muskularis propria iç yarısı (pT2a)"
+      - "Muskularis propria dış yarısı (pT2b)"
+      - "Perivezikal yağ doku, mikroskopik (pT3a)"
+      - "Perivezikal yağ doku, makroskopik (pT3b)"
+      - "Prostat stroması / seminal vezikül / uterus / vajina (pT4a)"
+      - "Pelvik / abdominal duvar (pT4b)"
+  - {id: prostat_tutulum, etiket: Prostat / prostatik üretra tutulumu, seviye: 1, tip: secim, secenekler: [Görülmedi, "Prostatik üretrada in situ", "Prostatik duktuslarda in situ", "Prostatik üretra kaynaklı subepitelyal / stromal invazyon", "Mesane tümörünün transmural doğrudan prostat invazyonu (pT4a)"], kosul: "sistoprostatektomi"}
+  - modul: ortak.lvi
+  - {id: cis, etiket: Eşlik eden karsinoma in situ, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü (…)"]}
+  - {id: tedavi_etkisi, etiket: Tedavi yanıtı, seviye: 1, kosul: "neoadjuvan == Var", tip: secim, secenekler: ["Tam yanıt (ypT0 / ypTis)", "Rezidü invaziv tümör; belirgin regresyon", "Belirgin yanıt yok"]}
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    alt:
+      - {id: s_ureter_sag, etiket: Sağ üreter, seviye: 1, tip: secim, secenekler: [Tümör / CIS görülmedi, CIS görüldü, İnvaziv karsinom görüldü]}
+      - {id: s_ureter_sol, etiket: Sol üreter, seviye: 1, tip: secim, secenekler: [Tümör / CIS görülmedi, CIS görüldü, İnvaziv karsinom görüldü]}
+      - {id: s_uretra, etiket: Üretra, seviye: 1, tip: secim, secenekler: [Tümör / CIS görülmedi, CIS görüldü, İnvaziv karsinom görüldü]}
+      - {id: s_yumusak, etiket: Perivezikal yumuşak doku, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (… mm)", "Tümör görüldü"]}
+      - {id: s_diger, etiket: "Diğer (vajinal kaf / prostat)", seviye: 2, tip: secim, secenekler: [Tümör görülmedi, Tümör görüldü]}
+  - id: lenf_nodu
+    etiket: Lenf nodları
+    seviye: 1
+    tip: metin
+    kalip: "… lenf nodu incelendi; …'inde metastaz görüldü / metastaz görülmedi"
+    not: "pN1: tek pelvik nod; pN2: çok sayıda pelvik nod; pN3: ortak iliak nod."
+    alt:
+      - {id: ene, etiket: Ekstranodal yayılım, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - modul: ortak.ptnm
+  - id: prostat_insidental
+    etiket: İnsidental prostat adenokarsinomu
+    seviye: 1
+    kosul: "sistoprostatektomi"
+    tip: secim
+    secenekler: [Görülmedi, Görüldü]
+    alt:
+      - {id: pi_gleason, etiket: Gleason / grade grup, seviye: 1, tip: metin, kalip: "Gleason skor … (…+…), grade grup …"}
+      - {id: pi_yayilim, etiket: Yayılım / sınır, seviye: 1, tip: metin, kalip: "Prostata sınırlı / ekstraprostatik yayılım; sınır …; pT…"}
+  - {id: ek_bulgular, etiket: Ek bulgular, seviye: 3, tip: coklu, secenekler: [Hidronefroz / üreter dilatasyonu, Sistitis sistika et glandularis, Tedavi ilişkili değişiklikler, "…"]}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: parcalar, etiket: Materyali oluşturan yapılar, zorunlu: true, not: "Ör. …x…x… cm mesane, …x…x… cm prostat, sağ SV … cm, sol SV … cm, sağ üreter … cm, sol üreter … cm"}
+    - {id: acma, etiket: Açılma şekli, tip: secim, secenekler: ["üretradan anterior orta hattan Y şeklinde açıldı", "formalin ile şişirilip fikse edildikten sonra dilimlendi"]}
+    - {id: yerlesim, etiket: Tümör yerleşimi, zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: [papiller, "solid-ülsere", "düz, kırmızı kadifemsi alan", "belirgin tümör yok; TUR sonrası skar / ülser"]}
+    - {id: invazyon, etiket: Makroskopik invazyon, tip: secim, secenekler: ["kas duvarına sınırlı", "perivezikal yağ dokuya uzanan", "prostata / vajene uzanan"], zorunlu: true}
+    - {id: d_yumusak, etiket: Perivezikal yumuşak doku sınırına uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: mukoza, etiket: Tümör dışı mukoza, tip: secim, secenekler: [olağan görünümdedir, "trabeküle görünümdedir", "… bölgesinde eritemli alan izlendi"]}
+    - {id: prostat_gorunum, etiket: Prostat kesitleri, tip: secim, secenekler: [nodüler görünümdedir, "… bölgesinde sarı-beyaz sert alan izlendi"]}
+    - {id: ln_not, etiket: Perivezikal lenf nodu, tip: secim, secenekler: [izlenmedi, "en büyüğü … cm çapında … adet izlendi"]}
+  varyantlar:
+    - ad: Sistoprostatektomi / sistektomi
+      metin:
+        - "{fiksasyon_durumu} gönderilen {prosedur} materyalidir; {parcalar} içermektedir. Perivezikal yüz boyandı; mesane {acma}."
+        - >-
+          {yerlesim} yerleşimli, {tumor_boyut} cm boyutlarında, {gorunum} görünümde tümör izlendi. Kesitlerde tümör
+          makroskopik olarak {invazyon}; perivezikal yumuşak doku cerrahi sınırına {d_yumusak} cm mesafededir.
+        - "Tümör dışı mukoza {mukoza}. Prostat {prostat_gorunum}. Perivezikal yağ dokuda lenf nodu {ln_not}."
+      ornekleme:
+        - {kod: T, aciklama: "tümör, tam kat", not: "En derin invazyon; en az 3–4 kaset. Neoadjuvan / TUR sonrası yatak tamamen ya da haritalanarak."}
+        - {kod: TY, aciklama: tümör-perivezikal yumuşak doku sınırı, parca: "…", kaset: "…"}
+        - {kod: SÜ, aciklama: sağ üreter cerrahi sınırı, parca: "1", kaset: "1"}
+        - {kod: LÜ, aciklama: sol üreter cerrahi sınırı, parca: "1", kaset: "1"}
+        - {kod: ÜR, aciklama: üretra cerrahi sınırı, parca: "1", kaset: "1"}
+        - {kod: TRG, aciklama: trigon, parca: "…", kaset: "…"}
+        - {kod: MB, aciklama: mesane boynu, parca: "…", kaset: "…"}
+        - {kod: M, aciklama: "tümör dışı mukoza (kubbe, duvarlar, eritemli alanlar)", parca: "…", kaset: "…"}
+        - {kod: P, aciklama: "prostat, prostatik üretra ve SV", not: "Prostatik üretra dahil; kısmi örneklemede apeks, orta, baz ve her iki SV."}
+        - {kod: LN, aciklama: perivezikal lenf nodları, parca: "…", kaset: "…"}
+  ek_materyaller: [makro.ln_istasyon, makro.ek_cerrahi_sinir]
+  yapilacaklar:
+    - Üreter ve üretra sınırlarını açmadan önce al (frozen yapıldıysa kaydet).
+    - Perivezikal yüzü boya; mesaneyi şişirerek fikse etmek tercih edilir.
+    - Tümör-perivezikal yağ ilişkisini tam kat kesitlerle göster.
+    - Prostatik üretra ve prostat örneklenir (CIS / insidental adenokarsinom).

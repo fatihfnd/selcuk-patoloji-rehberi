@@ -1,0 +1,39 @@
+id: ek-mmr
+baslik: DNA hatalı eşleşme onarım (MMR) proteinleri immünohistokimya raporu
+organ: Çeşitli
+materyal: Ek test
+makro_baslik: Materyal
+kaynaklar:
+  - "CAP — Template for Reporting Results of DNA Mismatch Repair Testing"
+  - "ESMO MMR / MSI testi önerileri (2019); NCCN Lynch sendromu kılavuzu"
+not: "Değerlendirmede tümör dışı hücrelerde (stroma, lenfosit, normal epitel) iç kontrol boyanması şarttır. Neoadjuvan sonrası MSH6 zayıflaması ve MLH1 için nokta paterni artefaktı bilinmektedir."
+tani_alternatif: true
+tani:
+  - "MMR proteinlerinde nükleer ekspresyon kaybı saptanmadı (MMR-korunmuş, pMMR); {organ}, {onceki_islem}"
+  - "MLH1 ve PMS2 nükleer ekspresyon kaybı (MMR-eksik, dMMR), lütfen epikrizi okuyunuz; {organ}, {onceki_islem}"
+  - "MSH2 ve MSH6 nükleer ekspresyon kaybı (MMR-eksik, dMMR), lütfen epikrizi okuyunuz; {organ}, {onceki_islem}"
+  - "İzole MSH6 / PMS2 nükleer ekspresyon kaybı (MMR-eksik, dMMR), lütfen epikrizi okuyunuz; {organ}, {onceki_islem}"
+  - "Subklonal / heterojen ekspresyon kaybı, lütfen epikrizi okuyunuz; {organ}, {onceki_islem}"
+epikriz:
+  - {id: organ, etiket: Organ / tümör, seviye: 0, gizli: true, tip: metin}
+  - {id: onceki_islem, etiket: Önceki materyal, seviye: 0, gizli: true, tip: metin}
+  - {id: tumor_tipi, etiket: Tümör tipi, seviye: 2, tip: metin}
+  - {modul: biyobelirtec.mmr, seviye: 1}
+  - {id: klonlar, etiket: Klonlar, seviye: 3, tip: metin, kalip: "MLH1 (…), PMS2 (…), MSH2 (…), MSH6 (…)"}
+  - {id: ic_kontrol, etiket: İç kontrol, seviye: 1, tip: secim, secenekler: ["Tüm belirteçlerde uygun", "… belirtecinde zayıf / yok — yorum sınırlı"]}
+  - {id: subklonal, etiket: Subklonal kayıp, seviye: 2, tip: secim, secenekler: ["Görülmedi", "Görüldü (… belirteci, tümörün ≈%…'inde)"]}
+  - {id: ek_test, etiket: Önerilen / yapılan ek test, seviye: 1, tip: secim, secenekler: ["Gerek yok (pMMR)", "BRAF V600E (İHK / moleküler) ve / veya MLH1 promotor hipermetilasyonu önerilir", "Germline genetik test / genetik danışmanlık önerilir", "MSI (PCR / NGS) ile doğrulama önerilir", "Sonuç: BRAF V600E …; MLH1 promotor metilasyonu …"]}
+  - {id: yorum, etiket: Yorum, seviye: 1, tip: metin, not: "Lynch sendromu tarama sonucu ve tedaviye yönelik (immünoterapi) anlamı."}
+makroskopi:
+  alanlar:
+    - {id: onceki, etiket: Önceki rapor no, zorunlu: true}
+    - {id: blok, etiket: Blok kodu, zorunlu: true}
+    - {id: materyal_tipi, etiket: Materyal tipi, tip: secim, secenekler: [biyopsi, rezeksiyon, sitoloji hücre bloğu], zorunlu: true}
+    - {id: preparat, etiket: Kesit sayısı, tip: sayi}
+    - {id: tumor_orani, etiket: Tümör hücre oranı, tip: sayi, birim: "%"}
+  varyantlar:
+    - ad: Blok / kesit
+      metin:
+        - "{onceki} no'lu olguya ait {materyal_tipi} materyalinin {blok} kodlu parafin bloğundan {preparat} adet kesit hazırlandı; işaretlenen alanda tümör hücre oranı yaklaşık %{tumor_orani}."
+  yapilacaklar:
+    - Çalışılacak tümör alanı H&E üzerinde işaretlenir; fiksasyon / dekalsifikasyon bilgisi kaydedilir.

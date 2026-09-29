@@ -1,0 +1,43 @@
+id: sito-pankreas
+baslik: Pankreatikobiliyer sitoloji — EUS-İİAB, safra fırçalama (WHO raporlama sistemi)
+organ: Pankreas
+materyal: Sitoloji
+makro_baslik: Materyal ve preparat
+kaynaklar:
+  - "WHO Reporting System for Pancreaticobiliary Cytopathology (IAC-IARC-WHO, 2022)"
+tani_alternatif: true
+tani:
+  - "Yetersiz / tanısal değil (WHO pankreatikobiliyer — yetersiz), lütfen epikrizi okuyunuz; {yer}, {yontem}"
+  - "Malignite için negatif, … (WHO pankreatikobiliyer — benign / negatif); {yer}, {yontem}"
+  - "Atipik hücreler (WHO pankreatikobiliyer — atipik), lütfen epikrizi okuyunuz; {yer}, {yontem}"
+  - "Düşük riskli / düşük dereceli pankreatikobiliyer neoplazm, … (WHO pankreatikobiliyer — PaN-Low), lütfen epikrizi okuyunuz; {yer}, {yontem}"
+  - "Yüksek riskli / yüksek dereceli pankreatikobiliyer neoplazm, … (WHO pankreatikobiliyer — PaN-High), lütfen epikrizi okuyunuz; {yer}, {yontem}"
+  - "Malignite şüphesi (WHO pankreatikobiliyer — malignite şüphesi), lütfen epikrizi okuyunuz; {yer}, {yontem}"
+  - "Adenokarsinom / … (WHO pankreatikobiliyer — malign), lütfen epikrizi okuyunuz; {yer}, {yontem}"
+mikroskopi:
+  - "Preparatlar az / orta / yoğun hücresel olup gastrointestinal kontaminasyon (duodenal / gastrik epitel, müsin) izlenmiştir / izlenmemiştir."
+  - "Lezyonel hücreler bal peteği tabakalar / üç boyutlu kümeler / tek hücreler halinde; nükleer büyüme, düzensiz dağılım (sarhoş bal peteği), belirgin nükleol, nükleer membran düzensizliği göstermektedir / göstermemektedir. Zeminde kalın koloid benzeri müsin / nekroz izlenmiştir / izlenmemiştir."
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: yontem, etiket: Yöntem, seviye: 0, gizli: true, tip: secim, secenekler: ["EUS-İİAB", "EUS kor biyopsi (touch)", "safra yolu fırçalama (ERCP)", "kist sıvısı aspirasyonu"]}
+  - {id: yeterlilik, etiket: Yeterlilik, seviye: 1, tip: secim, secenekler: ["Yeterli; lezyonel hücreler mevcut", "Yalnız GİS kontaminasyonu / müsin (lezyonel epitel yok)", "Yetersiz"]}
+  - {id: pan_low_tip, etiket: PaN-Low alt tipleri, seviye: 2, kosul: "PaN-Low", tip: secim, secenekler: ["Düşük dereceli displazili IPMN / MCN", "Seröz kistik neoplazm", "Solid psödopapiller neoplazm", "İyi diferansiye nöroendokrin tümör"]}
+  - {id: kist_sivisi, etiket: Kist sıvısı analizi (klinik), seviye: 2, tip: metin, kalip: "CEA … ng/mL; glukoz … mg/dL; amilaz …; KRAS / GNAS …"}
+  - {id: hucre_blogu, etiket: Hücre bloğu İHK, seviye: 2, tip: metin, kalip: "Sinaptofizin / kromogranin …, Ki-67 %…, β-katenin …, SMAD4 …, p53 …"}
+  - {id: rom, etiket: Malignite riski, seviye: 3, tip: metin, kalip: "Kurum / WHO sistemi tablosuna göre …"}
+  - {id: yorum, etiket: Yorum / öneri, seviye: 1, tip: secim, secenekler: ["Klinik-radyolojik (EUS / MR) ve kist sıvısı analizi ile korelasyon önerilir.", "Tekrar örnekleme önerilir.", "Cerrahi / onkolojik değerlendirme önerilir."]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: konvansiyonel, etiket: Yayma sayısı, tip: sayi}
+    - {id: sivi, etiket: Sıvı / iğne yıkama / kist sıvısı, not: "… ml, … görünümde; hücre bloğu / sıvı bazlı preparat"}
+    - {id: rose, etiket: ROSE, tip: secim, secenekler: [yapılmadı, "yapıldı; yeterli", "yapıldı; yetersiz"]}
+  varyantlar:
+    - ad: EUS-İİAB / fırçalama
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): {konvansiyonel} adet yayma; sıvı materyal {sivi}. ROSE {rose}."
+  yapilacaklar:
+    - Kist sıvısı viskozitesi ve görünümü kaydedilir; biyokimya / moleküler için ayrılan hacim not edilir.
+    - Hücre bloğu hazırlanır.

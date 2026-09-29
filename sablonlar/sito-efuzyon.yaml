@@ -1,0 +1,42 @@
+id: sito-efuzyon
+baslik: Seröz efüzyon sitolojisi (Uluslararası Sistem, ISRSFC 2020)
+organ: Seröz boşluk
+materyal: Sitoloji
+makro_baslik: Materyal ve preparat
+kaynaklar:
+  - "The International System for Reporting Serous Fluid Cytopathology (ISRSFC, 2020)"
+tani_alternatif: true
+tani:
+  - "Tanısal değil (ISRSFC — ND), lütfen epikrizi okuyunuz; {sivi}, sitoloji"
+  - "Malignite için negatif, reaktif mezotelyal hücreler / … (ISRSFC — NFM); {sivi}, sitoloji"
+  - "Önemi belirsiz atipi (ISRSFC — AUS), lütfen epikrizi okuyunuz; {sivi}, sitoloji"
+  - "Malignite şüphesi (ISRSFC — SFM), lütfen epikrizi okuyunuz; {sivi}, sitoloji"
+  - "Metastatik adenokarsinom, … primer ile uyumlu (ISRSFC — MAL, sekonder), lütfen epikrizi okuyunuz; {sivi}, sitoloji"
+  - "Mezotelyoma ile uyumlu (ISRSFC — MAL, primer), lütfen epikrizi okuyunuz; {sivi}, sitoloji"
+  - "Lenfoma tutulumu (ISRSFC — MAL), lütfen epikrizi okuyunuz; {sivi}, sitoloji"
+mikroskopi:
+  - "Preparatlar az / orta / yoğun hücresel olup zeminde lenfositler / nötrofiller / eozinofiller / eritrositler izlenmiştir."
+  - "Reaktif mezotelyal hücreler ve histiyositler izlenmiştir; ayrıca üç boyutlu kümeler / papiller gruplar / tek dağılmış atipik hücreler (… ) görülmüştür / görülmemiştir."
+epikriz:
+  - {id: sivi, etiket: Sıvı, seviye: 0, gizli: true, tip: secim, secenekler: [plevral sıvı, peritoneal sıvı (asit), perikardiyal sıvı, peritoneal yıkama]}
+  - {id: yeterlilik, etiket: Yeterlilik, seviye: 1, tip: secim, secenekler: [Yeterli, "Yetersiz (az hücreli / dejenere / yalnız kan)"], not: "Tanı için ≥50–75 ml önerilir."}
+  - {id: hucre_blogu, etiket: Hücre bloğu İHK, seviye: 1, tip: metin, kalip: "Kalretinin …, WT1 …, D2-40 …; Claudin-4 / MOC31 / BerEP4 …; köken: TTF-1 / PAX8 / GATA3 / CDX2 / ER …; BAP1 / MTAP …"}
+  - {id: rom, etiket: Malignite riski (yaklaşık), seviye: 3, tip: secim, secenekler: ["ND: ≈%17", "NFM: ≈%21", "AUS: ≈%28", "SFM: ≈%82", "MAL: ≈%99"]}
+  - {id: ek_test, etiket: Ek testler, seviye: 2, tip: metin, kalip: "Akım sitometri …; moleküler (hücre bloğu) …"}
+  - {id: yorum, etiket: Yorum / öneri, seviye: 1, tip: secim, secenekler: ["Klinik-radyolojik korelasyon önerilir.", "Tekrar sıvı örneklemesi / hücre bloğu önerilir.", "Doku tanısı önerilir."]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: sivi, etiket: Kayıtlı sıvı, zorunlu: true}
+    - {id: hacim, etiket: Hacim, tip: sayi, birim: ml, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: ["sarı, berrak", "sarı, bulanık", "hemorajik", "şilöz", "pürülan"], zorunlu: true}
+    - {id: hazirlama, etiket: Hazırlama, tip: secim, secenekler: ["santrifüj sonrası sitospin ve sıvı bazlı preparat", "sitospin ve hücre bloğu", "sıvı bazlı preparat ve hücre bloğu"], zorunlu: true}
+    - {id: preparat, etiket: Preparat sayısı, tip: sayi}
+  varyantlar:
+    - ad: Seröz efüzyon
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({sivi} kayıtlı materyal): {hacim} ml, {gorunum} sıvı; {hazirlama} ile {preparat} adet preparat hazırlandı (Papanicolaou / Giemsa)."
+  yapilacaklar:
+    - Hücre bloğu rutin hazırlanır (İHK ve moleküler için).
+    - Taze ve lenfoma şüphesinde akım sitometri için ayrılır.

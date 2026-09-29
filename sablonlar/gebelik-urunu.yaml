@@ -1,0 +1,52 @@
+id: gebelik-urunu
+baslik: Gebelik ürünü / abort materyali (mol hidatiform ayrımı dahil)
+organ: Uterus
+materyal: Biyopsi / küretaj
+kaynaklar:
+  - "WHO Kadın Genital Tümörleri, 5. baskı (2020) — gestasyonel trofoblastik hastalık"
+  - "ISGyP / ISSTD — p57 ve ploidi / genotipleme önerileri"
+tani_alternatif: true
+tani:
+  - "Desidua ve koryon villusları (gebelik ürünü); uterus, {islem}"
+  - "Desidua ve implantasyon bölgesi; koryon villusu görülmedi, lütfen epikrizi okuyunuz; uterus, {islem}"
+  - "Desidua (Arias-Stella reaksiyonu); koryon villusu ve trofoblast görülmedi, lütfen epikrizi okuyunuz; uterus, {islem}"
+  - "Hidropik abort ile uyumlu koryon villusları, lütfen epikrizi okuyunuz; uterus, {islem}"
+  - "Parsiyel mol hidatiform, lütfen epikrizi okuyunuz; uterus, {islem}"
+  - "Komplet mol hidatiform, lütfen epikrizi okuyunuz; uterus, {islem}"
+  - "Koryon villusu içeren tuba uterina (tubal ektopik gebelik); sağ / sol tuba uterina, salpingektomi"
+epikriz:
+  - {id: islem, etiket: İşlem, seviye: 0, gizli: true, tip: secim, secenekler: [küretaj, "dilatasyon ve küretaj", "vakum aspirasyon"]}
+  - {id: villus, etiket: Koryon villusu, seviye: 1, tip: secim, secenekler: [Görüldü, Görülmedi]}
+  - {id: implantasyon, etiket: İmplantasyon bölgesi / ara trofoblast, seviye: 1, tip: secim, secenekler: [Görüldü, Görülmedi]}
+  - {id: fetal, etiket: Embriyonik / fetal doku, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü, "Fetal eritrosit (nükleuslu) villus damarlarında"]}
+  - {id: hidropik, etiket: Villöz hidropik değişiklik, seviye: 1, tip: secim, secenekler: [Görülmedi, "Hafif / fokal", "Belirgin; sisterna oluşumu"]}
+  - {id: trofoblast, etiket: Trofoblast proliferasyonu, seviye: 1, tip: secim, secenekler: ["Polar / olağan", "Hafif sirkumferansiyel", "Belirgin sirkumferansiyel, atipik"]}
+  - {id: villus_sekil, etiket: Villus şekli, seviye: 2, tip: secim, secenekler: [Olağan, "İki populasyonlu, düzensiz kıyılı (scalloped), trofoblast inklüzyonları", "Karnıyarık (cauliflower) / polipoid"]}
+  - {id: p57, etiket: p57 (İHK), seviye: 1, tip: secim, secenekler: [Çalışılmadı, "Sitotrofoblast ve villöz stromada korunmuş (komplet mol dışlanır)", "Sitotrofoblast ve villöz stromada kayıp (komplet mol ile uyumlu)", "Uyumsuz / mozaik patern"]}
+  - {id: ploidi, etiket: Ploidi / STR genotipleme, seviye: 2, tip: secim, secenekler: [Çalışılmadı, "Önerilir (parsiyel mol ile hidropik abort ayrımı için)", "Diploid biparental", "Triploid diandrik (parsiyel mol)", "Androgenetik (komplet mol)"]}
+  - id: yorum
+    etiket: Yorum
+    seviye: 1
+    tip: secim
+    secenekler:
+      - "Villus / trofoblast izlenmemiştir; ektopik gebelik açısından klinik, ultrason ve serum β-hCG korelasyonu önerilir."
+      - "Bulgular mol hidatiform ile uyumludur; serum β-hCG takibi önerilir."
+      - "Morfolojik olarak parsiyel mol ile hidropik abort ayrımı kesin değildir; ploidi / genotipleme önerilir."
+makroskopi:
+  alanlar:
+    - {id: boyut, etiket: Toplam boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: ["kanamalı, yumuşak, süngerimsi (villus benzeri) ve membranöz dokular", "kan pıhtısı ağırlıklı", "üzüm salkımı benzeri veziküller (en büyüğü … cm)"], zorunlu: true}
+    - {id: fetal, etiket: Embriyo / fetal parça, tip: secim, secenekler: [izlenmedi, "… cm'lik embriyo / fetal parça izlendi"]}
+    - {id: ornek, etiket: Takibe alınan, tip: secim, secenekler: [Tümü, "Villöz görünümlü alanlar seçilerek"]}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: Küretaj / aspirasyon
+      metin:
+        - >-
+          Topluca {boyut} cm boyutlarında, {gorunum}. Embriyo / fetal parça {fetal}. {ornek} {parca} parça {kaset} kasette
+          takibe alındı.
+  yapilacaklar:
+    - Materyal serum fizyolojik içinde yüzdürülerek villöz doku seçilir.
+    - Villus makroskopik seçilemezse tümü takibe alınır.
+    - Veziküler görünümde en büyük vezikül boyutu kaydedilir; genotipleme için taze / ayrı blok planlanabilir.

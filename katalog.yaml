@@ -1,0 +1,97 @@
+# Arşivin sistematik yol haritası. Durum, sablonlar/<id>.yaml varlığından otomatik okunur.
+# Kaynak kısaltmaları: CAP, ICCR, RCPath, WHO (5. baskı), AJCC 8; sitolojide ilgili uluslararası sistem.
+paketler:
+  - ad: "Paket 1 — Çekirdek karsinom rezeksiyonları ve biyopsiler"
+    sablonlar:
+      - [meme-igne-biyopsi, Meme iğne biyopsi]
+      - [meme-rezeksiyon, Meme rezeksiyon]
+      - [prostat-igne-biyopsi, Prostat iğne biyopsi]
+      - [prostat-radikal, Radikal prostatektomi]
+      - [kolorektal-rezeksiyon, Kolorektal rezeksiyon]
+      - [mide-rezeksiyon, Mide rezeksiyon]
+      - [bobrek-nefrektomi, Nefrektomi (RCC)]
+  - ad: "Paket 2 — Gastrointestinal, hepatobiliyer, pankreas"
+    sablonlar:
+      - [ozofagus-rezeksiyon, Özofagus / OGB rezeksiyon]
+      - [mide-endoskopik-biyopsi, "Mide endoskopik biyopsi (güncellenmiş Sidney, OLGA/OLGIM)"]
+      - [duodenum-biyopsi, "Duodenum biyopsi (Marsh-Oberhuber / Corazza)"]
+      - [kolon-biyopsi-inflamatuar, "Kolon biyopsi — İBH / mikroskopik kolit"]
+      - [kolon-polip, Kolorektal polip / polipektomi (pT1 dahil)]
+      - [apendiks, Apendektomi (inflamatuar + neoplastik)]
+      - [safra-kesesi, Kolesistektomi (benign + karsinom)]
+      - [karaciger-igne-biyopsi, "Karaciğer iğne biyopsi (İshak / NAS / fibrozis)"]
+      - [karaciger-rezeksiyon, Karaciğer rezeksiyon (HCC / kolanjiyokarsinom / metastaz)]
+      - [pankreatikoduodenektomi, "Pankreatikoduodenektomi (pankreas / ampulla / distal koledok)"]
+      - [distal-pankreatektomi, Distal pankreatektomi]
+      - [gist, GİST rezeksiyon]
+      - [anal-kanal, Anal kanal karsinomu]
+  - ad: "Paket 3 — Üriner sistem ve erkek genital"
+    sablonlar:
+      - [mesane-tur, Mesane TUR]
+      - [sistektomi, Radikal sistektomi / sistoprostatektomi]
+      - [ust-uriner-sistem, Nefroüreterektomi / üreterektomi]
+      - [prostat-tur-acik, TUR-P / açık prostatektomi]
+      - [testis-orsiektomi, Radikal orşiektomi (germ hücreli tümör)]
+      - [penis, Penis rezeksiyonu]
+      - [bobrek-igne-tumor, Böbrek kitle iğne biyopsisi]
+      - [bobrek-medikal, "Medikal böbrek biyopsisi (IF / Oxford / ISN-RPS)"]
+      - [bobrek-transplant, Transplant böbrek biyopsisi (Banff)]
+  - ad: "Paket 4 — Jinekolojik patoloji"
+    sablonlar:
+      - [endometrium-biyopsi, Endometrium biyopsi / küretaj]
+      - [histerektomi-benign, Histerektomi (non-neoplastik)]
+      - [endometrium-karsinom, Endometrium karsinomu histerektomi (moleküler sınıf dahil)]
+      - [serviks-konizasyon, Serviks biyopsi / LEEP / konizasyon]
+      - [serviks-radikal, Serviks karsinomu radikal histerektomi]
+      - [over-tumor, Over / tuba / primer periton tümörü]
+      - [vulva, Vulva rezeksiyonu]
+      - [plasenta, Plasenta (Amsterdam)]
+      - [gebelik-urunu, Gebelik ürünü / abort materyali]
+  - ad: "Paket 5 — Toraks, baş-boyun, endokrin"
+    sablonlar:
+      - [akciger-rezeksiyon, Akciğer rezeksiyon]
+      - [akciger-kucuk-biyopsi, Akciğer küçük biyopsi / tru-cut]
+      - [plevra-mezotelyoma, Plevra / mezotelyoma]
+      - [timus, Timoma / timik karsinom]
+      - [tiroidektomi, Tiroidektomi]
+      - [paratiroid, Paratiroid]
+      - [adrenal, Adrenal (kortikal / feokromositoma)]
+      - [larinks, Larinks / hipofarinks]
+      - [oral-kavite, Oral kavite]
+      - [tukuruk-bezi, Tükürük bezi tümörü]
+      - [minor-tukuruk-sjogren, "Minör tükürük bezi biyopsisi (fokus skoru)"]
+      - [sinonazal, Sinonazal]
+      - [boyun-diseksiyonu, Boyun diseksiyonu (ortak modül)]
+  - ad: "Paket 6 — Deri, yumuşak doku, kemik, hematopatoloji, MSS, göz"
+    sablonlar:
+      - [deri-melanom, Deri melanomu]
+      - [deri-karsinom, "Deri karsinomu (BHK / SHK / Merkel)"]
+      - [deri-inflamatuar, İnflamatuar deri biyopsisi]
+      - [deri-alopesi, Alopesi (vertikal / horizontal)]
+      - [yumusak-doku-biyopsi, Yumuşak doku tümörü biyopsisi]
+      - [yumusak-doku-rezeksiyon, Yumuşak doku sarkomu rezeksiyon]
+      - [kemik-tumor, Kemik tümörü rezeksiyon / amputasyon]
+      - [lenf-nodu-lenfoma, Lenf nodu eksizyon (lenfoma)]
+      - [kemik-iligi, Kemik iliği biyopsi + aspirasyon]
+      - [dalak, Splenektomi]
+      - [mss-tumor, MSS tümörü (WHO CNS5 bütünleşik tanı)]
+      - [epilepsi, Epilepsi cerrahisi (FKD / hipokampal skleroz)]
+      - [goz, Göz enükleasyonu (retinoblastom / uveal melanom)]
+  - ad: "Paket 7 — Sitoloji"
+    sablonlar:
+      - [sito-tiroid, Tiroid İİAB (Bethesda 2023)]
+      - [sito-tukuruk, Tükürük bezi İİAB (Milan)]
+      - [sito-idrar, İdrar (Paris 2.0)]
+      - [sito-serviks, Servikovajinal (Bethesda)]
+      - [sito-efuzyon, Seröz efüzyon (ISRSFC)]
+      - [sito-akciger-ebus, "Akciğer / EBUS (WHO raporlama sistemi)"]
+      - [sito-pankreas, Pankreatikobiliyer (WHO)]
+      - [sito-meme, Meme İİAB (Yokohama)]
+      - [sito-lenf-nodu, Lenf nodu İİAB (Sydney)]
+      - [sito-bos, Beyin omurilik sıvısı]
+  - ad: "Paket 8 — Ek test / biyobelirteç raporları"
+    sablonlar:
+      - [ek-her2-ish, HER2 ISH (meme / mide)]
+      - [ek-pdl1, "PD-L1 (TPS / CPS / IC)"]
+      - [ek-mmr, MMR İHK (bağımsız rapor)]
+      - [ek-alk-ros1, "ALK / ROS1 / diğer öngörücü İHK-FISH"]

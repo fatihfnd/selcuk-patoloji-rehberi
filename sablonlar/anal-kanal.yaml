@@ -1,0 +1,53 @@
+id: anal-kanal
+baslik: Anal kanal ve perianal bölge — karsinom (lokal eksizyon / abdominoperineal rezeksiyon)
+organ: Anüs
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Anus (Excision / Resection)"
+  - "ICCR — Carcinoma of the Anus"
+  - "WHO Sindirim Sistemi Tümörleri, 5. baskı (2019); LAST projesi (HSIL/LSIL); AJCC 8"
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; {yerlesim}, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); perirektal / inguinal"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [lokal eksizyon, abdominoperineal rezeksiyon]}
+  - {id: yerlesim, etiket: Tümör yerleşimi, seviye: 1, tip: secim, secenekler: [anal kanal, perianal deri, anorektal bileşke]}
+  - {id: neoadjuvan, etiket: Neoadjuvan / kemoradyoterapi, seviye: 1, tip: secim, secenekler: [Yok, Var, Bilinmiyor], gizli: true}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: olcu, birim: cm, not: "pT boyuta göre (≤2 / >2–5 / >5 cm)."}
+  - {id: histolojik_tip, etiket: Histolojik tip, seviye: 1, tip: secim, serbest: true, secenekler: ["Skuamöz hücreli karsinom, HPV ilişkili", "Skuamöz hücreli karsinom, HPV bağımsız", "Verrüköz karsinom", "Adenokarsinom (anal gland / fistül ilişkili)", "Nöroendokrin karsinom"]}
+  - {id: derece, etiket: Histolojik derece, seviye: 2, tip: secim, secenekler: ["İyi diferansiye", "Orta derecede diferansiye", "Az diferansiye"]}
+  - {id: p16, etiket: p16 (İHK), seviye: 2, tip: secim, secenekler: ["Blok tipi pozitif", Negatif, Çalışılmadı]}
+  - {id: yayilim, etiket: Tümör yayılımı, seviye: 1, tip: coklu, secenekler: [Subepitelyal bağ doku, İnternal sfinkter, Eksternal sfinkter, Perirektal / iskiyorektal yağ doku, "Komşu organ (vajina / üretra / mesane / prostat) (pT4)"]}
+  - modul: ortak.lvi
+  - modul: ortak.pni
+  - {id: tedavi_etkisi, etiket: Tedavi yanıtı, seviye: 1, kosul: "neoadjuvan == Var", tip: secim, secenekler: ["Rezidü tümör yok", "Rezidü tümör (…)"]}
+  - {id: sinir, etiket: Cerrahi sınırlar, seviye: 1, tip: metin, kalip: "İnvaziv karsinom: görülmedi (en yakın … sınır, … mm) / görüldü; HSIL: görülmedi / görüldü (… sınır)"}
+  - modul: ortak.lenf_nodu
+  - modul: ortak.ptnm
+  - {id: hsil, etiket: Eşlik eden skuamöz intraepitelyal lezyon, seviye: 2, tip: secim, secenekler: [Görülmedi, "LSIL (AIN 1)", "HSIL (AIN 2–3)"]}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: boyut, etiket: Materyal boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: isaret, etiket: Oryantasyon, tip: secim, secenekler: ["ip ile … yönü işaretli", işaretsiz]}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: [ülsere, ekzofitik / verrüköz, "plak şeklinde, kabarık"]}
+    - {id: mesafeler, etiket: Sınırlara uzaklıklar, zorunlu: true, not: "Periferik (deri / mukoza) … cm, derin … cm; APR'de ek olarak dentat çizgi, anal verge ve radyal sınır"}
+    - {id: invazyon, etiket: Makroskopik invazyon, tip: secim, secenekler: [subepitelyal dokuya sınırlı, sfinkter kasına uzanan, perianal yağ dokuya uzanan]}
+  varyantlar:
+    - ad: Lokal eksizyon
+      metin:
+        - >-
+          {fiksasyon_durumu} {isaret} gönderilen, {boyut} cm boyutlarında deri-mukoza örtülü {prosedur} materyalidir.
+          Cerrahi sınırlar boyandı. Yüzeyde {tumor_boyut} cm boyutlarında, {gorunum} tümör izlendi. Tümör {mesafeler}
+          mesafededir; kesitlerde makroskopik olarak {invazyon} görünümdedir.
+      ornekleme:
+        - {kod: T, aciklama: "tümör, en derin invazyon", not: "Küçük eksizyonlarda tamamı, dilim sırasıyla."}
+        - {kod: PCS, aciklama: "periferik sınırlar, saat yönüne göre", parca: "…", kaset: "…"}
+        - {kod: DCS, aciklama: derin sınır, parca: "…", kaset: "…"}
+  ek_materyaller: [makro.ln_istasyon]
+  yapilacaklar:
+    - Oryante et ve boya; periferik sınırları saat yönüne göre kodla.
+    - Tümörün periferik ve derin sınıra uzaklığı tek cümlede.
+    - APR materyalinde rektum şablonunun (TME kalitesi, CRM) kuralları uygulanır; anal verge ve dentat çizgi ilişkisi yazılır.

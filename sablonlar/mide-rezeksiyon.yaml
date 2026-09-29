@@ -1,0 +1,126 @@
+id: mide-rezeksiyon
+baslik: Mide (ve özofagogastrik bileşke) — karsinom, rezeksiyon
+organ: Mide
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Stomach (Resection)"
+  - "ICCR — Carcinoma of the Stomach"
+  - "RCPath — Dataset for oesophageal and gastric carcinoma"
+  - "WHO Sindirim Sistemi Tümörleri, 5. baskı (2019); AJCC 8"
+not: "Merkezi OGB'nin 2 cm distalinden proksimale uzanıp OGB'yi tutan tümörler özofagus protokolüyle evrelenir (AJCC 8)."
+tani:
+  - "Adenokarsinom, … tip (Lauren), lütfen epikrizi okuyunuz; mide {yerlesim}, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); perigastrik yağ doku"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [Distal subtotal gastrektomi, Proksimal gastrektomi, Total gastrektomi, Özofagogastrektomi, "… + omentektomi / splenektomi / …"]}
+  - {id: neoadjuvan, etiket: Neoadjuvan tedavi, seviye: 1, tip: secim, secenekler: [Yok, Var, Bilinmiyor], gizli: true}
+  - {id: yerlesim, etiket: Tümör yerleşimi, seviye: 1, tip: secim, serbest: true, secenekler: [Kardiya, Fundus, Korpus, Antrum, Pilor, Küçük kurvatur, Büyük kurvatur, "OGB (merkez OGB'ye … cm)"]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 2, tip: olcu, birim: cm, kalip: "…x…x… cm"}
+  - id: histolojik_tip
+    etiket: Histolojik tip (WHO)
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler: [Tübüler adenokarsinom, Papiller adenokarsinom, Müsinöz adenokarsinom, "Az kohezif karsinom, taşlı yüzük hücreli tip", "Az kohezif karsinom, diğer", Mikst adenokarsinom, Hepatoid adenokarsinom, Lenfoid stromalı karsinom, Adenoskuamöz karsinom]
+  - {id: lauren, etiket: Lauren sınıflaması, seviye: 2, tip: secim, secenekler: [İntestinal, Diffüz, Mikst, Sınıflandırılamayan]}
+  - {id: derece, etiket: Histolojik derece, seviye: 1, tip: secim, secenekler: ["G1, iyi diferansiye", "G2, orta derecede diferansiye", "G3, az diferansiye"], not: "Az kohezif karsinomlarda derece verilmez / G3 kabul edilir."}
+  - id: yayilim
+    etiket: Tümör yayılımı
+    seviye: 1
+    tip: secim
+    secenekler:
+      - "Lamina propria / muskularis mukoza (pT1a)"
+      - "Submukoza (pT1b)"
+      - "Muskularis propria (pT2)"
+      - "Subseroza, viseral peritona ulaşmadan (pT3)"
+      - "Seroza / viseral periton (pT4a)"
+      - "Komşu yapılara invazyon (pT4b; …)"
+  - modul: ortak.lvi
+  - modul: ortak.pni
+  - id: tedavi_etkisi
+    etiket: Tedavi yanıtı
+    seviye: 1
+    kosul: "neoadjuvan == Var"
+    tip: secim
+    secenekler: ["CAP/modifiye Ryan skor 0 (tam yanıt)", "Skor 1 (neredeyse tam)", "Skor 2 (kısmi)", "Skor 3 (yanıt yok)", "Becker 1a / 1b / 2 / 3"]
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    alt:
+      - {id: sinir_proksimal, etiket: Proksimal, seviye: 1, tip: secim, secenekler: [Tümör görülmedi (… cm), Tümör görüldü (invaziv / displazi)]}
+      - {id: sinir_distal, etiket: Distal, seviye: 1, tip: secim, secenekler: [Tümör görülmedi (… cm), Tümör görüldü (invaziv / displazi)]}
+      - {id: sinir_radyal, etiket: Omental / radyal, seviye: 2, tip: secim, secenekler: [Tümör görülmedi, Tümör görüldü]}
+  - id: lenf_nodu
+    etiket: Lenf nodları
+    seviye: 1
+    tip: metin
+    kalip: "… lenf nodu incelendi; …'inde metastaz görüldü / metastaz görülmedi"
+    not: "Evreleme için en az 16 lenf nodu önerilir."
+    alt:
+      - {id: ene, etiket: Ekstranodal yayılım, seviye: 3, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - modul: ortak.ptnm
+  - id: bb_baslik
+    etiket: Biyobelirteçler
+    seviye: 2
+    alt:
+      - modul: biyobelirtec.her2_gastrik
+      - {modul: biyobelirtec.mmr, seviye: 2}
+      - modul: biyobelirtec.pdl1_cps
+      - modul: biyobelirtec.claudin18
+      - {id: ebv, etiket: EBV (EBER-ISH), seviye: 3, tip: secim, secenekler: [Negatif, Pozitif]}
+  - id: ek_bulgular
+    etiket: Tümör dışı mide
+    seviye: 2
+    tip: coklu
+    secenekler: [Özellik yok, Kronik gastrit, İntestinal metaplazi, Atrofi, Helicobacter pylori, Displazi, …]
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: bk, etiket: Büyük kurvatur uzunluğu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: kk, etiket: Küçük kurvatur uzunluğu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: ek_segment, etiket: Ek segmentler, tip: secim, secenekler: ["proksimalde … cm özofagus, distalde … cm duodenum", "distalde … cm duodenum", "proksimalde … cm özofagus"]}
+    - {id: omentum, etiket: Omentum boyutu, tip: olcu, birim: cm}
+    - {id: yerlesim, etiket: Tümör yerleşimi, zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: borrmann, etiket: Makroskopik tip (Borrmann), tip: secim, secenekler: ["polipoid (Borrmann I)", "sınırları belirgin ülsere (Borrmann II)", "ülsere-infiltratif (Borrmann III)", "diffüz infiltratif (Borrmann IV, linitis plastika)", "yüzeyel / erken mide kanseri görünümünde"], zorunlu: true}
+    - {id: d_prok, etiket: Proksimal sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: d_dist, etiket: Distal sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: d_ogb, etiket: Tümör merkezinin OGB'ye uzaklığı, tip: olcu, birim: cm, not: "Proksimal tümörlerde evreleme (mide / özofagus) için zorunlu."}
+    - {id: invazyon, etiket: Makroskopik invazyon, tip: secim, secenekler: [muskularis propriaya sınırlı, subserozaya uzanan, serozaya ulaşan, "komşu organa (…) uzanan"], zorunlu: true}
+    - {id: mukoza, etiket: Tümör dışı mukoza, tip: secim, secenekler: [olağan görünümdedir, "atrofik görünümdedir", "… cm çapında polip izlendi"]}
+    - {id: omentum_bulgu, etiket: Omentum, tip: secim, secenekler: [makroskopik olarak özellik izlenmedi, "… cm boyutlarında nodül izlendi"]}
+    - {id: kk_ln, etiket: Küçük kurvatur lenf nodları, not: "en büyüğü … cm, … adet"}
+    - {id: bk_ln, etiket: Büyük kurvatur lenf nodları, not: "en büyüğü … cm, … adet"}
+  varyantlar:
+    - ad: Subtotal / total gastrektomi
+      metin:
+        - >-
+          {fiksasyon_durumu} gönderilen, büyük kurvatur boyunca {bk} cm, küçük kurvatur boyunca {kk} cm
+          uzunluğunda {prosedur} materyalidir; {ek_segment} mevcuttur. Materyale bağlı {omentum} cm boyutlarında
+          omentum bulunmaktadır. Tümör bölgesine uyan serozal / omental yüz boyandı.
+        - >-
+          Mide büyük kurvatur boyunca (tümör kurvaturda ise karşı kurvaturdan) açıldığında {yerlesim} yerleşimli,
+          {tumor_boyut} cm boyutlarında, {borrmann} tümör izlendi. Tümör proksimal cerrahi sınıra {d_prok} cm,
+          distal cerrahi sınıra {d_dist} cm mesafededir; tümör merkezi özofagogastrik bileşkeye {d_ogb} cm
+          uzaklıktadır. Kesitlerde tümör makroskopik olarak {invazyon} görünümdedir.
+        - >-
+          Tümör dışı mide mukozası {mukoza}. Omentumda {omentum_bulgu}. Küçük kurvatur boyunca {kk_ln}, büyük
+          kurvatur boyunca {bk_ln} lenf nodu diseke edildi.
+      ornekleme:
+        - {kod: T, aciklama: "tümör, tam kat", not: "En az 4 kaset; en derin invazyon ve seroza ilişkisi. Erken mide kanserinde lezyonun tamamı haritalanarak."}
+        - {kod: TS, aciklama: "tümör-seroza ilişkisi", parca: "…", kaset: "…"}
+        - {kod: PCS, aciklama: "proksimal cerrahi sınır", parca: "…", kaset: "…", not: "Diffüz tipte / tümör yakınsa tam çevre en face."}
+        - {kod: DCS, aciklama: "distal cerrahi sınır", parca: "…", kaset: "…"}
+        - {kod: OCS, aciklama: "omental / radyal sınır, tümör karşısı", parca: "1", kaset: "1"}
+        - {kod: M, aciklama: "tümör dışı mukoza, antrum / korpus", parca: "2", kaset: "2"}
+        - {kod: O, aciklama: "omentum", parca: "…", kaset: "…"}
+        - {kod: KK, aciklama: "küçük kurvatur lenf nodları", not: "Tümü."}
+        - {kod: BK, aciklama: "büyük kurvatur lenf nodları", not: "Tümü; toplam en az 16 nod hedeflenir."}
+  ek_materyaller: [makro.ln_istasyon, makro.donat]
+  yapilacaklar:
+    - Açmadan önce seroza ve omentum incelenir; tümör karşısı serozal yüz boyanır.
+    - Tümör kurvaturdaysa karşı kurvaturdan açılır.
+    - Proksimal tümörlerde tümör merkezinin OGB'ye uzaklığı ölçülür (evreleme sınıfı).
+    - Lenf nodları istasyon bazında (KK / BK / ayrı gönderilenler) ayıklanır; en az 16.
+    - Neoadjuvan sonrası yatak tamamen ya da haritalanarak örneklenir.

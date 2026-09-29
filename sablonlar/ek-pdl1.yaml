@@ -1,0 +1,40 @@
+id: ek-pdl1
+baslik: PD-L1 immünohistokimya raporu (TPS / CPS / IC)
+organ: Çeşitli
+materyal: Ek test
+makro_baslik: Materyal
+kaynaklar:
+  - "Onaylı tamamlayıcı / eşlik eden tanı testlerinin kullanım kılavuzları (22C3 pharmDx, SP263, SP142, 28-8)"
+  - "IASLC PD-L1 Atlas; ESMO / ulusal öneriler — tümöre özgü eşik değerler"
+not: "Skor tipi ve eşik değer tümör tipi, klon ve endikasyona bağlıdır; raporda üçü birlikte yazılır. Değerlendirme için ≥100 canlı tümör hücresi gerekir."
+tani_alternatif: true
+tani:
+  - "PD-L1 (22C3) tümör oranı skoru %… (TPS <%1 / %1–49 / ≥%50); {organ}, {onceki_islem}"
+  - "PD-L1 (22C3) birleşik pozitif skor … (CPS <1 / ≥1 / ≥5 / ≥10 / ≥20); {organ}, {onceki_islem}"
+  - "PD-L1 (SP263) tümör hücresi %… / TAP %…; {organ}, {onceki_islem}"
+  - "PD-L1 (SP142) immün hücre skoru %… (IC <%1 / ≥%1); {organ}, {onceki_islem}"
+  - "PD-L1 değerlendirilemedi (yetersiz canlı tümör hücresi <100), lütfen epikrizi okuyunuz; {organ}, {onceki_islem}"
+epikriz:
+  - {id: organ, etiket: Organ / tümör, seviye: 0, gizli: true, tip: metin}
+  - {id: onceki_islem, etiket: Önceki materyal, seviye: 0, gizli: true, tip: metin}
+  - {id: tumor_tipi, etiket: Tümör tipi / endikasyon, seviye: 1, tip: secim, serbest: true, secenekler: ["Küçük hücreli dışı akciğer karsinomu", "Mide / OGB / özofagus adenokarsinomu", "Özofagus skuamöz hücreli karsinomu", "Baş-boyun skuamöz hücreli karsinomu", "Üçlü negatif meme karsinomu", "Serviks karsinomu", "Ürotelyal karsinom"]}
+  - {id: klon, etiket: Klon / platform, seviye: 1, tip: secim, secenekler: ["22C3 pharmDx (Dako Autostainer Link 48)", "SP263 (Ventana BenchMark)", "SP142 (Ventana BenchMark)", "28-8 pharmDx", "Laboratuvar geliştirilmiş test (LDT; …)"]}
+  - {id: skor_tipi, etiket: Skor tipi, seviye: 1, tip: secim, secenekler: ["TPS — boyanan canlı tümör hücresi / tüm canlı tümör hücresi × 100", "CPS — (boyanan tümör hücresi + lenfosit + makrofaj) / canlı tümör hücresi × 100 (üst sınır 100)", "IC — tümör alanında boyanan immün hücrelerin kapladığı alan %", "TAP — tümör alanı pozitifliği %"]}
+  - {id: sonuc, etiket: Sonuç, seviye: 1, tip: metin, kalip: "TPS %… / CPS … / IC %… / TAP %…"}
+  - {id: tumor_hucre, etiket: Canlı tümör hücresi sayısı, seviye: 1, tip: metin, kalip: "≈… (≥100 gereklidir)"}
+  - {id: kontrol, etiket: Kontroller, seviye: 2, tip: secim, secenekler: ["Pozitif ve negatif kontroller uygun", "Kontroller uygun değil — tekrar önerilir"]}
+  - {id: sinirlilik, etiket: Sınırlılık, seviye: 2, tip: coklu, secenekler: ["Yok", "Küçük biyopsi / sitoloji — heterojenite nedeniyle sınırlı temsil", "Dekalsifiye materyal", "Eski blok (>… yıl)", "Kemik / nekroz / ezilme artefaktı"]}
+  - {id: yorum, etiket: Yorum, seviye: 1, tip: metin, not: "İlgili endikasyonda kullanılan eşik değerin belirtilmesi (ör. NSCLC TPS ≥%50; mide CPS ≥5; TNBC CPS ≥10)."}
+makroskopi:
+  alanlar:
+    - {id: onceki, etiket: Önceki rapor no, zorunlu: true}
+    - {id: blok, etiket: Blok kodu, zorunlu: true}
+    - {id: materyal_tipi, etiket: Materyal tipi, tip: secim, secenekler: [biyopsi, rezeksiyon, sitoloji hücre bloğu], zorunlu: true}
+    - {id: preparat, etiket: Kesit sayısı, tip: sayi}
+    - {id: tumor_orani, etiket: Tümör hücre oranı, tip: sayi, birim: "%"}
+  varyantlar:
+    - ad: Blok / kesit
+      metin:
+        - "{onceki} no'lu olguya ait {materyal_tipi} materyalinin {blok} kodlu parafin bloğundan {preparat} adet kesit hazırlandı; işaretlenen alanda tümör hücre oranı yaklaşık %{tumor_orani}."
+  yapilacaklar:
+    - Çalışılacak tümör alanı H&E üzerinde işaretlenir; fiksasyon / dekalsifikasyon bilgisi kaydedilir.

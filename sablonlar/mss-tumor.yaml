@@ -1,0 +1,81 @@
+id: mss-tumor
+baslik: Merkezi sinir sistemi tümörü (WHO CNS5 katmanlı bütünleşik tanı)
+organ: MSS
+materyal: Biyopsi / rezeksiyon
+kaynaklar:
+  - "WHO MSS Tümörleri, 5. baskı (WHO CNS5, 2021)"
+  - "ICCR — Tumours of the Central Nervous System"
+  - "cIMPACT-NOW güncellemeleri"
+not: >
+  Katmanlı rapor — bütünleşik tanı, histopatolojik sınıflama, MSS WHO derecesi (Arap rakamı), moleküler bilgi.
+  Moleküler test yapılamadıysa 'NOS', yapıldı ancak WHO tipine uymuyorsa 'NEC' eki kullanılır.
+tani:
+  - "{butunlesik_tani}, MSS WHO derece …, lütfen epikrizi okuyunuz; {yer}, {islem}"
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: islem, etiket: İşlem, seviye: 0, gizli: true, tip: secim, secenekler: [stereotaktik biyopsi, "açık biyopsi", "subtotal rezeksiyon", "gros total rezeksiyon"]}
+  - id: butunlesik_tani
+    etiket: Bütünleşik tanı
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler:
+      - "Glioblastom, IDH-yabanıl tip"
+      - "Astrositom, IDH-mutant"
+      - "Oligodendrogliom, IDH-mutant ve 1p/19q-kodelesyonlu"
+      - "Diffüz orta hat gliomu, H3 K27-altere"
+      - "Diffüz hemisferik gliom, H3 G34-mutant"
+      - "Pilositik astrositom"
+      - "Ependimom (… moleküler grup)"
+      - "Medulloblastom (… moleküler grup)"
+      - "Menenjiyom"
+      - "Schwannom"
+      - "Primer MSS diffüz büyük B hücreli lenfoması"
+      - "Metastatik karsinom (…)"
+      - "… , NOS"
+      - "… , NEC"
+  - {id: histolojik, etiket: Histopatolojik sınıflama, seviye: 1, tip: metin, kalip: "… (ör. diffüz astrositik gliom, mikrovasküler proliferasyon ve nekroz içeren)"}
+  - {id: derece, etiket: MSS WHO derecesi, seviye: 1, tip: secim, secenekler: ["1", "2", "3", "4", "Verilmedi (…)"]}
+  - id: molekuler
+    etiket: Moleküler / İHK bilgi
+    seviye: 1
+    alt:
+      - {id: idh, etiket: IDH, seviye: 1, tip: metin, kalip: "IDH1 R132H İHK …; IDH1/2 sekanslama …"}
+      - {id: atrx_p53, etiket: ATRX / p53, seviye: 1, tip: metin, kalip: "ATRX korunmuş / kayıp; p53 …"}
+      - {id: kodelesyon, etiket: 1p/19q, seviye: 1, tip: secim, secenekler: [Çalışılmadı, Kodelesyon var, Kodelesyon yok]}
+      - {id: cdkn2a, etiket: CDKN2A/B homozigot delesyon, seviye: 1, tip: secim, secenekler: [Çalışılmadı, Saptandı, Saptanmadı]}
+      - {id: gbm_mol, etiket: "IDH-yabanıl diffüz astrositik gliomda GBM kriterleri", seviye: 1, tip: coklu, secenekler: ["TERT promotor mutasyonu", "EGFR amplifikasyonu", "+7 / −10", "Hiçbiri saptanmadı / çalışılmadı"]}
+      - {id: h3, etiket: H3 K27M / H3 G34 / H3K27me3, seviye: 2, tip: metin}
+      - {id: braf, etiket: BRAF V600E / KIAA1549::BRAF, seviye: 2, tip: metin}
+      - {id: mgmt, etiket: MGMT promotor metilasyonu, seviye: 1, tip: secim, secenekler: [Çalışılmadı, Metile, Metile değil]}
+      - {id: ki67, etiket: Ki-67, seviye: 2, tip: olcu, birim: "%"}
+      - {id: diger_mol, etiket: Diğer, seviye: 3, tip: metin, kalip: "Metilasyon profili …; NGS …"}
+  - id: menenjiyom
+    etiket: Menenjiyom derecelendirme bulguları
+    seviye: 1
+    kosul: "menenjiyom"
+    alt:
+      - {id: m_alt_tip, etiket: Alt tip, seviye: 1, tip: secim, secenekler: [Meningotelyal, Fibröz, Transizyonel, Psammomatöz, Anjiyomatöz, Mikrokistik, Sekretuar, Metaplastik, Kordoid, Berrak hücreli, Atipik, Papiller, Rabdoid, Anaplastik]}
+      - {id: m_mitoz, etiket: Mitoz, seviye: 1, tip: metin, kalip: "…/10 BBA (1,6 mm²) — derece 2: 4–19; derece 3: ≥20"}
+      - {id: m_beyin, etiket: Beyin invazyonu, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü, "Değerlendirilemedi (beyin dokusu yok)"]}
+      - {id: m_minor, etiket: Minör atipik özellikler, seviye: 1, tip: coklu, secenekler: [Hipersellülarite, "Küçük hücre değişikliği", "Belirgin nükleol", "Tabakalanma (sheeting)", "Spontan nekroz"]}
+      - {id: m_mol, etiket: TERT promotor / CDKN2A/B, seviye: 2, tip: metin, kalip: "… (varlığında derece 3)"}
+  - {id: yorum, etiket: Yorum, seviye: 1, tip: metin, not: "Materyalin temsil sınırlılığı (stereotaktik biyopsi), bekleyen moleküler testler."}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: boyut, etiket: Toplam boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: ["gri-beyaz, yumuşak, kanamalı doku parçaları", "sarı nekrotik alanlar içeren", "sert, lobüle, dural yapışıklık gösteren", "ultrasonik aspiratör materyali"]}
+    - {id: frozen, etiket: Frozen / smear, tip: secim, secenekler: ["frozen / smear inceleme yapıldı (… no)", yapılmadı]}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: Biyopsi / rezeksiyon
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): Topluca {boyut} cm boyutlarında, {gorunum}; {frozen}. {parca} parça {kaset} kasette takibe alındı."
+  yapilacaklar:
+    - Küçük biyopside tümü; moleküler için yedek blok (parçalar ikiye dağıtılır).
+    - Rezeksiyonda farklı görünümlü alanlar (nekroz, kanama, sert kısım) ayrı kasetlenir; menenjiyomda dura ve beyin arayüzü.
+    - Taze doku alınabiliyorsa dondurulmuş örnek (metilasyon / NGS için).

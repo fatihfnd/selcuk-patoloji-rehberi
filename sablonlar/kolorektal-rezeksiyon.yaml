@@ -1,0 +1,193 @@
+id: kolorektal-rezeksiyon
+baslik: Kolon ve rektum — karsinom, rezeksiyon
+organ: Kolorektal
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Colon and Rectum (Resection)"
+  - "ICCR — Colorectal Cancer, Resection"
+  - "RCPath — Dataset for colorectal cancer"
+  - "WHO Sindirim Sistemi Tümörleri, 5. baskı (2019); AJCC 8; ITBCC 2016 (tomurcuklanma)"
+tani:
+  - "Adenokarsinom, lütfen epikrizi okuyunuz; {yerlesim}, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); perikolik / perirektal yağ doku"
+epikriz:
+  - id: prosedur
+    etiket: Prosedür
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler: [Sağ hemikolektomi, Genişletilmiş sağ hemikolektomi, Transvers kolektomi, Sol hemikolektomi, Sigmoidektomi, Anterior rezeksiyon, Low anterior rezeksiyon, Abdominoperineal rezeksiyon, Total / subtotal kolektomi, Transanal lokal eksizyon]
+  - {id: neoadjuvan, etiket: Neoadjuvan tedavi, seviye: 1, tip: secim, secenekler: [Yok, Var, Bilinmiyor], gizli: true}
+  - id: yerlesim
+    etiket: Tümör yerleşimi
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler: [Çekum, İleoçekal valv, Çıkan kolon, Hepatik fleksura, Transvers kolon, Splenik fleksura, İnen kolon, Sigmoid kolon, Rektosigmoid, "Rektum (periton refleksiyonunun üstü / altı / kesişimi)"]
+  - {id: boyut, etiket: Tümör boyutu, seviye: 2, tip: olcu, birim: cm, kalip: "…x…x… cm"}
+  - {id: perforasyon, etiket: Makroskopik tümör perforasyonu, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - id: mezorektum
+    etiket: Mezorektal / mezokolik eksizyon bütünlüğü
+    seviye: 1
+    kosul: "rektum veya CME"
+    tip: secim
+    secenekler: [Komplet, Komplete yakın, İnkomplet, Değerlendirilemedi]
+  - id: histolojik_tip
+    etiket: Histolojik tip
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler: [Adenokarsinom, "Müsinöz adenokarsinom (>%50 ekstrasellüler müsin)", Taşlı yüzük hücreli karsinom, Medüller karsinom, Serrated adenokarsinom, Mikropapiller adenokarsinom, Adenom benzeri adenokarsinom, Adenoskuamöz karsinom, İndiferansiye karsinom, Karsinom (sarkomatoid komponentli)]
+  - id: derece
+    etiket: Histolojik derece
+    seviye: 1
+    tip: secim
+    secenekler: ["Düşük dereceli (iyi–orta diferansiye)", "Yüksek dereceli (az diferansiye)"]
+    not: "WHO 2019 iki basamaklı sistem; en az diferansiye alana göre (tümör kenarındaki tomurcuklanma/PDC hariç)."
+  - id: yayilim
+    etiket: Tümör yayılımı
+    seviye: 1
+    tip: secim
+    secenekler:
+      - "Lamina propria / muskularis mukoza (pTis)"
+      - "Submukoza (pT1)"
+      - "Muskularis propria (pT2)"
+      - "Muskularis propriayı aşarak perikolorektal dokulara (pT3)"
+      - "Viseral periton yüzeyine ulaşmış (pT4a)"
+      - "Komşu organ / yapıya doğrudan invazyon (pT4b; …)"
+  - {id: t3_derinlik, etiket: Muskularis propria ötesi invazyon derinliği, seviye: 3, tip: olcu, birim: mm, kosul: "pT3"}
+  - id: lvi
+    etiket: Lenfovasküler invazyon
+    seviye: 1
+    tip: coklu
+    secenekler: [Görülmedi, "Küçük damar (lenfatik / venül) invazyonu", "İntramural venöz invazyon", "Ekstramural venöz invazyon (EMVI)", Belirlenemedi]
+  - modul: ortak.pni
+  - id: budding
+    etiket: Tümör tomurcuklanması (ITBCC)
+    seviye: 2
+    tip: secim
+    secenekler: ["Düşük, Bd1 (0–4 / 0,785 mm²)", "Orta, Bd2 (5–9 / 0,785 mm²)", "Yüksek, Bd3 (≥10 / 0,785 mm²)"]
+  - id: tedavi_etkisi
+    etiket: Tedavi yanıtı (CAP / modifiye Ryan)
+    seviye: 1
+    kosul: "neoadjuvan == Var"
+    tip: secim
+    secenekler: ["Skor 0: canlı tümör hücresi yok (tam yanıt)", "Skor 1: tek hücre / küçük hücre grupları (neredeyse tam yanıt)", "Skor 2: rezidü tümörle birlikte belirgin regresyon (kısmi yanıt)", "Skor 3: belirgin regresyon yok (zayıf / yanıt yok)"]
+    not: "Hücresiz müsin gölcükleri rezidü tümör sayılmaz."
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    alt:
+      - {id: sinir_proksimal, etiket: Proksimal, seviye: 1, tip: secim, secenekler: [Tümör görülmedi (… cm), Tümör görüldü]}
+      - {id: sinir_distal, etiket: Distal, seviye: 1, tip: secim, secenekler: [Tümör görülmedi (… cm), Tümör görüldü]}
+      - {id: sinir_radyal, etiket: Radyal / mezenterik (CRM), seviye: 1, tip: secim, secenekler: ["Tümör görülmedi; en yakın mesafe … mm", "Tümör ≤1 mm (pozitif)"]}
+      - {id: sinir_diger, etiket: Diğer (… ), seviye: 3, tip: metin}
+  - id: lenf_nodu
+    etiket: Lenf nodları
+    seviye: 1
+    tip: metin
+    kalip: "… lenf nodu incelendi; …'inde metastaz görüldü / metastaz görülmedi"
+    not: "Evreleme için en az 12 lenf nodu önerilir."
+  - {id: depozit, etiket: Tümör depoziti, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü (… adet)"]}
+  - modul: ortak.ptnm
+  - id: bb_baslik
+    etiket: Biyobelirteçler
+    seviye: 1
+    alt:
+      - modul: biyobelirtec.mmr
+      - {id: molekuler, etiket: "Moleküler (KRAS / NRAS / BRAF)", seviye: 3, tip: metin}
+  - id: ek_bulgular
+    etiket: Tümör dışı mukoza / ek bulgular
+    seviye: 2
+    tip: coklu
+    secenekler: [Özellik yok, "Adenom (… adet, …)", İnflamatuar barsak hastalığı, Divertiküler hastalık, …]
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: parcalar, etiket: Materyali oluşturan segmentler, zorunlu: true, not: "Ör. 8 cm uzunluğunda terminal ileum, 22 cm uzunluğunda çekum ve çıkan kolon, 7 cm uzunluğunda apendiks vermiformis"}
+    - {id: mezenter, etiket: Mezenter boyutu, tip: olcu, birim: cm}
+    - {id: ligasyon, etiket: Vasküler ligasyon işareti, tip: secim, secenekler: [ip ile işaretlidir, işaretlenmemiştir]}
+    - {id: cme, etiket: Mezokolik eksizyon düzlemi, tip: secim, secenekler: [mezokolik düzlemde (komplet), intramezokolik düzlemde (komplete yakın), muskularis propria düzleminde (inkomplet)]}
+    - {id: seroza, etiket: Serozal yüzey, tip: secim, secenekler: [olağan görünümdedir, "tümör üzerinde … cm çekinti / mat alan izlendi", "tümör serozaya ulaşmış görünümdedir"]}
+    - {id: boya, etiket: Boyanan yüzey, not: "Kolonda: tümör karşısındaki mezenterik (radyal) yüz; peritonla örtülü olmayan yüz boyanır."}
+    - {id: yerlesim, etiket: Tümör yerleşimi, zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: lumen, etiket: Lümen ilişkisi, tip: secim, secenekler: [lümeni çepeçevre saran, "lümen çevresinin yaklaşık …'ini tutan", lümeni daraltan]}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: [ülserovejetan, polipoid, ülsere-infiltratif, düz-infiltratif]}
+    - {id: d_prok, etiket: Proksimal sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: d_dist, etiket: Distal sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: d_rad, etiket: Radyal / mezenterik sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: d_ek, etiket: Diğer referans (ileoçekal valv / dentat çizgi), tip: olcu, birim: cm}
+    - {id: invazyon, etiket: Makroskopik invazyon derinliği, tip: secim, secenekler: [muskularis propriaya sınırlı, perikolik yağ dokuya uzanan, serozaya ulaşan, "komşu organa (…) uzanan"], zorunlu: true}
+    - {id: perf, etiket: Makroskopik perforasyon, tip: secim, secenekler: [izlenmedi, tümör bölgesinde izlendi, tümörden uzakta izlendi], zorunlu: true}
+    - {id: mukoza, etiket: Tümör dışı mukoza, tip: secim, secenekler: [olağan görünümdedir, "… cm çapında … adet polip izlendi", "divertiküller izlendi"]}
+    - {id: ln_max, etiket: En büyük lenf nodu, tip: olcu, birim: cm}
+    - {id: ln_min, etiket: En küçük lenf nodu, tip: olcu, birim: cm}
+    - {id: ln_adet, etiket: Lenf nodu sayısı, tip: sayi, zorunlu: true}
+    - {id: refleksiyon, etiket: Anterior peritoneal refleksiyon, tip: secim, secenekler: [belirgindir, belirgin değildir]}
+    - {id: refl_iliski, etiket: Tümörün refleksiyona göre yeri, tip: secim, secenekler: [tamamen üstünde, refleksiyonu kesen, tamamen altında], zorunlu: true}
+    - {id: tme, etiket: Mezorektal eksizyon kalitesi (Quirke), tip: secim, secenekler: [komplettir (mezorektal düzlem), komplete yakındır (intramezorektal düzlem), inkomplettir (muskularis propria düzlemi)], zorunlu: true}
+    - {id: tme_defekt, etiket: Mezorektal defekt, tip: secim, secenekler: [defekt izlenmedi, "… cm'den derin olmayan defektler izlendi", "muskularis propriaya ulaşan defekt izlendi"]}
+    - {id: d_crm, etiket: Sirkümferansiyel (mezorektal) sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+  varyantlar:
+    - ad: Kolon (hemikolektomi / segmenter rezeksiyon)
+      metin:
+        - >-
+          {fiksasyon_durumu} gönderilen {prosedur} materyalidir; {parcalar} içermektedir. Mezenter {mezenter} cm
+          boyutlarındadır; vasküler ligasyon {ligasyon}. Eksizyon {cme}. Serozal yüzey {seroza}. Tümör karşısındaki
+          mezenterik yüz boyandı.
+        - >-
+          Materyal antimezenterik kenardan açıldığında {yerlesim} yerleşimli, {lumen}, {tumor_boyut} cm
+          boyutlarında, {gorunum} görünümde tümör izlendi. Tümör proksimal cerrahi sınıra {d_prok} cm, distal
+          cerrahi sınıra {d_dist} cm, mezenterik (radyal) cerrahi sınıra {d_rad} cm, ileoçekal valve {d_ek} cm
+          mesafededir. Kesitlerde tümör makroskopik olarak {invazyon} görünümdedir. Makroskopik perforasyon
+          {perf}.
+        - >-
+          Tümör dışı mukoza {mukoza}. Perikolik yağ dokuda en büyüğü {ln_max} cm, en küçüğü {ln_min} cm çapında
+          {ln_adet} adet lenf nodu diseke edildi.
+      ornekleme:
+        - {kod: T, aciklama: "tümör, tam kat", not: "En az 3–4 kaset: en derin invazyon, tümör-seroza, tümör-komşu mukoza geçişi."}
+        - {kod: TS, aciklama: "tümör-seroza ilişkisi", parca: "…", kaset: "…"}
+        - {kod: RCS, aciklama: "tümör-mezenterik, radyal cerrahi sınır", parca: "1", kaset: "1"}
+        - {kod: PCS, aciklama: "proksimal cerrahi sınır", parca: "1", kaset: "1", not: "Tümöre ≤5 cm ise dik kesit."}
+        - {kod: DCS, aciklama: "distal cerrahi sınır", parca: "1", kaset: "1"}
+        - {kod: Tİ, aciklama: "terminal ileum", parca: "1", kaset: "1"}
+        - {kod: İÇV, aciklama: "ileoçekal valv", parca: "1", kaset: "1"}
+        - {kod: A, aciklama: "apendiks vermiformis", parca: "…", kaset: "1"}
+        - {kod: K, aciklama: "tümör dışı kolon", parca: "1", kaset: "1"}
+        - {kod: P, aciklama: "polip", parca: "…", kaset: "…"}
+        - {kod: VL, aciklama: "vasküler ligasyon bölgesi, apikal lenf nodu", parca: "…", kaset: "…"}
+        - {kod: LN, aciklama: "perikolik lenf nodları", not: "Tümü; en az 12 nod hedeflenir, bulunamazsa ek arama / yağ temizleme."}
+    - ad: Rektum (LAR / APR, TME)
+      metin:
+        - >-
+          {fiksasyon_durumu} gönderilen {prosedur} materyalidir; {parcalar} içermektedir. Anterior peritoneal
+          refleksiyon {refleksiyon}. Mezorektum {tme}; {tme_defekt}. Vasküler ligasyon {ligasyon}.
+        - >-
+          Mezorektal yüz boyandı; materyal tümör seviyesinin 1 cm üstüne kadar anteriordan açılıp, tümör
+          bölgesi açılmadan 0,5 cm aralıklarla transvers dilimlendi.
+        - >-
+          Periton refleksiyonuna göre {refl_iliski} yerleşimli, {lumen}, {tumor_boyut} cm boyutlarında, {gorunum}
+          görünümde tümör izlendi. Tümör proksimal cerrahi sınıra {d_prok} cm, distal cerrahi sınıra {d_dist} cm,
+          sirkümferansiyel (mezorektal) cerrahi sınıra {d_crm} cm mesafededir; dentat çizgiye uzaklık {d_ek} cm.
+          Kesitlerde tümör makroskopik olarak {invazyon} görünümdedir. Makroskopik perforasyon {perf}.
+        - >-
+          Tümör dışı mukoza {mukoza}. Mezorektal yağ dokuda en büyüğü {ln_max} cm, en küçüğü {ln_min} cm çapında
+          {ln_adet} adet lenf nodu diseke edildi.
+      ornekleme:
+        - {kod: T, aciklama: "tümör, tam kat transvers dilimler", not: "CRM'e en yakın dilim mutlaka; neoadjuvan sonrası yatak tamamen veya haritalanarak (en az 5 kaset)."}
+        - {kod: CRM, aciklama: "tümör-sirkümferansiyel cerrahi sınır, en yakın nokta", parca: "…", kaset: "…"}
+        - {kod: PCS, aciklama: "proksimal cerrahi sınır", parca: "1", kaset: "1"}
+        - {kod: DCS, aciklama: "distal cerrahi sınır", parca: "1", kaset: "1", not: "APR'de perianal deri ve sfinkter kompleksi dahil."}
+        - {kod: K, aciklama: "tümör dışı rektum / kolon", parca: "1", kaset: "1"}
+        - {kod: VL, aciklama: "vasküler ligasyon bölgesi", parca: "…", kaset: "…"}
+        - {kod: LN, aciklama: "mezorektal lenf nodları", not: "Tümü."}
+  ek_materyaller: [makro.donat, makro.ln_istasyon]
+  yapilacaklar:
+    - Açmadan önce seroza ve mezenter/mezorektum fotoğrafı; TME/CME kalitesini taze iken değerlendir.
+    - Radyal (nonperitoneal) yüzü boya; rektumda tümör bölgesini açmadan transvers dilimle.
+    - Tümörün proksimal, distal, radyal sınırlar ve (varsa) ileoçekal valv/dentat çizgiye uzaklıkları tek cümlede.
+    - En derin invazyon, seroza ilişkisi, radyal sınır ve perforasyon alanı ayrı kasetlerde.
+    - En az 12 lenf nodu; apikal nodu ayrı kodla.
+    - Neoadjuvan sonrası yatak bulunamazsa tüm şüpheli alan tamamen örneklenir.

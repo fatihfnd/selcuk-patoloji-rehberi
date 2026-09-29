@@ -1,0 +1,55 @@
+id: deri-alopesi
+baslik: Saçlı deri — alopesi biyopsisi (vertikal + horizontal kesit)
+organ: Deri
+materyal: Biyopsi
+kaynaklar:
+  - "Headington (1984) transvers kesit yöntemi; Sperling — alopesi histopatolojisi"
+  - "NAHRS / Olsen — primer sikatrisyel alopesi sınıflaması"
+not: "İdeal — aynı aktif alandan iki adet 4 mm punch: biri vertikal, biri horizontal (transvers) kesit. Foliküler sayımlar horizontal kesitte isthmus ve infundibulum düzeylerinde yapılır."
+tani_alternatif: true
+tani:
+  - "Non-skatrisyel alopesi, androgenetik alopesi ile uyumlu, lütfen epikrizi okuyunuz; saçlı deri {yer}, punch biyopsi"
+  - "Non-skatrisyel alopesi, telogen effluvium ile uyumlu, lütfen epikrizi okuyunuz; saçlı deri {yer}, punch biyopsi"
+  - "Non-skatrisyel alopesi, alopesi areata ile uyumlu, lütfen epikrizi okuyunuz; saçlı deri {yer}, punch biyopsi"
+  - "Trikotillomani / travmatik alopesi ile uyumlu bulgular, lütfen epikrizi okuyunuz; saçlı deri {yer}, punch biyopsi"
+  - "Lenfositik primer skatrisyel alopesi, liken planopilaris / frontal fibrozan alopesi ile uyumlu, lütfen epikrizi okuyunuz; saçlı deri {yer}, punch biyopsi"
+  - "Lenfositik primer skatrisyel alopesi, diskoid lupus eritematozus ile uyumlu, lütfen epikrizi okuyunuz; saçlı deri {yer}, punch biyopsi"
+  - "Lenfositik primer skatrisyel alopesi, santral santrifüjal skatrisyel alopesi ile uyumlu, lütfen epikrizi okuyunuz; saçlı deri {yer}, punch biyopsi"
+  - "Nötrofilik primer skatrisyel alopesi, folikülit dekalvans ile uyumlu, lütfen epikrizi okuyunuz; saçlı deri {yer}, punch biyopsi"
+  - "Son dönem skatrisyel alopesi, lütfen epikrizi okuyunuz; saçlı deri {yer}, punch biyopsi"
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: materyal, etiket: Kesit yöntemi, seviye: 1, tip: secim, secenekler: ["Vertikal + horizontal", "Yalnız vertikal", "Yalnız horizontal"]}
+  - id: sayim
+    etiket: Foliküler sayım (horizontal kesit)
+    seviye: 1
+    kosul: "horizontal kesit"
+    alt:
+      - {id: toplam, etiket: Toplam folikül, seviye: 1, tip: sayi}
+      - {id: terminal, etiket: Terminal folikül, seviye: 1, tip: sayi}
+      - {id: vellus, etiket: Vellus / minyatürize folikül, seviye: 1, tip: sayi}
+      - {id: tv_orani, etiket: Terminal / vellus oranı, seviye: 1, tip: metin, kalip: "…:1 (normal ≈7:1; androgenetik alopesi <4:1)"}
+      - {id: anagen_telogen, etiket: Anagen / telogen-katagen, seviye: 1, tip: metin, kalip: "Anagen %…, telogen + katagen %… (normal telogen <%15)"}
+      - {id: folikuler_unite, etiket: Foliküler ünite yapısı, seviye: 2, tip: secim, secenekler: [Korunmuş, "Foliküler birleşme (politrişi)", "Foliküler ünite kaybı"]}
+  - {id: inflamasyon, etiket: İnflamasyon, seviye: 1, tip: secim, secenekler: [Görülmedi / minimal, "Peribulber lenfositik (arı sürüsü)", "İsthmus-infundibulum düzeyinde likenoid (perifoliküler)", "Perifoliküler + interfolliküler interfaz ve derin perivasküler", "Nötrofilik / süpüratif"]}
+  - {id: fibrozis, etiket: Perifoliküler fibrozis / skar, seviye: 1, tip: secim, secenekler: [Görülmedi, "Perifoliküler lameller fibrozis", "Fibröz traktlar (stela) — non-skatrisyel", "Skar ile foliküllerin yer değiştirmesi"]}
+  - {id: sebase, etiket: Sebase bezler, seviye: 1, tip: secim, secenekler: [Korunmuş, "Azalmış / kaybolmuş"]}
+  - {id: travma, etiket: Travma bulguları, seviye: 2, tip: coklu, secenekler: [Görülmedi, Trikomalazi, "Pigment döküntüleri (pigment kastları)", "Katagen folikül artışı", "Folikül içi kanama"]}
+  - {id: diger, etiket: Diğer, seviye: 3, tip: coklu, secenekler: ["Müsin artışı (dermal)", "Bazal membran kalınlaşması (PAS)", "Elastik liflerde kayıp (VVG)", "Dermal eozinofil", "Mantar elemanları (PAS)"]}
+  - {id: yorum, etiket: Yorum, seviye: 1, tip: metin, not: "Klinik (dermoskopi, dağılım) korelasyonu; son dönemde ayırıcı tanının sınırlılığı."}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: boyut, etiket: Punch çapı × derinlik, tip: olcu, birim: cm, zorunlu: true}
+    - {id: sac, etiket: Yüzeydeki kıl, tip: secim, secenekler: [kıl içermektedir, "seyrek kıl içermektedir", "kıl içermemektedir"]}
+    - {id: kesim, etiket: Kesim, tip: secim, secenekler: ["vertikal olarak ikiye bölündü", "subkutan yağ dokusunun hemen üstünden (dermis-subkutis bileşkesinden) horizontal olarak bölünüp her iki yarı kesit yüzleri aynı yöne bakacak şekilde gömüldü"], zorunlu: true}
+  varyantlar:
+    - ad: Alopesi punch biyopsisi
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): {boyut} cm boyutlarında, yüzeyi {sac} punch biyopsi materyali; {kesim}. Tümü takibe alındı."
+  yapilacaklar:
+    - Horizontal kesitte yağ dokusu-dermis bileşkesinden bölünür; seri kesitlerle bulbus → isthmus → infundibulum düzeyleri incelenir.
+    - Skatrisyel alopeside elastik boya (VVG) ve PAS istenebilir.
+    - Klinik bilgi (dağılım, süre, dermoskopi) istemde yoksa not edilir.

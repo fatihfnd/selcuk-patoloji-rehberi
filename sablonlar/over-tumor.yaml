@@ -1,0 +1,100 @@
+id: over-tumor
+baslik: Over / tuba uterina / primer periton tümörü — rezeksiyon
+organ: Over
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Ovary, Fallopian Tube, or Primary Peritoneum"
+  - "ICCR — Carcinoma of the Ovary, Fallopian Tube and Primary Peritoneum"
+  - "WHO Kadın Genital Tümörleri, 5. baskı (2020); FIGO 2014; AJCC 8"
+  - "Böhm kemoterapi yanıt skoru (CRS, 2015)"
+not: "Her organ ayrı tanı satırı alır (sağ over, sol over, uterus, omentum, periton biyopsileri). Epikriz tümöre ait bütün bilgiyi tek yerde toplar."
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; {taraf} over, {prosedur}"
+  - "Tümör görülmedi / tümör tutulumu görüldü; karşı over ve tuba uterina, salpingo-ooferektomi"
+  - "Tümör görülmedi / tümör tutulumu görüldü; uterus, total histerektomi"
+  - "Tümör görülmedi / metastatik karsinom (en büyük odak … cm); omentum, omentektomi"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); pelvik / paraaortik"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [salpingo-ooferektomi, kistektomi, "total histerektomi + bilateral salpingo-ooferektomi", "+ omentektomi, periton biyopsileri, lenfadenektomi", "sitoredüktif (interval debulking) cerrahi"]}
+  - {id: taraf, etiket: Taraf, seviye: 0, gizli: true, tip: secim, secenekler: [sağ, sol, bilateral]}
+  - {id: neoadjuvan, etiket: Neoadjuvan kemoterapi, seviye: 1, tip: secim, secenekler: [Yok, Var, Bilinmiyor], gizli: true}
+  - {id: primer_yer, etiket: Tümörün primer yeri, seviye: 1, tip: secim, secenekler: [Over, Tuba uterina, Primer periton, "Tubo-ovaryan (ayırt edilemedi)", "Belirlenemedi"], not: "HGSC'de STIC veya tubal mukozal karsinom varlığında tuba primer kabul edilir (ICCR/WHO)."}
+  - {id: butunluk, etiket: Kapsül / seroza bütünlüğü, seviye: 1, tip: secim, secenekler: [Bütün, "Rüptüre (ameliyat öncesi — IC2)", "Rüptüre (ameliyat sırasında — IC1)", "Rüptüre (zamanı bilinmiyor)", Parçalı gönderildi]}
+  - {id: yuzey, etiket: Over / tuba yüzey tutulumu, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü (IC2)", Belirlenemedi]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 2, tip: olcu, birim: cm}
+  - id: histolojik_tip
+    etiket: Histolojik tip
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler:
+      - Yüksek dereceli seröz karsinom
+      - Düşük dereceli seröz karsinom
+      - "Seröz borderline tümör (mikropapiller varyant / mikroinvazyon: …)"
+      - Endometrioid karsinom
+      - Berrak hücreli karsinom
+      - "Müsinöz karsinom (ekspansil / infiltratif invazyon)"
+      - Müsinöz borderline tümör
+      - Seromüsinöz borderline tümör
+      - Karsinosarkom
+      - "Erişkin tip granüloza hücreli tümör"
+      - "Juvenil granüloza hücreli tümör"
+      - "Sertoli-Leydig hücreli tümör (…)"
+      - Disgerminom
+      - "İmmatür teratom (derece …)"
+      - "Olgun kistik teratom zemininde malign transformasyon (…)"
+      - "Metastatik karsinom (…)"
+  - {id: derece, etiket: Histolojik derece, seviye: 1, tip: secim, secenekler: ["Düşük dereceli", "Yüksek dereceli", "FIGO derece 1 / 2 / 3 (endometrioid)", "Uygulanmaz"]}
+  - {id: stic, etiket: Seröz tubal intraepitelyal karsinom (STIC), seviye: 2, tip: secim, secenekler: [Görülmedi, "Görüldü (sağ / sol tuba)", Tuba incelenemedi]}
+  - {id: implant, etiket: Peritoneal implant (borderline tümör), seviye: 1, kosul: "borderline", tip: secim, secenekler: [Görülmedi, "Non-invaziv implant", "İnvaziv implant (düşük dereceli seröz karsinom kabul edilir)"]}
+  - {id: omentum, etiket: Omentum / periton tutulumu, seviye: 1, tip: secim, secenekler: [Örneklenmedi, Tutulum görülmedi, "Mikroskopik tutulum (IIIA2)", "Makroskopik, ≤2 cm (IIIB)", "Makroskopik, >2 cm (IIIC)"]}
+  - {id: diger_organ, etiket: Diğer organ / yapı tutulumu, seviye: 1, tip: coklu, secenekler: [Karşı over, Tuba, Uterus, Pelvik periton, "Karaciğer / dalak kapsülü", "Karaciğer / dalak parankimi (IVB)"]}
+  - modul: ortak.lvi
+  - {id: sitoloji, etiket: Peritoneal yıkama / asit sitolojisi, seviye: 1, tip: secim, secenekler: [Gönderilmedi, Negatif, "Pozitif (IC3)", "… no'lu raporda"]}
+  - {id: crs, etiket: Kemoterapi yanıt skoru (CRS; omentum), seviye: 1, kosul: "neoadjuvan == Var ve HGSC", tip: secim, secenekler: ["CRS 1 — belirgin yanıt yok / minimal", "CRS 2 — kısmi yanıt", "CRS 3 — tam / neredeyse tam yanıt (≤2 mm rezidü)"]}
+  - modul: ortak.lenf_nodu
+  - {id: figo, etiket: FIGO 2014 evresi, seviye: 1, tip: secim, serbest: true, secenekler: [IA, IB, IC1, IC2, IC3, IIA, IIB, IIIA1(i), IIIA1(ii), IIIA2, IIIB, IIIC, IVA, IVB]}
+  - modul: ortak.ptnm
+  - id: bb_baslik
+    etiket: Biyobelirteçler
+    seviye: 2
+    alt:
+      - {id: wt1_p53, etiket: WT1 / p53, seviye: 2, tip: metin, kalip: "WT1 …; p53 yabanıl tip / anormal (…)"}
+      - {modul: biyobelirtec.mmr, seviye: 2, kosul: "endometrioid / berrak hücreli"}
+      - {id: brca_hrd, etiket: BRCA1/2 / HRD, seviye: 3, tip: metin, kalip: "Çalışılmadı / …"}
+      - {id: er, etiket: ER / PR, seviye: 3, tip: metin}
+  - {id: endometriozis, etiket: Eşlik eden endometriozis, seviye: 3, tip: secim, secenekler: [Görülmedi, Görüldü, "Atipik endometriozis"]}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: taraf, etiket: Taraf, tip: secim, secenekler: [sağ, sol], zorunlu: true}
+    - {id: agirlik, etiket: Ağırlık, tip: sayi, birim: g}
+    - {id: boyut, etiket: Over boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: kapsul, etiket: Kapsül, tip: secim, secenekler: [bütündür, "… cm'lik yırtık içermektedir", "dış yüzeyde papiller / ekzofitik alanlar izlendi"], zorunlu: true}
+    - {id: kesit, etiket: Kesit yüzü, zorunlu: true, not: "Solid / kistik oranı; unilokuler / multilokuler; iç yüzde papiller alanlar; içerik (seröz / müsinöz / kanamalı / sebase-kıl); nekroz"}
+    - {id: tuba, etiket: Tuba, tip: metin, not: "… cm uzunluğunda, … cm çapında; fimbriyal uç …"}
+    - {id: omentum_boyut, etiket: Omentum boyutu, tip: olcu, birim: cm}
+    - {id: omentum_nodul, etiket: Omental nodül, tip: secim, secenekler: [izlenmedi, "en büyüğü … cm çapında … adet nodül izlendi"], zorunlu: true}
+  varyantlar:
+    - ad: Salpingo-ooferektomi (tümörlü over)
+      metin:
+        - >-
+          {fiksasyon_durumu} gönderilen, {agirlik} g ağırlığında, {boyut} cm boyutlarında {taraf} over ve ona bağlı tuba
+          uterina. Kapsül {kapsul}. Dış yüz boyandı.
+        - "Kesit yüzü: {kesit}. Tuba: {tuba}."
+      ornekleme:
+        - {kod: T, aciklama: tümör, not: "Karsinomda en büyük boyutun cm'i başına 1 kaset; borderline / müsinöz tümörde cm başına 1–2 kaset (solid, papiller, kalın duvarlı alanlar öncelikli)."}
+        - {kod: TY, aciklama: "tümör-yüzey / kapsül, özellikle yırtık ve papiller alanlar", parca: "…", kaset: "…"}
+        - {kod: F, aciklama: "tuba, fimbria SEE-FIM", not: "HGSC şüphesinde tuba tamamen (fimbria longitudinal)."}
+        - {kod: OV, aciklama: tümör dışı over, parca: "…", kaset: "…"}
+    - ad: Omentektomi
+      metin:
+        - "{omentum_boyut} cm boyutlarında omentum; dilimlenerek incelendiğinde nodül {omentum_nodul}."
+      ornekleme:
+        - {kod: O, aciklama: omentum, not: "Makroskopik nodül varsa en büyük nodülden 1–2 kaset; makroskopik olarak negatifse en az 5 kaset (neoadjuvan sonrası CRS için en şüpheli alanlardan)."}
+  ek_materyaller: [makro.ln_istasyon]
+  yapilacaklar:
+    - Kapsül bütünlüğü ve yüzey bulgularını dilimlemeden önce kaydet; dış yüzü boya.
+    - Tümörü cm başına örnekle; müsinöz / borderline tümörlerde daha yoğun (gizli invazyon).
+    - Tubaları SEE-FIM ile işle (HGSC primer yeri ve STIC).
+    - Omentum — makroskopik nodül boyutu (≤2 / >2 cm) evreyi belirler; negatifse çok sayıda kaset.

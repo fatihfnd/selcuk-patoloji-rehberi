@@ -1,0 +1,88 @@
+id: penis
+baslik: Penis — skuamöz hücreli karsinom, rezeksiyon
+organ: Penis
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Penis (Resection)"
+  - "ICCR — Carcinoma of the Penis and Distal Urethra"
+  - "WHO Üriner ve Erkek Genital Tümörleri, 5. baskı (2022); AJCC 8"
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; penis, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); {ln_bolge}"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [sirkümsizyon, lokal eksizyon, glansektomi, parsiyel penektomi, total penektomi]}
+  - {id: ln_bolge, etiket: Lenf nodu bölgesi, seviye: 0, gizli: true, tip: secim, secenekler: [sağ inguinal, sol inguinal, pelvik]}
+  - {id: yerlesim, etiket: Tümör yerleşimi, seviye: 1, tip: coklu, secenekler: [Glans, Koronal sulkus, Prepusyum, Şaft, Üretra (distal)]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 2, tip: olcu, birim: cm}
+  - id: histolojik_tip
+    etiket: Histolojik tip
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler:
+      - "Skuamöz hücreli karsinom, HPV bağımsız, olağan tip"
+      - "Skuamöz hücreli karsinom, HPV bağımsız, verrüköz"
+      - "Skuamöz hücreli karsinom, HPV bağımsız, papiller"
+      - "Skuamöz hücreli karsinom, HPV bağımsız, psödohiperplastik"
+      - "Skuamöz hücreli karsinom, HPV bağımsız, sarkomatoid"
+      - "Skuamöz hücreli karsinom, HPV ilişkili, bazaloid"
+      - "Skuamöz hücreli karsinom, HPV ilişkili, warty (kondilomatöz)"
+      - "Skuamöz hücreli karsinom, HPV ilişkili, warty-bazaloid"
+      - "Skuamöz hücreli karsinom, mikst"
+  - {id: p16, etiket: p16 (İHK), seviye: 2, tip: secim, secenekler: [Blok tipi pozitif, Negatif, Çalışılmadı]}
+  - {id: derece, etiket: Histolojik derece, seviye: 1, tip: secim, secenekler: ["G1, iyi diferansiye", "G2, orta derecede diferansiye", "G3, az diferansiye / sarkomatoid"], not: "En kötü diferansiye alana göre."}
+  - {id: derinlik, etiket: İnvazyon derinliği / kalınlığı, seviye: 2, tip: olcu, birim: mm}
+  - id: yayilim
+    etiket: Tümör yayılımı
+    seviye: 1
+    tip: coklu
+    secenekler:
+      - "Subepitelyal bağ doku / lamina propria (pT1)"
+      - "Korpus spongiozum ± üretra (pT2)"
+      - "Korpus kavernozum ± üretra (pT3)"
+      - "Komşu yapılar — skrotum, prostat, pubik kemik (pT4)"
+      - "Dartos / prepusyum"
+  - {id: lvi, etiket: Lenfovasküler invazyon, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü, Belirlenemedi], not: "pT1a / pT1b ayrımı: LVI, PNI veya yüksek derece (G3 / sarkomatoid) varlığı pT1b."}
+  - {modul: ortak.pni, seviye: 1}
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    alt:
+      - {id: s_uretra, etiket: Üretra ve periüretral doku, seviye: 1, tip: secim, secenekler: [Tümör / PeIN görülmedi, "PeIN görüldü", İnvaziv karsinom görüldü]}
+      - {id: s_korporal, etiket: Korpus kavernozum / spongiozum (proksimal), seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (… mm)", Tümör görüldü]}
+      - {id: s_deri, etiket: Şaft derisi / mukoza, seviye: 1, tip: secim, secenekler: [Tümör / PeIN görülmedi, "PeIN görüldü", İnvaziv karsinom görüldü]}
+  - {id: pein, etiket: Penil intraepitelyal neoplazi (PeIN), seviye: 2, tip: secim, secenekler: [Görülmedi, "HPV ilişkili (bazaloid / warty) PeIN", "HPV bağımsız (diferansiye) PeIN"]}
+  - modul: ortak.lenf_nodu
+  - modul: ortak.ptnm
+  - {id: ek_bulgular, etiket: Ek bulgular, seviye: 3, tip: coklu, secenekler: [Liken skleroz, Kondilom, "…"]}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: boyut, etiket: Materyal boyutu / uzunluk, tip: olcu, birim: cm, zorunlu: true}
+    - {id: yerlesim, etiket: Tümör yerleşimi, zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: [ekzofitik-papiller, ülsere-infiltratif, "düz, beyaz plak"]}
+    - {id: invazyon, etiket: Makroskopik invazyon, tip: secim, secenekler: [yüzeyel, korpus spongiozuma uzanan, korpus kavernozuma uzanan, üretraya uzanan], zorunlu: true}
+    - {id: d_prok, etiket: Proksimal (korporal / üretral) sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: d_deri, etiket: Deri sınırına uzaklık, tip: olcu, birim: cm}
+  varyantlar:
+    - ad: Glansektomi / penektomi
+      metin:
+        - "{fiksasyon_durumu} gönderilen, {boyut} cm boyutlarında {prosedur} materyalidir. Cerrahi sınırlar boyandı; üretra kateterize edilerek materyal longitudinal (orta hattan) dilimlendi."
+        - >-
+          {yerlesim} yerleşimli, {tumor_boyut} cm boyutlarında, {gorunum} görünümde tümör izlendi. Kesitlerde tümör
+          makroskopik olarak {invazyon}; proksimal (korporal / üretral) cerrahi sınıra {d_prok} cm, deri sınırına {d_deri}
+          cm mesafededir.
+      ornekleme:
+        - {kod: ÜS, aciklama: üretra ve periüretral doku sınırı, parca: "1", kaset: "1", not: "En face; dilimlemeden önce."}
+        - {kod: KS, aciklama: korpus kavernozum / spongiozum sınırı, parca: "…", kaset: "…", not: "En face."}
+        - {kod: DS, aciklama: şaft derisi sınırı, parca: "…", kaset: "…"}
+        - {kod: T, aciklama: "tümör, en derin invazyon ve anatomik katlarla ilişki", not: "Longitudinal dilimlerden; lamina propria, spongiozum, tunika albuginea, kavernozum ilişkisi."}
+        - {kod: TÜ, aciklama: tümör-üretra ilişkisi, parca: "…", kaset: "…"}
+        - {kod: M, aciklama: tümör dışı mukoza / prepusyum, parca: "…", kaset: "…"}
+  ek_materyaller: [makro.sentinel, makro.ln_istasyon]
+  yapilacaklar:
+    - Proksimal üretral, korporal ve deri sınırlarını dilimlemeden önce en face al.
+    - Üretrayı kateterize edip orta hattan longitudinal dilimle.
+    - Tümör-anatomik kat ilişkisi (spongiozum / albuginea / kavernozum) evreleme için temel.

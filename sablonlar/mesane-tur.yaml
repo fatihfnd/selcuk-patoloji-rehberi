@@ -1,0 +1,54 @@
+id: mesane-tur
+baslik: Mesane — transüretral rezeksiyon (TUR-M) / biyopsi
+organ: Mesane
+materyal: Biyopsi / TUR
+kaynaklar:
+  - "CAP — Urinary Bladder (Biopsy and Transurethral Resection)"
+  - "ICCR — Carcinoma of the Bladder, Biopsy and TUR"
+  - "WHO Üriner ve Erkek Genital Tümörleri, 5. baskı (2022); AJCC 8"
+not: "TUR materyalinde yağ doku invazyonu pT3 olarak evrelenmez (mesane duvarında da yağ bulunur); en yüksek evre pT2'dir."
+tani_alternatif: true
+tani:
+  - "İnvaziv ürotelyal karsinom, yüksek dereceli, lütfen epikrizi okuyunuz; mesane, transüretral rezeksiyon"
+  - "Non-invaziv papiller ürotelyal karsinom, yüksek dereceli, lütfen epikrizi okuyunuz; mesane, transüretral rezeksiyon"
+  - "Non-invaziv papiller ürotelyal karsinom, düşük dereceli, lütfen epikrizi okuyunuz; mesane, transüretral rezeksiyon"
+  - "Ürotelyal karsinoma in situ, lütfen epikrizi okuyunuz; mesane, soğuk biyopsi"
+  - "Düşük malign potansiyelli papiller ürotelyal neoplazm; mesane, transüretral rezeksiyon"
+  - "Ürotelyal papillom; mesane, transüretral rezeksiyon"
+  - "Kronik sistit, von Brunn yuvaları / sistitis sistika et glandularis; mesane, biyopsi"
+epikriz:
+  - {id: histolojik_tip, etiket: Histolojik tip, seviye: 1, tip: secim, serbest: true, secenekler: [Ürotelyal karsinom, "Ürotelyal karsinom, skuamöz diferansiasyonlu (%…)", "Ürotelyal karsinom, glandüler diferansiasyonlu (%…)", "Ürotelyal karsinom, mikropapiller alt tip (%…)", "Ürotelyal karsinom, nested alt tip", "Ürotelyal karsinom, plazmasitoid alt tip", "Ürotelyal karsinom, sarkomatoid alt tip", "Ürotelyal karsinom, lenfoepitelyoma benzeri", Skuamöz hücreli karsinom, Adenokarsinom, "Nöroendokrin karsinom (küçük hücreli)"]}
+  - {id: altip_not, etiket: Alt tip / diferansiasyon oranı, seviye: 2, tip: metin, kalip: "… %…", not: "Mikropapiller, plazmasitoid, sarkomatoid, küçük hücreli bileşenler oranı ne olursa olsun belirtilir."}
+  - {id: derece, etiket: Histolojik derece (WHO/ISUP), seviye: 1, tip: secim, secenekler: [Düşük dereceli, Yüksek dereceli, "Karışık derece (yüksek dereceli bileşen <%5)"]}
+  - {id: patern, etiket: Büyüme paterni, seviye: 2, tip: coklu, secenekler: [Papiller, Düz (in situ), İnvaziv, Endofitik / invert]}
+  - id: invazyon
+    etiket: İnvazyon
+    seviye: 1
+    tip: secim
+    secenekler: ["Görülmedi (non-invaziv papiller, pTa)", "Görülmedi (karsinoma in situ, pTis)", "Lamina propria invazyonu (pT1)", "Muskularis propria (detrüsör) invazyonu (pT2)", "Belirlenemedi"]
+    alt:
+      - {id: t1_yaygin, etiket: pT1 invazyon yaygınlığı, seviye: 2, tip: secim, secenekler: ["Fokal / mikroinvazyon (tek odak, <1 mm)", "Yaygın / ekstansif", "Muskularis mukozaya göre: üstünde (T1a) / içinde-altında (T1b)"], kosul: "invazyon == pT1"}
+  - {id: mp, etiket: Muskularis propria (detrüsör) örneklenmesi, seviye: 1, tip: secim, secenekler: [Örneklenmiş; tümör yok, Örneklenmiş; tümör invazyonu var, "Örneklenmemiş / değerlendirilemedi"], not: "Örneklenmemişse re-TUR değerlendirmesi için ayrıca vurgulanmalı."}
+  - {id: cis, etiket: Eşlik eden karsinoma in situ, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - modul: ortak.lvi
+  - {id: prostat, etiket: Prostatik üretra / prostat, seviye: 3, tip: secim, secenekler: [Örneklenmedi, "Tutulum görülmedi", "Prostatik üretra / duktuslarda in situ tutulum", "Prostat stromasında invazyon"]}
+  - {id: ptnm, etiket: Patolojik evre (TUR), seviye: 1, tip: secim, secenekler: [pTa, pTis, pT1, "pT2 (en az)"]}
+  - {id: ihk, etiket: İmmünohistokimya, seviye: 3, tip: metin, kalip: "GATA3 …, CK7 …, CK20 …, p53 …, CK20/CD44/p53 (CIS ayırıcı tanısı) …"}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer / tanım}
+    - {id: boyut, etiket: Toplam boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: agirlik, etiket: Ağırlık, tip: sayi, birim: g}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: ["papiller görünümlü, krem-kahverengi", "koterize, düzensiz", "mukozal"]}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: TUR / biyopsi
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): Topluca {boyut} cm boyutlarında, {agirlik} g ağırlığında, {gorunum} çok sayıda doku parçası. Tümü {parca} parça {kaset} kasette takibe alındı."
+  yapilacaklar:
+    - Tümü takibe alınır (TUR-M'de örnekleme yapılmaz).
+    - Tümör tabanı / derin rezeksiyon ayrı gönderildiyse ayrı kod.
+    - Papiller fragmanlar ile derin (koterize, kas içerebilecek) parçalar mümkünse ayrı kasetlenir.

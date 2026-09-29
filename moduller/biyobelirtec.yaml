@@ -1,0 +1,129 @@
+# Biyobelirteç blokları. Klon/platform bilgisi "ER (SP1)" biçiminde istem sisteminden gelmesi beklenir.
+
+meme_er:
+  id: er
+  etiket: ER
+  seviye: 1
+  tip: secim
+  kalip: "Tümör hücrelerinin %…'inde, zayıf / orta / kuvvetli boyanma görüldü / boyanma görülmedi (<%1)"
+  secenekler:
+    - "Pozitif; tümör hücrelerinin %…'inde, zayıf / orta / kuvvetli boyanma"
+    - "Düşük pozitif; tümör hücrelerinin %1–10'unda boyanma"
+    - "Negatif; tümör hücrelerinin <%1'inde boyanma / boyanma görülmedi"
+  not: "ASCO/CAP: %1–10 'düşük pozitif' olarak ayrıca belirtilir; iç kontrol durumu yazılabilir."
+
+meme_pr:
+  id: pr
+  etiket: PR
+  seviye: 1
+  tip: secim
+  kalip: "Tümör hücrelerinin %…'inde, zayıf / orta / kuvvetli boyanma görüldü / boyanma görülmedi (<%1)"
+  secenekler:
+    - "Pozitif; tümör hücrelerinin %…'inde, zayıf / orta / kuvvetli boyanma"
+    - "Negatif; tümör hücrelerinin <%1'inde boyanma / boyanma görülmedi"
+
+meme_her2:
+  id: her2
+  etiket: HER2 (İHK)
+  seviye: 1
+  tip: secim
+  kalip: "Skor … (0 / 0, ultradüşük / 1+, düşük / 2+, şüpheli / 3+, pozitif)"
+  secenekler:
+    - "Skor 0 (boyanma görülmedi)"
+    - "Skor 0 (HER2-ultradüşük; tümör hücrelerinin ≤%10'unda belli belirsiz, inkomplet membranöz boyanma)"
+    - "Skor 1+ (HER2-düşük)"
+    - "Skor 2+ (şüpheli; ISH ile değerlendirme önerilir)"
+    - "Skor 3+ (pozitif)"
+  not: "IHC 2+/ISH-negatif sonuç 'HER2-düşük' olarak raporlanır (ASCO/CAP 2023 güncellemesi)."
+
+meme_her2_ish:
+  id: her2_ish
+  etiket: HER2 (ISH)
+  seviye: 3
+  kosul: "her2 == Skor 2+"
+  tip: metin
+  kalip: "HER2/CEP17 oranı …; hücre başına ortalama HER2 sinyali …; hücre başına ortalama CEP17 sinyali … (… tümör hücresi sayıldı); Grup 1–5: …; sonuç: amplifikasyon görüldü / görülmedi"
+
+meme_ki67:
+  id: ki67
+  etiket: Ki-67 proliferasyon indeksi
+  seviye: 2
+  tip: olcu
+  birim: "%"
+
+meme_miyoepitel:
+  id: miyoepitel
+  etiket: Miyoepitelyal belirteçler (p63 / CK5/6 / SMMHC)
+  seviye: 3
+  tip: secim
+  secenekler:
+    - "İnvaziv tümör alanlarında miyoepitelyal hücre tabakası görülmedi"
+    - "…"
+
+meme_ekaderin:
+  id: ekaderin
+  etiket: E-kaderin
+  seviye: 3
+  tip: secim
+  secenekler:
+    - "Tümör hücrelerinde membranöz boyanma görüldü"
+    - "Tümör hücrelerinde membranöz boyanma kaybı görüldü"
+    - "Tümör hücrelerinde anormal (sitoplazmik / fragmante) boyanma görüldü"
+
+mmr:
+  id: mmr
+  etiket: DNA hatalı eşleşme onarım proteinleri (İHK)
+  seviye: 1
+  alt:
+    - {id: mlh1, etiket: MLH1, seviye: 1, tip: secim, secenekler: [Nükleer ekspresyon korunmuş, Nükleer ekspresyon kaybı]}
+    - {id: pms2, etiket: PMS2, seviye: 1, tip: secim, secenekler: [Nükleer ekspresyon korunmuş, Nükleer ekspresyon kaybı]}
+    - {id: msh2, etiket: MSH2, seviye: 1, tip: secim, secenekler: [Nükleer ekspresyon korunmuş, Nükleer ekspresyon kaybı]}
+    - {id: msh6, etiket: MSH6, seviye: 1, tip: secim, secenekler: [Nükleer ekspresyon korunmuş, Nükleer ekspresyon kaybı]}
+    - id: mmr_sonuc
+      etiket: Sonuç
+      seviye: 1
+      tip: secim
+      secenekler:
+        - "MMR-korunmuş (pMMR)"
+        - "MMR-eksik (dMMR); MLH1/PMS2 kaybı — BRAF V600E ve/veya MLH1 promotor metilasyonu çalışılması önerilir"
+        - "MMR-eksik (dMMR); MSH2/MSH6 kaybı — Lynch sendromu açısından genetik danışmanlık önerilir"
+        - "MMR-eksik (dMMR); izole MSH6 kaybı — Lynch sendromu açısından genetik danışmanlık önerilir"
+        - "MMR-eksik (dMMR); izole PMS2 kaybı — Lynch sendromu açısından genetik danışmanlık önerilir"
+
+her2_gastrik:
+  id: her2_gastrik
+  etiket: HER2 (İHK, gastrik skorlama)
+  seviye: 2
+  tip: secim
+  secenekler:
+    - "Skor 0 (negatif)"
+    - "Skor 1+ (negatif)"
+    - "Skor 2+ (şüpheli; ISH önerilir)"
+    - "Skor 3+ (pozitif)"
+  not: "Rezeksiyonda ≥%10 tümör hücresi, biyopside ≥5 kohezif hücre kümesi kuralı (gastrik HER2 kriterleri)."
+
+pdl1_cps:
+  id: pdl1
+  etiket: PD-L1 (… klonu), birleşik pozitif skor (CPS)
+  seviye: 3
+  tip: metin
+  kalip: "CPS: … (değerlendirilen canlı tümör hücresi ≥100)"
+
+claudin18:
+  id: cldn18
+  etiket: Claudin 18.2
+  seviye: 3
+  tip: secim
+  secenekler:
+    - "Pozitif; tümör hücrelerinin %…'inde orta–kuvvetli membranöz boyanma (≥%75)"
+    - "Negatif; orta–kuvvetli membranöz boyanma tümör hücrelerinin <%75'inde"
+
+akciger_panel:
+  id: akciger_panel
+  etiket: Öngörücü biyobelirteçler
+  seviye: 1
+  alt:
+    - {id: pdl1_tps, etiket: "PD-L1 (… klonu), tümör oranı skoru (TPS)", seviye: 1, tip: metin, kalip: "%… (<%1 / %1–49 / ≥%50); değerlendirilen tümör hücresi ≥100"}
+    - {id: alk, etiket: ALK (D5F3 İHK), seviye: 1, tip: secim, secenekler: [Negatif, Pozitif, Çalışılmadı]}
+    - {id: ros1, etiket: ROS1 (İHK / FISH), seviye: 2, tip: secim, secenekler: [Negatif, "Pozitif (moleküler doğrulama önerilir)", Çalışılmadı]}
+    - {id: molekuler, etiket: Moleküler (EGFR / KRAS / BRAF / MET / RET / NTRK / HER2), seviye: 2, tip: metin, kalip: "… (yöntem: NGS / PCR); tümör hücre oranı %…"}

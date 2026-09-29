@@ -1,0 +1,68 @@
+id: timus
+baslik: Timoma / timik karsinom — timektomi
+organ: Timus
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Thymus (Thymic Epithelial Tumors)"
+  - "ICCR — Thymic Epithelial Tumours"
+  - "WHO Toraks Tümörleri, 5. baskı (2021); ITMIG; Masaoka-Koga; AJCC 8"
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; ön mediasten, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); mediastinal"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [timektomi, "genişletilmiş timektomi", "timektomi + … (akciğer / perikard / damar) rezeksiyonu"]}
+  - {id: neoadjuvan, etiket: Neoadjuvan tedavi, seviye: 1, tip: secim, secenekler: [Yok, Var, Bilinmiyor], gizli: true}
+  - {id: klinik, etiket: Miyastenia gravis / paraneoplastik sendrom, seviye: 3, tip: secim, secenekler: [Yok, Var, Bilinmiyor]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: olcu, birim: cm, kalip: "…x…x… cm"}
+  - id: histolojik_tip
+    etiket: Histolojik tip (WHO 2021)
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler:
+      - "Timoma, tip A"
+      - "Timoma, tip AB"
+      - "Timoma, tip B1"
+      - "Timoma, tip B2"
+      - "Timoma, tip B3"
+      - "Mikronodüler timoma, lenfoid stromalı"
+      - "Metaplastik timoma"
+      - "Timoma, mikst tip (… %…, … %…)"
+      - "Timik karsinom, skuamöz hücreli"
+      - "Timik karsinom, … (NUT / bazaloid / lenfoepitelyal / adenokarsinom …)"
+      - "Timik nöroendokrin tümör (… karsinoid / BHNEK / KHK)"
+  - {id: bilesen, etiket: Bileşen oranları (mikst timoma), seviye: 2, tip: metin, kosul: "mikst", kalip: "Her bileşen %10'luk artımla"}
+  - {id: kapsul, etiket: Kapsül / invazyon, seviye: 1, tip: secim, secenekler: ["Kapsüllü; kapsül invazyonu yok (Masaoka-Koga I)", "Mikroskopik transkapsüler invazyon (IIa)", "Makroskopik invazyon: timik / perimediastinal yağ doku (IIb)", "Komşu organ invazyonu (III): …", "Plevral / perikardiyal yayılım (IVa)", "Lenfojen / hematojen metastaz (IVb)"]}
+  - {id: yayilim, etiket: "Tümör yayılımı (TNM / ITMIG)", seviye: 1, tip: coklu, secenekler: ["Kapsüllü veya mediastinal yağ dokuya uzanan (pT1a)", "Mediastinal plevra (pT1b)", "Perikard (pT2)", "Akciğer / brakiosefalik ven / VCS / frenik sinir / göğüs duvarı / ekstraperikardiyal pulmoner damar (pT3)", "Aorta / arkus dalları / intraperikardiyal pulmoner arter / miyokard / trakea / özofagus (pT4)"]}
+  - {id: tedavi_etkisi, etiket: Tedavi etkisi, seviye: 1, kosul: "neoadjuvan == Var", tip: metin, kalip: "Canlı tümör %…"}
+  - {id: sinir, etiket: Cerrahi sınırlar, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (en yakın: …, … mm)", "Tümör görüldü (… sınır)"], not: "Mediastinal plevra ve perikard yüzleri gerçek sınır değildir; boyalı yüzler cerrahla oryante edilmelidir."}
+  - modul: ortak.lvi
+  - modul: ortak.lenf_nodu
+  - {id: masaoka, etiket: Masaoka-Koga evresi, seviye: 1, tip: secim, secenekler: [I, IIa, IIb, III, IVa, IVb]}
+  - modul: ortak.ptnm
+  - {id: ihk, etiket: İmmünohistokimya, seviye: 2, tip: metin, kalip: "CK19 / p40 …, TdT (T lenfositler) …, CD5 …, CD117 …, NUT …, Ki-67 …"}
+  - {id: tumor_disi, etiket: Tümör dışı timus, seviye: 3, tip: secim, secenekler: [Involüsyone timus, "Lenfofoliküler timik hiperplazi", "Timik kist"]}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: isaret, etiket: Oryantasyon, tip: secim, secenekler: ["cerrah tarafından … yüzü işaretlenmiş", "işaretlenmemiş"], zorunlu: true}
+    - {id: agirlik, etiket: Ağırlık, tip: sayi, birim: g}
+    - {id: boyut, etiket: Materyal boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: kapsul, etiket: Kapsül, tip: secim, secenekler: [intakt görünümdedir, "… bölgesinde yağ dokuya / plevraya / perikarda uzanım izlendi"], zorunlu: true}
+    - {id: kesit, etiket: Kesit yüzü, tip: secim, secenekler: ["lobüle, fibröz septalar içeren, gri-kahverengi", "kistik alanlar içeren", "nekroz / kanama alanları içeren"]}
+    - {id: d_sinir, etiket: En yakın sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+  varyantlar:
+    - ad: Timektomi
+      metin:
+        - "{fiksasyon_durumu} {isaret} gönderilen, {agirlik} g ağırlığında, {boyut} cm boyutlarında timektomi materyalidir. Dış yüz boyandı."
+        - "Kesitlerde {tumor_boyut} cm boyutlarında, {kesit} tümör izlendi. Kapsül {kapsul}. Tümör en yakın cerrahi sınıra {d_sinir} cm mesafededir."
+      ornekleme:
+        - {kod: T, aciklama: "tümör ve kapsül ilişkisi", not: "Cm başına 1 kaset (en az 5); özellikle kapsül ve çevre yağ doku geçişleri (Masaoka-Koga evrelemesi)."}
+        - {kod: TS, aciklama: "tümör-en yakın boyalı yüz / plevra / perikard", parca: "…", kaset: "…"}
+        - {kod: Y, aciklama: "tümör dışı timus / perimediastinal yağ doku", parca: "…", kaset: "…"}
+  ek_materyaller: [makro.ln_istasyon]
+  yapilacaklar:
+    - Oryantasyonu cerrahla netleştir; tüm dış yüzü boya.
+    - Kapsül-yağ doku geçişlerini bol örnekle (evreleme bu kesitlere dayanır).
+    - Neoadjuvan sonrası yatak haritalanarak.

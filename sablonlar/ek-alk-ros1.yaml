@@ -1,0 +1,40 @@
+id: ek-alk-ros1
+baslik: ALK / ROS1 / pan-TRK öngörücü İHK ve FISH raporu
+organ: Akciğer (ve diğer)
+materyal: Ek test
+makro_baslik: Materyal
+kaynaklar:
+  - "CAP / IASLC / AMP moleküler test kılavuzu (2018)"
+  - "VENTANA ALK (D5F3) CDx kullanım kılavuzu; IASLC Atlas of ALK and ROS1 Testing"
+not: "ALK D5F3 (Ventana, OptiView + amplifikasyon) ikili yorumlanır; pozitiflik eşiği yoktur — herhangi bir tümör hücresinde güçlü granüler sitoplazmik boyanma pozitiftir. ROS1 ve pan-TRK İHK tarama amaçlıdır; pozitif sonuç FISH / NGS ile doğrulanmalıdır."
+tani_alternatif: true
+tani:
+  - "ALK (D5F3) immünohistokimyasal olarak negatif; {organ}, {onceki_islem}"
+  - "ALK (D5F3) immünohistokimyasal olarak pozitif (ALK yeniden düzenlenmesi ile uyumlu); {organ}, {onceki_islem}"
+  - "ROS1 (D4D6) immünohistokimyasal olarak negatif; {organ}, {onceki_islem}"
+  - "ROS1 (D4D6) immünohistokimyasal olarak pozitif, moleküler doğrulama önerilir, lütfen epikrizi okuyunuz; {organ}, {onceki_islem}"
+  - "ALK / ROS1 FISH (ayrılma probu): yeniden düzenlenme saptandı / saptanmadı (… hücrenin %…'i); {organ}, {onceki_islem}"
+  - "Pan-TRK immünohistokimyasal olarak pozitif / negatif; {organ}, {onceki_islem}"
+epikriz:
+  - {id: organ, etiket: Organ / tümör, seviye: 0, gizli: true, tip: metin}
+  - {id: onceki_islem, etiket: Önceki materyal, seviye: 0, gizli: true, tip: metin}
+  - {id: alk_ihk, etiket: ALK İHK, seviye: 1, tip: secim, secenekler: [Çalışılmadı, "Negatif", "Pozitif (güçlü granüler sitoplazmik)", "Belirsiz / değerlendirilemedi (FISH / NGS önerilir)"], alt: [{id: alk_klon, etiket: Klon / platform, seviye: 2, tip: metin, kalip: "D5F3, Ventana OptiView + amplifikasyon / …"}]}
+  - {id: ros1_ihk, etiket: ROS1 İHK, seviye: 1, tip: secim, secenekler: [Çalışılmadı, "Negatif", "Pozitif (… yoğunluk, %… hücre) — doğrulama önerilir", "Belirsiz"]}
+  - {id: trk_ihk, etiket: Pan-TRK İHK, seviye: 2, tip: secim, secenekler: [Çalışılmadı, Negatif, "Pozitif (sitoplazmik / nükleer / membranöz; %…) — doğrulama önerilir"]}
+  - {id: fish, etiket: FISH (ayrılma probu), seviye: 1, tip: metin, kalip: "Gen: ALK / ROS1; ≥50 tümör hücresi sayıldı; ayrık / izole 3' sinyal gösteren hücre %… (eşik ≥%15) — pozitif / negatif / sınırda (%10–50 → ikinci gözlemci)"}
+  - {id: ngs, etiket: NGS / RT-PCR, seviye: 2, tip: metin, kalip: "… füzyonu saptandı / saptanmadı (… panel)"}
+  - {id: kontrol, etiket: Kontroller, seviye: 2, tip: secim, secenekler: ["Uygun", "Uygun değil — tekrar önerilir"]}
+  - {id: yorum, etiket: Yorum, seviye: 1, tip: metin, not: "Tedavi seçimine ilişkin not; tarama İHK sonuçlarının moleküler doğrulama gereksinimi."}
+makroskopi:
+  alanlar:
+    - {id: onceki, etiket: Önceki rapor no, zorunlu: true}
+    - {id: blok, etiket: Blok kodu, zorunlu: true}
+    - {id: materyal_tipi, etiket: Materyal tipi, tip: secim, secenekler: [biyopsi, rezeksiyon, sitoloji hücre bloğu], zorunlu: true}
+    - {id: preparat, etiket: Kesit sayısı, tip: sayi}
+    - {id: tumor_orani, etiket: Tümör hücre oranı, tip: sayi, birim: "%"}
+  varyantlar:
+    - ad: Blok / kesit
+      metin:
+        - "{onceki} no'lu olguya ait {materyal_tipi} materyalinin {blok} kodlu parafin bloğundan {preparat} adet kesit hazırlandı; işaretlenen alanda tümör hücre oranı yaklaşık %{tumor_orani}."
+  yapilacaklar:
+    - Çalışılacak tümör alanı H&E üzerinde işaretlenir; fiksasyon / dekalsifikasyon bilgisi kaydedilir.

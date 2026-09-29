@@ -1,0 +1,84 @@
+id: tukuruk-bezi
+baslik: Majör tükürük bezi — tümör, rezeksiyon (parotidektomi / submandibulektomi)
+organ: Tükürük bezi
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Major Salivary Glands (Resection)"
+  - "ICCR — Carcinomas of the Major Salivary Glands"
+  - "WHO Baş ve Boyun Tümörleri, 5. baskı (2022); AJCC 8"
+tani_alternatif: true
+tani:
+  - "Pleomorfik adenom; {bez}, {prosedur}"
+  - "Warthin tümörü; {bez}, {prosedur}"
+  - "Bazal hücreli adenom / onkositom / miyoepitelyoma; {bez}, {prosedur}"
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; {bez}, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); intraparotid / boyun"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [süperfisyal parotidektomi, total parotidektomi, "radikal parotidektomi (fasiyal sinir dahil)", submandibulektomi, "ekstrakapsüler diseksiyon"]}
+  - {id: bez, etiket: Bez, seviye: 0, gizli: true, tip: secim, secenekler: [sağ parotis, sol parotis, sağ submandibüler bez, sol submandibüler bez, sublingual bez]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: olcu, birim: cm}
+  - modul: ortak.fokalite
+  - id: histolojik_tip
+    etiket: Histolojik tip (malign)
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler:
+      - Mukoepidermoid karsinom
+      - "Adenoid kistik karsinom (tübüler %… / kribriform %… / solid %…)"
+      - Asinik hücreli karsinom
+      - Sekretuar karsinom
+      - "Polimorf adenokarsinom"
+      - "Tükürük kanalı karsinomu"
+      - "Epitelyal-miyoepitelyal karsinom"
+      - "Miyoepitelyal karsinom"
+      - "Bazal hücreli adenokarsinom"
+      - "Pleomorfik adenom zemininde karsinom (karsinom tipi: …)"
+      - "Adenokarsinom, NOS"
+      - "Skuamöz hücreli karsinom (primer / metastatik ayrımı)"
+  - {id: derece, etiket: Histolojik derece, seviye: 1, tip: secim, secenekler: ["Düşük derece", "Orta derece", "Yüksek derece", "Uygulanmaz (doğal olarak düşük / yüksek dereceli tip)"], not: "Mukoepidermoid karsinomda kullanılan sistem (AFIP / Brandwein / Katabi) belirtilir; ACC'de solid komponent >%30 yüksek derece."}
+  - {id: ex_pa, etiket: Karsinom ex pleomorfik adenom — invazyon, seviye: 1, kosul: "ex PA", tip: secim, secenekler: ["İntrakapsüler (non-invaziv)", "Minimal invaziv (kapsül dışına ≤4 mm)", "Yaygın invaziv (>4 mm)"]}
+  - {id: ekstraparankim, etiket: Ekstraparankimal yayılım, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü — makroskopik / klinik (pT3)", "Yalnız mikroskopik (pT3 sayılmaz)"]}
+  - {id: yayilim, etiket: Komşu yapı invazyonu, seviye: 1, tip: coklu, secenekler: [Görülmedi, "Deri / mandibula / dış kulak yolu / fasiyal sinir (pT4a)", "Kafa tabanı / pterigoid plak / karotis (pT4b)"]}
+  - {id: fasiyal, etiket: Fasiyal sinir, seviye: 2, tip: secim, secenekler: [Örneklenmedi, "Tutulum görülmedi", "Perinöral / intranöral tutulum görüldü"]}
+  - modul: ortak.lvi
+  - {modul: ortak.pni, seviye: 1}
+  - {id: sinir, etiket: Cerrahi sınırlar, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (en yakın … mm, … sınır)", "Tümör görüldü (… sınır)", "Kapsül rüptürü / tümör taşması (benign tümörde de raporlanır)"]}
+  - modul: ortak.bb_lenf_nodu
+  - modul: ortak.ptnm
+  - id: bb_baslik
+    etiket: İHK / moleküler
+    seviye: 2
+    alt:
+      - {id: ar_her2, etiket: AR / HER2 (tükürük kanalı karsinomu), seviye: 2, tip: metin, kalip: "AR %… ; HER2 skor … (ISH …)"}
+      - {id: fuzyon, etiket: Füzyon / yeniden düzenlenme, seviye: 3, tip: metin, kalip: "MAML2 (MEC) / MYB (ACC) / ETV6::NTRK3 (sekretuar) / PLAG1 / HMGA2 (PA) …"}
+      - {id: diger_ihk, etiket: Diğer, seviye: 3, tip: metin, kalip: "DOG1 …, SOX10 …, p63 / p40 …, pan-TRK …, S100 …, Ki-67 …"}
+  - {id: zemin, etiket: Tümör dışı bez, seviye: 3, tip: coklu, secenekler: [Özellik yok, Kronik sialoadenit, "İntraparotid lenf nodları (… adet)"]}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: isaret, etiket: Oryantasyon, tip: secim, secenekler: ["… işaretlenmiş", işaretlenmemiş]}
+    - {id: agirlik, etiket: Ağırlık, tip: sayi, birim: g}
+    - {id: boyut, etiket: Materyal boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Kesit yüzü, tip: secim, secenekler: ["beyaz-gri, parlak, miksoid-kondroid (pleomorfik adenom)", "kistik, kahverengi sıvı içeren, papiller (Warthin)", "gri-beyaz, sert, sınırları düzensiz", "sarı-krem, lobüle"]}
+    - {id: kapsul, etiket: Kapsül / sınır, tip: secim, secenekler: ["tam kapsüllü", "kısmen kapsüllü", "kapsülsüz / infiltratif", "kapsül yırtığı izlendi"], zorunlu: true}
+    - {id: d_sinir, etiket: En yakın sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: ln, etiket: İntraparotid lenf nodu, tip: secim, secenekler: [izlenmedi, "en büyüğü … cm çapında … adet izlendi"]}
+  varyantlar:
+    - ad: Parotidektomi / submandibulektomi
+      metin:
+        - "{fiksasyon_durumu} {isaret} gönderilen, {agirlik} g ağırlığında, {boyut} cm boyutlarında {prosedur} materyalidir. Dış yüz boyandı; 0,3–0,5 cm aralıklarla dilimlendi."
+        - "Kesitlerde {tumor_boyut} cm boyutlarında, {gorunum}, {kapsul} tümör izlendi; en yakın cerrahi sınıra {d_sinir} cm mesafededir. İntraparotid lenf nodu {ln}."
+      ornekleme:
+        - {kod: T, aciklama: "tümör ve kapsül-parankim geçişi", not: "Cm başına 1 kaset (en az 3); benign görünümlü tümörde kapsül ve farklı görünümlü alanlar (ex PA şüphesi) ayrıca."}
+        - {kod: TS, aciklama: "tümör-en yakın boyalı sınır", parca: "…", kaset: "…"}
+        - {kod: FS, aciklama: "fasiyal sinir dalı (gönderildiyse)", parca: "…", kaset: "…"}
+        - {kod: P, aciklama: tümör dışı bez, parca: "1", kaset: "1"}
+        - {kod: LN, aciklama: intraparotid lenf nodları, parca: "…", kaset: "…"}
+  ek_materyaller: [makro.ln_istasyon]
+  yapilacaklar:
+    - Dış yüzü boya; kapsül bütünlüğünü dilimlemeden önce kontrol et (taşma / rüptür raporlanır).
+    - Pleomorfik adenomda sert, beyaz-sarı, nekrotik alanlar ex PA açısından ayrıca örneklenir.
+    - İntraparotid lenf nodlarını say ve ayrı kodla.

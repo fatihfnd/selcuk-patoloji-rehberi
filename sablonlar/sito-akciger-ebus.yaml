@@ -1,0 +1,45 @@
+id: sito-akciger-ebus
+baslik: Akciğer / mediasten sitolojisi — EBUS-TBİA, BAL, bronş fırçalama (WHO raporlama sistemi)
+organ: Akciğer
+materyal: Sitoloji
+makro_baslik: Materyal ve preparat
+kaynaklar:
+  - "WHO Reporting System for Lung Cytopathology (IAC-IARC-WHO, 2022)"
+  - "WHO Toraks Tümörleri, 5. baskı (2021) — küçük örnek terminolojisi"
+tani_alternatif: true
+tani:
+  - "Tanısal değil / yetersiz (WHO akciğer sitoloji — yetersiz), lütfen epikrizi okuyunuz; {yer}, {yontem}"
+  - "Malignite için negatif, … (WHO akciğer sitoloji — benign); {yer}, {yontem}"
+  - "Lenf nodu örneklemesi yeterli, malignite için negatif (WHO akciğer sitoloji — benign); {yer}, {yontem}"
+  - "Atipik hücreler (WHO akciğer sitoloji — atipik), lütfen epikrizi okuyunuz; {yer}, {yontem}"
+  - "Malignite şüphesi (WHO akciğer sitoloji — malignite şüphesi), lütfen epikrizi okuyunuz; {yer}, {yontem}"
+  - "Küçük hücreli dışı karsinom, adenokarsinom / skuamöz hücreli karsinom lehine (WHO akciğer sitoloji — malign), lütfen epikrizi okuyunuz; {yer}, {yontem}"
+  - "Küçük hücreli karsinom (WHO akciğer sitoloji — malign), lütfen epikrizi okuyunuz; {yer}, {yontem}"
+  - "Nonnekrotizan granülomatöz inflamasyon (WHO akciğer sitoloji — benign); {yer}, {yontem}"
+mikroskopi:
+  - "Preparatlar az / orta / yoğun hücresel olup lenfositler (lenf nodu örneklemesi ile uyumlu) / bronş epitel hücreleri / alveoler makrofajlar izlenmiştir."
+  - "Üç boyutlu kümeler / tek dağılmış halde, belirgin nükleollü / kalıplanma gösteren, ezilme artefaktlı atipik hücreler izlenmiştir / izlenmemiştir; zeminde nekroz / epiteloid histiyosit kümeleri mevcuttur / mevcut değildir."
+epikriz:
+  - {id: yer, etiket: Yer, seviye: 0, gizli: true, tip: metin}
+  - {id: yontem, etiket: Yöntem, seviye: 0, gizli: true, tip: secim, secenekler: ["EBUS-TBİA", "EUS-İİAB", "bronkoalveoler lavaj", "bronş fırçalama", "bronş lavajı", "transtorasik İİAB"]}
+  - {id: yeterlilik, etiket: Yeterlilik, seviye: 1, tip: secim, secenekler: ["Yeterli (lenf nodu: bol lenfosit / germinal merkez parçaları)", "Lezyonel hücreler mevcut", "Yetersiz (yalnız kan / bronş epiteli)"]}
+  - {id: hucre_blogu, etiket: Hücre bloğu İHK, seviye: 1, tip: metin, kalip: "TTF-1 …, napsin A …, p40 …, sinaptofizin …, INSM1 …; tümör hücre sayısı ≈… , tümör oranı %…"}
+  - {id: bb, etiket: Öngörücü biyobelirteçler, seviye: 2, tip: metin, kalip: "PD-L1 (… klonu) TPS %… (≥100 tümör hücresi); ALK …; moleküler …"}
+  - {id: mikro, etiket: Mikroorganizma, seviye: 3, tip: metin, kalip: "EZN / GMS / PAS …"}
+  - {id: rom, etiket: Malignite riski, seviye: 3, tip: metin, kalip: "Kurum / WHO sistemi tablosuna göre …"}
+  - {id: yorum, etiket: Yorum / öneri, seviye: 1, tip: secim, secenekler: ["Klinik-radyolojik korelasyon önerilir.", "Materyal moleküler testler için yeterli / sınırlı görünmektedir.", "Doku biyopsisi önerilir."]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer / istasyon, zorunlu: true}
+    - {id: konvansiyonel, etiket: Yayma sayısı, tip: sayi}
+    - {id: sivi, etiket: Sıvı / iğne yıkama, not: "… ml; hücre bloğu / sıvı bazlı preparat"}
+    - {id: rose, etiket: ROSE, tip: secim, secenekler: [yapılmadı, "yapıldı; yeterli", "yapıldı; yetersiz"]}
+  varyantlar:
+    - ad: EBUS / bronkoskopik sitoloji
+      tekrar:
+        etiket: Her istasyon / kap için
+        metin: "{kod} ({yer} kayıtlı materyal): {konvansiyonel} adet yayma; sıvı / iğne yıkama {sivi}. ROSE {rose}."
+  yapilacaklar:
+    - Her EBUS istasyonu ayrı kodlanır (evreleme).
+    - Hücre bloğu mutlaka hazırlanır; İHK sınırlı tutulur, moleküler için doku korunur.

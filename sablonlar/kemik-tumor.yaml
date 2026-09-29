@@ -1,0 +1,76 @@
+id: kemik-tumor
+baslik: Kemik tümörü — rezeksiyon / amputasyon
+organ: Kemik
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Bone (Resection)"
+  - "ICCR — Primary Tumours of Bone (Resection)"
+  - "WHO Yumuşak Doku ve Kemik Tümörleri, 5. baskı (2020); AJCC 8 (apendiküler iskelet / gövde / kafatası; omurga ve pelvis ayrı)"
+not: "Apendiküler iskelet pT: ≤8 cm (pT1), >8 cm (pT2), aynı kemikte atlama (skip) lezyonu (pT3). Ekstremite kondrosarkom derece 1 WHO 2020'de 'atipik kıkırdak tümörü' adını alır."
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; {kemik}, {prosedur}"
+epikriz:
+  - {id: kemik, etiket: Kemik, seviye: 0, gizli: true, tip: metin}
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [segmental rezeksiyon, intralezyonel küretaj, "geniş rezeksiyon + endoprotez", amputasyon, dezartikülasyon, hemipelvektomi]}
+  - {id: neoadjuvan, etiket: Neoadjuvan kemoterapi, seviye: 1, tip: secim, secenekler: [Yok, Var, Bilinmiyor], gizli: true}
+  - id: histolojik_tip
+    etiket: Histolojik tip (WHO 2020)
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler:
+      - "Konvansiyonel osteosarkom (osteoblastik / kondroblastik / fibroblastik / …)"
+      - "Telanjiektatik osteosarkom"
+      - "Parosteal osteosarkom"
+      - "Periosteal osteosarkom"
+      - "Atipik kıkırdak tümörü"
+      - "Kondrosarkom, derece 2 / derece 3"
+      - "Dediferansiye kondrosarkom"
+      - "Ewing sarkomu"
+      - "Kemiğin dev hücreli tümörü"
+      - "Kordoma (konvansiyonel / dediferansiye / az diferansiye)"
+      - "Kemiğin undiferansiye pleomorfik sarkomu"
+      - "Metastatik karsinom (…)"
+  - {id: derece, etiket: Histolojik derece, seviye: 1, tip: secim, secenekler: ["Düşük derece (G1)", "Yüksek derece (G2 / G3)", "Kondrosarkom derece 1 / 2 / 3", Uygulanmaz]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: olcu, birim: cm, kalip: "En büyük boyut … cm (intramedüller + ekstraosseöz)"}
+  - {id: yayilim, etiket: Tümör yayılımı, seviye: 1, tip: coklu, secenekler: ["İntramedüller", "Kortikal destrüksiyon", "Yumuşak doku uzanımı", "Epifiz / eklem yüzeyi", "Eklem boşluğu / sinovyum", "Atlama (skip) lezyonu (pT3)", "Damar-sinir paketi"]}
+  - {id: tedavi_etkisi, etiket: Kemoterapi yanıtı, seviye: 1, kosul: "neoadjuvan == Var", tip: secim, secenekler: ["Tümör nekrozu ≥%90 (iyi yanıt; Huvos III–IV)", "Tümör nekrozu <%90 (zayıf yanıt; Huvos I–II)"], alt: [{id: nekroz_oran, etiket: Nekroz oranı, seviye: 1, tip: metin, kalip: "%… (haritalanan tam kesit: … kaset)"}]}
+  - modul: ortak.lvi
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    alt:
+      - {id: s_kemik, etiket: Kemik (medüller) sınır, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (… cm)", Tümör görüldü]}
+      - {id: s_yumusak, etiket: Yumuşak doku sınırları, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (en yakın … mm, …)", Tümör görüldü]}
+      - {id: s_damar, etiket: Damar-sinir sınırı, seviye: 2, tip: secim, secenekler: ["Tümör görülmedi", Tümör görüldü]}
+  - {id: lenf_nodu, etiket: Lenf nodları, seviye: 3, tip: metin, kalip: "Örneklenmedi / …"}
+  - modul: ortak.ptnm
+  - {id: ihk_mol, etiket: İHK / moleküler, seviye: 2, tip: metin, kalip: "SATB2 …, MDM2 / CDK4 …, CD99 / NKX2.2 …, H3.3 G34W …, brakiüri …, IDH1/2 …; EWSR1 FISH …"}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: kemik_boyut, etiket: Kemik uzunluğu / çevre dokular, zorunlu: true, not: "… cm uzunluğunda … kemiği; üzerinde …x…x… cm yumuşak doku, … deri"}
+    - {id: kesim, etiket: Kesim, tip: secim, secenekler: ["kemik iliği sınırı alındıktan sonra uzun ekseninde sagital / koronal olarak testere ile açıldı"], zorunlu: true}
+    - {id: yerlesim, etiket: Tümör yerleşimi, zorunlu: true, not: "Metafiz / diafiz / epifiz; eklem yüzeyine … cm; kemik sınırına … cm"}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: ["sert, gri-beyaz, kemikleşmiş", "mavi-beyaz, lobüle, kıkırdak görünümlü", "yumuşak, balık eti görünümlü, kanamalı", "kahverengi-kırmızı, kistik alanlar içeren"]}
+    - {id: yayilim_makro, etiket: Makroskopik yayılım, zorunlu: true, not: "Korteks destrüksiyonu / periost reaksiyonu / yumuşak doku uzanımı (… cm) / eklem tutulumu / atlama lezyonu"}
+    - {id: mesafeler, etiket: Sınırlara uzaklıklar, zorunlu: true, not: "Kemik sınırı … cm, yumuşak doku sınırları … cm, damar-sinir paketi … cm"}
+  varyantlar:
+    - ad: Kemik rezeksiyonu / amputasyon
+      metin:
+        - "{fiksasyon_durumu} gönderilen {prosedur} materyalidir; {kemik_boyut}. Yumuşak doku yüzeyleri boyandı; {kesim}."
+        - "{yerlesim} yerleşimli, {tumor_boyut} cm boyutlarında, {gorunum} tümör izlendi. Makroskopik yayılım: {yayilim_makro}. {mesafeler}."
+      ornekleme:
+        - {kod: KS, aciklama: "kemik iliği (medüller) sınırı", parca: "1", kaset: "1", not: "Testere ile açmadan önce kazıntı veya disk halinde."}
+        - {kod: YS, aciklama: yumuşak doku sınırları, parca: "…", kaset: "…"}
+        - {kod: DS, aciklama: "damar ve sinir sınırları", parca: "…", kaset: "…"}
+        - {kod: H, aciklama: "haritalanmış tam kesit (slab), grid kodlu", not: "Tedavi yanıtı için en büyük tümör kesitinin tamamı şema üzerinde kodlanarak; dekalsifikasyon."}
+        - {kod: E, aciklama: "eklem / epifiz ilişkisi", parca: "…", kaset: "…"}
+        - {kod: SK, aciklama: "atlama lezyonu şüphesi / tümör dışı kemik", parca: "…", kaset: "…"}
+  yapilacaklar:
+    - Açmadan önce yumuşak doku sınırlarını ve kemik iliği sınırını al; damar-sinir yapılarını ayır.
+    - Radyoloji ile karşılaştır; tümörün eklem yüzeyine ve kemik sınırına uzaklığını ölç.
+    - Uzun eksende testereyle aç; en büyük kesitten slab alıp fotoğrafla, grid şeması üzerinde haritalayarak tamamen örnekle.
+    - Dekalsifikasyonu EDTA ile planla (moleküler test gerekebilir); yumuşak kısımlar dekalsifiye edilmeden ayrı kasetlenebilir.

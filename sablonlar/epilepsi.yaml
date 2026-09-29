@@ -1,0 +1,65 @@
+id: epilepsi
+baslik: Epilepsi cerrahisi (hipokampal skleroz / fokal kortikal displazi / LEAT)
+organ: MSS
+materyal: Rezeksiyon
+kaynaklar:
+  - "ILAE — hipokampal skleroz sınıflaması (Blümcke ve ark., 2013)"
+  - "ILAE — fokal kortikal displazi sınıflaması, 2022 güncellemesi (Najm ve ark.)"
+  - "WHO CNS5 (2021) — uzun süreli epilepsi ilişkili tümörler (LEAT)"
+tani_alternatif: true
+tani:
+  - "Hipokampal skleroz, ILAE tip 1, lütfen epikrizi okuyunuz; {taraf} hipokampus, {islem}"
+  - "Hipokampal skleroz, ILAE tip 2 / tip 3, lütfen epikrizi okuyunuz; {taraf} hipokampus, {islem}"
+  - "Yalnız gliozis (hipokampal skleroz yok), lütfen epikrizi okuyunuz; {taraf} hipokampus, {islem}"
+  - "Fokal kortikal displazi, ILAE tip …, lütfen epikrizi okuyunuz; {taraf} … korteks, {islem}"
+  - "Beyaz cevherde heterotopik nöron artışı / hafif kortikal gelişim malformasyonu (mMCD), lütfen epikrizi okuyunuz; {taraf} … korteks, {islem}"
+  - "Oligodendroglial hiperplazili hafif kortikal gelişim malformasyonu (MOGHE), lütfen epikrizi okuyunuz; {taraf} … korteks, {islem}"
+  - "Gangliogliom, MSS WHO derece 1, lütfen epikrizi okuyunuz; {taraf} …, {islem}"
+  - "Disembriyoplastik nöroepitelyal tümör, MSS WHO derece 1, lütfen epikrizi okuyunuz; {taraf} …, {islem}"
+  - "Belirgin patolojik değişiklik göstermeyen neokorteks ve beyaz cevher, lütfen epikrizi okuyunuz; {taraf} …, {islem}"
+epikriz:
+  - {id: taraf, etiket: Taraf, seviye: 0, gizli: true, tip: secim, secenekler: [sağ, sol]}
+  - {id: islem, etiket: İşlem, seviye: 0, gizli: true, tip: secim, secenekler: ["anterior temporal lobektomi", "selektif amigdalohipokampektomi", lezyonektomi, "kortikal rezeksiyon"]}
+  - {id: materyal, etiket: Materyal, seviye: 2, tip: metin, kalip: "Hipokampus en blok / parçalı; oryantasyon …; neokorteks …"}
+  - id: hs
+    etiket: Hipokampus (NeuN)
+    seviye: 1
+    kosul: "hipokampus örneklendiyse"
+    alt:
+      - {id: ca1, etiket: CA1 nöron kaybı, seviye: 1, tip: secim, secenekler: [Yok / minimal, Orta, Belirgin]}
+      - {id: ca2, etiket: CA2 nöron kaybı, seviye: 1, tip: secim, secenekler: [Yok / minimal, Orta, Belirgin]}
+      - {id: ca3, etiket: CA3 nöron kaybı, seviye: 1, tip: secim, secenekler: [Yok / minimal, Orta, Belirgin]}
+      - {id: ca4, etiket: CA4 nöron kaybı, seviye: 1, tip: secim, secenekler: [Yok / minimal, Orta, Belirgin]}
+      - {id: dg, etiket: Dentat girus granül hücre dispersiyonu / kaybı, seviye: 2, tip: secim, secenekler: [Yok, Dispersiyon, "Kayıp", "Dispersiyon + kayıp"]}
+      - {id: hs_tip, etiket: ILAE HS tipi, seviye: 1, tip: secim, secenekler: ["Tip 1 (CA1 ve CA4 ağırlıklı)", "Tip 2 (CA1 ağırlıklı)", "Tip 3 (CA4 ağırlıklı)", "HS yok — yalnız gliozis", "Değerlendirilemedi (parçalı / oryantasyonsuz)"]}
+  - id: fcd
+    etiket: Neokorteks
+    seviye: 1
+    alt:
+      - {id: laminasyon, etiket: Kortikal laminasyon, seviye: 1, tip: secim, secenekler: [Olağan, "Radyal (kolumnar) bozukluk", "Tanjansiyel (6 tabaka) bozukluk", "Radyal + tanjansiyel bozukluk"]}
+      - {id: dismorfik, etiket: Dismorfik nöron, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü]}
+      - {id: balon, etiket: Balon hücre, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü]}
+      - {id: heterotopi, etiket: Beyaz cevherde heterotopik nöron, seviye: 2, tip: secim, secenekler: [Olağan, "Artmış (>30 / mm² — mMCD tip II)"]}
+      - {id: oligo, etiket: Oligodendroglial hipersellülarite, seviye: 2, tip: secim, secenekler: [Görülmedi, "Görüldü (MOGHE)"]}
+      - {id: fcd_tip, etiket: ILAE FCD tipi, seviye: 1, tip: secim, secenekler: ["Tip Ia (radyal)", "Tip Ib (tanjansiyel)", "Tip Ic (radyal + tanjansiyel)", "Tip IIa (dismorfik nöron)", "Tip IIb (dismorfik nöron + balon hücre)", "Tip IIIa (HS ile birlikte)", "Tip IIIb (tümörle birlikte)", "Tip IIIc (vasküler malformasyonla birlikte)", "Tip IIId (erken dönem edinilmiş lezyonla birlikte)", "Uygulanmaz"]}
+  - {id: tumor, etiket: Tümör (LEAT), seviye: 1, kosul: "tümör", tip: metin, kalip: "Tip …; CD34 …, BRAF V600E …, Ki-67 %…; FGFR1 …"}
+  - {id: ihk, etiket: İmmünohistokimya, seviye: 2, tip: metin, kalip: "NeuN …, MAP2 …, nörofilament (SMI32) …, vimentin …, GFAP …, CD34 …, pS6 …"}
+  - {id: diger, etiket: Diğer bulgular, seviye: 3, tip: coklu, secenekler: ["Kortikal gliozis", "Korpora amilasea", "Ensefalit bulguları (Rasmussen?)", "Kavernöz malformasyon / hemosiderin", "Glial skar"]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer, zorunlu: true}
+    - {id: boyut, etiket: Boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: tip, etiket: Materyal, tip: secim, secenekler: ["en blok hipokampus", "parçalı hipokampus", "neokorteks bloğu (pia yüzü ile)", "lezyon ve çevre korteks"], zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: ["olağan gri-beyaz cevher ayrımı", "gri-beyaz cevher sınırı bulanık", "sert / atrofik", "kistik / nodüler lezyon"]}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: Epilepsi cerrahisi
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): {boyut} cm boyutlarında {tip}; {gorunum}. Pia yüzüne dik 3–5 mm aralıklarla dilimlenerek sırasıyla {parca} parça {kaset} kasette takibe alındı."
+  yapilacaklar:
+    - Hipokampus en blok gelirse uzun eksene dik 3–5 mm dilimlenir, tümü sırayla gömülür (anterior → posterior).
+    - Neokorteks pia yüzüne dik kesilir (laminasyon değerlendirmesi); MR lezyonu cerrahla eşleştirilir.
+    - İHK — NeuN (HS ve laminasyon), MAP2 / SMI32 (dismorfik nöron), vimentin (balon hücre), CD34 (LEAT).

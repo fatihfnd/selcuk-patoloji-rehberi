@@ -1,0 +1,103 @@
+id: akciger-rezeksiyon
+baslik: Akciğer — karsinom, rezeksiyon (wedge / segmentektomi / lobektomi / pnömonektomi)
+organ: Akciğer
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Lung (Resection)"
+  - "ICCR — Lung Cancer, Resection"
+  - "WHO Toraks Tümörleri, 5. baskı (2021); IASLC derecelendirme (invaziv non-müsinöz adenokarsinom, 2020)"
+  - "AJCC / UICC 8. baskı; IASLC 9. baskı TNM önerileri (N2a / N2b)"
+  - "IASLC — neoadjuvan sonrası patolojik yanıt değerlendirmesi (2020)"
+not: >
+  Lepidik komponentli adenokarsinomda pT invaziv boyuta göre verilir; toplam boyut ayrıca yazılır.
+  Kurum TNM 8 mi 9 mu kullanıyor, ptnm alanında belirtilmeli (9. baskıda N2 → N2a / N2b).
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; {taraf} akciğer {lob}, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); hiler / mediastinal (istasyon …)"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [wedge rezeksiyon, segmentektomi, lobektomi, bilobektomi, pnömonektomi, sleeve lobektomi]}
+  - {id: taraf, etiket: Taraf, seviye: 0, gizli: true, tip: secim, secenekler: [sağ, sol]}
+  - {id: lob, etiket: Lob, seviye: 0, gizli: true, tip: secim, secenekler: [üst lob, orta lob, alt lob]}
+  - {id: neoadjuvan, etiket: Neoadjuvan tedavi, seviye: 1, tip: secim, secenekler: [Yok, Var, Bilinmiyor], gizli: true}
+  - id: histolojik_tip
+    etiket: Histolojik tip
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler:
+      - "İnvaziv non-müsinöz adenokarsinom, … predominant (lepidik %…, asiner %…, papiller %…, mikropapiller %…, solid %…, kribriform %…)"
+      - İnvaziv müsinöz adenokarsinom
+      - "Minimal invaziv adenokarsinom (≤3 cm, invaziv ≤5 mm)"
+      - Adenokarsinoma in situ
+      - "Skuamöz hücreli karsinom (keratinize / nonkeratinize / bazaloid)"
+      - Adenoskuamöz karsinom
+      - Büyük hücreli karsinom
+      - "Sarkomatoid karsinom (pleomorfik / …)"
+      - "Büyük hücreli nöroendokrin karsinom"
+      - "Küçük hücreli karsinom (kombine: …)"
+      - "Tipik karsinoid tümör / atipik karsinoid tümör"
+  - {id: derece, etiket: Histolojik derece, seviye: 1, tip: secim, secenekler: ["G1 — lepidik predominant, yüksek dereceli patern <%20", "G2 — asiner / papiller predominant, yüksek dereceli patern <%20", "G3 — yüksek dereceli patern (solid / mikropapiller / kribriform / kompleks glandüler) ≥%20", "İyi / orta / az diferansiye (non-adenokarsinom)", "Uygulanmaz"]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: metin, kalip: "Toplam … cm; invaziv boyut … cm (lepidik komponent düşülerek)"}
+  - {id: fokalite, etiket: Tümör odakları, seviye: 1, tip: secim, secenekler: [Tek odak, "Aynı lobda ayrı tümör nodülü (pT3)", "Farklı ipsilateral lobda ayrı nodül (pT4)", "Çoklu primer tümör (her biri ayrı evrelenir)", "Pnömonik tip / diffüz"]}
+  - {id: vpi, etiket: Viseral plevra invazyonu (elastik boya), seviye: 1, tip: secim, secenekler: ["PL0 — yok", "PL1 — elastik tabakayı aşıyor", "PL2 — viseral plevra yüzeyine ulaşıyor", "PL3 — parietal plevraya uzanıyor"]}
+  - {id: stas, etiket: Hava boşluklarında tümör yayılımı (STAS), seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - modul: ortak.lvi
+  - {id: direkt, etiket: Doğrudan invazyon, seviye: 1, tip: coklu, secenekler: [Görülmedi, "Göğüs duvarı / parietal plevra (pT3)", "Frenik sinir / perikard (pT3)", "Diyafram / mediasten / büyük damar / trakea / karina / özofagus / vertebra (pT4)", "Ana bronş (karinaya uzanmadan) (pT2)"]}
+  - {id: tedavi_etkisi, etiket: Tedavi yanıtı (IASLC), seviye: 1, kosul: "neoadjuvan == Var", tip: metin, kalip: "Canlı tümör %…, nekroz %…, stroma %… — MPR (≤%10 canlı tümör) var / yok; pCR var / yok"}
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    alt:
+      - {id: s_bronsiyal, etiket: Bronşiyal, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi", "İnvaziv karsinom görüldü", "Karsinoma in situ görüldü"]}
+      - {id: s_vaskuler, etiket: Vasküler, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi", "Tümör görüldü"]}
+      - {id: s_parankim, etiket: Parankimal (stapler), seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (… cm)", "Tümör görüldü"], kosul: "wedge / segmentektomi"}
+      - {id: s_diger, etiket: Göğüs duvarı / diğer, seviye: 2, tip: secim, secenekler: ["Tümör görülmedi", "Tümör görüldü"]}
+  - id: lenf_nodu
+    etiket: Lenf nodları
+    seviye: 1
+    tip: metin
+    kalip: "İstasyon … (… / …), istasyon … (… / …) — toplam … lenf nodundan …'inde metastaz görüldü / metastaz görülmedi"
+    alt:
+      - {id: ene, etiket: Ekstranodal yayılım, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {id: ptnm, etiket: "Patolojik evre (pTNM; AJCC 8 / UICC 9)", seviye: 1, tip: metin, kalip: "(m/y)pT… pN… (baskı: …)"}
+  - modul: biyobelirtec.akciger_panel
+  - {id: tumor_disi, etiket: Tümör dışı akciğer, seviye: 2, tip: coklu, secenekler: [Özellik yok, Amfizem, "Solunum yolu bronşiolitli interstisyel değişiklikler", "Obstrüktif pnömoni", "İnterstisyel fibrozis (…)", "Antrakozis", "Granülom"]}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, "Taze (hava yolundan formalin ile şişirildi)"], zorunlu: true}
+    - {id: taraf, etiket: Taraf, tip: secim, secenekler: [sağ, sol], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: agirlik, etiket: Ağırlık, tip: sayi, birim: g}
+    - {id: boyut, etiket: Materyal boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: plevra, etiket: Plevra yüzeyi, tip: secim, secenekler: [düzgün ve parlaktır, "tümör üzerinde çekinti / plevral puckering izlendi", "yapışıklık ve fibrinöz alanlar içermektedir"], zorunlu: true}
+    - {id: yerlesim, etiket: Tümör yerleşimi (segment / merkezi-periferik), zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: ["gri-beyaz, sert, sınırları belirsiz", "kavitasyon içeren", "müsinöz, parlak", "subsolid / buzlu cam görünümlü alan içeren"]}
+    - {id: mesafeler, etiket: Uzaklıklar, zorunlu: true, not: "Plevraya … cm, bronş cerrahi sınırına … cm, vasküler sınıra … cm, stapler sınırına … cm"}
+    - {id: bronsiyal, etiket: Bronş ilişkisi, tip: secim, secenekler: ["tümör bronş ile ilişkisizdir", "tümör … bronşu tıkamaktadır / lümenine uzanmaktadır"]}
+    - {id: tumor_disi, etiket: Tümör dışı parankim, tip: secim, secenekler: [özellik izlenmedi, "amfizematöz görünümdedir", "… cm'lik ek nodül izlendi"]}
+    - {id: ln_not, etiket: Hiler / intrapulmoner lenf nodları, tip: secim, secenekler: ["en büyüğü … cm çapında … adet lenf nodu diseke edildi", izlenmedi]}
+  varyantlar:
+    - ad: Lobektomi / pnömonektomi / wedge
+      metin:
+        - "{fiksasyon_durumu} gönderilen, {agirlik} g ağırlığında, {boyut} cm boyutlarında {taraf} {prosedur} materyalidir. Plevra yüzeyi {plevra}. Tümör üzerindeki plevra boyandı."
+        - >-
+          Kesitlerde {yerlesim} yerleşimli, {tumor_boyut} cm boyutlarında, {gorunum} tümör izlendi; {bronsiyal}. Tümör
+          {mesafeler} mesafededir. Tümör dışı parankim {tumor_disi}. Hiler / intrapulmoner lenf nodu {ln_not}.
+      ornekleme:
+        - {kod: BCS, aciklama: bronş cerrahi sınırı, parca: "1", kaset: "1", not: "En face; dilimlemeden önce."}
+        - {kod: VCS, aciklama: vasküler cerrahi sınırlar, parca: "…", kaset: "1"}
+        - {kod: T, aciklama: tümör, not: "Tümör ≤3 cm ise tamamı (invaziv boyut ve alt tip oranları için); büyük tümörde cm başına 1 kaset."}
+        - {kod: TP, aciklama: "tümör-plevra ilişkisi, dik kesit", parca: "…", kaset: "…", not: "VPI için elastik boya."}
+        - {kod: TB, aciklama: tümör-bronş ilişkisi, parca: "…", kaset: "…"}
+        - {kod: SCS, aciklama: "stapler / parankimal sınır", parca: "…", kaset: "…", not: "Wedge'de stapler kazınarak sınıra dik kesit."}
+        - {kod: P, aciklama: tümör dışı parankim, parca: "…", kaset: "…"}
+        - {kod: LN, aciklama: "hiler / intrapulmoner lenf nodları (istasyon 10–14)", parca: "…", kaset: "…"}
+  ek_materyaller: [makro.ln_istasyon]
+  yapilacaklar:
+    - Bronş ve vasküler sınırları dilimlemeden önce al.
+    - Taze geldiyse hava yolundan formalinle şişir (alveol yapısı ve invaziv boyut ölçümü için).
+    - Tümör üzerindeki plevrayı boya; tümör-plevra ilişkisini dik kesitle göster.
+    - Tümörün plevraya, bronş ve stapler sınırlarına uzaklığını tek cümlede ver.
+    - Neoadjuvan sonrası tümör yatağı — ≤3 cm ise tamamı, büyükse en büyük kesitte tam dilim haritalanarak (IASLC).
+    - Lenf nodlarını istasyon adıyla ayrı kodla.

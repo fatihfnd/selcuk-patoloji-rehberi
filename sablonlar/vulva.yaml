@@ -1,0 +1,71 @@
+id: vulva
+baslik: Vulva — skuamöz hücreli karsinom, eksizyon / vulvektomi
+organ: Vulva
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Vulva (Resection)"
+  - "ICCR — Carcinoma of the Vulva"
+  - "WHO Kadın Genital Tümörleri, 5. baskı (2020); FIGO 2021 vulva kanseri evrelemesi"
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; vulva, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); sağ / sol inguinofemoral"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [geniş lokal eksizyon, radikal lokal eksizyon, parsiyel radikal vulvektomi, total radikal vulvektomi, basit vulvektomi]}
+  - {id: yerlesim, etiket: Tümör yerleşimi, seviye: 1, tip: coklu, secenekler: [Sağ labium majus, Sol labium majus, Sağ labium minus, Sol labium minus, Klitoris, Perine, Fourchette, "Üretra / vajen / anüs komşuluğu"]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: olcu, birim: cm, kalip: "…x… cm (en büyük boyut … cm)"}
+  - modul: ortak.fokalite
+  - {id: histolojik_tip, etiket: Histolojik tip, seviye: 1, tip: secim, serbest: true, secenekler: ["Skuamöz hücreli karsinom, HPV ilişkili", "Skuamöz hücreli karsinom, HPV bağımsız", "Verrüköz karsinom", Bazal hücreli karsinom, "Adenokarsinom (…)", "Ekstramammer Paget hastalığı ilişkili invaziv adenokarsinom"]}
+  - {id: p16, etiket: p16 / p53, seviye: 2, tip: metin, kalip: "p16 blok tipi pozitif / negatif; p53 yabanıl tip / anormal (…)"}
+  - {id: derece, etiket: Histolojik derece, seviye: 2, tip: secim, secenekler: [İyi diferansiye, Orta derecede diferansiye, Az diferansiye]}
+  - {id: derinlik, etiket: İnvazyon derinliği, seviye: 1, tip: olcu, birim: mm, not: "FIGO 2021: en derin invazyon noktası ile en yakın displastik olsun olmasın komşu en yüzeyel rete ridge'in bazal membranı arası. IA sınırı ≤1 mm (ve ≤2 cm)."}
+  - {id: kalinlik, etiket: Tümör kalınlığı, seviye: 3, tip: olcu, birim: mm}
+  - modul: ortak.lvi
+  - modul: ortak.pni
+  - {id: yayilim, etiket: Komşu yapı tutulumu, seviye: 1, tip: coklu, secenekler: [Görülmedi, "Alt 1/3 üretra / vajen / anüs (II)", "Üst 2/3 üretra / vajen, mesane / rektum mukozası (IIIA)", "Pelvik kemik (IVA)"]}
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    alt:
+      - {id: s_periferik_inv, etiket: Periferik — invaziv karsinom, seviye: 1, tip: secim, secenekler: ["Görülmedi (en yakın … mm, … sınır)", Görüldü]}
+      - {id: s_periferik_vin, etiket: Periferik — VIN / HSIL, seviye: 1, tip: secim, secenekler: ["Görülmedi (… mm)", "HSIL görüldü", "Diferansiye VIN görüldü"]}
+      - {id: s_derin, etiket: Derin, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (… mm)", Tümör görüldü]}
+  - {id: vin, etiket: Eşlik eden öncül lezyon, seviye: 1, tip: secim, secenekler: [Görülmedi, "HSIL (VIN usual tip, HPV ilişkili)", "Diferansiye VIN (HPV bağımsız)", "Diferansiye ekzofitik vulvar intraepitelyal lezyon (DEVIL)"]}
+  - {id: zemin, etiket: Zemin deri, seviye: 2, tip: coklu, secenekler: [Liken skleroz, Liken simpleks kronikus, Özellik yok]}
+  - id: lenf_nodu
+    etiket: Lenf nodları
+    seviye: 1
+    tip: metin
+    kalip: "Sağ inguinofemoral …, sol inguinofemoral … (sentinel …) lenf nodu incelendi; …'inde metastaz görüldü / metastaz görülmedi"
+    alt:
+      - {id: ln_depozit, etiket: En büyük metastatik depozit, seviye: 1, tip: olcu, birim: mm, not: "FIGO 2021 — ≤5 mm IIIA, >5 mm IIIB."}
+      - {id: ene, etiket: Ekstranodal yayılım, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü (IIIC)"]}
+  - {id: figo, etiket: FIGO 2021 evresi, seviye: 1, tip: secim, serbest: true, secenekler: [IA, IB, II, IIIA, IIIB, IIIC, IVA, IVB]}
+  - modul: ortak.ptnm
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: isaret, etiket: Oryantasyon, tip: secim, secenekler: ["… ile işaretlenmiş (… saat / anterior)", işaretlenmemiş], zorunlu: true}
+    - {id: boyut, etiket: Materyal boyutu (deri × derinlik), tip: olcu, birim: cm, zorunlu: true}
+    - {id: yerlesim, etiket: Tümör yerleşimi, zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: [ülsere, ekzofitik-verrüköz, "plak şeklinde, beyaz", nodüler]}
+    - {id: mesafeler, etiket: Sınırlara uzaklıklar, zorunlu: true, not: "Periferik (anterior … cm, posterior … cm, sağ … cm, sol … cm, vajinal / üretral … cm), derin … cm"}
+    - {id: zemin, etiket: Tümör dışı deri, tip: secim, secenekler: [özellik izlenmedi, "beyaz, parlak, incelmiş (liken skleroz?)", "… cm'lik beyaz / pigmente plak izlendi"]}
+  varyantlar:
+    - ad: Eksizyon / vulvektomi
+      metin:
+        - "{fiksasyon_durumu} {isaret} gönderilen, {boyut} cm boyutlarında {prosedur} materyalidir. Periferik ve derin sınırlar farklı renklerde boyandı."
+        - "{yerlesim} yerleşimli, {tumor_boyut} cm boyutlarında, {gorunum} tümör izlendi. {mesafeler}. Tümör dışı deri {zemin}."
+      ornekleme:
+        - {kod: T, aciklama: "tümör, en derin invazyon", not: "Tümörün en derin alanından tam kat; ≤2 cm tümörde tamamı (IA / IB ayrımı ölçüme bağlı)."}
+        - {kod: TS, aciklama: "tümör-en yakın periferik sınır, dik kesit", parca: "…", kaset: "…"}
+        - {kod: TD, aciklama: tümör-derin sınır, parca: "…", kaset: "…"}
+        - {kod: PS, aciklama: "periferik sınırlar, kadran bazında", parca: "…", kaset: "…"}
+        - {kod: VÜ, aciklama: vajinal / üretral sınır, parca: "…", kaset: "…"}
+        - {kod: Z, aciklama: "tümör dışı deri / lezyonlar", parca: "…", kaset: "…"}
+  ek_materyaller: [makro.sentinel, makro.ln_istasyon]
+  yapilacaklar:
+    - Oryantasyonu korunarak periferik ve derin sınırları boya; şema çiz.
+    - Tümörün tüm periferik sınırlara ve derine uzaklığını tek cümlede ver.
+    - Tümör dışı beyaz / pigmente alanları ayrıca örnekle (öncül lezyon).

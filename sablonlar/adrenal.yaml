@@ -1,0 +1,88 @@
+id: adrenal
+baslik: Adrenal — adrenalektomi (kortikal tümör / feokromositoma)
+organ: Adrenal
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Adrenal Gland (Resection)"
+  - "ICCR — Carcinoma of the Adrenal Cortex; Phaeochromocytoma and Paraganglioma"
+  - "WHO Endokrin ve Nöroendokrin Tümörler, 5. baskı (2022); AJCC 8"
+  - "Weiss (1984) / modifiye Weiss; Lin-Weiss-Bisceglia (onkositik); GAPP (feokromositoma)"
+not: "WHO 2022: tüm feokromositomalar metastaz potansiyeli taşır; 'benign / malign' yerine risk göstergeleri raporlanır."
+tani_alternatif: true
+tani:
+  - "Adrenokortikal adenom, lütfen epikrizi okuyunuz; {taraf} adrenal bez, adrenalektomi"
+  - "Adrenokortikal karsinom, lütfen epikrizi okuyunuz; {taraf} adrenal bez, adrenalektomi"
+  - "Feokromositoma, lütfen epikrizi okuyunuz; {taraf} adrenal bez, adrenalektomi"
+  - "Miyelolipom; {taraf} adrenal bez, adrenalektomi"
+  - "Adrenokortikal nodüler hastalık (hiperplazi); {taraf} adrenal bez, adrenalektomi"
+  - "Adrenal kist (endotelyal / psödokist); {taraf} adrenal bez, adrenalektomi"
+epikriz:
+  - {id: taraf, etiket: Taraf, seviye: 0, gizli: true, tip: secim, secenekler: [sağ, sol]}
+  - {id: klinik, etiket: Fonksiyonel durum (klinik), seviye: 2, tip: secim, secenekler: [Nonfonksiyone, "Kortizol salgılayan (Cushing)", "Aldosteron salgılayan (Conn)", "Androjen / östrojen salgılayan", "Katekolamin salgılayan", Bilinmiyor]}
+  - {id: agirlik, etiket: Tümör / materyal ağırlığı, seviye: 1, tip: sayi, birim: g}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: olcu, birim: cm}
+  - id: weiss
+    etiket: Weiss kriterleri (kortikal tümör)
+    seviye: 1
+    kosul: "kortikal tümör"
+    tip: metin
+    kalip: "…/9 (≥3: malign)"
+    alt:
+      - {id: w1, etiket: Nükleer derece III–IV, seviye: 1, tip: secim, secenekler: [Yok, Var]}
+      - {id: w2, etiket: "Mitoz >5 / 50 BBA (10 mm²)", seviye: 1, tip: secim, secenekler: [Yok, Var]}
+      - {id: w3, etiket: Atipik mitoz, seviye: 1, tip: secim, secenekler: [Yok, Var]}
+      - {id: w4, etiket: "Berrak hücre ≤%25", seviye: 1, tip: secim, secenekler: [Yok, Var]}
+      - {id: w5, etiket: "Diffüz mimari >%33", seviye: 1, tip: secim, secenekler: [Yok, Var]}
+      - {id: w6, etiket: Konfluent nekroz, seviye: 1, tip: secim, secenekler: [Yok, Var]}
+      - {id: w7, etiket: Venöz invazyon, seviye: 1, tip: secim, secenekler: [Yok, Var]}
+      - {id: w8, etiket: Sinüzoidal invazyon, seviye: 1, tip: secim, secenekler: [Yok, Var]}
+      - {id: w9, etiket: Kapsül invazyonu, seviye: 1, tip: secim, secenekler: [Yok, Var]}
+  - {id: onkositik, etiket: Lin-Weiss-Bisceglia (onkositik kortikal tümör), seviye: 2, kosul: "onkositik", tip: metin, kalip: "Majör: mitoz >5/50 BBA / atipik mitoz / venöz invazyon — …; minör: >10 cm veya >200 g / nekroz / kapsül invazyonu / sinüzoidal invazyon — …"}
+  - {id: acc_derece, etiket: ACC derecesi, seviye: 1, kosul: "karsinom", tip: secim, secenekler: ["Düşük derece (≤20 mitoz / 10 mm²)", "Yüksek derece (>20 mitoz / 10 mm²)"]}
+  - {id: ki67, etiket: Ki-67, seviye: 1, tip: olcu, birim: "%"}
+  - id: gapp
+    etiket: Feokromositoma risk göstergeleri (GAPP)
+    seviye: 1
+    kosul: "feokromositoma"
+    tip: metin
+    kalip: "Toplam …/10 — iyi / orta / az diferansiye"
+    alt:
+      - {id: g_patern, etiket: Histolojik patern, seviye: 1, tip: secim, secenekler: ["Zellballen (0)", "Geniş yuvalar (1)", "Psödorozet / diffüz (1)"]}
+      - {id: g_sellularite, etiket: Sellülarite, seviye: 1, tip: secim, secenekler: ["Düşük <150 hücre / BBA (0)", "Orta 150–250 (1)", "Yüksek >250 (2)"]}
+      - {id: g_nekroz, etiket: Komedo nekroz, seviye: 1, tip: secim, secenekler: ["Yok (0)", "Var (2)"]}
+      - {id: g_invazyon, etiket: Vasküler / kapsül invazyonu, seviye: 1, tip: secim, secenekler: ["Yok (0)", "Var (1)"]}
+      - {id: g_ki67, etiket: Ki-67, seviye: 1, tip: secim, secenekler: ["<%1 (0)", "%1–3 (1)", ">%3 (2)"]}
+      - {id: g_katekolamin, etiket: Katekolamin tipi, seviye: 1, tip: secim, secenekler: ["Epinefrin tipi (0)", "Norepinefrin tipi (1)", "Salgılamayan (0)"]}
+  - {id: sdhb, etiket: SDHB İHK, seviye: 1, kosul: "feokromositoma", tip: secim, secenekler: [Çalışılmadı, Korunmuş, "Kayıp (SDHx germline mutasyonu açısından genetik danışmanlık önerilir)"]}
+  - {id: yayilim, etiket: Tümör yayılımı, seviye: 1, kosul: "karsinom", tip: secim, secenekler: ["Adrenale sınırlı", "Periadrenal yağ doku", "Komşu organ (böbrek / karaciğer / pankreas / dalak / diyafram)", "Renal ven / vena kava"]}
+  - {id: sinir, etiket: Cerrahi sınır, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (… mm)", "Tümör görüldü", "Kapsül rüptürü / parçalı materyal"]}
+  - {modul: ortak.lenf_nodu, kosul: "karsinom"}
+  - {modul: ortak.ptnm, kosul: "karsinom"}
+  - {id: kortikal_zemin, etiket: Tümör dışı adrenal korteks, seviye: 2, tip: secim, secenekler: [Olağan, "Atrofik (Cushing ile uyumlu)", "Nodüler hiperplazi"]}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: taraf, etiket: Taraf, tip: secim, secenekler: [sağ, sol], zorunlu: true}
+    - {id: agirlik, etiket: Ağırlık (yağ doku ile), tip: sayi, birim: g, zorunlu: true}
+    - {id: boyut, etiket: Materyal boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: renk, etiket: Kesit yüzü, tip: secim, secenekler: ["sarı-altın, homojen (kortikal)", "kahverengi-siyah (pigmente / onkositik)", "gri-pembe / kahverengi, kanamalı (feokromositoma)", "sarı, yağlı, kırmızı alanlar içeren (miyelolipom)", "heterojen, nekroz ve kanama içeren"]}
+    - {id: nekroz_makro, etiket: Makroskopik nekroz / kanama, tip: secim, secenekler: [izlenmedi, "yaklaşık %… alanda izlendi"]}
+    - {id: kapsul, etiket: Kapsül, tip: secim, secenekler: [intakttır, "… bölgesinde periadrenal yağa uzanım izlendi", "yırtık"], zorunlu: true}
+    - {id: adrenal_kalinti, etiket: Tümör dışı adrenal, tip: secim, secenekler: ["tümörün çevresinde … cm'lik alanda izlendi", izlenmedi]}
+    - {id: d_sinir, etiket: Sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+  varyantlar:
+    - ad: Adrenalektomi
+      metin:
+        - "{fiksasyon_durumu} gönderilen, {agirlik} g ağırlığında, {boyut} cm boyutlarında {taraf} adrenalektomi materyalidir. Dış yüz boyandı."
+        - >-
+          Kesitlerde {tumor_boyut} cm boyutlarında, {renk} tümör izlendi. Makroskopik nekroz / kanama {nekroz_makro}.
+          Kapsül {kapsul}; tümör boyalı sınıra {d_sinir} cm mesafededir. Tümör dışı adrenal dokusu {adrenal_kalinti}.
+      ornekleme:
+        - {kod: T, aciklama: tümör, not: "Cm başına 1 kaset (en az 3); kortikal tümörde tamamına yakın örnekleme Weiss kriterleri için avantajlıdır."}
+        - {kod: TK, aciklama: "tümör-kapsül-periadrenal yağ", parca: "…", kaset: "…", not: "Kapsül / venöz invazyon için birden fazla kaset."}
+        - {kod: A, aciklama: tümör dışı adrenal, parca: "1", kaset: "1"}
+  yapilacaklar:
+    - Yağ doku ile birlikte tart (ağırlık ACC / onkositik kriterlerde kullanılır); dış yüzü boya.
+    - Adrenal ven / büyük damarları tanımla ve örnekle.
+    - Farklı görünümdeki alanları ayrı kasetle; feokromositomada taze ise tümör bankası.

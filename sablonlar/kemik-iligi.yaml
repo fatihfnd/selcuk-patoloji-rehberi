@@ -1,0 +1,48 @@
+id: kemik-iligi
+baslik: Kemik iliği biyopsisi (trefin) ± aspirasyon
+organ: Kemik iliği
+materyal: Biyopsi
+kaynaklar:
+  - "ICSH — Kemik iliği örneklerinin standardizasyonu (Lee ve ark., 2008)"
+  - "Avrupa konsensusu — retikülin fibrozis derecelendirmesi (Thiele, 2005; MF-0–3)"
+  - "WHO-HAEM5 / ICC 2022 (neoplazm sınıflaması)"
+tani_alternatif: true
+tani:
+  - "Yaşa göre normosellüler kemik iliği, trilineer hematopoez, lütfen epikrizi okuyunuz; kemik iliği, {islem}"
+  - "Hipersellüler kemik iliği (… hücre serisinde artış), lütfen epikrizi okuyunuz; kemik iliği, {islem}"
+  - "Hiposellüler kemik iliği, lütfen epikrizi okuyunuz; kemik iliği, {islem}"
+  - "{neoplazm} infiltrasyonu (%…), lütfen epikrizi okuyunuz; kemik iliği, {islem}"
+  - "Metastatik karsinom (… ile uyumlu), lütfen epikrizi okuyunuz; kemik iliği, {islem}"
+  - "Değerlendirme için yetersiz materyal (kortikal / subkortikal kemik ağırlıklı), lütfen epikrizi okuyunuz; kemik iliği, {islem}"
+epikriz:
+  - {id: islem, etiket: İşlem, seviye: 0, gizli: true, tip: secim, secenekler: [trefin biyopsi, "trefin biyopsi ve aspirasyon", "pıhtı bloğu"]}
+  - {id: neoplazm, etiket: Neoplazm, seviye: 0, gizli: true, tip: secim, secenekler: ["Plazma hücreli neoplazm", "Akut miyeloid lösemi", "Miyelodisplastik neoplazm", "Miyeloproliferatif neoplazm (…)", "B hücreli lenfoma (…)", "Kronik lenfositik lösemi"]}
+  - {id: yeterlilik, etiket: Materyal / yeterlilik, seviye: 1, tip: metin, kalip: "… cm uzunluğunda kor; değerlendirilebilir (subkortikal alan dışı) medüller alan … cm (≥1,5 cm önerilir); ezilme / aspirasyon artefaktı …"}
+  - {id: sellularite, etiket: Sellülarite, seviye: 1, tip: metin, kalip: "%… (yaşa göre normo- / hiper- / hiposellüler)"}
+  - {id: me, etiket: Miyeloid / eritroid oranı, seviye: 1, tip: metin, kalip: "…:1"}
+  - {id: eritroid, etiket: Eritroid seri, seviye: 1, tip: metin, kalip: "Adalar korunmuş / azalmış / artmış; matürasyon …; megaloblastik / diseritropoetik değişiklik …"}
+  - {id: miyeloid, etiket: Miyeloid seri, seviye: 1, tip: metin, kalip: "Matürasyon tam / sola kayma; ALIP …; eozinofil …"}
+  - {id: megakaryosit, etiket: Megakaryositler, seviye: 1, tip: metin, kalip: "Sayı: azalmış / normal / artmış (…/BBA); morfoloji: olağan / hiperlobüle / hipolobüle / mikromegakaryosit / bulutsu nükleus; kümeleşme (sıkı / gevşek) / paratrabeküler yerleşim …"}
+  - {id: lenfoid, etiket: Lenfoid agregat / infiltrasyon, seviye: 1, tip: metin, kalip: "Görülmedi / … adet (paratrabeküler / interstisyel / nodüler / diffüz), infiltrasyon %…"}
+  - {id: plazma, etiket: Plazma hücreleri, seviye: 2, tip: metin, kalip: "%… (CD138); kappa / lambda: poliklonal / monotipik (… kısıtlı)"}
+  - {id: blast, etiket: Blastlar (CD34 / CD117), seviye: 1, tip: metin, kalip: "%… ; kümeleşme görülmedi / görüldü"}
+  - {id: fibrozis, etiket: Retikülin fibrozis, seviye: 1, tip: secim, secenekler: ["MF-0", "MF-1", "MF-2", "MF-3"], alt: [{id: kollajen, etiket: Kollajen fibrozis (trikrom), seviye: 2, tip: secim, secenekler: [Yok, "Derece 1", "Derece 2", "Derece 3"]}, {id: osteoskleroz, etiket: Osteoskleroz, seviye: 3, tip: secim, secenekler: [Yok, "Derece 1", "Derece 2", "Derece 3"]}]}
+  - {id: demir, etiket: Demir (Perls), seviye: 2, tip: metin, kalip: "Depo demiri: yok / azalmış / normal / artmış; halka sideroblast (aspirat) %…"}
+  - {id: diger, etiket: Diğer, seviye: 3, tip: coklu, secenekler: [Granülom, "Stromal değişiklik / jelatinöz transformasyon", "Hemofagositoz", "Mast hücre agregatı (triptaz / CD25)", "Metastatik tümör odağı"]}
+  - {id: aspirat, etiket: Aspirat / periferik yayma (varsa), seviye: 2, tip: metin, kalip: "… no'lu rapor; blast %…, plazma hücresi %…, diferansiyel …"}
+  - {id: yorum, etiket: Yorum, seviye: 1, tip: metin, not: "Periferik kan, akım sitometri, sitogenetik / moleküler sonuçlarla bütünleşik yorum; WHO-HAEM5 / ICC tanısı."}
+makroskopi:
+  alanlar:
+    - {id: adet, etiket: Kor sayısı, tip: sayi, zorunlu: true}
+    - {id: uzunluk, etiket: Kor uzunluğu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: cap, etiket: Çap, tip: olcu, birim: cm}
+    - {id: pihti, etiket: Pıhtı / aspirat materyali, tip: secim, secenekler: ["ayrıca … cm'lik pıhtı materyali gönderildi", "pıhtı materyali gönderilmedi"]}
+  varyantlar:
+    - ad: Trefin biyopsi
+      metin:
+        - "{uzunluk} cm uzunluğunda, {cap} cm çapında, {adet} adet kemik iliği trefin biyopsi materyali; {pihti}. Dekalsifikasyon (EDTA) sonrası tümü takibe alındı."
+      ornekleme:
+        - {kod: T, aciklama: tümü, tek: true}
+  yapilacaklar:
+    - EDTA ile dekalsifikasyon (moleküler / FISH olasılığı); ince kesitler (2–3 µm).
+    - Rutin — H&E, Giemsa, retikülin, Perls; gerekirse trikrom ve İHK (CD34, CD117, CD138, CD61, MPO, CD20, CD3, kappa / lambda).

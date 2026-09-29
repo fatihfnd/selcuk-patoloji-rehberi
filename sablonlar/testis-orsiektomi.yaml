@@ -1,0 +1,88 @@
+id: testis-orsiektomi
+baslik: Testis — radikal orşiektomi (germ hücreli tümör)
+organ: Testis
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Testis (Radical Orchiectomy)"
+  - "ICCR — Neoplasia of the Testis, Orchidectomy"
+  - "WHO Üriner ve Erkek Genital Tümörleri, 5. baskı (2022); AJCC 8"
+not: "AJCC 8'de saf seminomda pT1 → pT1a (<3 cm) / pT1b (≥3 cm). Serum belirteçleri (AFP, β-hCG, LDH) S kategorisi için klinik bilgiden eklenir."
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; {taraf} testis, radikal orşiektomi"
+epikriz:
+  - {id: taraf, etiket: Taraf, seviye: 0, gizli: true, tip: secim, secenekler: [sağ, sol]}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 1, tip: olcu, birim: cm, kalip: "…x…x… cm (en büyük boyut … cm)"}
+  - modul: ortak.fokalite
+  - id: histolojik_tip
+    etiket: Histolojik tip
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler:
+      - Seminom
+      - Embriyonel karsinom
+      - "Yolk kesesi tümörü, postpubertal tip"
+      - Koryokarsinom
+      - "Teratom, postpubertal tip"
+      - "Teratom, somatik tip malignite ile"
+      - "Mikst germ hücreli tümör (bileşenler aşağıda)"
+      - Spermatositik tümör
+      - "Leydig hücreli tümör"
+      - "Sertoli hücreli tümör"
+  - {id: bilesen, etiket: Bileşenler ve oranları, seviye: 1, kosul: "mikst", tip: metin, kalip: "Embriyonel karsinom %…, seminom %…, yolk kesesi tümörü %…, teratom %…, koryokarsinom %…"}
+  - {id: gcnis, etiket: Germ hücreli neoplazi in situ (GCNIS), seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü, Değerlendirilemedi]}
+  - {modul: ortak.lvi, not: "Tümör içi / kenarında; retraksiyon artefaktı ve intravasküler implantasyondan ayırt edilmeli. pT1→pT2 geçişinde belirleyici."}
+  - id: yayilim
+    etiket: Tümör yayılımı
+    seviye: 1
+    tip: coklu
+    secenekler:
+      - "Testise sınırlı (tunika albuginea invazyonu yok)"
+      - "Rete testis — pagetoid (in situ) tutulum"
+      - "Rete testis — stromal invazyon"
+      - "Tunika albuginea invazyonu"
+      - "Tunika vajinalis invazyonu (pT2)"
+      - "Epididim invazyonu (pT2)"
+      - "Hiler yumuşak doku invazyonu (pT2)"
+      - "Spermatik kord invazyonu, doğrudan (pT3)"
+      - "Skrotum invazyonu (pT4)"
+  - {id: sinir, etiket: Spermatik kord cerrahi sınırı, seviye: 1, tip: secim, secenekler: [Tümör görülmedi, "Tümör görüldü (doğrudan / damar içi)"]}
+  - modul: ortak.ptnm
+  - {id: serum, etiket: Serum belirteçleri (klinikten), seviye: 3, tip: metin, kalip: "AFP …, β-hCG …, LDH … (orşiektomi sonrası / öncesi)"}
+  - {id: ihk, etiket: İmmünohistokimya, seviye: 2, tip: metin, kalip: "OCT3/4 …, SALL4 …, CD30 …, CD117 …, glipikan-3 …, β-hCG …, PLAP / D2-40 …"}
+  - {id: tumor_disi, etiket: Tümör dışı testis, seviye: 3, tip: coklu, secenekler: [Spermatogenez korunmuş, Tübüler atrofi, "Mikrolitiazis", "Skar / regrese tümör alanı"]}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: taraf, etiket: Taraf, tip: secim, secenekler: [sağ, sol], zorunlu: true}
+    - {id: agirlik, etiket: Ağırlık, tip: sayi, birim: g}
+    - {id: testis_boyut, etiket: Testis boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: kord, etiket: Spermatik kord uzunluğu / çapı, tip: olcu, birim: cm, zorunlu: true}
+    - {id: tunika, etiket: Tunika vajinalis, tip: secim, secenekler: [düzgün ve parlaktır, "… bölgesinde tümör ile yapışıklık izlendi"]}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: kesit, etiket: Kesit yüzü, tip: secim, secenekler: ["krem-beyaz, homojen, lobüle (seminom benzeri)", "heterojen; kanama ve nekroz alanları içeren", "kistik alanlar içeren", "sert, fibrotik (regrese alan)"], zorunlu: true}
+    - {id: yayilim, etiket: Makroskopik yayılım, tip: secim, secenekler: ["testise sınırlıdır", "tunika albugineaya ulaşmaktadır", "epididim / hiler yağ dokuya uzanmaktadır", "spermatik korda uzanmaktadır"], zorunlu: true}
+    - {id: tumor_disi, etiket: Tümör dışı parankim, tip: secim, secenekler: [kahverengi, olağan görünümdedir, "atrofik görünümdedir"]}
+  varyantlar:
+    - ad: Radikal orşiektomi
+      metin:
+        - >-
+          {fiksasyon_durumu} gönderilen, {agirlik} g ağırlığında {taraf} radikal orşiektomi materyalidir. Testis
+          {testis_boyut} cm boyutlarında; spermatik kord {kord} cm uzunluğundadır. Tunika vajinalis {tunika}. Tunika
+          albuginea boyandı; testis uzun ekseninde epididimi ve hilusu içerecek şekilde bivalve edildi.
+        - >-
+          Kesitlerde {tumor_boyut} cm boyutlarında, {kesit} tümör izlendi; tümör makroskopik olarak {yayilim}.
+          Tümör dışı parankim {tumor_disi}.
+      ornekleme:
+        - {kod: KS, aciklama: "spermatik kord cerrahi sınırı", parca: "1", kaset: "1", not: "Testis açılmadan önce alınır (kontaminasyonu önlemek için)."}
+        - {kod: KO, aciklama: spermatik kord orta ve testis tabanı, parca: "2", kaset: "2"}
+        - {kod: T, aciklama: tümör, not: "Her cm için 1 kaset (en az 3); farklı görünümdeki tüm alanlar, hemorajik / nekrotik kenarlar dahil."}
+        - {kod: TA, aciklama: tümör-tunika albuginea ilişkisi, parca: "…", kaset: "…"}
+        - {kod: TH, aciklama: "tümör-rete testis / hilus ilişkisi", parca: "…", kaset: "…"}
+        - {kod: E, aciklama: epididim, parca: "1", kaset: "1"}
+        - {kod: P, aciklama: tümör dışı parankim, parca: "1", kaset: "1"}
+  yapilacaklar:
+    - Spermatik kord sınırını ve orta kesimini testis açılmadan önce al.
+    - Tunika albugineayı boya; testisi hilustan geçecek şekilde bivalve et.
+    - Tümörü cm başına 1 kaset örnekle; farklı renk/kıvamdaki tüm alanları ayrı kodla (mikst tümör bileşenleri).
+    - Tümör-rete testis ve hiler yumuşak doku ilişkisini ayrıca göster.

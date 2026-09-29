@@ -1,0 +1,46 @@
+id: sito-idrar
+baslik: İdrar sitolojisi (Paris sistemi 2.0)
+organ: Üriner sistem
+materyal: Sitoloji
+makro_baslik: Materyal ve preparat
+kaynaklar:
+  - "The Paris System for Reporting Urinary Cytology, 2. baskı (2022)"
+not: "Paris sisteminin ana hedefi yüksek dereceli ürotelyal karsinomun (HGUC) saptanmasıdır; düşük dereceli lezyonlar çoğunlukla 'HGUC için negatif' kategorisindedir."
+tani_alternatif: true
+tani:
+  - "Tanısal değil / yetersiz (Paris 2.0), lütfen epikrizi okuyunuz; {orneklem}, idrar sitolojisi"
+  - "Yüksek dereceli ürotelyal karsinom için negatif (Paris 2.0 — NHGUC); {orneklem}, idrar sitolojisi"
+  - "Atipik ürotelyal hücreler (Paris 2.0 — AUC), lütfen epikrizi okuyunuz; {orneklem}, idrar sitolojisi"
+  - "Yüksek dereceli ürotelyal karsinom şüphesi (Paris 2.0 — SHGUC), lütfen epikrizi okuyunuz; {orneklem}, idrar sitolojisi"
+  - "Yüksek dereceli ürotelyal karsinom (Paris 2.0 — HGUC), lütfen epikrizi okuyunuz; {orneklem}, idrar sitolojisi"
+  - "Düşük dereceli ürotelyal neoplazm (Paris 2.0 — LGUN), lütfen epikrizi okuyunuz; {orneklem}, idrar sitolojisi"
+  - "… (Paris 2.0 — diğer primer / metastatik malignite), lütfen epikrizi okuyunuz; {orneklem}, idrar sitolojisi"
+mikroskopi:
+  - "Preparatlar az / orta / yoğun hücresel olup temiz / kanlı / inflamatuar zeminde yüzeyel ve ara ürotelyal hücreler, skuamöz hücreler izlenmiştir."
+  - "Nükleus / sitoplazma oranı artmış (≥0,7), hiperkromatik, kaba kromatinli, düzensiz nükleer membranlı … adet atipik ürotelyal hücre izlenmiştir / izlenmemiştir."
+epikriz:
+  - {id: orneklem, etiket: Örneklem tipi, seviye: 0, gizli: true, tip: secim, secenekler: ["spontan idrar", "kateter idrarı", "mesane yıkama", "üst üriner sistem yıkama / fırçalama", "ileal konduit idrarı"]}
+  - {id: yeterlilik, etiket: Yeterlilik, seviye: 1, tip: secim, secenekler: ["Yeterli", "Yetersiz — az hücreli (hacim / sellülarite düşük)", "Yetersiz — dejenerasyon / kan / inflamasyon"], not: "Spontan idrar için ≥30 ml önerilir; enstrümente örneklerde hücre sayısı esas alınır."}
+  - {id: hacim, etiket: Hacim / görünüm, seviye: 2, tip: metin, kalip: "… ml, … renkte, bulanık / berrak"}
+  - {id: kriterler, etiket: HGUC sitolojik kriterleri, seviye: 1, tip: coklu, secenekler: ["N/S oranı ≥0,7", "Orta-belirgin hiperkromazi", "Belirgin düzensiz, kaba kromatin", "Belirgin nükleer membran düzensizliği"], not: "AUC: N/S >0,5 + bir minör kriter; SHGUC: N/S ≥0,7 + hiperkromazi + bir kriter, az sayıda (<5–10) hücre; HGUC: ≥5–10 hücre, tüm kriterler."}
+  - {id: atipik_hucre, etiket: Atipik hücre sayısı, seviye: 2, tip: metin, kalip: "Yaklaşık … hücre"}
+  - {id: diger_bulgular, etiket: Diğer bulgular, seviye: 2, tip: coklu, secenekler: ["Enstrümentasyon etkisi", "Poliomavirüs sitopatik etkisi (decoy hücre)", "Reaktif / taşlı ürotelyal hücreler", "Litiazis ilişkili değişiklik", "Tedavi (BCG / mitomisin) etkisi", "Skuamöz hücreler", "Glandüler hücreler", "Mikroorganizma"]}
+  - {id: rom, etiket: Malignite riski, seviye: 3, tip: metin, kalip: "Kurum / Paris 2.0 tablosuna göre …"}
+  - {id: ek_test, etiket: Ek testler, seviye: 3, tip: metin, kalip: "UroVysion FISH …; İHK (hücre bloğu) …"}
+  - {id: yorum, etiket: Yorum / öneri, seviye: 1, tip: secim, secenekler: ["Klinik-sistoskopik korelasyon önerilir.", "Tekrar örnekleme önerilir.", "Bulgular yüksek dereceli ürotelyal karsinom lehinedir; sistoskopik değerlendirme / biyopsi önerilir."]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: orneklem, etiket: Örneklem tipi / kayıt, zorunlu: true}
+    - {id: hacim, etiket: Hacim, tip: sayi, birim: ml, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: ["sarı, berrak", "sarı, bulanık", "kanlı", "partiküllü"]}
+    - {id: hazirlama, etiket: Hazırlama, tip: secim, secenekler: ["santrifüj sonrası sitospin preparat", "sıvı bazlı preparat", "sitospin ve sıvı bazlı preparat", "hücre bloğu"], zorunlu: true}
+    - {id: preparat, etiket: Preparat sayısı, tip: sayi}
+  varyantlar:
+    - ad: İdrar sitolojisi
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({orneklem} kayıtlı materyal): {hacim} ml, {gorunum} sıvı; {hazirlama} ile {preparat} adet preparat hazırlanıp Papanicolaou ile boyandı."
+  yapilacaklar:
+    - Spontan idrar sabahın ilk idrarı olmamalı; ≥30 ml önerilir.
+    - Örneklem tipi (spontan / enstrümente / üst sistem) mutlaka kaydedilir — kriter yorumunu etkiler.

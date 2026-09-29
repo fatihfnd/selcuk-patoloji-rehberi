@@ -1,0 +1,41 @@
+id: ek-her2-ish
+baslik: HER2 in situ hibridizasyon (ISH) raporu — meme / mide-OGB
+organ: Meme / mide
+materyal: Ek test
+makro_baslik: Materyal
+kaynaklar:
+  - "ASCO/CAP HER2 testi kılavuzu — meme (2018, 2023 güncellemesi)"
+  - "CAP/ASCP/ASCO HER2 testi kılavuzu — gastroözofageal adenokarsinom (2016)"
+not: "Meme için ikili prob ASCO/CAP 2018 grupları kullanılır; grup 2–4'te eşzamanlı İHK ile birlikte yeniden sayım gerekir. Mide / OGB'de HER2/CEP17 oranı ≥2,0 pozitif kabul edilir."
+tani_alternatif: true
+tani:
+  - "HER2 gen amplifikasyonu saptandı (ASCO/CAP 2018 ISH grup 1 — pozitif); {organ}, {onceki_islem}"
+  - "HER2 gen amplifikasyonu saptanmadı (ASCO/CAP 2018 ISH grup 5 — negatif); {organ}, {onceki_islem}"
+  - "HER2 ISH grup 2 / 3 / 4, eşzamanlı İHK ile değerlendirilmiştir — pozitif / negatif (ASCO/CAP 2018), lütfen epikrizi okuyunuz; {organ}, {onceki_islem}"
+  - "HER2 gen amplifikasyonu saptandı (HER2/CEP17 ≥2,0 — pozitif); mide / OGB, {onceki_islem}"
+  - "HER2 gen amplifikasyonu saptanmadı (HER2/CEP17 <2,0 — negatif); mide / OGB, {onceki_islem}"
+  - "Değerlendirilemedi (sinyal yetersizliği / fiksasyon), lütfen epikrizi okuyunuz; {organ}, {onceki_islem}"
+epikriz:
+  - {id: organ, etiket: Organ, seviye: 0, gizli: true, tip: secim, secenekler: [sağ meme, sol meme, "mide / OGB", "metastaz (…)"]}
+  - {id: onceki_islem, etiket: Önceki materyal, seviye: 0, gizli: true, tip: metin}
+  - {id: yontem, etiket: Yöntem / prob, seviye: 1, tip: metin, kalip: "FISH / SISH / CISH; ikili prob (HER2 / CEP17), … kit"}
+  - {id: ihk, etiket: HER2 İHK (eşzamanlı / önceki), seviye: 1, tip: secim, secenekler: ["Skor 0", "Skor 1+", "Skor 2+", "Skor 3+", "Çalışılmadı"]}
+  - {id: sayim, etiket: Sayım, seviye: 1, tip: metin, kalip: "… tümör hücresi (≥20; grup 2–4'te ikinci gözlemci ile ≥20 ek hücre) — hücre başına ortalama HER2 …, ortalama CEP17 …, HER2/CEP17 oranı …"}
+  - {id: grup, etiket: ASCO/CAP 2018 ISH grubu (meme), seviye: 1, tip: secim, secenekler: ["Grup 1 — oran ≥2,0 ve HER2 ≥4,0: pozitif", "Grup 2 — oran ≥2,0, HER2 <4,0: İHK 3+ ise pozitif, değilse negatif", "Grup 3 — oran <2,0, HER2 ≥6,0: İHK 2+/3+ ise pozitif, 0/1+ ise negatif", "Grup 4 — oran <2,0, HER2 ≥4,0–<6,0: İHK 3+ ise pozitif, değilse negatif (yorumla)", "Grup 5 — oran <2,0, HER2 <4,0: negatif"]}
+  - {id: heterojenite, etiket: Heterojenite, seviye: 2, tip: secim, secenekler: ["Görülmedi", "Görüldü; amplifiye popülasyon ≈%… (ayrı sayıldı)"]}
+  - {id: kontrol, etiket: Kontroller, seviye: 2, tip: secim, secenekler: ["İç ve dış kontroller uygun", "Kontroller uygun değil — tekrar önerilir"]}
+  - {id: preanalitik, etiket: Preanalitik bilgi, seviye: 3, tip: metin, kalip: "Soğuk iskemi … dk; fiksasyon … saat; dekalsifikasyon yok / var (…)"}
+  - {id: yorum, etiket: Yorum, seviye: 1, tip: secim, secenekler: ["Sonuç, İHK ile birlikte HER2 durumunu pozitif / negatif olarak belirlemektedir.", "Grup 4 — HER2 negatif; bu grupta anti-HER2 tedavinin yararı belirsizdir.", "İHK 2+ ve ISH negatif sonuç HER2-düşük olarak değerlendirilir."]}
+makroskopi:
+  alanlar:
+    - {id: onceki, etiket: Önceki rapor no, zorunlu: true}
+    - {id: blok, etiket: Blok kodu, zorunlu: true}
+    - {id: materyal_tipi, etiket: Materyal tipi, tip: secim, secenekler: [biyopsi, rezeksiyon, sitoloji hücre bloğu], zorunlu: true}
+    - {id: preparat, etiket: Kesit sayısı, tip: sayi}
+    - {id: tumor_orani, etiket: Tümör hücre oranı, tip: sayi, birim: "%"}
+  varyantlar:
+    - ad: Blok / kesit
+      metin:
+        - "{onceki} no'lu olguya ait {materyal_tipi} materyalinin {blok} kodlu parafin bloğundan {preparat} adet kesit hazırlandı; işaretlenen alanda tümör hücre oranı yaklaşık %{tumor_orani}."
+  yapilacaklar:
+    - Çalışılacak tümör alanı H&E üzerinde işaretlenir; fiksasyon / dekalsifikasyon bilgisi kaydedilir.

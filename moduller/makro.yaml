@@ -1,0 +1,113 @@
+# Ayrı kapta gelen, birçok şablonda tekrar eden materyaller.
+# Şablonda:  ek_materyaller: [makro.ln_istasyon, makro.donat]
+# Her biri tekrarlanabilir blok: rapor sırasında kap sayısı kadar çoğaltılır.
+
+ln_istasyon:
+  ad: Lenf nodu istasyonu (ayrı kap)
+  metin: >-
+    {kod} ("{istasyon}" kayıtlı materyal): Topluca {boyut} cm boyutlarında yağ doku. Diseksiyonda
+    en büyüğü {ln_max} cm, en küçüğü {ln_min} cm çapında {ln_adet} adet lenf nodu izlendi.
+    Tümü {parca} parça {kaset} kasette takibe alındı.
+  alanlar:
+    - {id: kod, etiket: Kap kodu}
+    - {id: istasyon, etiket: İstasyon / kayıt adı, zorunlu: true}
+    - {id: boyut, etiket: Toplam boyut, tip: olcu, birim: cm}
+    - {id: ln_max, etiket: En büyük lenf nodu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: ln_min, etiket: En küçük lenf nodu, tip: olcu, birim: cm}
+    - {id: ln_adet, etiket: Lenf nodu sayısı, tip: sayi, zorunlu: true}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  yapilacaklar:
+    - Tüm lenf nodları ayıklanır; >0,5 cm olanlar 2–3 mm aralıkla dilimlenir, her nod ayrı veya renk/sayı ile ayırt edilebilir kasetlenir.
+    - Makroskopik olarak açık metastatik nodda tek temsili kesit yeterlidir.
+
+sentinel:
+  ad: Sentinel lenf nodu (ayrı kap)
+  metin: >-
+    {kod} ("{istasyon}" kayıtlı materyal): {boyut} cm boyutlarında yağ doku içinde en büyüğü {ln_max} cm,
+    en küçüğü {ln_min} cm çapında {ln_adet} adet lenf nodu izlendi. Lenf nodları uzun eksene dik olarak
+    2 mm aralıklarla dilimlendi. Tümü {parca} parça {kaset} kasette takibe alındı.
+  alanlar:
+    - {id: kod, etiket: Kap kodu}
+    - {id: istasyon, etiket: Kayıt adı, zorunlu: true}
+    - {id: boyut, etiket: Toplam boyut, tip: olcu, birim: cm}
+    - {id: ln_max, etiket: En büyük lenf nodu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: ln_min, etiket: En küçük lenf nodu, tip: olcu, birim: cm}
+    - {id: ln_adet, etiket: Lenf nodu sayısı, tip: sayi, zorunlu: true}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  yapilacaklar:
+    - Sentinel nodun tamamı 2 mm aralıklarla dilimlenip takibe alınır; frozen yapıldıysa belirtilir.
+
+donat:
+  ad: Anastomoz halkası (donat)
+  metin: >-
+    {kod} ("{ad}" kayıtlı materyal): {uzunluk} cm uzunluğunda, {cap} cm çapında halka şeklinde
+    tübüler doku. Mukozada {mukoza}. Tümü {parca} parça {kaset} kasette takibe alındı.
+  alanlar:
+    - {id: kod, etiket: Kap kodu}
+    - {id: ad, etiket: Kayıt adı (üst / alt donat)}
+    - {id: uzunluk, etiket: Uzunluk, tip: olcu, birim: cm}
+    - {id: cap, etiket: Çap, tip: olcu, birim: cm}
+    - {id: mukoza, etiket: Mukoza görünümü, tip: secim, secenekler: [özellik izlenmedi, "…"]}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  yapilacaklar:
+    - Halkanın tam çevresi en face veya dik kesitlerle örneklenir.
+
+ek_cerrahi_sinir:
+  ad: Ayrı gönderilen cerrahi sınır / yeni sınır
+  metin: >-
+    {kod} ("{ad}" kayıtlı materyal): {boyut} cm boyutlarında, {isaret} doku parçası. Yeni cerrahi
+    sınır yüzü {boya} renkli doku boyası ile boyandı. Tümü {parca} parça {kaset} kasette takibe alındı.
+  alanlar:
+    - {id: kod, etiket: Kap kodu}
+    - {id: ad, etiket: Kayıt adı, zorunlu: true}
+    - {id: boyut, etiket: Boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: isaret, etiket: İşaret, tip: secim, secenekler: [işaretsiz, "ip ile … yüzü işaretli"]}
+    - {id: boya, etiket: Boya rengi}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  yapilacaklar:
+    - Yeni (nihai) sınır yüzü boyanır; dik kesitler tercih edilir.
+
+sito_preparat:
+  ad: Sitoloji preparatı (ayrı kap / ek preparat)
+  metin: >-
+    {kod} ("{ad}" kayıtlı materyal): {konvansiyonel} adet {boyama} ile boyanmış yayma, {sivi_bazli} sıvı bazlı preparat;
+    hücre bloğu {hucre_blogu}.
+  alanlar:
+    - {id: kod, etiket: Kap kodu}
+    - {id: ad, etiket: Kayıt adı}
+    - {id: konvansiyonel, etiket: Konvansiyonel yayma sayısı, tip: sayi}
+    - {id: boyama, etiket: Boyama, tip: secim, secenekler: [Papanicolaou, "May-Grünwald-Giemsa / Diff-Quik", "Papanicolaou ve Giemsa"]}
+    - {id: sivi_bazli, etiket: Sıvı bazlı preparat sayısı, tip: sayi}
+    - {id: hucre_blogu, etiket: Hücre bloğu, tip: secim, secenekler: [hazırlandı, hazırlanmadı, "materyal yetersiz olduğundan hazırlanamadı"]}
+  yapilacaklar:
+    - Ek preparatlar kayıt adıyla birlikte ayrı kodlanır.
+
+sito_iiab:
+  ad: İİAB materyali (kap başına)
+  metin: >-
+    {kod} ({yer} kayıtlı materyal): {boyama} ile boyanmış {konvansiyonel} adet yayma; iğne yıkama materyali {sivi}. ROSE {rose}.
+  alanlar:
+    - {id: kod, etiket: Kap kodu}
+    - {id: yer, etiket: Kayıtlı yer}
+    - {id: konvansiyonel, etiket: Yayma sayısı, tip: sayi}
+    - {id: boyama, etiket: Boyama, tip: secim, secenekler: [Papanicolaou, "May-Grünwald-Giemsa / Diff-Quik", "Papanicolaou ve Giemsa"]}
+    - {id: sivi, etiket: İğne yıkama, tip: secim, secenekler: ["gönderilmedi", "… ml; sıvı bazlı preparat hazırlandı", "… ml; hücre bloğu hazırlandı"]}
+    - {id: rose, etiket: ROSE, tip: secim, secenekler: [yapılmadı, "yapıldı; yeterli", "yapıldı; yetersiz"]}
+  yapilacaklar:
+    - Hücre bloğu İHK / moleküler testler için hazırlanır.
+
+ek_test_materyal:
+  ad: Ek test materyali
+  metin: >-
+    {onceki} no'lu olguya ait {blok} kodlu parafin bloktan hazırlanan {preparat} adet kesit; tümör hücre içeriği yaklaşık %{tumor_orani}.
+  alanlar:
+    - {id: onceki, etiket: Önceki rapor no}
+    - {id: blok, etiket: Blok kodu}
+    - {id: preparat, etiket: Kesit sayısı, tip: sayi}
+    - {id: tumor_orani, etiket: Tümör hücre oranı, tip: sayi, birim: "%"}
+  yapilacaklar:
+    - Çalışılacak alan H&E üzerinde işaretlenir.

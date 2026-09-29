@@ -1,0 +1,48 @@
+id: sito-tiroid
+baslik: Tiroid ince iğne aspirasyonu (Bethesda 2023)
+organ: Tiroid
+materyal: Sitoloji
+makro_baslik: Materyal ve preparat
+kaynaklar:
+  - "The Bethesda System for Reporting Thyroid Cytopathology, 3. baskı (2023)"
+  - "WHO Endokrin ve Nöroendokrin Tümörler, 5. baskı (2022) — terminoloji"
+not: "Tanı satırı Bethesda kategorisi (Romen rakamı + ad) ve mümkünse spesifik tanı içerir. Malignite riski (ROM) Bethesda 2023 ortalama değerleridir; kurum kendi verisi varsa onu kullanabilir."
+tani_alternatif: true
+tani:
+  - "Tanısal değil, yetersiz / yalnız kistik sıvı (Bethesda kategori I), lütfen epikrizi okuyunuz; tiroid {nodul}, ince iğne aspirasyonu"
+  - "Foliküler nodüler hastalık ile uyumlu (Bethesda kategori II — benign); tiroid {nodul}, ince iğne aspirasyonu"
+  - "Kronik lenfositik tiroidit ile uyumlu (Bethesda kategori II — benign); tiroid {nodul}, ince iğne aspirasyonu"
+  - "Önemi belirsiz atipi, nükleer atipi / diğer (Bethesda kategori III — AUS), lütfen epikrizi okuyunuz; tiroid {nodul}, ince iğne aspirasyonu"
+  - "Foliküler neoplazm / onkositik foliküler neoplazm (Bethesda kategori IV), lütfen epikrizi okuyunuz; tiroid {nodul}, ince iğne aspirasyonu"
+  - "Papiller tiroid karsinomu şüphesi / … (Bethesda kategori V — malignite şüphesi), lütfen epikrizi okuyunuz; tiroid {nodul}, ince iğne aspirasyonu"
+  - "Papiller tiroid karsinomu / medüller karsinom / … (Bethesda kategori VI — malign), lütfen epikrizi okuyunuz; tiroid {nodul}, ince iğne aspirasyonu"
+mikroskopi:
+  - "Yaymalar az / orta / yoğun hücresel olup kanlı / temiz zeminde bol / orta / az miktarda kolloid içermektedir."
+  - "Foliküler epitel hücreleri makrofoliküler monolayer tabakalar / mikrofoliküller / trabeküler gruplar oluşturmaktadır; hücreler düzenli, yuvarlak nükleuslu / nükleer büyüme, üst üste binme, soluk kromatin, oluk ve psödoinklüzyon göstermektedir."
+  - "Zeminde hemosiderin yüklü makrofajlar / lenfositler ve plazma hücreleri / onkositik hücreler / psammom cisimcikleri izlenmiştir."
+epikriz:
+  - {id: nodul, etiket: Nodül, seviye: 0, gizli: true, tip: metin}
+  - {id: klinik, etiket: Klinik / USG bilgisi, seviye: 2, tip: metin, kalip: "… lob, … cm nodül; TI-RADS …; işlem USG eşliğinde / palpasyonla"}
+  - {id: yeterlilik, etiket: Yeterlilik, seviye: 1, tip: secim, secenekler: ["Yeterli (≥6 grup, her biri ≥10 iyi korunmuş foliküler hücre)", "Yeterli (bol kolloid — grup sayısından bağımsız benign kabul)", "Yeterli (atipi / inflamatuar tablo — grup kriteri aranmaz)", "Yetersiz: az hücreli", "Yetersiz: yalnız kistik sıvı (makrofaj)", "Yetersiz: kan / artefakt"]}
+  - {id: kategori, etiket: Bethesda kategorisi, seviye: 1, tip: secim, secenekler: ["I — Tanısal değil", "II — Benign", "III — Önemi belirsiz atipi (AUS)", "IV — Foliküler neoplazm", "V — Malignite şüphesi", "VI — Malign"]}
+  - {id: alt_kategori, etiket: Alt kategori / spesifik tanı, seviye: 1, tip: secim, serbest: true, secenekler: ["Foliküler nodüler hastalık", "Kronik lenfositik (Hashimoto) tiroidit", "Granülomatöz (subakut) tiroidit", "AUS — nükleer atipi", "AUS — diğer (mimari atipi / onkositik atipi / …)", "Foliküler neoplazm", "Onkositik foliküler neoplazm", "Papiller tiroid karsinomu şüphesi", "Medüller karsinom şüphesi", "Papiller tiroid karsinomu", "Medüller tiroid karsinomu", "Anaplastik / az diferansiye karsinom", "Metastatik tümör", "Lenfoma"]}
+  - {id: rom, etiket: Malignite riski (Bethesda 2023 ortalama), seviye: 3, tip: secim, secenekler: ["I: %13 (%5–20)", "II: %4 (%2–7)", "III: %22 (%13–30)", "IV: %30 (%23–34)", "V: %74 (%67–83)", "VI: %97 (%97–100)"]}
+  - {id: ek_test, etiket: Ek testler, seviye: 2, tip: metin, kalip: "Hücre bloğu İHK: … (kalsitonin / tiroglobulin / TTF-1 / BRAF V600E …); moleküler: …"}
+  - {id: yorum, etiket: Yorum / öneri, seviye: 1, tip: secim, secenekler: ["Klinik-radyolojik korelasyon önerilir.", "Tekrar İİAB önerilir (USG eşliğinde).", "Moleküler test ve / veya tekrar İİAB düşünülebilir (AUS).", "Tanısal lobektomi / moleküler test açısından değerlendirilmesi önerilir (FN).", "Cerrahi tedavi açısından değerlendirilmesi önerilir."]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı nodül / yer, zorunlu: true}
+    - {id: konvansiyonel, etiket: Konvansiyonel yayma sayısı, tip: sayi, zorunlu: true}
+    - {id: boyama, etiket: Boyama, tip: secim, secenekler: [Papanicolaou, "May-Grünwald-Giemsa / Diff-Quik", "Papanicolaou ve Giemsa"], zorunlu: true}
+    - {id: sivi, etiket: Sıvı / iğne yıkama materyali, tip: secim, secenekler: ["gönderilmedi", "… ml, … renkte; sıvı bazlı preparat hazırlandı", "… ml; hücre bloğu hazırlandı"]}
+    - {id: rose, etiket: Yerinde değerlendirme (ROSE), tip: secim, secenekler: [yapılmadı, "yapıldı; yeterlilik: yeterli / yetersiz"]}
+  varyantlar:
+    - ad: Tiroid İİAB
+      tekrar:
+        etiket: Her nodül / kap için
+        metin: "{kod} ({yer} kayıtlı materyal): {boyama} ile boyanmış {konvansiyonel} adet yayma; sıvı / iğne yıkama materyali {sivi}. ROSE {rose}."
+  ek_materyaller: [makro.sito_preparat]
+  yapilacaklar:
+    - Her nodül ayrı kodlanır; USG bilgisi (lob, boyut, TI-RADS) istemde yoksa not edilir.
+    - Kistik / bol kanlı materyalde hücre bloğu hazırlanır (İHK / moleküler için).

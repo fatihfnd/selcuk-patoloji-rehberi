@@ -1,0 +1,65 @@
+id: endometrium-biyopsi
+baslik: Endometrium biyopsisi / küretaj
+organ: Endometrium
+materyal: Biyopsi
+kaynaklar:
+  - "WHO Kadın Genital Tümörleri, 5. baskı (2020) — hiperplazi / EIN terminolojisi"
+  - "ISGyP — endometrial örnekleme ve EIN önerileri"
+  - "ACOG / SGO — atipik hiperplazi / EIN yönetimi"
+tani_alternatif: true
+tani:
+  - "Proliferatif fazda endometrium; endometrium, {islem}"
+  - "Sekretuar fazda endometrium (erken / orta / geç); endometrium, {islem}"
+  - "Düzensiz proliferatif endometrium (anovulatuar değişiklikler); endometrium, {islem}"
+  - "Menstrüel / dağılma fazında endometrium; endometrium, {islem}"
+  - "Atrofik endometrium; endometrium, {islem}"
+  - "Progestin etkisi gösteren endometrium; endometrium, {islem}"
+  - "Endometrial polip; endometrium, {islem}"
+  - "Atipisiz endometrial hiperplazi; endometrium, {islem}"
+  - "Atipik endometrial hiperplazi / endometrioid intraepitelyal neoplazi (EIN), lütfen epikrizi okuyunuz; endometrium, {islem}"
+  - "Endometrioid karsinom, FIGO derece …, lütfen epikrizi okuyunuz; endometrium, {islem}"
+  - "Seröz karsinom, lütfen epikrizi okuyunuz; endometrium, {islem}"
+  - "Desidualize stroma ve koryon villusları (gebelik ürünü); endometrium, {islem}"
+  - "Tanı için yetersiz materyal (az miktarda yüzey epiteli / kan pıhtısı); endometrium, {islem}"
+epikriz:
+  - {id: islem, etiket: İşlem, seviye: 0, gizli: true, tip: secim, secenekler: [endometrial biyopsi, küretaj, "fraksiyone küretaj", histeroskopik rezeksiyon]}
+  - {id: yeterlilik, etiket: Materyal yeterliliği, seviye: 2, tip: secim, secenekler: [Yeterli, "Sınırlı (az miktarda endometrium)", "Yetersiz"], not: "Atrofik zeminde az materyal tek başına yetersizlik göstergesi değildir; klinik-ultrason korelasyonu cümlesi eklenir."}
+  - {id: faz, etiket: Endometrium fazı / durumu, seviye: 2, tip: secim, secenekler: [Proliferatif, Erken sekretuar, Orta sekretuar, Geç sekretuar, Menstrüel, Atrofik, Hormon etkili, Değerlendirilemedi]}
+  - {id: hiperplazi, etiket: Hiperplazi, seviye: 1, tip: secim, secenekler: [Görülmedi, Atipisiz hiperplazi, "Atipik hiperplazi / EIN"]}
+  - {id: ein_kriter, etiket: EIN kriterleri, seviye: 3, kosul: "hiperplazi == Atipik", tip: metin, kalip: "Bez/stroma oranı >1; arka plandan farklı sitoloji; lezyon boyutu >1 mm; benzerleri dışlandı"}
+  - id: karsinom
+    etiket: Karsinom
+    seviye: 1
+    tip: secim
+    secenekler: [Görülmedi, Görüldü]
+    alt:
+      - {id: k_tip, etiket: Histolojik tip, seviye: 1, tip: secim, serbest: true, secenekler: [Endometrioid karsinom, Seröz karsinom, Berrak hücreli karsinom, Karsinosarkom, İndiferansiye / dediferansiye karsinom, Mikst karsinom, Mezonefrik benzeri adenokarsinom, "Müsinöz karsinom, gastrointestinal tip"], kosul: "karsinom == Görüldü"}
+      - {id: k_derece, etiket: FIGO derecesi, seviye: 1, tip: secim, secenekler: ["Derece 1", "Derece 2", "Derece 3"], kosul: "endometrioid"}
+      - {id: k_skuamoz, etiket: Skuamöz / morüler diferansiasyon, seviye: 3, tip: secim, secenekler: [Görülmedi, Görüldü], kosul: "endometrioid"}
+  - {id: polip, etiket: Polip, seviye: 2, tip: secim, secenekler: [Görülmedi, "Endometrial polip (atipisiz / hiperplazi ya da karsinom içeren)"]}
+  - {id: diger, etiket: Diğer bulgular, seviye: 3, tip: coklu, secenekler: [Kronik endometrit (plazma hücreleri; CD138), Metaplazi (müsinöz / tübal / eozinofilik / skuamöz), Arias-Stella reaksiyonu, "Endoservikal doku", "…"]}
+  - id: ihk
+    etiket: İmmünohistokimya
+    seviye: 2
+    alt:
+      - {id: p53, etiket: p53, seviye: 2, tip: secim, secenekler: ["Yabanıl tip patern", "Anormal: diffüz güçlü nükleer (aşırı ekspresyon)", "Anormal: tam kayıp (null)", "Anormal: sitoplazmik"]}
+      - {modul: biyobelirtec.mmr, seviye: 2, kosul: "karsinom veya atipik hiperplazi"}
+      - {id: pten_pax2, etiket: PTEN / PAX2, seviye: 3, tip: metin, kalip: "PTEN …; PAX2 … (EIN lehine kayıp)"}
+      - {id: diger_ihk, etiket: Diğer, seviye: 3, tip: metin, kalip: "ER …, PR …, p16 …, WT1 …, CD10 …"}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yer, etiket: Kayıtlı yer (endometrium / endoserviks)}
+    - {id: boyut, etiket: Toplam boyut, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: ["kanamalı, yumuşak, mukoid görünümlü", "krem-beyaz, fragmante", "kan pıhtısı ağırlıklı", "polipoid görünümlü"]}
+    - {id: parca, etiket: Parça, tip: sayi}
+    - {id: kaset, etiket: Kaset, tip: sayi}
+  varyantlar:
+    - ad: Biyopsi / küretaj
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod} ({yer} kayıtlı materyal): Topluca {boyut} cm boyutlarında, {gorunum} çok sayıda doku parçası. Tümü {parca} parça {kaset} kasette takibe alındı."
+  yapilacaklar:
+    - Tümü takibe alınır; kan pıhtısı dahil (tümör parçaları pıhtı içinde olabilir).
+    - Polipoid parça tanımlanırsa ayrı kasetlenir, uzun ekseni boyunca gömülür.
+    - Fraksiyone küretajda endoservikal ve endometrial kaplar ayrı kodlanır.

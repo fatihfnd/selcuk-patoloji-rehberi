@@ -1,0 +1,45 @@
+id: sito-serviks
+baslik: Servikovajinal sitoloji (Bethesda 2014)
+organ: Serviks
+materyal: Sitoloji
+makro_baslik: Materyal ve preparat
+kaynaklar:
+  - "The Bethesda System for Reporting Cervical Cytology, 3. baskı (2014)"
+  - "ASCCP risk tabanlı yönetim kılavuzu (2019) — HPV ile birlikte değerlendirme"
+tani_alternatif: true
+tani:
+  - "İntraepitelyal lezyon veya malignite için negatif (Bethesda 2014 — NILM); serviks, {yontem}"
+  - "İntraepitelyal lezyon veya malignite için negatif, … mikroorganizması / reaktif değişiklikler (Bethesda 2014 — NILM); serviks, {yontem}"
+  - "Önemi belirsiz atipik skuamöz hücreler (Bethesda 2014 — ASC-US), lütfen epikrizi okuyunuz; serviks, {yontem}"
+  - "Atipik skuamöz hücreler, HSIL dışlanamaz (Bethesda 2014 — ASC-H), lütfen epikrizi okuyunuz; serviks, {yontem}"
+  - "Düşük dereceli skuamöz intraepitelyal lezyon (Bethesda 2014 — LSIL), lütfen epikrizi okuyunuz; serviks, {yontem}"
+  - "Yüksek dereceli skuamöz intraepitelyal lezyon (Bethesda 2014 — HSIL), lütfen epikrizi okuyunuz; serviks, {yontem}"
+  - "Skuamöz hücreli karsinom (Bethesda 2014), lütfen epikrizi okuyunuz; serviks, {yontem}"
+  - "Atipik glandüler hücreler, endoservikal / endometrial / NOS (Bethesda 2014 — AGC), lütfen epikrizi okuyunuz; serviks, {yontem}"
+  - "Endoservikal adenokarsinoma in situ (Bethesda 2014 — AIS), lütfen epikrizi okuyunuz; serviks, {yontem}"
+  - "Adenokarsinom, endoservikal / endometrial / ekstrauterin (Bethesda 2014), lütfen epikrizi okuyunuz; serviks, {yontem}"
+  - "Değerlendirme için yetersiz (Bethesda 2014), lütfen epikrizi okuyunuz; serviks, {yontem}"
+mikroskopi:
+  - "Preparat yeterli / sınırlı sayıda skuamöz hücre içermekte olup transformasyon zonu komponenti (endoservikal / metaplastik hücreler) izlenmiştir / izlenmemiştir."
+  - "Zeminde inflamatuar hücreler / kan / … izlenmiştir; … mikroorganizması saptanmıştır / saptanmamıştır."
+  - "Skuamöz hücrelerde nükleer büyüme, hiperkromazi, nükleer membran düzensizliği ve koilositoz izlenmiştir / izlenmemiştir."
+epikriz:
+  - {id: yontem, etiket: Yöntem, seviye: 0, gizli: true, tip: secim, secenekler: ["konvansiyonel smear", "sıvı bazlı sitoloji"]}
+  - {id: yeterlilik, etiket: Yeterlilik, seviye: 1, tip: secim, secenekler: ["Değerlendirme için yeterli; transformasyon zonu komponenti var", "Değerlendirme için yeterli; transformasyon zonu komponenti yok", "Değerlendirme için yeterli; kan / inflamasyon / artefakt nedeniyle sınırlı", "Yetersiz (az hücreli / kan / kötü fiksasyon)"]}
+  - {id: organizma, etiket: Mikroorganizma, seviye: 2, tip: coklu, secenekler: [Görülmedi, Trichomonas vaginalis, "Candida spp. ile uyumlu mantar elemanları", "Bakteriyel vajinozu düşündüren flora değişikliği", "Actinomyces spp. ile uyumlu bakteri", "Herpes simpleks virüs ile uyumlu sitopatik etki"]}
+  - {id: diger_nonneoplastik, etiket: Diğer non-neoplastik bulgular, seviye: 2, tip: coklu, secenekler: ["Reaktif değişiklikler (inflamasyon / radyasyon / RİA)", "Atrofi", "Histerektomi sonrası glandüler hücreler", "Endometrial hücreler (≥45 yaş)", "Skuamöz metaplazi", "Keratotik değişiklikler"]}
+  - {id: hpv, etiket: HPV testi (klinik), seviye: 2, tip: metin, kalip: "HR-HPV pozitif / negatif; HPV 16 / 18 / diğer …"}
+  - {id: p16ki67, etiket: p16 / Ki-67 ikili boyama, seviye: 3, tip: secim, secenekler: [Çalışılmadı, Pozitif, Negatif]}
+  - {id: yorum, etiket: Yorum / öneri, seviye: 1, tip: secim, secenekler: ["Rutin tarama programına devam önerilir.", "HPV testi ile birlikte değerlendirilmesi önerilir.", "Kolposkopik değerlendirme önerilir.", "Endometrial değerlendirme önerilir.", "Uygun tedavi sonrası tekrar sitoloji önerilir."]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: yontem, etiket: Yöntem, tip: secim, secenekler: ["Konvansiyonel smear", "Sıvı bazlı sitoloji"], zorunlu: true}
+    - {id: preparat, etiket: Preparat sayısı, tip: sayi, zorunlu: true}
+  varyantlar:
+    - ad: Servikovajinal sitoloji
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod}: {yontem} yöntemiyle hazırlanmış, Papanicolaou ile boyanmış {preparat} adet preparat."
+  yapilacaklar:
+    - Klinik bilgi (SAT, gebelik, hormon, RİA, önceki anormal sonuç, HPV) kaydedilir.

@@ -1,0 +1,80 @@
+id: plasenta
+baslik: Plasenta (Amsterdam konsensusu)
+organ: Plasenta
+materyal: Rezeksiyon
+kaynaklar:
+  - "Amsterdam Plasental Çalıştay Grubu konsensusu (Khong ve ark., 2016)"
+  - "Redline — plasental lezyon terminolojisi; SPP önerileri"
+  - "Plasenta ağırlığı persentil tabloları (gebelik haftasına göre)"
+not: "Tanı satırı gebelik haftası + ağırlık (persentil) + ana patern(ler) biçimindedir. Ana patern başlıkları: maternal vasküler malperfüzyon, fetal vasküler malperfüzyon, akut / kronik inflamatuar lezyonlar, maturasyon bozukluğu."
+tani:
+  - "… haftalık gebeliğe ait plasenta (… g, … persentil), lütfen epikrizi okuyunuz; plasenta"
+epikriz:
+  - {id: gebelik_haftasi, etiket: Gebelik haftası / klinik endikasyon, seviye: 1, tip: metin, kalip: "… hafta; endikasyon: … (preeklampsi / FGR / preterm eylem / ölü doğum / ateş / …)"}
+  - {id: agirlik, etiket: Ağırlık (trimlenmiş), seviye: 1, tip: metin, kalip: "… g (… persentil — küçük / uygun / büyük)"}
+  - id: kordon
+    etiket: Umbilikal kordon
+    seviye: 1
+    alt:
+      - {id: k_uzunluk, etiket: Uzunluk / çap, seviye: 1, tip: metin, kalip: "… cm / … cm"}
+      - {id: k_damar, etiket: Damar sayısı, seviye: 1, tip: secim, secenekler: ["3 damar", "2 damar (tek umbilikal arter)"]}
+      - {id: k_insersiyon, etiket: İnsersiyon, seviye: 1, tip: secim, secenekler: [Santral, Eksantrik, "Marjinal (<1 cm)", "Velamentöz (membranöz)", Furkat]}
+      - {id: k_diger, etiket: Diğer, seviye: 2, tip: coklu, secenekler: [Özellik yok, Gerçek düğüm, "Aşırı kıvrımlı (hiperkoil)", "Az kıvrımlı", Trombüs, Striktür]}
+  - {id: membran, etiket: Membranlar, seviye: 2, tip: metin, kalip: "İnsersiyon marjinal / sirkumvallat / sirkummarjinal; renk …"}
+  - id: mvm
+    etiket: Maternal vasküler malperfüzyon
+    seviye: 1
+    tip: secim
+    secenekler: [Görülmedi, Görüldü]
+    alt:
+      - {id: mvm_bulgu, etiket: Bulgular, seviye: 1, tip: coklu, secenekler: ["Küçük plasenta (<10. persentil)", "Villus infarktı (%… , santral / periferik)", "Distal villus hipoplazisi", "Akselere villöz maturasyon", "Retroplasental hematom (dekolman)", "Desidual arteriyopati (fibrinoid nekroz / akut aterozis / mural hipertrofi)"], kosul: "mvm == Görüldü"}
+  - id: fvm
+    etiket: Fetal vasküler malperfüzyon
+    seviye: 1
+    tip: secim
+    secenekler: [Görülmedi, "Düşük derece (segmental)", "Yüksek derece (global / yaygın)"]
+    alt:
+      - {id: fvm_bulgu, etiket: Bulgular, seviye: 1, tip: coklu, secenekler: [Korionik / kök villus damar trombüsü, "Avasküler villuslar (… odak)", "Villöz stromal-vasküler karyoreksis", "İntramural fibrin birikimi"], kosul: "fvm != Görülmedi"}
+  - id: akut_inflamasyon
+    etiket: Akut inflamasyon (amniyotik sıvı enfeksiyonu)
+    seviye: 1
+    tip: secim
+    secenekler: [Görülmedi, Görüldü]
+    alt:
+      - {id: maternal_evre, etiket: Maternal yanıt, seviye: 1, tip: secim, secenekler: ["Evre 1 — subkoryonit / akut koryonit", "Evre 2 — akut koryoamniyonit", "Evre 3 — nekrotizan koryoamniyonit"], kosul: "akut_inflamasyon == Görüldü"}
+      - {id: maternal_derece, etiket: Maternal derece, seviye: 2, tip: secim, secenekler: ["Derece 1", "Derece 2 (şiddetli / mikroabse)"], kosul: "akut_inflamasyon == Görüldü"}
+      - {id: fetal_evre, etiket: Fetal yanıt, seviye: 1, tip: secim, secenekler: [Yok, "Evre 1 — korionik vaskülit / umbilikal flebit", "Evre 2 — umbilikal arterit (± flebit)", "Evre 3 — nekrotizan funisit"], kosul: "akut_inflamasyon == Görüldü"}
+      - {id: fetal_derece, etiket: Fetal derece, seviye: 2, tip: secim, secenekler: ["Derece 1", "Derece 2 (şiddetli, trombüs eşlik edebilir)"], kosul: "akut_inflamasyon == Görüldü"}
+  - {id: vue, etiket: Etiyolojisi bilinmeyen villit (VUE), seviye: 1, tip: secim, secenekler: [Görülmedi, "Düşük derece (fokal / multifokal)", "Yüksek derece (yamalı / diffüz)"]}
+  - {id: kronik_diger, etiket: Diğer kronik inflamatuar lezyonlar, seviye: 2, tip: coklu, secenekler: [Görülmedi, Kronik histiyositik intervillözit, Kronik koryoamniyonit, Kronik bazal villit, "Kronik desiduit (plazma hücreli)"]}
+  - {id: maturasyon, etiket: Villöz maturasyon, seviye: 1, tip: secim, secenekler: ["Gebelik haftası ile uyumlu", Akselere, "Gecikmiş (villöz maturasyon bozukluğu)", Distal villus hipoplazisi]}
+  - {id: diger, etiket: Diğer bulgular, seviye: 2, tip: coklu, secenekler: ["Masif perivillöz fibrin birikimi / maternal floor enfarktı", Koranjiyom, Koranjiyozis, "Mekonyum (makrofaj içinde / miyonekroz)", "Plasenta akreta spektrumu (bazal plakta miyometriyal lif)", "Mezenkimal displazi", "Villöz ödem", "Nükleuslu eritrosit artışı", "Enfeksiyon (CMV / sifiliz / …)"]}
+  - {id: yorum, etiket: Yorum, seviye: 2, tip: metin, not: "Klinik soruya yanıt: bulguların endikasyonla ilişkisi, tekrarlama riski olan lezyonlar (VUE, CHI, MFI)."}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: agirlik, etiket: Trimlenmiş ağırlık, tip: sayi, birim: g, zorunlu: true}
+    - {id: disk_boyut, etiket: Disk boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: sekil, etiket: Şekil, tip: secim, secenekler: [oval, "bilobe", "suksenturiat lob içeren", düzensiz]}
+    - {id: kordon, etiket: Kordon, zorunlu: true, not: "… cm uzunluğunda, … cm çapında, … damarlı; insersiyon … (kenara … cm); düğüm / trombüs …"}
+    - {id: membran, etiket: Membranlar, tip: secim, secenekler: ["tam, saydam, marjinal insersiyonlu", "opak / yeşil renkli", sirkumvallat, "inkomplet"], zorunlu: true}
+    - {id: koryonik, etiket: Koryonik yüz, tip: secim, secenekler: [mavi-gri ve parlaktır, "opak / yeşil", "subkoryonik fibrin plakları izlendi", "koryonik damarlarda trombüs izlendi"]}
+    - {id: maternal, etiket: Maternal yüz, tip: secim, secenekler: [kotiledonlar tamdır, "… cm'lik retroplasental hematom izlendi", "kotiledon eksikliği şüphesi"]}
+    - {id: parankim, etiket: Parankim kesitleri, zorunlu: true, not: "… cm aralıklarla dilimlendi; …x… cm'lik (%…) infarkt / fibrin / hematom / lezyon"}
+  varyantlar:
+    - ad: Plasenta
+      metin:
+        - >-
+          {fiksasyon_durumu} gönderilen, trimlenmiş ağırlığı {agirlik} g, {disk_boyut} cm boyutlarında, {sekil} plasenta.
+          Kordon: {kordon}. Membranlar {membran}.
+        - "Koryonik yüz {koryonik}. Maternal yüz {maternal}. Parankim: {parankim}."
+      ornekleme:
+        - {kod: K, aciklama: "kordon, fetal uç ve plasental uç", parca: "2", kaset: "1"}
+        - {kod: MR, aciklama: "membran rulosu, rüptür kenarından insersiyona", parca: "1", kaset: "1"}
+        - {kod: P, aciklama: "tam kat parankim, kordon insersiyonu yakını ve ortası", parca: "3", kaset: "3", not: "Makroskopik normal alanlardan en az 3 tam kat; kenar örneklenmez."}
+        - {kod: L, aciklama: "lezyon(lar)", parca: "…", kaset: "…"}
+  yapilacaklar:
+    - Kordon ve membranları kesip trimlenmiş ağırlığı tart; persentili gebelik haftasına göre ver.
+    - Kordon insersiyonu, damar sayısı ve kenara uzaklık; membran insersiyonu.
+    - Diski 1 cm aralıklarla dilimle; lezyonların yüzdesini tahmin et.
+    - Standart kasetler — kordon (2 kesit), membran rulosu, 3 tam kat parankim; lezyonlardan ek.

@@ -1,0 +1,107 @@
+id: ozofagus-rezeksiyon
+baslik: Özofagus ve özofagogastrik bileşke — karsinom, rezeksiyon
+organ: Özofagus
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Esophagus (Resection)"
+  - "ICCR — Carcinoma of the Oesophagus"
+  - "RCPath — Dataset for oesophageal and gastric carcinoma"
+  - "WHO Sindirim Sistemi Tümörleri, 5. baskı (2019); AJCC 8"
+not: "Merkezi OGB'nin 2 cm distaline kadar olan ve OGB'yi tutan tümörler bu şablonla evrelenir. Evre gruplaması histolojik tipe (SHK / adenokarsinom) göre ayrıdır."
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; {yerlesim}, {prosedur}"
+  - "- Metastatik lenf nodları (… adet), nonmetastatik lenf nodları (… adet); periözofageal / perigastrik yağ doku"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [Özofajektomi, Özofagogastrektomi, "Minimal invaziv (Ivor Lewis / McKeown) özofajektomi", Total gastrektomi + distal özofajektomi]}
+  - {id: neoadjuvan, etiket: Neoadjuvan tedavi, seviye: 1, tip: secim, secenekler: [Yok, Var, Bilinmiyor], gizli: true}
+  - {id: yerlesim, etiket: Tümör yerleşimi, seviye: 1, tip: secim, serbest: true, secenekler: [servikal özofagus, üst torasik özofagus, orta torasik özofagus, alt torasik özofagus, özofagogastrik bileşke]}
+  - {id: ogb, etiket: Tümör merkezinin OGB'ye uzaklığı, seviye: 1, tip: metin, kalip: "OGB'nin … cm proksimali / distali; tümör OGB'yi tutuyor / tutmuyor"}
+  - {id: boyut, etiket: Tümör boyutu, seviye: 2, tip: olcu, birim: cm, kalip: "…x…x… cm"}
+  - {id: histolojik_tip, etiket: Histolojik tip, seviye: 1, tip: secim, serbest: true, secenekler: [Skuamöz hücreli karsinom, Bazaloid skuamöz hücreli karsinom, Adenokarsinom, Adenoskuamöz karsinom, Nöroendokrin karsinom, İndiferansiye karsinom]}
+  - {id: derece, etiket: Histolojik derece, seviye: 1, tip: secim, secenekler: ["G1, iyi diferansiye", "G2, orta derecede diferansiye", "G3, az diferansiye"]}
+  - id: yayilim
+    etiket: Tümör yayılımı
+    seviye: 1
+    tip: secim
+    secenekler:
+      - "Yüksek dereceli displazi (pTis)"
+      - "Lamina propria / muskularis mukoza (pT1a)"
+      - "Submukoza (pT1b)"
+      - "Muskularis propria (pT2)"
+      - "Adventisya (pT3)"
+      - "Plevra / perikard / azigos ven / diyafram / periton (pT4a)"
+      - "Aorta / vertebra / trakea (pT4b)"
+  - modul: ortak.lvi
+  - modul: ortak.pni
+  - id: tedavi_etkisi
+    etiket: Tedavi yanıtı (CAP / modifiye Ryan)
+    seviye: 1
+    kosul: "neoadjuvan == Var"
+    tip: secim
+    secenekler: ["Skor 0: canlı tümör hücresi yok", "Skor 1: tek hücre / küçük gruplar", "Skor 2: belirgin regresyonla birlikte rezidü tümör", "Skor 3: belirgin regresyon yok"]
+    alt:
+      - {id: mandard, etiket: Mandard TRG, seviye: 3, tip: secim, secenekler: [TRG 1, TRG 2, TRG 3, TRG 4, TRG 5]}
+  - id: sinir
+    etiket: Cerrahi sınırlar
+    seviye: 1
+    alt:
+      - {id: sinir_proksimal, etiket: Proksimal, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (… cm)", "İnvaziv karsinom görüldü", "Displazi / Barrett görüldü"]}
+      - {id: sinir_distal, etiket: Distal, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi (… cm)", "İnvaziv karsinom görüldü", "Displazi görüldü"]}
+      - {id: sinir_radyal, etiket: Radyal (sirkümferansiyel), seviye: 1, tip: secim, secenekler: ["Tümör görülmedi; en yakın mesafe … mm", "Tümör ≤1 mm (RCPath: pozitif)"]}
+  - modul: ortak.lenf_nodu
+  - modul: ortak.ptnm
+  - {id: barrett, etiket: Barrett özofagusu, seviye: 2, tip: secim, secenekler: [Görülmedi, "Görüldü; displazisiz", "Görüldü; düşük dereceli displazi", "Görüldü; yüksek dereceli displazi"]}
+  - id: bb_baslik
+    etiket: Biyobelirteçler
+    seviye: 2
+    kosul: "adenokarsinom"
+    alt:
+      - modul: biyobelirtec.her2_gastrik
+      - {modul: biyobelirtec.mmr, seviye: 2}
+      - modul: biyobelirtec.pdl1_cps
+      - modul: biyobelirtec.claudin18
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: parcalar, etiket: Materyali oluşturan segmentler, zorunlu: true, not: "Ör. … cm uzunluğunda özofagus ve küçük kurvatur boyunca … cm, büyük kurvatur boyunca … cm mide"}
+    - {id: yerlesim, etiket: Tümör yerleşimi, zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: [ülserovejetan, polipoid, ülsere-infiltratif, düz-infiltratif, "belirgin lezyon yok (tedavi sonrası skar)"]}
+    - {id: d_ogb, etiket: Tümör merkezinin OGB'ye uzaklığı, tip: olcu, birim: cm, zorunlu: true}
+    - {id: d_prok, etiket: Proksimal sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: d_dist, etiket: Distal sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: d_rad, etiket: Radyal sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: invazyon, etiket: Makroskopik invazyon, tip: secim, secenekler: [duvara sınırlı, adventisyaya uzanan, "komşu yapıya (…) uzanan"]}
+    - {id: barrett, etiket: Barrett görünümlü mukoza, tip: secim, secenekler: [izlenmedi, "tümörün proksimalinde … cm uzunluğunda somon renkli mukoza izlendi"]}
+    - {id: ln_max, etiket: En büyük lenf nodu, tip: olcu, birim: cm}
+    - {id: ln_min, etiket: En küçük lenf nodu, tip: olcu, birim: cm}
+    - {id: ln_adet, etiket: Lenf nodu sayısı, tip: sayi, zorunlu: true}
+  varyantlar:
+    - ad: Özofajektomi / özofagogastrektomi
+      metin:
+        - >-
+          {fiksasyon_durumu} gönderilen {prosedur} materyalidir; {parcalar} içermektedir. Adventisyal (radyal) yüz boyandı.
+        - >-
+          Materyal tümörün karşı duvarından longitudinal açıldığında {yerlesim} yerleşimli, {tumor_boyut} cm
+          boyutlarında, {gorunum} görünümde tümör izlendi. Tümör merkezi OGB'ye {d_ogb} cm uzaklıktadır. Tümör
+          proksimal cerrahi sınıra {d_prok} cm, distal cerrahi sınıra {d_dist} cm, radyal cerrahi sınıra {d_rad} cm
+          mesafededir. Kesitlerde tümör makroskopik olarak {invazyon} görünümdedir.
+        - >-
+          Barrett görünümlü mukoza {barrett}. Periözofageal ve perigastrik yağ dokuda en büyüğü {ln_max} cm,
+          en küçüğü {ln_min} cm çapında {ln_adet} adet lenf nodu diseke edildi.
+      ornekleme:
+        - {kod: T, aciklama: "tümör, tam kat", not: "En az 4 kaset; en derin invazyon. Neoadjuvan sonrası yatak tamamen ya da haritalanarak."}
+        - {kod: TR, aciklama: tümör-radyal sınır ilişkisi, parca: "…", kaset: "…"}
+        - {kod: OGB, aciklama: özofagogastrik bileşke, parca: "…", kaset: "…"}
+        - {kod: PCS, aciklama: proksimal cerrahi sınır, parca: "1", kaset: "1"}
+        - {kod: DCS, aciklama: distal cerrahi sınır, parca: "1", kaset: "1"}
+        - {kod: BE, aciklama: Barrett görünümlü mukoza, parca: "…", kaset: "…"}
+        - {kod: M, aciklama: tümör dışı özofagus / mide, parca: "2", kaset: "2"}
+        - {kod: LN, aciklama: lenf nodları, not: "Tümü; istasyon bazında."}
+  ek_materyaller: [makro.ln_istasyon, makro.donat]
+  yapilacaklar:
+    - OGB'yi belirle (skuamokolumnar bileşke / gastrik katlantıların başlangıcı) ve tümör merkezine uzaklığı ölç.
+    - Adventisyal yüzü boya; tümörün karşı duvarından aç.
+    - Neoadjuvan sonrası yatak tamamen ya da haritalanarak örneklenir; lümen içi skar dahil.
+    - Barrett segmenti ayrıca örneklenir (displazi taraması).

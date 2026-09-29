@@ -1,0 +1,39 @@
+id: sito-bos
+baslik: Beyin omurilik sıvısı (BOS) sitolojisi
+organ: MSS
+materyal: Sitoloji
+makro_baslik: Materyal ve preparat
+kaynaklar:
+  - "BOS sitolojisi için yaygın kullanılan dört / beş basamaklı kategoriler (uluslararası standart sistem henüz yok)"
+  - "EANO / ESMO leptomeningeal metastaz kılavuzu (2017) — sitoloji tipleri"
+not: "BOS hücreleri hızla dejenere olur; örnek 1 saat içinde işlenmeli veya uygun ortamda gönderilmelidir. Tek negatif sitoloji leptomeningeal tutulumu dışlamaz."
+tani_alternatif: true
+tani:
+  - "Tanısal değil / az hücreli (BOS — yetersiz), lütfen epikrizi okuyunuz; beyin omurilik sıvısı, {yontem}"
+  - "Malign hücre izlenmedi (BOS — negatif); beyin omurilik sıvısı, {yontem}"
+  - "Atipik hücreler (BOS — atipik), lütfen epikrizi okuyunuz; beyin omurilik sıvısı, {yontem}"
+  - "Malignite şüphesi (BOS — şüpheli), lütfen epikrizi okuyunuz; beyin omurilik sıvısı, {yontem}"
+  - "Metastatik karsinom / lenfoma / lösemi / … tutulumu (BOS — malign), lütfen epikrizi okuyunuz; beyin omurilik sıvısı, {yontem}"
+mikroskopi:
+  - "Preparatlar az / orta hücresel olup küçük lenfositler, monositler / nötrofiller / eritrositler izlenmiştir."
+  - "Ayrıca tek tek / küçük kümeler halinde, büyük, nükleer / sitoplazmik oranı artmış, belirgin nükleollü atipik hücreler izlenmiştir / izlenmemiştir."
+epikriz:
+  - {id: yontem, etiket: Yöntem, seviye: 0, gizli: true, tip: secim, secenekler: ["lomber ponksiyon", "ventriküler / Ommaya rezervuarı"]}
+  - {id: hacim, etiket: Hacim / işleme süresi, seviye: 2, tip: metin, kalip: "… ml (≥10 ml önerilir); işleme kadar geçen süre …"}
+  - {id: hucre_sayim, etiket: Hücre sayımı (laboratuvar), seviye: 3, tip: metin, kalip: "… hücre/µL; lenfosit %…, nötrofil %…"}
+  - {id: ek_test, etiket: Ek testler, seviye: 1, tip: metin, kalip: "Akım sitometri …; sitospin İHK (pansitokeratin / CD20 / CD3 …) …"}
+  - {id: yorum, etiket: Yorum / öneri, seviye: 1, tip: secim, secenekler: ["Tek negatif sitoloji leptomeningeal tutulumu dışlamaz; klinik şüphe sürerse tekrar örnekleme önerilir.", "Klinik-radyolojik (MR) korelasyon önerilir.", "Lenfoma / lösemi şüphesinde akım sitometri önerilir."]}
+makroskopi:
+  alanlar:
+    - {id: kod, etiket: Kap kodu, zorunlu: true}
+    - {id: hacim, etiket: Hacim, tip: sayi, birim: ml, zorunlu: true}
+    - {id: gorunum, etiket: Görünüm, tip: secim, secenekler: [berrak, bulanık, "kanlı / ksantokromik"], zorunlu: true}
+    - {id: preparat, etiket: Sitospin preparat sayısı, tip: sayi, zorunlu: true}
+  varyantlar:
+    - ad: BOS sitolojisi
+      tekrar:
+        etiket: Her kap için
+        metin: "{kod}: {hacim} ml, {gorunum} beyin omurilik sıvısı; sitospin yöntemiyle {preparat} adet preparat hazırlanıp Papanicolaou / Giemsa ile boyandı."
+  yapilacaklar:
+    - Hızlı işleme (≤1 saat); gecikme varsa kayda geçirilir.
+    - Lenfoma şüphesinde akım sitometri için ayrı tüp.

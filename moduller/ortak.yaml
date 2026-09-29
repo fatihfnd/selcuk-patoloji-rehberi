@@ -1,0 +1,110 @@
+# Birden çok şablonda aynen kullanılan alanlar.
+# Şablonda:  - modul: ortak.lvi      (isteğe bağlı: seviye / etiket / secenekler ezilebilir)
+
+lvi:
+  id: lvi
+  etiket: Lenfovasküler invazyon
+  seviye: 1
+  tip: secim
+  secenekler: [Görülmedi, Görüldü, Belirlenemedi]
+
+pni:
+  id: pni
+  etiket: Perinöral invazyon
+  seviye: 2
+  tip: secim
+  secenekler: [Görülmedi, Görüldü, Belirlenemedi]
+
+nekroz:
+  id: nekroz
+  etiket: Tümör nekrozu
+  seviye: 2
+  tip: secim
+  secenekler: [Görülmedi, Görüldü (%…), Belirlenemedi]
+
+fokalite:
+  id: fokalite
+  etiket: Tümör fokalitesi
+  seviye: 2
+  tip: secim
+  secenekler: [Unifokal, Multifokal (… odak), Belirlenemedi]
+
+tedavi_etkisi_yok:
+  id: tedavi_etkisi
+  etiket: Tedavi etkisi
+  seviye: 1
+  kosul: "neoadjuvan == Var"
+  tip: secim
+  secenekler: [Neoadjuvan tedavi öyküsü yok, Belirgin tedavi etkisi görülmedi, Tedavi etkisi görüldü (…), Tam yanıt (rezidü tümör görülmedi)]
+
+lenf_nodu:
+  id: lenf_nodu
+  etiket: Lenf nodları
+  seviye: 1
+  tip: metin
+  kalip: "… lenf nodu incelendi; …'inde metastaz görüldü / metastaz görülmedi"
+  alt:
+    - id: ln_en_buyuk_depozit
+      etiket: En büyük metastatik depozit
+      seviye: 2
+      tip: olcu
+      birim: mm
+      kosul: "ln_pozitif > 0"
+    - id: ene
+      etiket: Ekstranodal yayılım
+      seviye: 1
+      tip: secim
+      secenekler: [Görülmedi, Görüldü, Belirlenemedi]
+      kosul: "ln_pozitif > 0"
+
+ek_bulgular:
+  id: ek_bulgular
+  etiket: Ek patolojik bulgular
+  seviye: 2
+  tip: metin
+
+ptnm:
+  id: ptnm
+  etiket: Patolojik evre (pTNM, AJCC 8)
+  seviye: 1
+  tip: metin
+  kalip: "(m/y/r)pT… pN…"
+  not: "M kategorisi yalnızca patolojik olarak kanıtlanmışsa (pM1) yazılır; pMX/pM0 kullanılmaz."
+
+bobrek_if:
+  id: if
+  etiket: İmmünfloresan (… glomerül)
+  seviye: 1
+  not: "Yoğunluk 0 / eser / 1+ / 2+ / 3+; patern granüler / lineer / psödolineer; lokalizasyon mezangial / kapiller duvar / TBM / vasküler."
+  alt:
+    - {id: if_igg, etiket: IgG, seviye: 1, tip: metin, kalip: "… (… patern, … lokalizasyon)"}
+    - {id: if_iga, etiket: IgA, seviye: 1, tip: metin, kalip: "… (… patern, … lokalizasyon)"}
+    - {id: if_igm, etiket: IgM, seviye: 1, tip: metin, kalip: "… (… patern, … lokalizasyon)"}
+    - {id: if_c3, etiket: C3, seviye: 1, tip: metin, kalip: "… (… patern, … lokalizasyon)"}
+    - {id: if_c1q, etiket: C1q, seviye: 1, tip: metin, kalip: "… (… patern, … lokalizasyon)"}
+    - {id: if_kappa, etiket: Kappa, seviye: 1, tip: metin, kalip: "…"}
+    - {id: if_lambda, etiket: Lambda, seviye: 1, tip: metin, kalip: "…"}
+    - {id: if_fibrinojen, etiket: Fibrinojen, seviye: 2, tip: metin, kalip: "…"}
+    - {id: if_diger, etiket: "Diğer (PLA2R, IgG alt sınıfları, C4d …)", seviye: 3, tip: metin}
+
+bb_lenf_nodu:
+  id: lenf_nodu
+  etiket: Boyun lenf nodları
+  seviye: 1
+  tip: metin
+  kalip: "Sağ: seviye … (… / …), …; sol: seviye … (… / …), … — toplam … lenf nodundan …'inde metastaz görüldü / metastaz görülmedi"
+  alt:
+    - {id: ln_en_buyuk, etiket: En büyük metastatik depozit, seviye: 1, tip: olcu, birim: cm, not: "pN: ≤3 cm / >3–6 cm / >6 cm."}
+    - {id: ene, etiket: Ekstranodal yayılım, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü — mikroskopik (ENEmi, ≤2 mm)", "Görüldü — makroskopik (ENEma, >2 mm / makroskopik)"], not: "HPV ilişkisiz tümörlerde ENE pN'yi yükseltir (AJCC 8)."}
+
+fnclcc:
+  id: fnclcc
+  etiket: FNCLCC derecesi
+  seviye: 1
+  tip: secim
+  secenekler: ["Derece 1 (toplam 2–3)", "Derece 2 (toplam 4–5)", "Derece 3 (toplam 6–8)", "Uygulanmaz (…)"]
+  not: "Bazı tiplerde (ör. MPNST, anjiyosarkom, alveoler yumuşak doku sarkomu) FNCLCC prognostik değildir; biyopside derece eksik tahmin edilebilir."
+  alt:
+    - {id: f_dif, etiket: Tümör diferansiasyonu, seviye: 1, tip: secim, secenekler: ["Skor 1", "Skor 2", "Skor 3"]}
+    - {id: f_mitoz, etiket: "Mitoz (10 BBA; 0,1734 mm²)", seviye: 1, tip: secim, secenekler: ["Skor 1 (0–9)", "Skor 2 (10–19)", "Skor 3 (≥20)"]}
+    - {id: f_nekroz, etiket: Tümör nekrozu, seviye: 1, tip: secim, secenekler: ["Skor 0 (yok)", "Skor 1 (<%50)", "Skor 2 (≥%50)"]}

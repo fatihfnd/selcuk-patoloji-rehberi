@@ -1,0 +1,67 @@
+id: histerektomi-benign
+baslik: Histerektomi ± adneks — non-neoplastik / benign
+organ: Uterus
+materyal: Rezeksiyon
+kaynaklar:
+  - "WHO Kadın Genital Tümörleri, 5. baskı (2020) — düz kas tümörü kriterleri"
+  - "CAP / ISGyP — benign histerektomi örnekleme önerileri"
+not: "Her organ ayrı numaralı tanı satırı alır; yalnızca atipik düz kas tümörü veya beklenmedik bulgu varsa epikriz yazılır."
+tani:
+  - "Leiyomyom (… adet, en büyüğü … cm), adenomiyozis; uterus korpus, total abdominal / laparoskopik histerektomi"
+  - "Proliferatif / sekretuar / atrofik endometrium; endometrium, histerektomi"
+  - "Kronik servisit, skuamöz metaplazi, nabothi kistleri; serviks uteri, histerektomi"
+  - "Paratubal kist / özellik göstermeyen tuba uterina; sağ tuba uterina, salpingektomi"
+  - "Paratubal kist / özellik göstermeyen tuba uterina; sol tuba uterina, salpingektomi"
+  - "Korpus luteum / foliküler kist / korpus albikanslar; sağ over, ooferektomi"
+  - "Korpus luteum / foliküler kist / korpus albikanslar; sol over, ooferektomi"
+epikriz:
+  - {id: agirlik, etiket: Uterus ağırlığı, seviye: 3, tip: sayi, birim: g}
+  - id: duz_kas
+    etiket: Düz kas tümörü
+    seviye: 1
+    kosul: "olağan dışı leiyomyom"
+    tip: secim
+    secenekler: ["Hücresel leiyomyom", "Tuhaf (bizarre) nükleuslu leiyomyom", "Mitotik olarak aktif leiyomyom", "FH-eksik leiyomyom (morfolojik özellikler; FH İHK kaybı)", "Belirsiz malign potansiyelli düz kas tümörü (STUMP)", "Leiyomiyosarkom — ayrı şablon"]
+    alt:
+      - {id: dk_mitoz, etiket: Mitoz, seviye: 1, tip: metin, kalip: "…/10 BBA (…/mm²)"}
+      - {id: dk_atipi, etiket: Nükleer atipi, seviye: 1, tip: secim, secenekler: [Yok / hafif, Orta, Belirgin (fokal / diffüz)]}
+      - {id: dk_nekroz, etiket: Tümör hücre nekrozu, seviye: 1, tip: secim, secenekler: [Görülmedi, "Hiyalinize / infarkt tipi nekroz", Koagülatif tümör hücre nekrozu]}
+      - {id: dk_fh, etiket: FH İHK, seviye: 2, tip: secim, secenekler: [Çalışılmadı, Korunmuş, "Kayıp (herediter leiyomiyomatozis-RCC sendromu açısından genetik danışmanlık önerilir)"]}
+  - {id: endometriozis, etiket: Endometriozis, seviye: 2, tip: secim, secenekler: [Görülmedi, "Görüldü (…)"]}
+  - {id: tuba_not, etiket: Tuba — SEE-FIM, seviye: 3, tip: secim, secenekler: [Uygulanmadı, "Uygulandı; STIC / seröz tübal intraepitelyal lezyon görülmedi"], kosul: "BRCA / risk azaltıcı cerrahi"}
+  - {id: diger, etiket: Diğer / beklenmedik bulgular, seviye: 2, tip: metin}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true, not: "Ör. total abdominal histerektomi + bilateral salpingo-ooferektomi"}
+    - {id: agirlik, etiket: Uterus ağırlığı, tip: sayi, birim: g, zorunlu: true}
+    - {id: uterus_boyut, etiket: Uterus boyutu, tip: olcu, birim: cm, zorunlu: true, not: "Fundus-ektoserviks … cm, kornu-kornu … cm, ön-arka … cm"}
+    - {id: seroza, etiket: Seroza, tip: secim, secenekler: [düzgün ve parlaktır, "… bölgesinde yapışıklık izlendi", "subserozal nodül(ler) izlendi"]}
+    - {id: serviks, etiket: Serviks, tip: metin, not: "Ektoserviks … cm çapında, dış os … şeklinde; mukoza …; endoservikal kanal … cm"}
+    - {id: endometrium, etiket: Endometrium kalınlığı / görünümü, tip: metin, zorunlu: true, not: "… cm kalınlığında, düzgün / polipoid"}
+    - {id: miyometrium, etiket: Miyometrium kalınlığı / görünümü, tip: metin, not: "… cm kalınlığında; süngerimsi / trabeküle (adenomiyozis?)"}
+    - {id: miyom, etiket: Leiyomyomlar, zorunlu: true, not: "En büyüğü … cm, en küçüğü … cm çapında … adet intramural / submukozal / subserozal; kesit yüzü beyaz, girdap görünümlü / yumuşak / nekrotik / kanamalı"}
+    - {id: sag_adneks, etiket: Sağ tuba ve over, not: "… cm uzunluğunda, … cm çapında tuba; fimbrialar …; …x…x… cm over, kesit yüzü …"}
+    - {id: sol_adneks, etiket: Sol tuba ve over}
+  varyantlar:
+    - ad: Histerektomi ± adneks
+      metin:
+        - "{fiksasyon_durumu} gönderilen, {agirlik} g ağırlığında, {uterus_boyut} cm boyutlarında {prosedur} materyalidir. Seroza {seroza}."
+        - "Serviks: {serviks}. Uterus anteriordan açıldığında endometrium {endometrium}; miyometrium {miyometrium}."
+        - "Leiyomyomlar: {miyom}."
+        - "Sağ adneks: {sag_adneks}. Sol adneks: {sol_adneks}."
+      ornekleme:
+        - {kod: SA, aciklama: "serviks anterior dudak", parca: "1", kaset: "1"}
+        - {kod: SP, aciklama: "serviks posterior dudak", parca: "1", kaset: "1"}
+        - {kod: EA, aciklama: "endometrium-miyometrium, anterior", parca: "1", kaset: "1"}
+        - {kod: EP, aciklama: "endometrium-miyometrium, posterior", parca: "1", kaset: "1"}
+        - {kod: ALU, aciklama: alt uterin segment, parca: "1", kaset: "1"}
+        - {kod: M, aciklama: leiyomyomlar, not: "Her leiyomyomdan en az 1 kaset (en fazla 5 miyom); farklı görünümlü (yumuşak, sarı, kanamalı, nekrotik) alanlar ayrı. Olağan dışı görünümde cm başına 1 kaset."}
+        - {kod: STO, aciklama: "sağ tuba (fimbria dahil) ve over", parca: "…", kaset: "…"}
+        - {kod: LTO, aciklama: "sol tuba (fimbria dahil) ve over", parca: "…", kaset: "…"}
+  yapilacaklar:
+    - Ağırlık ve üç boyut; seroza incelenir.
+    - Anterior yüzden Y şeklinde aç; endometrium ve miyometrium kalınlığını ölç.
+    - Her leiyomyomun yerini ve kesit yüzünü kaydet; olağan dışı alanları ayrı örnekle.
+    - Morselize / parçalı gelen leiyomyomda cm başına 1 kaset (gizli malignite riski).
+    - Tubalar fimbriaları dahil; risk azaltıcı cerrahide SEE-FIM (tümü).

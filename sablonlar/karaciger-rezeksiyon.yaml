@@ -1,0 +1,71 @@
+id: karaciger-rezeksiyon
+baslik: Karaciğer rezeksiyonu — HCC, intrahepatik kolanjiyokarsinom, metastaz
+organ: Karaciğer
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP — Hepatocellular Carcinoma; Intrahepatic Bile Ducts protokolleri"
+  - "ICCR — Hepatocellular Carcinoma; Intrahepatic Cholangiocarcinoma"
+  - "WHO Sindirim Sistemi Tümörleri, 5. baskı (2019); AJCC 8"
+not: "HCC ve iKK'de pT ölçütleri farklıdır (HCC: 2 cm eşiği; iKK: 5 cm eşiği ve viseral periton). Metastazda pTNM uygulanmaz; primer ve tedavi yanıtı raporlanır."
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; karaciğer {segment}, {prosedur}"
+epikriz:
+  - {id: prosedur, etiket: Prosedür, seviye: 1, tip: secim, serbest: true, secenekler: [wedge rezeksiyon, segmentektomi, sağ hepatektomi, sol hepatektomi, genişletilmiş hepatektomi, total hepatektomi (transplantasyon)]}
+  - {id: segment, etiket: Segment, seviye: 0, gizli: true, tip: metin}
+  - {id: neoadjuvan, etiket: Neoadjuvan tedavi, seviye: 1, tip: secim, secenekler: [Yok, "Var (sistemik / TACE / RF / …)", Bilinmiyor]}
+  - {id: sayi, etiket: Tümör sayısı, seviye: 1, tip: metin, kalip: "… adet"}
+  - {id: boyut, etiket: "Tümör boyutu (en büyük)", seviye: 1, tip: olcu, birim: cm}
+  - id: histolojik_tip
+    etiket: Histolojik tip
+    seviye: 1
+    tip: secim
+    serbest: true
+    secenekler: [Hepatosellüler karsinom, "Hepatosellüler karsinom, … alt tipi (fibrolameller / steatohepatitik / makrotrabeküler masif …)", "İntrahepatik kolanjiyokarsinom, büyük kanal tipi", "İntrahepatik kolanjiyokarsinom, küçük kanal tipi", Kombine hepatosellüler-kolanjiyokarsinom, "Metastatik adenokarsinom (… kökenli)"]
+  - {id: derece, etiket: Histolojik derece, seviye: 1, tip: secim, secenekler: ["İyi diferansiye", "Orta derecede diferansiye", "Az diferansiye", "Uygulanmaz"]}
+  - {id: vaskuler, etiket: Vasküler invazyon, seviye: 1, tip: secim, secenekler: [Görülmedi, Mikrovasküler invazyon görüldü, "Makrovasküler invazyon (portal ven / hepatik ven dalı) görüldü", "Majör portal / hepatik ven dalı invazyonu (pT4)"]}
+  - {id: satellit, etiket: Satellit nodül, seviye: 2, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {id: kapsul, etiket: Viseral periton / Glisson kapsülü, seviye: 1, tip: secim, secenekler: [Tümör görülmedi, Viseral periton perforasyonu görüldü]}
+  - {id: periduktal, etiket: Periduktal infiltratif büyüme (iKK), seviye: 2, tip: secim, secenekler: [Yok, Var], kosul: "iKK"}
+  - modul: ortak.pni
+  - {id: nekroz, etiket: Tümör nekrozu / tedavi yanıtı, seviye: 1, tip: metin, kalip: "Canlı tümör %…; nekroz / fibrozis %…", kosul: "neoadjuvan"}
+  - {id: sinir, etiket: Parankimal cerrahi sınır, seviye: 1, tip: secim, secenekler: ["Tümör görülmedi; en yakın mesafe … mm", Tümör görüldü]}
+  - {id: sinir_diger, etiket: Diğer sınırlar (hiler kanal / vasküler), seviye: 2, tip: metin}
+  - modul: ortak.lenf_nodu
+  - modul: ortak.ptnm
+  - {id: arka_plan, etiket: Tümör dışı karaciğer, seviye: 1, tip: coklu, secenekler: [Belirgin özellik yok, "Kronik hepatit (…)", "Steatoz (%…)", "Steatohepatit", "Fibrozis (evre …)", Siroz, "Displastik nodül"]}
+  - {id: ihk, etiket: İmmünohistokimya, seviye: 3, tip: metin, kalip: "Arginaz-1 …, HepPar-1 …, glipikan-3 …, CK7 …, CK19 …"}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze], zorunlu: true}
+    - {id: prosedur, etiket: Prosedür, zorunlu: true}
+    - {id: agirlik, etiket: Ağırlık, tip: sayi, birim: g}
+    - {id: boyut, etiket: Materyal boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: kapsul_yuz, etiket: Kapsül yüzü, tip: secim, secenekler: [düzgündür, nodüler görünümdedir, "tümör üzerinde çekinti / retraksiyon izlendi"]}
+    - {id: tumor_sayi, etiket: Tümör sayısı, tip: sayi, zorunlu: true}
+    - {id: tumor_boyut, etiket: Tümör boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: kesit, etiket: Kesit yüzü, tip: secim, secenekler: ["sarı-yeşil, yumuşak, kapsüllü", "gri-beyaz, sert, infiltratif", "multinodüler", "yaygın nekrotik"], zorunlu: true}
+    - {id: d_sinir, etiket: Parankimal sınıra uzaklık, tip: olcu, birim: cm, zorunlu: true}
+    - {id: d_kapsul, etiket: Kapsüle uzaklık, tip: olcu, birim: cm}
+    - {id: vaskuler_makro, etiket: Makroskopik vasküler invazyon, tip: secim, secenekler: [izlenmedi, "… çaplı damarda tümör trombüsü izlendi"]}
+    - {id: arka_plan, etiket: Tümör dışı parankim, tip: secim, secenekler: [olağan görünümdedir, "sarı renkli (yağlı) görünümdedir", "mikronodüler / makronodüler sirotik görünümdedir"]}
+  varyantlar:
+    - ad: Karaciğer rezeksiyonu
+      metin:
+        - >-
+          {fiksasyon_durumu} gönderilen, {agirlik} g ağırlığında, {boyut} cm boyutlarında {prosedur} materyalidir.
+          Kapsül yüzü {kapsul_yuz}. Parankimal cerrahi sınır boyandı; materyal 1 cm aralıklarla dilimlendi.
+        - >-
+          Kesitlerde {tumor_sayi} adet tümör izlendi; en büyüğü {tumor_boyut} cm boyutlarında, {kesit} kesit yüzlüdür.
+          Tümör parankimal cerrahi sınıra {d_sinir} cm, kapsüle {d_kapsul} cm mesafededir. Makroskopik vasküler invazyon
+          {vaskuler_makro}. Tümör dışı parankim {arka_plan}.
+      ornekleme:
+        - {kod: T, aciklama: tümör, not: "Cm başına 1 kaset (en az 3); her nodül ayrı kod. Tümör-parankim geçişi mutlaka (mikrovasküler invazyon için)."}
+        - {kod: TCS, aciklama: "tümör-parankimal cerrahi sınır", parca: "…", kaset: "…"}
+        - {kod: TK, aciklama: "tümör-kapsül / viseral periton", parca: "…", kaset: "…"}
+        - {kod: B, aciklama: "tümörden uzak parankim", parca: "2", kaset: "2", not: "Fibrozis ve arka plan hastalık için tümörden ≥1 cm uzak."}
+        - {kod: V, aciklama: "vasküler / hiler sınırlar", parca: "…", kaset: "…"}
+  ek_materyaller: [makro.ln_istasyon]
+  yapilacaklar:
+    - Parankimal sınır boyanır; 1 cm aralıklarla dilimlenir; her nodül numaralanır ve haritalanır.
+    - HCC'de 7-nokta örnekleme önerisi — tümör-parankim birleşiminden 4, tümör merkezinden 1, yakın (≤1 cm) ve uzak (>1 cm) parankimden birer kaset.
+    - Tedavi sonrası nodüllerde en büyük kesit tamamen örneklenir (canlı tümör yüzdesi).

@@ -1,0 +1,41 @@
+id: bobrek-igne-tumor
+baslik: Böbrek kitle iğne biyopsisi
+organ: Böbrek
+materyal: Biyopsi
+kaynaklar:
+  - "WHO Üriner ve Erkek Genital Tümörleri, 5. baskı (2022)"
+  - "ISUP / GUPS — renal kitle biyopsisi önerileri"
+not: "İğne biyopsisinde derece ve alt tip rezeksiyonla uyumsuz olabilir; sınırlılık cümlesi eklenir."
+tani_alternatif: true
+tani:
+  - "{histolojik_tip}, lütfen epikrizi okuyunuz; {taraf} böbrek kitlesi, iğne biyopsi"
+  - "Onkositik renal neoplazm, lütfen epikrizi okuyunuz; {taraf} böbrek kitlesi, iğne biyopsi"
+  - "Anjiyomiyolipom; {taraf} böbrek kitlesi, iğne biyopsi"
+  - "Metastatik karsinom, lütfen epikrizi okuyunuz; {taraf} böbrek kitlesi, iğne biyopsi"
+  - "Tümör içermeyen böbrek parankimi, lütfen epikrizi okuyunuz; {taraf} böbrek kitlesi, iğne biyopsi"
+  - "Tanı için yetersiz materyal (nekroz / kan pıhtısı); {taraf} böbrek kitlesi, iğne biyopsi"
+epikriz:
+  - {id: taraf, etiket: Taraf, seviye: 0, gizli: true, tip: secim, secenekler: [sağ, sol]}
+  - {id: histolojik_tip, etiket: Histolojik tip, seviye: 1, tip: secim, serbest: true, secenekler: [Berrak hücreli renal hücreli karsinom, Papiller renal hücreli karsinom, Kromofob renal hücreli karsinom, "Renal hücreli karsinom, NOS", Ürotelyal karsinom, Düşük dereceli onkositik tümör, Onkositom]}
+  - {id: yeterlilik, etiket: Materyal, seviye: 1, tip: metin, kalip: "… kor, toplam … mm; tümör korların %…'inde; nekroz %…"}
+  - {id: derece, etiket: WHO/ISUP nükleer derece, seviye: 1, tip: secim, secenekler: ["Derece 1", "Derece 2", "Derece 3", "Derece 4", "Uygulanmaz"], not: "Biyopside görülen en yüksek derece; rezeksiyonda daha yüksek olabilir."}
+  - {id: sarkomatoid, etiket: Sarkomatoid / rabdoid özellik, seviye: 1, tip: secim, secenekler: [Görülmedi, Görüldü]}
+  - {modul: ortak.nekroz, seviye: 2}
+  - {id: ihk, etiket: İmmünohistokimya, seviye: 1, tip: metin, kalip: "PAX8 …, CA-IX …, CK7 …, AMACR …, CD117 …, FH …, SDHB …, HMB45 / Melan-A …, GATA3 …"}
+  - {id: onkositik_yorum, etiket: Onkositik neoplazm notu, seviye: 2, tip: secim, kosul: "onkositik", secenekler: ["Morfoloji ve immün profil onkositom lehinedir; ancak iğne biyopsisinde kromofob RCC'nin eozinofilik varyantından kesin ayrım yapılamayabilir.", "Morfoloji ve immün profil düşük dereceli onkositik tümör (CD117-/CK7+) ile uyumludur."]}
+  - {id: tumor_disi, etiket: Tümör dışı parankim, seviye: 3, tip: metin}
+  - {id: yorum, etiket: Yorum, seviye: 2, tip: secim, secenekler: ["İğne biyopsisinde tümör derecesi ve alt tipi rezeksiyon materyalinde farklılık gösterebilir.", "Materyal tümörü temsil etmiyor olabilir; klinik-radyolojik korelasyon ve gerekirse tekrar biyopsi önerilir."]}
+makroskopi:
+  alanlar:
+    - {id: adet, etiket: Kor sayısı, tip: sayi, zorunlu: true}
+    - {id: en_buyuk, etiket: En uzun kor, tip: olcu, birim: cm, zorunlu: true}
+    - {id: en_kucuk, etiket: En kısa kor, tip: olcu, birim: cm}
+    - {id: renk, etiket: Renk, tip: secim, secenekler: [sarı-turuncu, kahverengi, gri-beyaz, "kanamalı / frajil"]}
+  varyantlar:
+    - ad: İğne biyopsi
+      metin:
+        - "En uzunu {en_buyuk} cm, en kısası {en_kucuk} cm uzunluğunda, {renk} renkte {adet} adet iğne biyopsi materyali."
+      ornekleme:
+        - {kod: T, aciklama: tümü, tek: true}
+  yapilacaklar:
+    - Korlar dilimlenmeden gömülür; İHK için ara lamlar ayrılır.

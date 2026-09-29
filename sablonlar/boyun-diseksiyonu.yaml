@@ -1,0 +1,46 @@
+id: boyun-diseksiyonu
+baslik: Boyun diseksiyonu (bağımsız rapor)
+organ: Baş-boyun
+materyal: Rezeksiyon
+kaynaklar:
+  - "CAP / ICCR — Nodal Excisions and Neck Dissection Specimens for Head and Neck Tumours"
+  - "AJCC 8 (HPV ilişkisiz / p16 pozitif orofarinks ayrımı, ENE)"
+not: "Primer tümörle aynı raporda ise boyun bulguları ilgili şablonun lenf nodu bölümüne yazılır; bu şablon ayrı gönderilen / bilinmeyen primerli diseksiyonlar içindir."
+tani:
+  - "Metastatik {tumor_tipi} (… / … lenf nodu), lütfen epikrizi okuyunuz; {taraf} boyun, {diseksiyon}"
+  - "Metastaz içermeyen lenf nodları (… adet); {taraf} boyun, {diseksiyon}"
+epikriz:
+  - {id: taraf, etiket: Taraf, seviye: 0, gizli: true, tip: secim, secenekler: [sağ, sol]}
+  - {id: tumor_tipi, etiket: Tümör tipi, seviye: 0, gizli: true, tip: secim, secenekler: [skuamöz hücreli karsinom, "papiller tiroid karsinomu", adenokarsinom, melanom]}
+  - {id: diseksiyon, etiket: Diseksiyon tipi, seviye: 1, tip: secim, serbest: true, secenekler: ["radikal boyun diseksiyonu", "modifiye radikal boyun diseksiyonu", "selektif boyun diseksiyonu (seviye …)", "genişletilmiş boyun diseksiyonu"]}
+  - {id: seviyeler, etiket: Seviye bazında bulgular, seviye: 1, tip: metin, kalip: "Seviye I: …/…; seviye II: …/…; seviye III: …/…; seviye IV: …/…; seviye V: …/…; seviye VI: …/…"}
+  - {id: toplam, etiket: Toplam, seviye: 1, tip: metin, kalip: "… lenf nodundan …'inde metastaz"}
+  - {id: en_buyuk, etiket: En büyük metastatik depozit, seviye: 1, tip: olcu, birim: cm}
+  - {id: ene, etiket: Ekstranodal yayılım, seviye: 1, tip: secim, secenekler: [Görülmedi, "Görüldü — mikroskopik (ENEmi, ≤2 mm)", "Görüldü — makroskopik (ENEma)"]}
+  - {id: yumusak, etiket: Yumuşak doku tümör depoziti, seviye: 2, tip: secim, secenekler: [Görülmedi, "Görüldü (… cm; ENE ile birlikte değerlendirilir)"]}
+  - {id: yapilar, etiket: Dahil edilen yapılar, seviye: 2, tip: coklu, secenekler: ["Sternokleidomastoid kas (tutulum yok / var)", "İnternal juguler ven (tutulum yok / var)", "Spinal aksesuar sinir", "Submandibüler bez (tutulum yok / var)", "Tükürük bezi dokusu (parotis kuyruğu)"]}
+  - {id: primer, etiket: Primer odak araştırması (bilinmeyen primer), seviye: 2, tip: metin, kalip: "p16 İHK …; HR-HPV ISH / PCR …; EBER …; TTF-1 / tiroglobulin …"}
+  - {id: pn, etiket: pN, seviye: 1, tip: metin, kalip: "pN… (AJCC 8; HPV ilişkisiz / p16+ orofarinks sistemi: …)"}
+makroskopi:
+  alanlar:
+    - {id: taraf, etiket: Taraf, tip: secim, secenekler: [sağ, sol], zorunlu: true}
+    - {id: diseksiyon, etiket: Diseksiyon tipi, zorunlu: true}
+    - {id: boyut, etiket: Materyal boyutu, tip: olcu, birim: cm, zorunlu: true}
+    - {id: isaret, etiket: Seviye işaretleri, tip: secim, secenekler: ["cerrah tarafından seviyeler işaretlenmiş", "işaretlenmemiş (seviye ayrımı yapılamadı)"], zorunlu: true}
+    - {id: yapilar, etiket: Eşlik eden yapılar, not: "SKM … cm, IJV … cm, submandibüler bez …x…x… cm"}
+    - {id: ln_ozet, etiket: Seviye bazında lenf nodları, zorunlu: true, not: "Seviye II: en büyüğü … cm, … adet; seviye III: …"}
+    - {id: yapisma, etiket: Makroskopik ENE / yapışıklık, tip: secim, secenekler: [izlenmedi, "seviye …'deki lenf nodu çevre dokuya / IJV'ye yapışıktır"]}
+  varyantlar:
+    - ad: Tek parça, oryante
+      metin:
+        - "{diseksiyon} şeklinde, {isaret}, {boyut} cm boyutlarında {taraf} boyun diseksiyonu materyalidir; {yapilar}."
+        - "Diseksiyonda: {ln_ozet}. Makroskopik ekstranodal yayılım / yapışıklık {yapisma}."
+      ornekleme:
+        - {kod: "I–VI", aciklama: "seviye bazında lenf nodları (her seviye ayrı kod)", not: "Tümü; >0,5 cm nodlar dilimlenir; makroskopik metastatik nodda ENE için nod-kapsül-çevre doku geçişi."}
+        - {kod: SMB, aciklama: submandibüler bez, parca: "1", kaset: "1"}
+        - {kod: V, aciklama: "IJV / SKM (makroskopik tutulum şüphesi)", parca: "…", kaset: "…"}
+  ek_materyaller: [makro.ln_istasyon]
+  yapilacaklar:
+    - Seviyeleri cerrahın işaretlerine göre ayır; işaret yoksa anatomik ipuçlarıyla sınırlı ayırım yapıldığı belirtilir.
+    - Her seviyedeki tüm nodları say ve ölç; en büyük nodu kaydet.
+    - Makroskopik metastatik nodda ENE için kapsül ve çevre dokuyu içeren kesit.

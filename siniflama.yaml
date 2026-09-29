@@ -1,0 +1,100 @@
+# Uygulamadaki gezinme için sınıflama. grup: N = neoplastik, NN = non-neoplastik, K = karma, S = sitoloji, E = ek test
+gruplar:
+  N: Neoplastik
+  NN: Non-neoplastik
+  K: Karma (neoplastik + non-neoplastik)
+  S: Sitoloji
+  E: Ek test
+sistemler:
+  - Meme
+  - Gastrointestinal
+  - Hepatobiliyer ve pankreas
+  - Üriner sistem ve erkek genital
+  - Jinekoloji ve perinatal
+  - Toraks
+  - Baş-boyun
+  - Endokrin
+  - Deri
+  - Yumuşak doku ve kemik
+  - Hematolenfoid
+  - Sinir sistemi ve göz
+  - Çoklu organ
+sablonlar:
+  meme-igne-biyopsi: [Meme, N]
+  meme-rezeksiyon: [Meme, N]
+  sito-meme: [Meme, S]
+  ozofagus-rezeksiyon: [Gastrointestinal, N]
+  mide-endoskopik-biyopsi: [Gastrointestinal, NN]
+  mide-rezeksiyon: [Gastrointestinal, N]
+  duodenum-biyopsi: [Gastrointestinal, NN]
+  kolon-biyopsi-inflamatuar: [Gastrointestinal, NN]
+  kolon-polip: [Gastrointestinal, N]
+  kolorektal-rezeksiyon: [Gastrointestinal, N]
+  apendiks: [Gastrointestinal, K]
+  gist: [Gastrointestinal, N]
+  anal-kanal: [Gastrointestinal, N]
+  safra-kesesi: [Hepatobiliyer ve pankreas, K]
+  karaciger-igne-biyopsi: [Hepatobiliyer ve pankreas, NN]
+  karaciger-rezeksiyon: [Hepatobiliyer ve pankreas, N]
+  pankreatikoduodenektomi: [Hepatobiliyer ve pankreas, N]
+  distal-pankreatektomi: [Hepatobiliyer ve pankreas, N]
+  sito-pankreas: [Hepatobiliyer ve pankreas, S]
+  bobrek-nefrektomi: [Üriner sistem ve erkek genital, N]
+  bobrek-igne-tumor: [Üriner sistem ve erkek genital, N]
+  bobrek-medikal: [Üriner sistem ve erkek genital, NN]
+  bobrek-transplant: [Üriner sistem ve erkek genital, NN]
+  ust-uriner-sistem: [Üriner sistem ve erkek genital, N]
+  mesane-tur: [Üriner sistem ve erkek genital, N]
+  sistektomi: [Üriner sistem ve erkek genital, N]
+  prostat-igne-biyopsi: [Üriner sistem ve erkek genital, N]
+  prostat-radikal: [Üriner sistem ve erkek genital, N]
+  prostat-tur-acik: [Üriner sistem ve erkek genital, K]
+  testis-orsiektomi: [Üriner sistem ve erkek genital, N]
+  penis: [Üriner sistem ve erkek genital, N]
+  sito-idrar: [Üriner sistem ve erkek genital, S]
+  endometrium-biyopsi: [Jinekoloji ve perinatal, K]
+  histerektomi-benign: [Jinekoloji ve perinatal, NN]
+  endometrium-karsinom: [Jinekoloji ve perinatal, N]
+  serviks-konizasyon: [Jinekoloji ve perinatal, N]
+  serviks-radikal: [Jinekoloji ve perinatal, N]
+  over-tumor: [Jinekoloji ve perinatal, N]
+  vulva: [Jinekoloji ve perinatal, N]
+  plasenta: [Jinekoloji ve perinatal, NN]
+  gebelik-urunu: [Jinekoloji ve perinatal, K]
+  sito-serviks: [Jinekoloji ve perinatal, S]
+  akciger-rezeksiyon: [Toraks, N]
+  akciger-kucuk-biyopsi: [Toraks, K]
+  plevra-mezotelyoma: [Toraks, K]
+  timus: [Toraks, N]
+  sito-akciger-ebus: [Toraks, S]
+  sito-efuzyon: [Toraks, S]
+  larinks: [Baş-boyun, N]
+  oral-kavite: [Baş-boyun, N]
+  tukuruk-bezi: [Baş-boyun, N]
+  minor-tukuruk-sjogren: [Baş-boyun, NN]
+  sinonazal: [Baş-boyun, K]
+  boyun-diseksiyonu: [Baş-boyun, N]
+  sito-tukuruk: [Baş-boyun, S]
+  tiroidektomi: [Endokrin, K]
+  paratiroid: [Endokrin, K]
+  adrenal: [Endokrin, K]
+  sito-tiroid: [Endokrin, S]
+  deri-melanom: [Deri, N]
+  deri-karsinom: [Deri, N]
+  deri-inflamatuar: [Deri, NN]
+  deri-alopesi: [Deri, NN]
+  yumusak-doku-biyopsi: [Yumuşak doku ve kemik, N]
+  yumusak-doku-rezeksiyon: [Yumuşak doku ve kemik, N]
+  kemik-tumor: [Yumuşak doku ve kemik, N]
+  lenf-nodu-lenfoma: [Hematolenfoid, K]
+  kemik-iligi: [Hematolenfoid, K]
+  dalak: [Hematolenfoid, K]
+  sito-lenf-nodu: [Hematolenfoid, S]
+  mss-tumor: [Sinir sistemi ve göz, N]
+  epilepsi: [Sinir sistemi ve göz, K]
+  goz: [Sinir sistemi ve göz, N]
+  sito-bos: [Sinir sistemi ve göz, S]
+  ek-her2-ish: [Çoklu organ, E]
+  ek-pdl1: [Çoklu organ, E]
+  ek-mmr: [Çoklu organ, E]
+  ek-alk-ros1: [Çoklu organ, E]
