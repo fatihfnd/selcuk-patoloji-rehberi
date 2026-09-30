@@ -120,7 +120,7 @@ textarea{resize:vertical;min-height:38px}
 .read h2{font-family:var(--sans);border-top:1px solid var(--rule);padding-top:18px}
 .read h3{font-family:var(--sans)}
 .read .fb{border-left:3px solid var(--hema-soft);padding:2px 0 2px 14px;margin:14px 0}
-.read .fb.core{border-left-color:var(--eosin)}
+.read .fb.cekirdek{border-left-color:var(--eosin)}
 .read .fb h4{font-family:var(--sans);font-size:15px;margin:0 0 4px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
 .read ul{margin:4px 0 8px;padding-left:20px}
 .read .note{font-size:14.5px;color:var(--muted)}
@@ -1328,7 +1328,7 @@ function renderRehber(s){
   const secs = [];
   const sec = (id, title, ...kids) => { secs.push([id, title]); return h("section", {id:"g-" + id}, h("h2", null, title), kids); };
   function fb(a, depth){
-    return h("div", {class:"fb" + (a.seviye === 1 ? " core" : ""), style: depth ? "margin-left:" + (depth * 16) + "px" : null},
+    return h("div", {class:"fb" + (a.seviye === 1 ? " cekirdek" : ""), style: depth ? "margin-left:" + (depth * 16) + "px" : null},
       h("h4", null, a.etiket, h("span", {class:"tag"}, SEV_AD[a.seviye] || ""), a.tip ? h("span", {class:"tag"}, {secim:"tek seçim", coklu:"çoklu seçim", metin:"metin", sayi:"sayı", olcu:"ölçüm"}[a.tip] + (a.birim ? " (" + a.birim + ")" : "")) : h("span", {class:"tag"}, "başlık"), a.serbest ? h("span", {class:"tag"}, "listede yoksa serbest") : null),
       a.secenekler ? h("ul", null, a.secenekler.map(o => h("li", null, o))) : null,
       a.kalip ? h("p", {class:"note"}, "Kalıp: " + a.kalip) : null,
