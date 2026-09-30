@@ -27,6 +27,19 @@ etiketin tırnaksız yazılması, tanınmayan anahtar, ASCII olmayan `id`, metin
 - Şema ve güvenlik kuralları: `supabase/schema.sql`; kurulum adımları: `docs/UYELIK.md`. `service_role` anahtarı asla depoya girmez.
 - Kişisel şablonlar `sablon_surumleri` tablosunda (`paylasim`='kisisel'); `bolum_uyeleri`'ndeki kullanıcılar 'bolum' paylaşabilir.
 
+## Rehber içerikleri
+
+- `rehber/<şablon id>.yaml`: `makroskopi` (adım listesi), `notlar` (her biri `baslik` + `metin`), `sik_hatalar`, isteğe bağlı `giris`.
+- `rehber/_genel.yaml`: tüm materyaller için genel makroskopi ilkeleri (sitede "Makroskopi ilkeleri").
+- Metinler kaynak protokollerden kopyalanmaz; Türkçe, özgün ve kısa yazılır. Emin olunmayan sayısal eşik yazılmaz.
+- Rehberi yazılmış şablonlar: meme (rezeksiyon, iğne), kolorektal, mide, prostat (iğne, radikal), tiroidektomi,
+  endometrium karsinomu, akciğer rezeksiyonu, nefrektomi. Kalanlar aynı biçimde tamamlanacak.
+
+## Boş / özel şablonlar
+
+- `sablonlar/serbest.yaml` listede görünmeyen temel şablondur; "Boş şablon oluştur" bunun üzerine sürüm üretir ve sürümdeki
+  `sistem` alanına göre ana sayfada "Özel" etiketiyle listelenir.
+
 ## Arayüz notları
 
 - Önizlemede "Rapor metni" ve "Sarı boşluklu" görünüm (rapor editörüyle ileride eşlenecek; boşluk = `…`).

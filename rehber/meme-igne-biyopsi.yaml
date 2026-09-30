@@ -1,0 +1,18 @@
+makroskopi:
+- Her kaptaki kor sayısını ve en büyük / en küçük uzunluğu kaydet; parçalanmış materyalde toplam uzunluğu ver.
+- 'Soğuk iskemi ve formalin fiksasyon süresini yaz (ASCO/CAP: iskemi ≤1 saat, fiksasyon 6–72 saat).'
+- Korları dilimlemeden, düz ve paralel yerleştir; kaset başına 3–4 kor.
+- Kalsifikasyon için alınmış ve radyografide kalsifik olduğu belirtilen korları ayrı kasetle.
+notlar:
+- baslik: Biyopside evreleme
+  metin: İğne biyopsisinde tümör boyutu ve pT verilmez; korda görülen tümör uzunluğu gerekirse bilgi olarak yazılabilir.
+- baslik: Derece
+  metin: Biyopside Nottingham derecesi, özellikle mitoz skoru, rezeksiyona göre düşük tahmin edilebilir; bu sınırlılık yorumda belirtilebilir.
+- baslik: Biyobelirteç önceliği
+  metin: ER, PR ve HER2 bu materyalde çalışılır; iyi fiksasyon nedeniyle sonuçlar rezeksiyondan daha güvenilirdir. HER2 skor 2+ ise ISH ile değerlendirilir; 2+/ISH negatif ve 1+ sonuçlar HER2-düşük olarak raporlanır.
+- baslik: Kalsifikasyon korelasyonu
+  metin: Kalsifikasyon için yapılan biyopside kalsifikasyonun lezyonda mı, benign parankimde mi olduğu yazılır; radyolojik bulguyla uyumsuzluk (örneklenmemiş lezyon şüphesi) yorumda belirtilir.
+sik_hatalar:
+- Fiksasyon sürelerini kaydetmemek.
+- Kalsifik ve kalsifik olmayan korları aynı kasete koymak.
+- HER2 0 ile 1+ ayrımını (HER2-düşük) atlamak.

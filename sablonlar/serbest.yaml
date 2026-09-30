@@ -1,0 +1,34 @@
+id: serbest
+baslik: Serbest şablon
+organ: Genel
+materyal: Serbest
+liste_disi: true
+kaynaklar:
+  - "Bölüm içi şablon"
+not: "Listede karşılığı olmayan materyaller için boş başlangıç şablonu; alanlar şablon oluşturucuda eklenir."
+tani_alternatif: true
+tani:
+  - "…, lütfen epikrizi okuyunuz; {yer}, {islem}"
+epikriz:
+  - {id: yer, etiket: Alındığı yer, seviye: 0, gizli: true, tip: metin}
+  - {id: islem, etiket: Alınma şekli, seviye: 0, gizli: true, tip: metin}
+  - {id: aciklama, etiket: Açıklama, seviye: 2, tip: metin}
+makroskopi:
+  alanlar:
+    - {id: fiksasyon_durumu, etiket: Geliş durumu, tip: secim, secenekler: [Formalin içinde, Taze]}
+    - {id: tanim, etiket: Materyal tanımı}
+    - {id: boyut, etiket: Boyut, tip: olcu, birim: cm}
+    - {id: adet, etiket: Parça sayısı, tip: sayi}
+    - {id: en_buyuk, etiket: En büyük parça, tip: olcu, birim: cm}
+    - {id: en_kucuk, etiket: En küçük parça, tip: olcu, birim: cm}
+    - {id: renk, etiket: Renk / kıvam}
+    - {id: lezyon, etiket: Lezyon tanımı}
+    - {id: d_sinir, etiket: Lezyonun en yakın sınıra uzaklığı, tip: olcu, birim: cm}
+  varyantlar:
+    - ad: Genel
+      metin:
+        - "{fiksasyon_durumu} gönderilen, {boyut} cm boyutlarında {tanim}. Kesitlerde {lezyon}."
+      ornekleme:
+        - {kod: T, aciklama: tümü, tek: true}
+  yapilacaklar:
+    - Genel makroskopi ilkelerine uyun (ölçüm, boyama, örnekleme).

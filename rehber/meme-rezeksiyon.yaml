@@ -1,0 +1,32 @@
+makroskopi:
+- Tart ve üç boyutu ölç; deri elipsi, meme başı ve aksiller uzanımı ayrı ayrı tanımla. Aksiller uzanım lateral yönü gösterir.
+- Cerrahi işaretlere göre oryante et; mastektomide derin (fasya) yüzü, lumpektomide altı yüzü farklı renklerle boya ve renk şemasını yaz.
+- Soğuk iskemi ve fiksasyon başlangıç saatini kaydet; materyali 5–10 mm aralıklarla dilimleyip fiksasyonu tamamlat.
+- Tümörü ya da biyopsi yatağını (klip) bul; üç boyutunu ve her sınıra, deriye, meme başına uzaklığını tek cümlede ver.
+- 'Tümörden en büyük kesit dahil örnek al: ≤2 cm tümör tamamen, daha büyükler cm başına bir kaset. En yakın sınırlar dik kesitle.'
+- Meme başı (taban en face + dik kesit), tümör üzeri deri ve tutulmamış dört kadrandan örnek al.
+- Aksiller dokudaki tüm lenf nodlarını ayıkla; sentinel nodlar 2 mm aralıklarla dilimlenerek tamamen takibe alınır.
+- 'Neoadjuvan sonrası: yatak boyutunu iki eksende ölç, en büyük kesiti haritalayarak (tam kesit, kaset haritası) örnekle; klip bulunamazsa radyolojiyle korele et.'
+notlar:
+- baslik: Tümör boyutu
+  metin: pT invaziv komponentin en büyük boyutuna göre verilir; eşlik eden DCIS boyuta katılmaz. Makroskopik ölçüm mikroskopiyle doğrulanır; mikroskopik boyut makroskopikten farklıysa mikroskopik değer kullanılır.
+- baslik: Çok odaklılık
+  metin: Ayrı invaziv odaklarda en büyük odak pT'yi belirler ve (m) eki eklenir. Odakların birbirinden ayrı olduğu histolojik olarak doğrulanmalıdır; araya giren normal doku yoksa tek tümör kabul edilir.
+- baslik: Neoadjuvan sonrası boyut (ypT)
+  metin: ypT, en büyük kesintisiz rezidü invaziv odağa göre verilir; tedavi ilişkili fibrozis boyuta katılmaz. RCB hesaplaması için tümör yatağının iki boyutu, rezidü sellülarite ve nodal değerler kaydedilir.
+- baslik: Cerrahi sınır
+  metin: İnvaziv karsinomda boyalı yüzde tümör varlığı pozitif sınırdır. DCIS için 2 mm ve üzeri mesafe yeterli kabul edilir (SSO/ASTRO/ASCO önerisi). En yakın sınır adı ve mesafesi mm olarak verilir.
+- baslik: Lenf nodu kategorileri
+  metin: Makrometastaz >2 mm; mikrometastaz >0,2–2 mm veya >200 hücre; izole tümör hücreleri ≤0,2 mm ve ≤200 hücre. İzole tümör hücreleri pozitif nod sayısına eklenmez, pN0(i+) olarak belirtilir.
+- baslik: Deri ve göğüs duvarı
+  metin: Yalnız dermis invazyonu pT4 değildir. pT4b için epidermis ülserasyonu, satellit deri nodülleri veya portakal kabuğu ödem gerekir. Yalnız pektoral kas invazyonu pT4a değildir; göğüs duvarı (kaburga, interkostal kas) tutulumu gerekir. İnflamatuar karsinom (pT4d) klinik bir tanıdır.
+- baslik: Derece ve mitoz
+  metin: Nottingham derecesinde mitoz skoru mikroskobun alan çapına göre eşiklenir; sayım mm² cinsinden yapılıp laboratuvarın mikroskobuna ait tabloyla skorlanır.
+- baslik: Biyobelirteç
+  metin: ER/PR ve HER2 tercihen iğne biyopsisinde çalışılır (daha iyi fiksasyon). Rezeksiyonda tekrar yalnız biyopsi negatif / yetersizse, tümör heterojense veya neoadjuvan sonrası klinik gerekçe varsa yapılır. ER %1–10 “düşük pozitif” olarak ayrıca belirtilir.
+sik_hatalar:
+- DCIS'i invaziv tümör boyutuna katmak.
+- İzole tümör hücrelerini metastatik nod sayısına eklemek.
+- Soğuk iskemi ve fiksasyon sürelerini kaydetmemek.
+- Dermis invazyonunu tek başına pT4 olarak evrelemek.
+- Boya kurumadan kesmek (yalancı sınır pozitifliği).

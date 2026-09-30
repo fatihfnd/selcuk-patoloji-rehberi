@@ -1,0 +1,24 @@
+makroskopi:
+- Tart, ölç; seroza ve parametriumları incele, boya.
+- Uterusu lateral duvarlardan aç (tümör ön / arka duvardaysa); endometrium ve miyometrium kalınlığını ölç.
+- Tümörün yerleşimini, boyutunu ve makroskopik en derin invazyonunu (invazyon derinliği / duvar kalınlığı) kaydet.
+- En derin invazyon alanından tam kat (gerekirse bölünmüş) kesit al; ≤2 cm tümör tamamen örneklenir.
+- Alt uterin segment ve serviksi (endoserviks–ALU bileşkesi dahil) ayrı kasetlerle örnekle.
+- Adneksleri (tuba fimbriyası dahil), parametriumları ve vajinal kafı örnekle; sentinel nodları ultraevreleme protokolüyle işle.
+notlar:
+- baslik: Miyometriyal invazyon ölçümü
+  metin: Komşu normal endomiyometriyal bileşkeden en derin tümör noktasına kadar ölçülür ve aynı düzeydeki miyometrium kalınlığına oranlanır (<%50 / ≥%50). Ekzofitik tümörde ölçüm bileşkeden başlar.
+- baslik: Adenomiyozis
+  metin: Adenomiyozis odaklarında (çevresinde endometriyal stroma bulunan) tümör varlığı miyometriyal invazyon sayılmaz; adenomiyozisten kaynaklanan gerçek invazyon ayrıca belirtilir.
+- baslik: LVSI
+  metin: Yok, fokal (<5 damar) ve yaygın (≥5 damar, tek H&E kesitinde) olarak sınıflanır. FIGO 2023'te yaygın LVSI evreyi değiştirir.
+- baslik: Serviks tutulumu
+  metin: Yalnız endoservikal glandüler / mukozal tutulum stromal invazyon değildir; FIGO evresini değiştiren serviks stromal invazyonudur.
+- baslik: Moleküler sınıflama
+  metin: POLE mutasyonu, MMR eksikliği, p53 anormalliği ve bunların hiçbiri olmayan (NSMP) grup. Birden fazla sınıflayıcı varsa öncelik POLEmut, sonra MMRd, sonra p53abn şeklindedir. p53 yorumunda aşırı ekspresyon, tam kayıp ve sitoplazmik patern anormal kabul edilir.
+- baslik: Evreleme sistemi
+  metin: Geçiş döneminde FIGO 2023 ve FIGO 2009 / pTNM birlikte verilebilir; hangisinin kullanıldığı raporda açıkça yazılmalıdır.
+sik_hatalar:
+- Adenomiyozisteki tümörü miyometriyal invazyon olarak ölçmek.
+- Endoservikal glandüler tutulumu stromal invazyon saymak.
+- LVSI yaygınlığını (fokal / yaygın) belirtmemek.

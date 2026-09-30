@@ -1,0 +1,22 @@
+makroskopi:
+- Renal ven, arter ve üreter sınırlarını açmadan ayır; renal ven içindeki trombüsü yerinde değerlendir.
+- Perirenal yağın dış yüzünü boya; böbreği uzun eksende ikiye aç, 1 cm aralıklarla dilimle.
+- Tümörün yerleşimini, boyutunu, kesit yüzünü, nekroz yüzdesini ve kapsül / perirenal yağ / sinüs / pelvis ilişkisini kaydet.
+- Tümörden cm başına bir kaset al (en az 3); farklı görünümlü alanları ayrı kodla.
+- Tümör–renal sinüs ilişkisinden en az üç kaset al.
+- Tümör dışı böbrekten korteks içeren örnek, adrenal ve hiler lenf nodlarını örnekle.
+notlar:
+- baslik: Renal sinüs invazyonu
+  metin: 'pT3a''nın en sık gözden kaçan nedenidir: tümörün sinüs yağ dokusuyla doğrudan teması veya sinüs venlerine uzanımı. Tümör-sinüs ilişkisi yeterli kesitle gösterilmelidir.'
+- baslik: Derece
+  metin: WHO/ISUP nükleer derecesi berrak hücreli ve papiller renal hücreli karsinomda prognostiktir; kromofob karsinomda derece verilmez. Sarkomatoid veya rabdoid diferansiasyon derece 4'tür; oranı yazılır.
+- baslik: pT kategorileri
+  metin: 'pT1a ≤4 cm, pT1b >4–7 cm, pT2a >7–10 cm, pT2b >10 cm (böbreğe sınırlı). pT3a: renal ven veya kas içeren segmental dallarına, perirenal veya sinüs yağ dokusuna yayılım. pT4: Gerota fasyasının ötesi veya ipsilateral adrenale doğrudan yayılım.'
+- baslik: Tümör nekrozu
+  metin: Berrak hücreli karsinomda koagülatif tümör nekrozu bağımsız prognostik faktördür; varlığı ve yaklaşık oranı raporlanır.
+- baslik: Tümör dışı böbrek
+  metin: Diyabetik nefropati, arterionefroskleroz gibi medikal böbrek hastalıkları kalan böbrek fonksiyonu açısından önemlidir ve raporda değerlendirilir.
+sik_hatalar:
+- Renal sinüsten yetersiz örnekleme.
+- Kromofob karsinoma nükleer derece vermek.
+- Tümör dışı parankimi değerlendirmemek.

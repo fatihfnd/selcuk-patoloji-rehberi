@@ -302,6 +302,28 @@ def main():
     km.insert(1, f"\n{tam} / {top} şablon tamamlandı.\n")
     open(os.path.join(DIST, "Katalog.md"), "w", encoding="utf-8").write("\n".join(km))
     md += km
+    # --- rehber içerikleri (rehber/<id>.yaml, rehber/_genel.yaml) ---
+    R_ANAHTAR = {"makroskopi", "notlar", "sik_hatalar", "giris"}
+    genel = None
+    for f in sorted(glob.glob(os.path.join(KOK, "rehber", "*.yaml"))):
+        ad = os.path.splitext(os.path.basename(f))[0]
+        r = yaml.safe_load(open(f, encoding="utf-8")) or {}
+        if ad == "_genel":
+            genel = r
+            continue
+        hedef = next((x for x in paket if x["id"] == ad), None)
+        if not hedef:
+            sys.exit(f"HATA {f}: böyle bir şablon yok ({ad})")
+        if set(r) - R_ANAHTAR:
+            sys.exit(f"HATA {f}: tanınmayan anahtar {set(r) - R_ANAHTAR}")
+        for n in r.get("notlar") or []:
+            if set(n) != {"baslik", "metin"}:
+                sys.exit(f"HATA {f}: her not 'baslik' ve 'metin' içermeli: {n}")
+        eski = hedef.get("rehber")
+        if isinstance(eski, list):
+            r.setdefault("giris", eski)
+        hedef["rehber"] = r
+
     # --- uygulama (tek HTML) ---
     sin = yaml.safe_load(open(os.path.join(KOK, "siniflama.yaml"), encoding="utf-8"))
     eksik = [x["id"] for x in paket if x["id"] not in sin["sablonlar"]]
@@ -317,7 +339,7 @@ def main():
     # --- paylaşılan şablon sürümleri (sablonlar/varyant/<temel>--<ad>.yaml) ---
     varyantlar = []
     tum = {x["id"]: x for x in paket}
-    V_ANAHTAR = {"temel", "ad", "aciklama", "yazar", "alanlar", "sira", "ekle", "tani", "mikroskopi", "varsayilanlar", "makro"}
+    V_ANAHTAR = {"temel", "ad", "aciklama", "yazar", "alanlar", "sira", "ekle", "tani", "mikroskopi", "varsayilanlar", "makro", "sistem"}
     for f in sorted(glob.glob(os.path.join(KOK, "sablonlar", "varyant", "*.yaml"))):
         ad = os.path.splitext(os.path.basename(f))[0]
         v = yaml.safe_load(open(f, encoding="utf-8")) or {}
@@ -355,7 +377,7 @@ def main():
                 sys.exit(f"HATA {f}: makroskopide olmayan alan {set(mk['alanlar']) - mids}")
         v["key"] = ad.split("--", 1)[1]
         varyantlar.append(v)
-    veri = {"sablonlar": app_sablon, "varyantlar": varyantlar, "makro_moduller": {k: v for k, v in mod.items() if k.startswith("makro.")},
+    veri = {"sablonlar": app_sablon, "varyantlar": varyantlar, "genel_rehber": genel, "makro_moduller": {k: v for k, v in mod.items() if k.startswith("makro.")},
             "siniflama": {"gruplar": sin["gruplar"], "sistemler": sin["sistemler"]},
             "site": yaml.safe_load(open(os.path.join(KOK, "site.yaml"), encoding="utf-8"))}
     js = json.dumps(veri, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")

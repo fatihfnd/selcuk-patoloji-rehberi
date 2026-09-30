@@ -1,0 +1,58 @@
+baslik: Genel makroskopi ilkeleri
+giris: Tüm materyaller için geçerli temel kurallar. Organa özgü ayrıntılar her şablonun rehber sayfasındadır.
+bolumler:
+- baslik: Kabul ve kimlik doğrulama
+  maddeler:
+  - Kap üzerindeki hasta kimliği, istem formu ve sistem kaydı en az iki tanımlayıcıyla (ad-soyad, protokol / biyopsi no) karşılaştırılır; uyumsuzlukta materyal işlenmez, istem sahibine bildirilir.
+  - Kap sayısı, her kabın kayıtlı yeri ve istemdeki klinik bilgi kaydedilir; eksik klinik bilgi (ön tanı, neoadjuvan tedavi, önceki biyopsi) not düşülür.
+  - Materyalin geliş durumu (formalin / taze / serum fizyolojik) ve kaba fiksasyon yeterliliği yazılır.
+- baslik: Fiksasyon
+  maddeler:
+  - Standart fiksatif %10 nötral tamponlu formalindir; fiksatif hacmi doku hacminin en az 10 katı olmalıdır.
+  - Soğuk iskemi süresi (cerrahi çıkarım → formalin) ve fiksasyon süresi özellikle meme ve biyobelirteç çalışılacak tümörlerde kaydedilir; hedef soğuk iskemi ≤1 saat, fiksasyon 6–72 saattir.
+  - Büyük rezeksiyonlar açılarak veya 0,5–1 cm aralıklarla dilimlenerek fiksatife bırakılır; dilimler arasına gazlı bez konur. İçi boş organlar (mide, kolon, mesane) açılıp iğnelenerek veya lümenden formalin verilerek fikse edilir.
+  - Yetersiz fikse materyalde kesitleme ertelenebilir; bu durum raporda belirtilir.
+- baslik: Oryantasyon, fotoğraf ve boyama
+  maddeler:
+  - Cerrahi işaretler (ip, klips) tanımlanır; belirsizlikte cerraha danışılır, varsayım yapılmaz.
+  - Kesimden önce ve en büyük kesit düzleminde fotoğraf çekilmesi, özellikle karmaşık rezeksiyonlarda ve neoadjuvan sonrası materyalde önerilir.
+  - Cerrahi sınırlar boyanır; hangi rengin hangi yüzeye uygulandığı makroskopide açıkça yazılır. Boya kurutulduktan (gerekirse %5 asetik asitle sabitlendikten) sonra kesilir; aksi halde boya yayılıp yalancı sınır pozitifliği oluşturur.
+- baslik: Ölçüm ve tanım
+  maddeler:
+  - 'Materyal ve tümör üç boyutta, aynı birimle (cm; küçük değerler mm) ve ondalık virgülle yazılır: “3,5x2x1,2 cm”. “5X6”, “5*6”, birimsiz sayılar kullanılmaz.'
+  - Tümörün tüm cerrahi sınırlara, seroza / plevra / deri gibi yüzeylere uzaklığı tek cümlede verilir.
+  - 'Tanım sırası sabittir: yerleşim → boyut → sınır → renk / kıvam → ilişki / yayılım → mesafeler.'
+  - Makroskopik yorum (ör. “malign görünümlü”) yerine gözlem yazılır.
+- baslik: Dilimleme ve örnekleme
+  maddeler:
+  - Kaset için doku kalınlığı 2–3 mm'yi, yüzey 2,5x2 cm'yi aşmamalıdır; kalın doku iyi işlenmez.
+  - Tümörden genel kural olarak en büyük boyutun her cm'i için bir kaset alınır; küçük tümörler (ör. ≤2 cm) tamamen örneklenir.
+  - En yakın sınır, tümörü ve boyalı yüzü aynı kesitte gösterecek şekilde dik kesilir; uzak sınırlar en face (yüzeyden) alınabilir. Hangi yöntemin kullanıldığı yazılır.
+  - Tümör ile komşu anatomik yapıların (seroza, kapsül, kas tabakası, sinüs yağı) ilişkisini gösteren kesitler evreleme için önceliklidir.
+  - Tümör dışı doku ve arka plan patolojiler için ayrıca örnek alınır.
+- baslik: Kaset kodlama ve blok haritası
+  maddeler:
+  - 'Her kaset anlamlı bir kodla (T, PCS, LN …) ve parça sayısıyla kaydedilir; uzun yazım (“T (tümör): 3 parça 3 kasette”) ya da kısa kod (“T: 3P3K”) laboratuvar içinde tek tip kullanılır.'
+  - Karmaşık rezeksiyonlarda dilim şeması veya fotoğraf üzerinde kaset haritası çizilir ve arşivlenir.
+  - Aynı kasete farklı bölgelerden parça konacaksa parçalar renk ya da sayıyla ayırt edilebilir olmalıdır.
+- baslik: Lenf nodları
+  maddeler:
+  - Tüm lenf nodları ayıklanır; ≤0,5 cm olanlar bütün, daha büyükler uzun eksene dik 2–3 mm aralıklarla dilimlenerek tamamen takibe alınır.
+  - Makroskopik olarak açıkça metastatik nodda tek temsili kesit yeterlidir; ekstranodal yayılım şüphesinde kapsül ve çevre dokuyu içeren kesit alınır.
+  - Hedef nod sayısına ulaşılamazsa ek arama yapılır ve bu durum raporda belirtilir.
+- baslik: Dekalsifikasyon
+  maddeler:
+  - Kemik ve kalsifik dokuda mümkünse EDTA ile dekalsifikasyon tercih edilir; güçlü asitler İHK ve moleküler testleri (ER, HER2, FISH, NGS) bozabilir.
+  - Biyobelirteç çalışılabilecek yumuşak doku bölümü dekalsifiye edilmeden ayrı kasetlenir.
+  - Dekalsifikasyon yöntemi ve süresi raporda / blok kaydında belirtilir.
+- baslik: Kalite ve güvenlik
+  maddeler:
+  - Her materyalden sonra bıçak değiştirilir veya temizlenir, tahta silinir; çapraz kontaminasyon (floater) riskine karşı küçük biyopsiler rezeksiyonlardan ayrı işlenir.
+  - Formalin ile çalışmada çeker ocak, eldiven ve koruyucu gözlük kullanılır; atık yönetmeliğe uygun uzaklaştırılır.
+  - Taze doku bankalanacak veya moleküler çalışma için alınacaksa bu işlem tanısal örneklemeyi (sınırlar, evreleme kesitleri) bozmayacak şekilde yapılır.
+- baslik: Rapor yazım kuralları
+  maddeler:
+  - Bulgular “Görüldü / Görülmedi / Belirlenemedi” diliyle yazılır; “var / yok” ile karıştırılmaz.
+  - 'Tanı satırı düzeni: “Tanı, lütfen epikrizi okuyunuz; alındığı yer, alınma şekli”. Birden çok materyal numaralanır; “-” ile başlayan satır üstteki tanıya bağlıdır.'
+  - 'Sayılarda ondalık virgül, sayı ile birim arasında boşluk kullanılır: “2,5 cm”, “%40”.'
+  - Tanı metninde her kelime büyük harfle yazılmaz; cümle düzeni kullanılır.

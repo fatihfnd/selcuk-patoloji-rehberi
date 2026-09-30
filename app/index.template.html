@@ -217,6 +217,7 @@ select.ych{field-sizing:content;font:inherit;border:0;appearance:none;-webkit-ap
 <header class="bar"><div class="bar-in">
   <a class="brand" href="#/" id="brand"><i aria-hidden="true"></i><span><span id="site-ad">Selçuk Patoloji Rehberi</span><span class="sub" id="site-alt"></span></span></a>
   <span class="sp"></span>
+  <a class="theme" href="#/genel" style="text-decoration:none">Makroskopi ilkeleri</a>
   <span id="auth" class="tools"></span>
   <button class="theme" id="theme" type="button" aria-label="Renk temasını değiştir">Tema</button>
 </div></header>
@@ -335,17 +336,19 @@ function icon(sistem, cls, label){
 /* ---------- home ---------- */
 function renderHome(){
   app.innerHTML = "";
-  const counts = {}; S.forEach(s => { const k = s._sistem; counts[k] = (counts[k]||0) + 1; });
-  const gcounts = {}; S.forEach(s => { gcounts[s._grup] = (gcounts[s._grup]||0) + 1; });
+  const LS = S.filter(s => !s.liste_disi);
+  const ozel = allVarsFor("serbest");
+  const counts = {}; LS.forEach(s => { const k = s._sistem; counts[k] = (counts[k]||0) + 1; });
+  const gcounts = {}; LS.forEach(s => { gcounts[s._grup] = (gcounts[s._grup]||0) + 1; });
   const list = h("div");
   const side = h("aside", {class:"side"},
     h("input", {class:"search", type:"search", placeholder:"Şablon ara (ör. tiroid, Bethesda, nefrektomi)", "aria-label":"Şablon ara", value:home.q,
       oninput:e => { home.q = e.target.value; draw(); }}),
     h("h3", null, "Kategori"),
-    h("ul", null, h("li", null, btnF("Tümü", S.length, home.grup === null, () => { home.grup = null; redraw(); })),
+    h("ul", null, h("li", null, btnF("Tümü", LS.length, home.grup === null, () => { home.grup = null; redraw(); })),
       Object.keys(GRUP).map(g => h("li", null, btnF(GRUP[g], gcounts[g]||0, home.grup === g, () => { home.grup = g; redraw(); })))),
     h("h3", null, "Organ sistemi"),
-    h("ul", null, h("li", null, btnF("Tüm sistemler", S.length, home.sistem === null, () => { home.sistem = null; redraw(); })),
+    h("ul", null, h("li", null, btnF("Tüm sistemler", LS.length, home.sistem === null, () => { home.sistem = null; redraw(); })),
       SIN.sistemler.map(x => h("li", null, btnF(x, counts[x]||0, home.sistem === x, () => { home.sistem = x; redraw(); }, icon(x)))))
   );
   function btnF(label, n, on, fn, ic){ return h("button", {type:"button", "aria-pressed": on ? "true" : "false", onclick:fn}, h("span", null, ic || null, label), h("span", null, String(n))); }
@@ -353,24 +356,32 @@ function renderHome(){
   function draw(){
     list.innerHTML = "";
     const q = home.q.trim().toLocaleLowerCase("tr");
-    const f = S.filter(s => (!home.grup || s._grup === home.grup) && (!home.sistem || s._sistem === home.sistem) &&
+    const f = LS.filter(s => (!home.grup || s._grup === home.grup) && (!home.sistem || s._sistem === home.sistem) &&
       (!q || (s.baslik + " " + s.organ + " " + s.id + " " + s._sistem + " " + (s.kaynaklar||[]).join(" ")).toLocaleLowerCase("tr").includes(q)));
-    if (!f.length){ list.append(h("p", {class:"empty"}, "Bu filtrelerle eşleşen şablon yok. Aramayı kısaltmayı ya da kategoriyi “Tümü” yapmayı deneyin.")); return; }
+    if (!f.length && !ozel.length){ list.append(h("p", {class:"empty"}, "Bu filtrelerle eşleşen şablon yok. Aramayı kısaltmayı ya da kategoriyi “Tümü” yapmayı deneyin.")); return; }
+    const oz = ozel.filter(v => (!home.sistem || (v.sistem || "Çoklu organ") === home.sistem) && (!home.grup || home.grup === "K") &&
+      (!q || (v.ad + " " + (v.aciklama || "")).toLocaleLowerCase("tr").includes(q)));
     SIN.sistemler.forEach(sys => {
-      const ss = f.filter(s => s._sistem === sys); if (!ss.length) return;
+      const ss = f.filter(s => s._sistem === sys), os = oz.filter(v => (v.sistem || "Çoklu organ") === sys);
+      if (!ss.length && !os.length) return;
       list.append(h("section", {class:"sys"}, h("h2", null, icon(sys, "md"), sys),
         ss.map(s => h("div", {class:"row"},
           h("div", {class:"t"}, s.baslik, h("small", null, s.materyal + " · " + (s.kaynaklar||[])[0] +
             ((n => n ? " · " + n + " ek sürüm" : "")(allVarsFor(s.id).length)))),
           h("span", {class:"tag " + s._grup, title:GRUP[s._grup]}, GKISA[s._grup]),
           h("div", {class:"acts"}, h("a", {class:"btn small primary", href:"#/s/" + s.id}, "Şablon"), h("a", {class:"btn small", href:"#/r/" + s.id}, "Rehber"))
-        ))));
+        )),
+        os.map(v => h("div", {class:"row"},
+          h("div", {class:"t"}, v.ad, h("small", null, "Özel şablon" + (v.aciklama ? " · " + v.aciklama : "") + (v.src === "y" ? " · bu tarayıcıda" : v.src === "d" && v.paylasim !== "bolum" ? " · kişisel" : ""))),
+          h("span", {class:"tag"}, "Özel"),
+          h("div", {class:"acts"}, h("a", {class:"btn small primary", href:"#/s/serbest/v/" + fullKey(v)}, "Şablon"))))));
     });
   }
   draw();
   app.append(h("div", {class:"home" + (homeDrawn ? "" : " drawin")}, side, h("div", null,
     h("h1", null, "Raporlama şablonları"),
-    h("p", {class:"intro"}, S.length + " şablon; CAP, ICCR, RCPath ve WHO kaynaklarına göre hazırlandı. Şablon sayfasında alanları doldurup raporu kopyalayabilir ya da boş şablonu basabilirsiniz; rehber sayfası her alanın seçeneklerini, notlarını ve makroskopi örnekleme kurallarını ayrıntılı gösterir."),
+    h("div", {class:"tools", style:"margin:0 0 12px"}, h("a", {class:"btn primary", href:"#/yeni/serbest/bos"}, "+ Boş şablon oluştur"), h("a", {class:"btn", href:"#/genel"}, "Genel makroskopi ilkeleri")),
+    h("p", {class:"intro"}, LS.length + " şablon; CAP, ICCR, RCPath ve WHO kaynaklarına göre hazırlandı. Şablon sayfasında alanları doldurup raporu kopyalayabilir ya da boş şablonu basabilirsiniz; rehber sayfası her alanın seçeneklerini, notlarını ve makroskopi örnekleme kurallarını ayrıntılı gösterir."),
     list)));
   setTimeout(() => { homeDrawn = true; }, 1500);
   const si = side.querySelector(".search"); if (home.q){ si.focus(); si.setSelectionRange(home.q.length, home.q.length); }
@@ -682,6 +693,7 @@ function applyVariant(base, v){
     if (mk.yapilacaklar) m.yapilacaklar = mk.yapilacaklar.slice();
   }
   s._varAd = v.ad; s._vkey = v.key; s._vsrc = v.src;
+  if (base.id === "serbest"){ s.baslik = v.ad; s._varAd = null; if (v.sistem) s._sistem = v.sistem; s.kaynaklar = v.aciklama ? [v.aciklama] : ["Bölüm içi özel şablon"]; }
   s._key = base.id + "::" + fullKey(v);
   s._defaults = v.varsayilanlar || {};
   return s;
@@ -713,10 +725,11 @@ function variantPicker(base, s){
   const lab = v => v.ad + (v.src === "d" && v.sahip_ad && v.paylasim === "bolum" ? " · " + v.sahip_ad.split("@")[0] : "");
   const sel = h("select", {"aria-label":"Şablon sürümü", style:"max-width:340px", onchange:async e => {
       const v = e.target.value;
-      if (v === "+kopya") location.hash = "#/yeni/" + base.id + (cur ? "/" + cur : "");
+      if (v === "+bos") location.hash = "#/yeni/" + base.id + "/bos";
+      else if (v === "+kopya") location.hash = "#/yeni/" + base.id + (cur ? "/" + cur : "");
       else if (v === "+duzenle") location.hash = "#/yeni/" + base.id + "/" + cur + "/duzenle";
       else if (v === "+sil"){
-        if (!confirm("“" + s._varAd + "” silinsin mi?")){ e.target.value = cur; return; }
+        if (!confirm("“" + (s._varAd || s.baslik) + "” silinsin mi?")){ e.target.value = cur; return; }
         if (curV.src === "y"){ const o = localVars(); delete (o[base.id] || {})[s._vkey]; saveLocalVars(o); }
         else { await SB.from("sablon_surumleri").delete().eq("id", curV.key); await loadDB(); }
         delete effCache[base.id + "::" + cur]; location.hash = "#/s/" + base.id;
@@ -729,13 +742,14 @@ function variantPicker(base, s){
     local.length ? h("optgroup", {label:"Bu tarayıcıda kayıtlı"}, local.map(v => h("option", {value:fullKey(v), selected: cur === fullKey(v)}, v.ad))) : null,
     h("optgroup", {label:"İşlemler"},
       h("option", {value:"+kopya"}, "+ Bu şablonun kopyasını oluştur"),
+      h("option", {value:"+bos"}, "+ Boş şablon oluştur"),
       canEdit(curV) ? h("option", {value:"+duzenle"}, "Seçili şablonu düzenle") : null,
       canEdit(curV) ? h("option", {value:"+sil"}, "Seçili şablonu sil") : null));
   return sel;
 }
 
 /* ---------- şablon oluşturucu ---------- */
-function renderBuilder(base, fromKey, editMode){
+function renderBuilder(base, fromKey, editMode, bos){
   app.innerHTML = "";
   const src = fromKey ? findFull(base.id, fromKey) : null;
   const start = src ? applyVariant(base, src) : base;
@@ -746,14 +760,16 @@ function renderBuilder(base, fromKey, editMode){
     aciklama: src && src.aciklama || "", yazar: src && src.yazar || (USER ? USER.email.split("@")[0] : ""),
     tani: (start.tani || []).join("\n"), mikro: (start.mikroskopi || []).join("\n"),
     top: [], ed: {}, ekle: JSON.parse(JSON.stringify((src && src.ekle) || [])),
-    defaults: !!(src && src.varsayilanlar), keepDefaults: src ? src.varsayilanlar : null
+    defaults: !!(src && src.varsayilanlar), keepDefaults: src ? src.varsayilanlar : null,
+    sistem: (src && src.sistem) || (base.id === "serbest" ? "Çoklu organ" : null)
   };
+  if (bos){ work.tani = base.id === "serbest" ? (base.tani || []).join("\n") : ""; work.mikro = ""; }
   const hidden = new Set(Object.keys((src && src.alanlar) || {}).filter(k => src.alanlar[k].gizle));
   const baseTop = base.epikriz.map(a => a.id);
   work.top = src && src.sira && src.sira.length ? src.sira.filter(id => baseTop.includes(id)).concat(baseTop.filter(id => !src.sira.includes(id))) : baseTop.slice();
   Object.keys(baseFields).forEach(id => {
     const b = baseFields[id], e = (src && src.alanlar && src.alanlar[id]) || {};
-    work.ed[id] = {inc: !hidden.has(id), etiket: e.etiket !== undefined ? e.etiket : b.etiket, seviye: e.seviye !== undefined ? e.seviye : b.seviye,
+    work.ed[id] = {inc: bos ? baseFields[id].seviye === 0 : !hidden.has(id), etiket: e.etiket !== undefined ? e.etiket : b.etiket, seviye: e.seviye !== undefined ? e.seviye : b.seviye,
       secenekler: (e.secenekler || b.secenekler || []).join("\n")};
   });
   // makroskopi çalışma kopyası (başlangıç şablonundan)
@@ -765,6 +781,7 @@ function renderBuilder(base, fromKey, editMode){
     alanlar: sm.alanlar.map(a => ({id:a.id, etiket:a.etiket, tip:a.tip, secenekler:(a.secenekler || []).join("\n")})),
     yap: (sm.yapilacaklar || []).join("\n")
   } : null;
+  if (bos && mk){ mk.vars.forEach(v => { v.metin = [""]; if (v.tekrar !== null) v.tekrar = ""; v.orn = []; }); mk.yap = ""; }
   const cur = states[start._key || base.id];
 
   function fieldRow(a, depth, i, n){
@@ -841,6 +858,7 @@ function renderBuilder(base, fromKey, editMode){
 
   function buildVariant(){
     const v = {temel: base.id, ad: work.ad.trim()};
+    if (work.sistem) v.sistem = work.sistem;
     if (work.aciklama.trim()) v.aciklama = work.aciklama.trim();
     if (work.yazar.trim()) v.yazar = work.yazar.trim();
     const al = {};
@@ -949,11 +967,13 @@ function renderBuilder(base, fromKey, editMode){
     h("div", {class:"head"},
       h("div", {class:"pagehead"}, icon(base._sistem, "lg", base._sistem), h("div", null,
         h("div", {class:"muted", style:"font-size:13px"}, h("a", {href:"#/"}, "Şablonlar"), " / ", h("a", {href:"#/s/" + base.id}, base.baslik)),
-        h("h1", null, edit ? "Şablonu düzenle" : "Kopya oluştur ve düzenle"),
-        h("p", {class:"muted", style:"margin:0"}, "Temel: " + base.baslik + (src && !edit ? " · kopyalanan: " + src.ad : ""))))),
+        h("h1", null, edit ? "Şablonu düzenle" : bos ? "Boş şablon oluştur" : "Kopya oluştur ve düzenle"),
+        h("p", {class:"muted", style:"margin:0"}, bos ? (base.id === "serbest" ? "Alanları, makroskopi metnini ve tanı satırlarını sıfırdan tanımlayın." : "Temel: " + base.baslik + " · tüm alanlar kapalı başlar; ihtiyacınız olanları açın veya yeni alan ekleyin.") : "Temel: " + base.baslik + (src && !edit ? " · kopyalanan: " + src.ad : ""))))),
     h("div", {class:"work", style:"grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)"},
       h("div", {class:"form"},
-        h("section", {class:"panel"}, h("h2", null, "Genel"), inp("Şablon adı", "ad", "ör. Ceyhan Hoca, kısa rapor, konsültasyon"), inp("Açıklama", "aciklama", "Ne zaman kullanılır?"), inp("Hazırlayan", "yazar", "")),
+        h("section", {class:"panel"}, h("h2", null, "Genel"), inp("Şablon adı", "ad", base.id === "serbest" ? "ör. Tırnak biyopsisi, konjonktiva eksizyonu" : "ör. Ceyhan Hoca, kısa rapor, konsültasyon"), inp("Açıklama", "aciklama", "Ne zaman kullanılır?"), inp("Hazırlayan", "yazar", ""),
+          base.id === "serbest" ? h("label", {style:"display:block"}, h("div", {class:"lbl", style:"font-size:14px;font-weight:500;margin-bottom:4px"}, "Organ sistemi (ana sayfada görüneceği yer)"),
+            h("select", {onchange:e => work.sistem = e.target.value}, SIN.sistemler.map(x => h("option", {value:x, selected:x === work.sistem}, x)))) : null),
         mk ? h("section", {class:"panel"}, h("h2", null, base.makro_baslik || "Makroskopi"), makroBox) : null,
         h("section", {class:"panel"}, h("h2", null, "Mikroskopi kalıpları"), h("p", {class:"muted", style:"margin:0 0 6px;font-size:13px"}, "Her satır bir kalıp cümle."), taF("mikro", 3)),
         h("section", {class:"panel"}, h("h2", null, "Tanı satırları"), h("p", {class:"muted", style:"margin:0 0 6px;font-size:13px"}, "Her satır bir tanı seçeneği; “-” ile başlayan satır üstteki tanıya bağlıdır."), taF("tani", 6)),
@@ -1320,10 +1340,19 @@ function renderRehber(s){
   body.push(sec("genel", "Genel bilgi",
     h("p", null, h("span", {class:"tag " + s._grup}, GRUP[s._grup]), " ", h("span", {class:"tag"}, s._sistem), " ", h("span", {class:"tag"}, s.materyal)),
     s.not ? h("p", null, s.not) : null,
-    (s.rehber || []).map(p => h("p", null, p)),
+    ((s.rehber || {}).giris || []).map(p => h("p", null, p)),
     h("h3", null, "Kaynaklar"), h("ul", null, (s.kaynaklar || []).map(k => h("li", null, k))),
     h("h3", null, "Seviyeler"),
     h("div", {class:"legend"}, h("span", null, "Kısa: çekirdek alanlar (ICCR core / CAP required)"), h("span", null, "Standart: rutin raporlananlar"), h("span", null, "Tam: isteğe bağlı / araştırma"))));
+  const RH = s.rehber || {};
+  if ((RH.makroskopi || []).length) body.push(sec("mrehber", "Makroskopi rehberi",
+    h("ol", null, RH.makroskopi.map(x => h("li", {style:"margin-bottom:6px"}, x))),
+    h("p", {class:"note"}, "Tüm materyaller için geçerli kurallar: ", h("a", {href:"#/genel"}, "Genel makroskopi ilkeleri"), ".")));
+  if ((RH.notlar || []).length) body.push(sec("notlar", "Açıklama notları",
+    RH.notlar.map(n => h("div", {class:"fb"}, h("h4", null, n.baslik), h("p", {style:"margin:0"}, n.metin)))));
+  if ((RH.sik_hatalar || []).length) body.push(sec("hatalar", "Sık yapılan hatalar", h("ul", null, RH.sik_hatalar.map(x => h("li", null, x)))));
+  if (!RH.makroskopi && !RH.notlar) body.push(sec("mrehber", "Makroskopi rehberi ve açıklama notları",
+    h("p", {class:"note"}, "Bu şablon için ayrıntılı rehber metni henüz eklenmedi. Aşağıda şablonun alan notları ve makroskopi kontrol listesi yer alır; genel kurallar için ", h("a", {href:"#/genel"}, "Genel makroskopi ilkeleri"), " sayfasına bakın.")));
   body.push(sec("tani", "Tanı satırı",
     h("p", {class:"note"}, s.tani_alternatif ? "Aşağıdaki satırlardan olguya uyan biri seçilir; “-” ile başlayan satırlar üstteki tanıya bağlıdır." : "Satırlar organ / materyal sırasıyla numaralandırılır; “-” ile başlayan satırlar üstteki tanıya bağlıdır."),
     h("ul", null, (s.tani || []).map(l => h("li", null, l.replace(TOKEN, (x, id) => "‹" + id + "›")))),
@@ -1354,11 +1383,28 @@ function renderRehber(s){
   app.append(h("div", {class:"guide"}, toc, read));
 }
 
+/* ---------- genel makroskopi ilkeleri ---------- */
+function renderGenel(){
+  app.innerHTML = "";
+  const g = DATA.genel_rehber;
+  if (!g){ app.append(h("p", null, "Genel rehber bulunamadı.")); return; }
+  const secs = g.bolumler.map((b, i) => h("section", {id:"gg-" + i}, h("h2", null, b.baslik), h("ul", null, b.maddeler.map(m => h("li", {style:"margin-bottom:5px"}, m)))));
+  const toc = h("nav", {class:"toc", "aria-label":"Bölümler"}, g.bolumler.map((b, i) => h("a", {href:"#gg-" + i, onclick:e => { e.preventDefault(); document.getElementById("gg-" + i).scrollIntoView({behavior:"smooth"}); }}, b.baslik)));
+  const read = h("article", {class:"read"}, h("div", {class:"muted", style:"font:13px var(--sans)"}, h("a", {href:"#/"}, "Şablonlar"), " / Rehber"),
+    h("h1", {style:"font-family:var(--sans)"}, g.baslik), g.giris ? h("p", null, g.giris) : null,
+    h("div", {class:"tools", style:"font-family:var(--sans);margin:10px 0"}, h("button", {type:"button", class:"btn", onclick:() => printNode(h("div", null,
+      h("div", {class:"pr-head"}, logoImg(), h("div", null, h("div", {class:"pr-kurum"}, SITE.alt_baslik || ""), h("div", {class:"pr-title"}, g.baslik)), icon("Çoklu organ")),
+      h("div", {class:"guideprint"}, secs.map(x => x.cloneNode(true)))))}, "Yazdır")),
+    secs);
+  app.append(h("div", {class:"guide"}, toc, read));
+}
+
 /* ---------- router ---------- */
 function route(){
   const p = (location.hash.slice(1) || "/").split("/");
   if (p[1] === "s" && BY[p[2]]) renderSablon(effective(BY[p[2]], p[3] === "v" ? decodeURIComponent(p[4] || "") : null));
-  else if (p[1] === "yeni" && BY[p[2]]) renderBuilder(BY[p[2]], p[3] ? decodeURIComponent(p[3]) : null, p[4] === "duzenle");
+  else if (p[1] === "yeni" && BY[p[2]]) renderBuilder(BY[p[2]], p[3] && p[3] !== "bos" ? decodeURIComponent(p[3]) : null, p[4] === "duzenle", p[3] === "bos");
+  else if (p[1] === "genel") renderGenel();
   else if (p[1] === "r" && BY[p[2]]) renderRehber(BY[p[2]]);
   else renderHome();
   window.scrollTo(0, 0);

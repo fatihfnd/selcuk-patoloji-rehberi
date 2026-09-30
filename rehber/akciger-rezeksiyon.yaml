@@ -1,0 +1,25 @@
+makroskopi:
+- Bronş ve vasküler sınırları dilimlemeden önce al.
+- Taze geldiyse hava yolundan formalinle şişir; alveol yapısı ve invaziv boyut değerlendirmesi için önemlidir.
+- Tümör üzerindeki plevrayı boya; tümör-plevra ilişkisini dik kesitle göster (elastik boya gerekebilir).
+- Tümörün boyutunu, plevraya, bronş ve stapler sınırına uzaklığını tek cümlede ver.
+- ≤3 cm tümörü tamamen örnekle (invaziv boyut ve alt tip oranları için); büyük tümörde cm başına bir kaset.
+- Tümör dışı parankimden, ek nodüllerden ve hiler / intrapulmoner lenf nodlarından örnek al; nodları istasyon adıyla kodla.
+- Neoadjuvan sonrası yatak ≤3 cm ise tamamen, büyükse en büyük kesitte tam dilim haritalanarak örneklenir.
+notlar:
+- baslik: İnvaziv boyut
+  metin: Lepidik komponentli non-müsinöz adenokarsinomda pT, lepidik alan düşülerek hesaplanan invaziv boyuta göre verilir; toplam boyut da raporlanır. Adenokarsinoma in situ ve minimal invaziv adenokarsinom tanısı için lezyonun tamamı incelenmelidir.
+- baslik: Derece (IASLC)
+  metin: 'İnvaziv non-müsinöz adenokarsinomda: G1 lepidik predominant ve yüksek dereceli patern <%20; G2 asiner veya papiller predominant ve yüksek dereceli patern <%20; G3 yüksek dereceli patern (solid, mikropapiller, kribriform, kompleks glandüler) ≥%20.'
+- baslik: Viseral plevra invazyonu
+  metin: PL1 elastik laminanın aşılmasıdır; tümör boyutu küçük olsa da pT2a'ya yükseltir. Şüphede elastik boya yapılır.
+- baslik: Ayrı tümör nodülleri
+  metin: Aynı lobda ayrı nodül pT3, aynı taraf farklı lobda pT4'tür. Histolojisi farklı veya morfolojik olarak ayrı primer tümörler ayrı ayrı evrelenir.
+- baslik: STAS
+  metin: Tümör kenarının ötesindeki hava boşluklarında tümör hücreleri; özellikle sublober rezeksiyonda nüks riskiyle ilişkilidir. Kesim artefaktından ayırt edilmelidir.
+- baslik: Neoadjuvan yanıt
+  metin: Canlı tümör, nekroz ve stroma yüzdeleri tahmin edilir. Majör patolojik yanıt ≤%10 canlı tümör, tam yanıt canlı tümör yokluğudur (primer tümör ve lenf nodları dahil).
+sik_hatalar:
+- Lepidik alanı invaziv boyuta katmak.
+- Plevra ilişkisini elastik boya olmadan belirsiz bırakmak.
+- Lenf nodlarını istasyon bilgisi olmadan toplu kodlamak.

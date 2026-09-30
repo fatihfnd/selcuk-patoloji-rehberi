@@ -1,0 +1,23 @@
+makroskopi:
+- Tart; lobları ve isthmusu ayrı ölç, dış yüzü boya.
+- Makroskopik ekstratiroidal yayılım şüphesinde (iskelet kası yapışıklığı) alanı işaretle ve ayrıca kasetle.
+- Lobları süperiordan inferiora 3–5 mm aralıklarla transvers dilimle; nodüllerin yerini, boyutunu, kapsülünü ve boyalı yüze uzaklığını kaydet.
+- Kapsüllü foliküler paternli nodüllerde kapsülün tamamını (tüm çevre) örnekle; ≤1 cm tümörü tamamen al.
+- Tümör dışı parankim, isthmus ve paratiroid benzeri yapıları örnekle.
+notlar:
+- baslik: Kapsül invazyonu
+  metin: Tümörün kapsülü tam kat geçmesi gerekir; kapsül içine gömülü tümör veya ince aspirasyon izine bağlı değişiklikler invazyon değildir. Şüpheli alanlarda ek düzey kesit yapılır.
+- baslik: Vasküler invazyon
+  metin: Kapsül içindeki veya kapsül dışındaki damarlarda, damar duvarına tutunmuş, endotelle örtülü tümör trombüsü veya fibrin trombüsüyle birlikte tümör kümesi gerekir. Sayısı (<4 / ≥4 damar) prognostik önemdedir.
+- baslik: NIFTP
+  metin: Kapsüllü veya belirgin sınırlı, invazyon göstermeyen, foliküler paternli ve papiller karsinom nükleer özellikleri taşıyan tümördür; iyi gelişmiş papilla, psammom cisimciği, tümör nekrozu ve yüksek mitoz bulunmamalıdır. Tanı için lezyonun tamamı (kapsülüyle) incelenmelidir.
+- baslik: Ekstratiroidal yayılım
+  metin: AJCC 8'de yalnız mikroskopik yayılım pT'yi değiştirmez. Makroskopik olarak strap kaslarına yayılım pT3b; subkutan doku, larinks, trakea, özofagus veya rekürren sinire yayılım pT4a'dır.
+- baslik: Yüksek dereceli diferansiye karsinom
+  metin: Anaplastik özellik olmadan ≥5 mitoz / 2 mm² ve / veya tümör nekrozu gösteren diferansiye karsinomlar WHO 2022'de ayrı kategoridir.
+- baslik: Lenf nodu
+  metin: 'pN1a: santral bölge (seviye VI / VII); pN1b: lateral boyun veya retrofaringeal. Metastatik nod sayısı, en büyük depozit boyutu ve ekstranodal yayılım risk sınıflamasında (ATA) kullanılır.'
+sik_hatalar:
+- Kapsüllü foliküler lezyonda kapsülü yalnız birkaç kesitle örneklemek.
+- Mikroskopik ekstratiroidal yayılımı pT3b olarak evrelemek.
+- İnce iğne aspirasyonu izine bağlı kapsül değişikliğini invazyon saymak.

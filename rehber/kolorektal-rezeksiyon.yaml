@@ -1,0 +1,29 @@
+makroskopi:
+- Materyali açmadan önce seroza ve mezenter / mezorektumu incele; perforasyon, çekinti veya serozal düzensizliği kaydet.
+- Rektumda mezorektal eksizyon kalitesini (komplet / komplete yakın / inkomplet) taze iken değerlendir ve fotoğrafla.
+- Peritonla örtülü olmayan (radyal / mezenterik) yüzü boya. Kolon antimezenterik kenardan açılır; rektumda tümör bölgesi açılmadan transvers dilimlenir.
+- Tümörün yerleşimini, boyutunu, lümen çevresine oranını ve proksimal, distal, radyal sınırlara (ve ileoçekal valv / dentat çizgiye) uzaklığını tek cümlede ver.
+- 'Tümörden en az dört kaset al: en derin invazyon, seroza ilişkisi, radyal sınıra en yakın nokta, tümör-normal mukoza geçişi.'
+- Proksimal ve distal sınırları, tümör dışı barsak ve polipleri örnekle; vasküler ligasyon bölgesindeki apikal nodu ayrı kodla.
+- Tüm lenf nodlarını ayıkla; 12'nin altında kalırsa yeniden ara ve raporda belirt.
+- Neoadjuvan sonrası tümör yatağı tamamen (ya da en az 5 kaset haritalanarak) örneklenir; müsin gölcükleri dahil.
+notlar:
+- baslik: pT3 / pT4a ayrımı
+  metin: 'pT4a, tümörün viseral periton yüzeyine ulaşmasıdır: serozal yüzeyde tümör hücreleri, inflamasyonla birlikte yüzeyde serbest tümör ya da perforasyon yoluyla yüzeyle bağlantı. Serozaya yakın ama yüzeye ulaşmayan tümör pT3''tür; şüphede ek düzey kesit yapılır.'
+- baslik: Radyal (sirkümferansiyel) sınır
+  metin: Tümör veya tümör depoziti / metastatik nod boyalı radyal yüze 1 mm veya daha yakınsa sınır pozitif kabul edilir. Kolonun peritonla örtülü kısımlarında serozal yüz cerrahi sınır değildir.
+- baslik: Tümör depoziti
+  metin: Perikolorektal yağ dokuda, tanınabilir lenf nodu yapısı içermeyen, ayrık tümör nodülleridir. Lenf nodu sayısına eklenmez; lenf nodları negatifse pN1c kategorisine yol açar. Sayısı raporlanır.
+- baslik: Venöz invazyon
+  metin: Ekstramural venöz invazyon güçlü bir kötü prognoz göstergesidir; eşlik eden arterin yanındaki yuvarlak tümör nodülleri şüphe uyandırmalıdır. Elastik boya saptama oranını artırır.
+- baslik: Tomurcuklanma
+  metin: 'Tümörün invaziv kenarında tek hücre veya ≤4 hücrelik kümeler, en yoğun alanda (0,785 mm²) sayılır: Bd1 0–4, Bd2 5–9, Bd3 ≥10. pT1 karsinomda yüksek tomurcuklanma nodal metastaz riskini artırır.'
+- baslik: Neoadjuvan yanıt
+  metin: Aselüler müsin gölcükleri rezidü tümör sayılmaz; evreleme yalnız canlı tümör hücrelerine göre yapılır (ypT0 mümkün). Yanıt skoru (CAP / modifiye Ryan 0–3) verilir.
+- baslik: MMR
+  metin: Tüm kolorektal karsinomlarda MMR İHK veya MSI testi önerilir (Lynch taraması ve immünoterapi uygunluğu). MLH1/PMS2 kaybında BRAF V600E ve / veya MLH1 promotor metilasyonu ile sporadik olgu ayrılır.
+sik_hatalar:
+- Tümör depozitini lenf nodu olarak saymak.
+- Mezorektum kalitesini fiksasyon sonrası değerlendirmek.
+- Radyal yüzü boyamadan açmak.
+- 12'den az lenf noduyla ek arama yapmadan rapor çıkarmak.

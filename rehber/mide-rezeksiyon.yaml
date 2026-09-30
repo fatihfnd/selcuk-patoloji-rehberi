@@ -1,0 +1,25 @@
+makroskopi:
+- Seroza ve omentumu incele; tümör karşısındaki serozal / omental yüzü boya.
+- Mideyi büyük kurvatur boyunca aç; tümör büyük kurvaturdaysa küçük kurvatur boyunca açılır.
+- Proksimal tümörlerde tümör merkezinin özofagogastrik bileşkeye (OGB) uzaklığını ölç.
+- Tümörün makroskopik tipini (Borrmann), boyutunu, sınırlara uzaklığını ve en derin invazyonu kaydet.
+- Tümörden en az dört tam kat kaset al; diffüz / az kohezif tipte proksimal ve distal sınırlar tam çevre en face örneklenir.
+- Küçük ve büyük kurvatur lenf nodlarını ayrı kodla; toplam en az 16 nod hedeflenir.
+- Tümör dışı mukozadan antrum ve korpus örnekleri al (gastrit, intestinal metaplazi, H. pylori).
+notlar:
+- baslik: Mide mi özofagus mu
+  metin: Merkezi OGB'nin 2 cm distalinden proksimale uzanan ve OGB'yi tutan tümörler özofagus sistemiyle evrelenir; merkezi 2 cm'den daha distalde olanlar veya OGB'yi tutmayanlar mide sistemiyle evrelenir.
+- baslik: pT4a
+  metin: Tümörün viseral periton (seroza) yüzeyine ulaşmasıdır. Omentum, bağlar veya omentumun içine uzanım seroza delinmemişse pT3 olarak kalır.
+- baslik: Lenf nodu kategorileri
+  metin: 'pN1: 1–2, pN2: 3–6, pN3a: 7–15, pN3b: ≥16 metastatik nod. Doğru evreleme için en az 16 nod incelenmesi önerilir.'
+- baslik: Histolojik tip
+  metin: WHO sınıflaması (tübüler, papiller, müsinöz, az kohezif …) ile Lauren sınıflaması (intestinal / diffüz / mikst) birlikte verilir; mikst tümörlerde bileşenler yazılır.
+- baslik: HER2 (gastrik)
+  metin: Rezeksiyonda tümör hücrelerinin ≥%10'unda, biyopside ≥5 hücrelik kohezif kümede değerlendirilir; bazolateral veya lateral membranöz boyanma yeterlidir (tam çevresel boyanma aranmaz). 2+ olgularda ISH yapılır.
+- baslik: Biyobelirteçler
+  metin: İleri evre adenokarsinomda HER2, MMR, PD-L1 (CPS) ve Claudin 18.2 tedavi seçimini etkiler; hangi testlerin istendiği klinikle netleştirilir.
+sik_hatalar:
+- Proksimal tümörde OGB mesafesini ölçmemek.
+- Diffüz tip karsinomda sınırları yalnız dik kesitle örneklemek.
+- Omentum invazyonunu seroza delinmesi olmadan pT4a saymak.

@@ -1,0 +1,22 @@
+makroskopi:
+- Seminal veziküller hariç tart; üç boyutu, seminal vezikül ve vaz deferens uzunluklarını ölç.
+- Sağ ve sol yarıyı farklı renklerle boya; boya kuruduktan sonra kes.
+- Apeks ve mesane boynu sınırlarını koni şeklinde ayır, radyal (parasagital) dilimle.
+- Bezi apeksten baza 3–5 mm aralıklarla transvers dilimle, dilim şemasını çiz.
+- Seminal vezikül bazı–prostat birleşimini ve vaz deferens sınırlarını örnekle.
+- Tercihen bezin tamamını örnekle; kısmi örneklemede tüm posterior yarı, her dilimin anterior orta kesimi ve şüpheli alanlar alınır.
+notlar:
+- baslik: Derece
+  metin: Radikal prostatektomide skor, en sık iki patern ile verilir. <%5 oranında yüksek dereceli minör (tersiyer) patern 5 ayrıca raporlanır.
+- baslik: Ekstraprostatik yayılım
+  metin: Tümörün prostat dışı yağ dokusuna ulaşmasıdır (prostatın kapsülü anatomik olarak belirgin değildir). Fokal (bir veya iki bez / küçük alan) ve belirgin (yaygın) olarak ayrılır; yeri yazılır.
+- baslik: pT kategorileri
+  metin: 'AJCC 8''de pT2 alt evreleri yoktur. pT3a: ekstraprostatik yayılım veya mesane boynu kasına mikroskopik invazyon. pT3b: seminal vezikülün kas duvarına invazyon (yalnız ekstraprostatik yumuşak dokuda vezikül çevresi tutulum pT3b değildir).'
+- baslik: Cerrahi sınır
+  metin: Boyalı yüzde tümör hücresi varlığı pozitif sınırdır. Yeri, uzunluğu (mm; tek odak / çok odaklı) ve sınırdaki Gleason paterni verilir. Kapsülün cerrahi olarak kesildiği alanda intraprostatik (kapsüler insizyon) pozitiflik ayrıca belirtilir.
+- baslik: İntraduktal karsinom
+  metin: Varlığı raporlanır; ISUP ve GUPS derecelendirmeye katma konusunda farklı öneriler sunar, kullanılan yaklaşım yazılır.
+sik_hatalar:
+- Seminal vezikül çevresi yağ doku tutulumunu pT3b saymak.
+- Apeks sınırını koni biçiminde ayırmadan transvers kesmek.
+- Pozitif sınırın uzunluğunu ve paternini vermemek.

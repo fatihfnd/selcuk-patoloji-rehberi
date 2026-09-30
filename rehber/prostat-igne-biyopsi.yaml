@@ -1,0 +1,22 @@
+makroskopi:
+- Her kabı kayıtlı yeriyle ayrı kodla (ör. R1–R6, L7–L12); MR-hedefli korlar sistematik korlardan ayrı tutulur.
+- Her korun uzunluğunu ölç; parçalı ise toplam uzunluğu ver.
+- Korları dilimlemeden, tam boy ve düz gömülecek şekilde (sünger veya kağıt arasında) yerleştir; her kap ayrı kasette.
+- Seri kesitlerde boş lam ayır (İHK gerekebilir).
+notlar:
+- baslik: Gleason skoru ve grade grup
+  metin: 'Biyopside skor, en sık patern ile en yüksek patern toplamıdır; en yüksek patern miktarı ne olursa olsun skora girer. Grade grup: 1 (≤6), 2 (3+4), 3 (4+3), 4 (8), 5 (9–10).'
+- baslik: Patern 4 oranı
+  metin: Grade grup 2 ve 3'te patern 4 yüzdesi raporlanır; aktif izlem kararında kullanılır.
+- baslik: Kribriform patern ve intraduktal karsinom
+  metin: Kribriform patern 4 ve intraduktal karsinom kötü prognozla ilişkilidir ve ayrıca belirtilir. İntraduktal karsinomun skora katılıp katılmadığı konusunda ISUP ve GUPS önerileri farklıdır; kullanılan yaklaşım yazılır.
+- baslik: Tümör miktarı
+  metin: Her korda tümör uzunluğu (mm) ve / veya kor yüzdesi verilir. Arada benign doku bulunan kesintili tümör odaklarının ölçümünde yöntem (uçtan uca / yalnız tümör) laboratuvar içinde tek tip olmalıdır.
+- baslik: Ekstraprostatik yayılım
+  metin: Biyopside periprostatik yağ dokusunda tümör görülmesi ekstraprostatik yayılımın kanıtıdır ve raporlanır; seminal vezikül dokusu varsa invazyon durumu belirtilir.
+- baslik: Atipik küçük asiner proliferasyon
+  metin: Karsinom için yeterli nicelik veya nitelik taşımayan şüpheli odaklar ASAP olarak raporlanır; tekrar biyopsi önerilir. Bazal hücre belirteçleri (p63 / HMWCK) ve AMACR ile değerlendirme yapılır.
+sik_hatalar:
+- Az miktardaki yüksek paterni skora katmamak.
+- Grade grup 2–3'te patern 4 yüzdesini vermemek.
+- Farklı kaplardaki korları aynı kasette birleştirmek.
