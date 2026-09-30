@@ -622,7 +622,7 @@ function openLogin(){
         const e = em.value.trim(); if (!/.+@.+\..+/.test(e)){ msg.textContent = "Geçerli bir e-posta adresi yazın."; return; }
         msg.textContent = "Gönderiliyor…";
         const r = await SB.auth.signInWithOtp({email:e, options:{emailRedirectTo: location.origin + location.pathname}});
-        msg.textContent = r.error ? "Gönderilemedi: " + r.error.message : "Bağlantı gönderildi. E-postanızdaki bağlantıya bu tarayıcıda tıklayın.";
+        msg.textContent = r.error ? "Gönderilemedi: " + r.error.message : "Bağlantı gönderildi. E-postanızdaki bağlantıya bu tarayıcıda tıklayın (gelmezse spam klasörüne bakın).";
       }}, "Giriş bağlantısı gönder"),
       h("button", {type:"button", class:"btn", onclick:() => { dlg.close(); dlg.remove(); }}, "Kapat")));
   document.body.append(dlg); dlg.showModal(); em.focus();
