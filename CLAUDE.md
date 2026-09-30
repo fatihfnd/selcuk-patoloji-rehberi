@@ -21,6 +21,14 @@ etiketin tırnaksız yazılması, tanınmayan anahtar, ASCII olmayan `id`, metin
 - `katalog.yaml` — yol haritası; `site.yaml` — site adı
 - `app/index.template.html` — arayüz (veri derlemede `/*__DATA__*/null` yerine gömülür)
 
+## Şablon sürümleri (hekime özgü / kısa / konsültasyon)
+
+- Paylaşılan sürümler `sablonlar/varyant/<temel>--<ad>.yaml`; yalnız temel şablondan farkları içerir
+  (`alanlar`: gizle/etiket/seviye/secenekler, `sira`, `ekle` (id `x_` ile başlar), `tani`, `mikroskopi`, `varsayilanlar`).
+- Sitede şablon sayfasındaki sürüm listesinden oluşturulur; "Bu tarayıcıya kaydet" localStorage'a yazar,
+  "YAML indir" / "GitHub'da paylaş" depoya eklenecek dosyayı üretir. Gelen dosyayı `python build.py` ile doğrula.
+- Temel şablonda bir alanın `id`'si değişirse o temele bağlı sürümleri de güncelle (derleyici bilinmeyen alanda durur).
+
 ## İçerik kuralları (bölüm standardı — değiştirmeden önce sor)
 
 - Tanı satırı: `Tanı, lütfen epikrizi okuyunuz; alındığı yer, alınma şekli`. Çoklu materyal numaralı (`1-`, `2-`);

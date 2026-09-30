@@ -241,6 +241,13 @@ def alan_tablosu(alanlar, derinlik=0):
     return rows
 
 
+def allfields(lst, out=None):
+    out = [] if out is None else out
+    for a in lst or []:
+        out.append(a); allfields(a.get("alt"), out)
+    return out
+
+
 def main():
     mod = modulleri_yukle()
     paket = []
@@ -307,7 +314,33 @@ def main():
             y["makroskopi"] = {k: v for k, v in x["makroskopi"].items() if k != "ek_materyaller_cozulmus"}
         y["_sistem"], y["_grup"] = sin["sablonlar"][x["id"]]
         app_sablon.append(y)
-    veri = {"sablonlar": app_sablon, "makro_moduller": {k: v for k, v in mod.items() if k.startswith("makro.")},
+    # --- paylaşılan şablon sürümleri (sablonlar/varyant/<temel>--<ad>.yaml) ---
+    varyantlar = []
+    tum = {x["id"]: x for x in paket}
+    V_ANAHTAR = {"temel", "ad", "aciklama", "yazar", "alanlar", "sira", "ekle", "tani", "mikroskopi", "varsayilanlar"}
+    for f in sorted(glob.glob(os.path.join(KOK, "sablonlar", "varyant", "*.yaml"))):
+        ad = os.path.splitext(os.path.basename(f))[0]
+        v = yaml.safe_load(open(f, encoding="utf-8")) or {}
+        if set(v) - V_ANAHTAR:
+            sys.exit(f"HATA {f}: tanınmayan anahtar {set(v) - V_ANAHTAR}")
+        if v.get("temel") not in tum or not ad.startswith(v.get("temel", "") + "--"):
+            sys.exit(f"HATA {f}: 'temel' geçersiz ya da dosya adı '<temel>--<ad>.yaml' biçiminde değil")
+        if not v.get("ad"):
+            sys.exit(f"HATA {f}: 'ad' eksik")
+        if not re.fullmatch(r"[a-z0-9-]+", ad.split("--", 1)[1]):
+            sys.exit(f"HATA {f}: dosya adında yalnız küçük ASCII harf, rakam ve '-' kullanın")
+        idler = {a["id"] for a in allfields(tum[v["temel"]]["epikriz"])}
+        bilinmeyen = set(v.get("alanlar") or {}) - idler
+        if bilinmeyen:
+            sys.exit(f"HATA {f}: temel şablonda olmayan alan {bilinmeyen}")
+        for a in v.get("ekle") or []:
+            if not re.fullmatch(r"x_[a-z0-9_]+", a.get("id", "")) or a["id"] in idler:
+                sys.exit(f"HATA {f}: eklenen alan kimliği 'x_' ile başlamalı ve tekil olmalı: {a.get('id')}")
+            if a.get("tip") not in TIPLER or not a.get("etiket"):
+                sys.exit(f"HATA {f}: eklenen alan geçersiz: {a}")
+        v["key"] = ad.split("--", 1)[1]
+        varyantlar.append(v)
+    veri = {"sablonlar": app_sablon, "varyantlar": varyantlar, "makro_moduller": {k: v for k, v in mod.items() if k.startswith("makro.")},
             "siniflama": {"gruplar": sin["gruplar"], "sistemler": sin["sistemler"]},
             "site": yaml.safe_load(open(os.path.join(KOK, "site.yaml"), encoding="utf-8"))}
     js = json.dumps(veri, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
@@ -316,6 +349,8 @@ def main():
     os.makedirs(os.path.join(site, "indir"), exist_ok=True)
     open(os.path.join(site, "index.html"), "w", encoding="utf-8").write(html)
     open(os.path.join(site, ".nojekyll"), "w").close()
+    if os.path.isdir(os.path.join(KOK, "assets")):
+        shutil.copytree(os.path.join(KOK, "assets"), os.path.join(site, "assets"), dirs_exist_ok=True)
     json.dump({"surum": 1, "sablonlar": paket}, open(os.path.join(DIST, "sablonlar.json"), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
     open(os.path.join(DIST, "Sablon_Arsivi.md"), "w", encoding="utf-8").write("\n".join(md))

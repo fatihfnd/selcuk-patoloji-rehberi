@@ -127,6 +127,23 @@ textarea{resize:vertical;min-height:38px}
 .read pre{white-space:pre-wrap;font:14px/1.6 var(--serif);background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px 14px}
 .read .tbl{font-family:var(--sans)}
 .legend{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--sans);font-size:13px;color:var(--muted)}
+.ico{display:inline-flex;width:22px;height:22px;flex:none;color:var(--hema)}
+.ico svg{width:100%;height:100%;overflow:visible}
+.ico.lg{width:52px;height:52px;color:var(--eosin)}
+.ico.md{width:30px;height:30px}
+.drawin .ico path,.drawin .ico circle,.drawin .ico ellipse{stroke-dasharray:1;stroke-dashoffset:1;animation:ciz 1.1s cubic-bezier(.4,.1,.2,1) forwards}
+.drawin .sys:nth-child(2) .ico *{animation-delay:.08s}.drawin .sys:nth-child(3) .ico *{animation-delay:.16s}
+.drawin .sys:nth-child(4) .ico *{animation-delay:.24s}.drawin .sys:nth-child(n+5) .ico *{animation-delay:.32s}
+@keyframes ciz{to{stroke-dashoffset:0}}
+@keyframes ciz2{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.sys:hover h2 .ico *,.side li button:hover .ico *,.pagehead:hover .ico *{stroke-dasharray:1;animation:ciz2 .9s cubic-bezier(.4,.1,.2,1)}
+.row:hover .ico,.side li button:hover .ico{color:var(--eosin)}
+.side li button .ico{width:18px;height:18px;margin-right:8px;color:inherit;opacity:.85}
+.side li button>span:first-child{display:flex;align-items:center}
+.sys h2{display:flex;align-items:center;gap:10px}
+.pagehead{display:flex;gap:16px;align-items:flex-start}
+.brand img{height:30px;width:auto;display:block}
+.brand .sub{display:block;font-size:11.5px;font-weight:400;color:var(--muted);line-height:1.2}
 #print-area{display:none}
 @media (max-width:980px){
   .work{grid-template-columns:1fr}
@@ -136,21 +153,52 @@ textarea{resize:vertical;min-height:38px}
   .side,.toc{position:static}
   .row{grid-template-columns:1fr;gap:6px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.drawin .ico *{stroke-dashoffset:0!important}}
+@page{size:A4;margin:14mm 14mm 16mm;@bottom-right{content:counter(page) " / " counter(pages);font:8pt "IBM Plex Sans",sans-serif;color:#666}}
 @media print{
   body{background:#fff;color:#000}
   .bar,main{display:none!important}
-  #print-area{display:block!important;font:11pt/1.55 var(--serif);color:#000}
-  #print-area pre{white-space:pre-wrap;font:inherit;margin:0}
-  #print-area h1{font:600 14pt var(--sans);margin:0 0 4pt}
-  #print-area .pm{font:9pt var(--sans);color:#444;margin-bottom:10pt}
-  #print-area .guideprint{font-size:10.5pt}
+  #print-area{display:block!important;color:#111;font:10.5pt/1.55 var(--serif)}
+  .pr-head{display:grid;grid-template-columns:auto 1fr auto;gap:12pt;align-items:center;border-bottom:1.6pt solid #3D3B93;padding-bottom:7pt;margin-bottom:8pt}
+  .pr-head img{height:40pt;width:auto}
+  .pr-kurum{font:8.5pt/1.35 var(--sans);color:#444}
+  .pr-title{font:600 13.5pt/1.25 var(--sans);color:#111;margin-top:2pt}
+  .pr-head .ico{width:40pt;height:40pt;color:#C4466F}
+  .pr-meta{display:flex;gap:18pt;font:9pt var(--sans);margin:0 0 10pt;color:#333}
+  .pr-meta span{flex:1;border-bottom:.6pt solid #999;padding-bottom:1pt}
+  .pr-sec{break-inside:auto;margin-top:10pt}
+  .pr-sec>h2{font:600 9.5pt var(--sans);letter-spacing:.02em;color:#3D3B93;border-bottom:.6pt solid #3D3B93;padding-bottom:2pt;margin:0 0 5pt}
+  .pr-sec pre{white-space:pre-wrap;font:inherit;margin:0}
+  .pr-foot{margin-top:14pt;padding-top:5pt;border-top:.6pt solid #bbb;font:7.5pt/1.4 var(--sans);color:#666}
+  .bl{display:inline-block;min-width:34pt;border-bottom:.6pt solid #555;height:1em;vertical-align:-2pt;margin:0 1pt}
+  .bl.w{min-width:120pt}
+  .cb{display:inline;margin-right:10pt}
+  .cb::before{content:"";display:inline-block;width:7pt;height:7pt;border:.7pt solid #333;border-radius:1pt;margin-right:3pt;vertical-align:-.5pt}
+  .pr-tani .cb{display:block;margin:0;padding-left:12pt;text-indent:-12pt}
+  .pr-fields{width:100%;border-collapse:collapse}
+  .pr-fields td{border-bottom:.4pt solid #ddd;padding:3pt 4pt;vertical-align:top}
+  .pr-fields td.l{width:32%;font:500 9pt var(--sans)}
+  .pr-fields tr{break-inside:avoid}
+  .pr-fields td.l .core{width:5pt;height:5pt;background:#C4466F;border-radius:50%;display:inline-block;margin-right:4pt;transform:translateY(-1pt)}
+  .pr-fields .ind1 td.l{padding-left:14pt}.pr-fields .ind2 td.l{padding-left:26pt}
+  .pr-fields .grp td{font:600 9pt var(--sans);background:#F1F0F9}
+  .pr-tbl{width:100%;border-collapse:collapse;font:9pt var(--sans);margin-top:5pt}
+  .pr-tbl th,.pr-tbl td{border:.5pt solid #999;padding:3pt 5pt;text-align:left}
+  .pr-tbl th{background:#F1F0F9;font-weight:600}
+  .pr-tbl td.e{width:40pt}
+  .pr-todo{border:.6pt solid #bbb;background:#F6F6F6;padding:6pt 9pt;margin-top:7pt;font:8.5pt/1.45 var(--sans);break-inside:avoid}
+  .pr-todo b{display:block;margin-bottom:2pt}
+  .pr-lines div{border-bottom:.5pt solid #aaa;height:15pt}
+  .pr-tani li{margin:2pt 0;list-style:none}
+  .pr-tani{padding-left:0;margin:0}
+  #print-area .guideprint{font-size:10pt}
+  #print-area .guideprint .tools,#print-area .guideprint>.muted{display:none}
 }
 </style>
 </head>
 <body>
 <header class="bar"><div class="bar-in">
-  <a class="brand" href="#/"><i aria-hidden="true"></i><span id="site-ad">Selçuk Patoloji Rehberi</span></a>
+  <a class="brand" href="#/" id="brand"><i aria-hidden="true"></i><span><span id="site-ad">Selçuk Patoloji Rehberi</span><span class="sub" id="site-alt"></span></span></a>
   <span class="sp"></span>
   <button class="theme" id="theme" type="button" aria-label="Renk temasını değiştir">Tema</button>
 </div></header>
@@ -160,7 +208,16 @@ textarea{resize:vertical;min-height:38px}
 <script>
 (function(){
 "use strict";
-if (DATA.site){ document.title = DATA.site.ad; document.getElementById("site-ad").textContent = DATA.site.ad; }
+const SITE = DATA.site || {};
+if (DATA.site){
+  document.title = SITE.ad; document.getElementById("site-ad").textContent = SITE.ad;
+  if (SITE.alt_baslik) document.getElementById("site-alt").textContent = SITE.alt_baslik;
+  if (SITE.logo){
+    const b = document.getElementById("brand"), img = new Image();
+    img.src = SITE.logo; img.alt = "Selçuk Üniversitesi logosu";
+    img.onload = () => { const dot = b.querySelector("i"); if (dot) dot.replaceWith(img); };
+  }
+}
 const S = DATA.sablonlar, BY = {}, MOD = DATA.makro_moduller, SIN = DATA.siniflama;
 S.forEach(s => BY[s.id] = s);
 const GRUP = SIN.gruplar, GKISA = {N:"Neoplastik", NN:"Non-neoplastik", K:"Karma", S:"Sitoloji", E:"Ek test"}, SEVIYE = {1:"Kısa", 2:"Standart", 3:"Tam"}, SEV_AD = {0:"gizli",1:"çekirdek",2:"standart",3:"geniş"};
@@ -168,6 +225,7 @@ const app = document.getElementById("app");
 const TOKEN = /\{(\w+)\}/g;
 const states = {};
 const home = {sistem:null, grup:null, q:""};
+let homeDrawn = false;
 
 /* ---------- helpers ---------- */
 function h(tag, attrs, ...kids){
@@ -180,7 +238,7 @@ function h(tag, attrs, ...kids){
     else if (k === "html") e.innerHTML = v;
     else e.setAttribute(k, v === true ? "" : v);
   }
-  for (const k of kids.flat()){ if (k == null || k === false) continue; e.append(k.nodeType ? k : document.createTextNode(k)); }
+  for (const k of kids.flat(Infinity)){ if (k == null || k === false) continue; e.append(k.nodeType ? k : document.createTextNode(k)); }
   return e;
 }
 function cap(x){ return x ? x.charAt(0).toLocaleUpperCase("tr") + x.slice(1) : x; }
@@ -215,6 +273,31 @@ function printDoc(title, meta, body, isGuide){
   window.print();
 }
 
+/* ---------- organ sistemi simgeleri (özgün çizim, 24×24 çizgi) ---------- */
+const ICON = {
+  "Meme": '<path d="M12 3.2c-2.1 0-3.6 1.5-3.6 3.6 0 2.7 2.6 6 5.9 10.2l2 3"/><path d="M12 3.2c2.1 0 3.6 1.5 3.6 3.6 0 2.7-2.6 6-5.9 10.2l-2 3"/>',
+  "Gastrointestinal": '<path d="M9 2.5v5.5c-3.2 1.2-4.6 4.4-3.6 7.6 1.2 3.9 5.4 6 9.3 4.8 3.1-1 4.9-4.1 3.9-6.9-.7-2-3-2.4-4.3-1.1-1.1 1.1-2.8.2-2.8-1.6V2.5"/><path d="M15 19.5c.4 1 .4 1.6 0 2"/>',
+  "Hepatobiliyer ve pankreas": '<path d="M3 9.5C3 6.4 6.2 5 10 5h8.2c2.3 0 3.3 2.2 2.2 4.2-2.3 4.6-7.2 8.3-12.2 8.3C5 17.5 3 13.2 3 9.5z"/><path d="M13.5 13.5c-.4 2.4.8 4.2 2.4 4.4 1.3.1 2-1.1 1.4-2.3"/>',
+  "Üriner sistem ve erkek genital": '<path d="M10.5 3.5C6.6 3.5 4 7 4 11s2.4 8 6.2 8c2.3 0 3.3-2.2 2.2-4.3-.9-1.8-.9-3.5 0-5.3 1.2-2.4-.1-5.9-1.9-5.9z"/><path d="M12.4 11.8h2.8c2.2 0 3.3 1.8 3.3 3.9V21"/>',
+  "Jinekoloji ve perinatal": '<path d="M8.5 6.5c0 4.8 1.6 7 3.5 7s3.5-2.2 3.5-7c0-1-1-1.5-3.5-1.5s-3.5.5-3.5 1.5z"/><path d="M8.5 6.5C6.8 5 4.8 5.3 3.8 7"/><path d="M15.5 6.5c1.7-1.5 3.7-1.2 4.7.5"/><circle cx="3.6" cy="9.2" r="1.5"/><circle cx="20.4" cy="9.2" r="1.5"/><path d="M11 13.4V19h2v-5.6"/>',
+  "Toraks": '<path d="M12 2.5v7.5"/><path d="M12 7.5c-1.6 0-2.6 1-2.6 2.6M12 7.5c1.6 0 2.6 1 2.6 2.6"/><path d="M9.4 7.8C6.4 7.8 4 11.6 4 16.6c0 2.7 1.8 3.8 3.8 3l1.6-.7z"/><path d="M14.6 7.8c3 0 5.4 3.8 5.4 8.8 0 2.7-1.8 3.8-3.8 3l-1.6-.7z"/>',
+  "Baş-boyun": '<path d="M9 21.5v-4c-3.1-1.1-5-4.2-5-7.7a7.2 7.2 0 0 1 14.4-.5l1.8 3.7-1.9.7v2.6c0 1-.8 1.7-1.8 1.7h-1.8v3.5"/><path d="M13.5 15.5h2"/>',
+  "Endokrin": '<path d="M12 3.5v17"/><path d="M12 10.5C11 6.3 6.3 4.5 5 8.2c-1.2 3.4.8 8.3 4 8.3 2 0 3-2.2 3-6z"/><path d="M12 10.5c1-4.2 5.7-6 7-2.3 1.2 3.4-.8 8.3-4 8.3-2 0-3-2.2-3-6z"/>',
+  "Deri": '<path d="M3 8c3-2 6 2 9 0s6-2 9 0"/><path d="M3 13.5h18M3 19h18"/><path d="M9 3.5v11.5"/><ellipse cx="9" cy="15.3" rx="1.3" ry="1"/><path d="M15.5 9.5c1.5 1.3 1.5 2.6 0 4"/>',
+  "Yumuşak doku ve kemik": '<path d="M6.8 4.6A2.3 2.3 0 1 0 4.2 7.4l11.5 11.5a2.3 2.3 0 1 0 3.2 2.3 2.3 2.3 0 1 0 1.9-3.4L9.3 6.3A2.3 2.3 0 1 0 6.8 4.6z"/>',
+  "Hematolenfoid": '<path d="M12 4C7.6 4 4.5 7.6 4.5 12s3.1 8 7.5 8c3.2 0 4.2-2.1 3.3-4-.8-1.7-.8-4.3 0-6 1.1-2.3 0-6-3.3-6z"/><circle cx="9.3" cy="9.6" r="1.1"/><circle cx="8.6" cy="14" r="1.1"/><circle cx="12" cy="12" r="1.1"/><path d="M15.4 12h5M16.2 7l3.5-2M16.2 17l3.5 2"/>',
+  "Sinir sistemi ve göz": '<path d="M11.2 4.2C8.9 3 6.3 4.3 6.1 6.8 3.9 7.4 3.1 10.1 4.6 11.8c-1.5 1.8-.6 4.6 1.7 5.1.4 2.3 3 3.3 4.9 2.1z"/><path d="M12.8 4.2c2.3-1.2 4.9.1 5.1 2.6 2.2.6 3 3.3 1.5 5 1.5 1.8.6 4.6-1.7 5.1-.4 2.3-3 3.3-4.9 2.1z"/><path d="M8.5 9.5c1 .4 1.6 1.2 1.6 2.3M15.5 14.5c-1-.4-1.6-1.2-1.6-2.3"/>',
+  "Çoklu organ": '<path d="M9 2.8h6M10 2.8V15a2 2 0 0 0 4 0V2.8"/><path d="M10 10h4"/><path d="M4.5 21h15"/><path d="M6.5 18.5h11"/>'
+};
+function icon(sistem, cls, label){
+  const w = document.createElement("span");
+  w.className = "ico " + (cls || "");
+  if (label) { w.setAttribute("role", "img"); w.setAttribute("aria-label", label); } else w.setAttribute("aria-hidden", "true");
+  w.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
+    (ICON[sistem] || ICON["Çoklu organ"]).replace(/<(path|circle|ellipse)/g, '<$1 pathLength="1"') + '</svg>';
+  return w;
+}
+
 /* ---------- theme ---------- */
 (function(){
   const btn = document.getElementById("theme");
@@ -243,9 +326,9 @@ function renderHome(){
       Object.keys(GRUP).map(g => h("li", null, btnF(GRUP[g], gcounts[g]||0, home.grup === g, () => { home.grup = g; redraw(); })))),
     h("h3", null, "Organ sistemi"),
     h("ul", null, h("li", null, btnF("Tüm sistemler", S.length, home.sistem === null, () => { home.sistem = null; redraw(); })),
-      SIN.sistemler.map(x => h("li", null, btnF(x, counts[x]||0, home.sistem === x, () => { home.sistem = x; redraw(); }))))
+      SIN.sistemler.map(x => h("li", null, btnF(x, counts[x]||0, home.sistem === x, () => { home.sistem = x; redraw(); }, icon(x)))))
   );
-  function btnF(label, n, on, fn){ return h("button", {type:"button", "aria-pressed": on ? "true" : "false", onclick:fn}, h("span", null, label), h("span", null, String(n))); }
+  function btnF(label, n, on, fn, ic){ return h("button", {type:"button", "aria-pressed": on ? "true" : "false", onclick:fn}, h("span", null, ic || null, label), h("span", null, String(n))); }
   function redraw(){ renderHome(); }
   function draw(){
     list.innerHTML = "";
@@ -255,31 +338,371 @@ function renderHome(){
     if (!f.length){ list.append(h("p", {class:"empty"}, "Bu filtrelerle eşleşen şablon yok. Aramayı kısaltmayı ya da kategoriyi “Tümü” yapmayı deneyin.")); return; }
     SIN.sistemler.forEach(sys => {
       const ss = f.filter(s => s._sistem === sys); if (!ss.length) return;
-      list.append(h("section", {class:"sys"}, h("h2", null, sys),
+      list.append(h("section", {class:"sys"}, h("h2", null, icon(sys, "md"), sys),
         ss.map(s => h("div", {class:"row"},
-          h("div", {class:"t"}, s.baslik, h("small", null, s.materyal + " · " + (s.kaynaklar||[])[0])),
+          h("div", {class:"t"}, s.baslik, h("small", null, s.materyal + " · " + (s.kaynaklar||[])[0] +
+            ((n => n ? " · " + n + " ek sürüm" : "")(sharedVars(s.id).length + localVarsFor(s.id).length)))),
           h("span", {class:"tag " + s._grup, title:GRUP[s._grup]}, GKISA[s._grup]),
           h("div", {class:"acts"}, h("a", {class:"btn small primary", href:"#/s/" + s.id}, "Şablon"), h("a", {class:"btn small", href:"#/r/" + s.id}, "Rehber"))
         ))));
     });
   }
   draw();
-  app.append(h("div", {class:"home"}, side, h("div", null,
+  app.append(h("div", {class:"home" + (homeDrawn ? "" : " drawin")}, side, h("div", null,
     h("h1", null, "Raporlama şablonları"),
-    DATA.site ? h("p", {class:"muted", style:"margin:0 0 8px"}, DATA.site.alt_baslik) : null,
     h("p", {class:"intro"}, S.length + " şablon; CAP, ICCR, RCPath ve WHO kaynaklarına göre hazırlandı. Şablon sayfasında alanları doldurup raporu kopyalayabilir ya da boş şablonu basabilirsiniz; rehber sayfası her alanın seçeneklerini, notlarını ve makroskopi örnekleme kurallarını ayrıntılı gösterir."),
     list)));
+  setTimeout(() => { homeDrawn = true; }, 1500);
   const si = side.querySelector(".search"); if (home.q){ si.focus(); si.setSelectionRange(home.q.length, home.q.length); }
+}
+
+/* ---------- baskı tasarımları ---------- */
+function blanks(str, wide){
+  const parts = String(str).split("…"), out = [];
+  parts.forEach((p, i) => { if (p) out.push(p); if (i < parts.length - 1) out.push(h("span", {class:"bl" + (wide ? " w" : "")})); });
+  return out;
+}
+function prHead(s, alt){
+  const logo = SITE.logo ? h("img", {src:SITE.logo, alt:""}) : h("span");
+  return h("div", null,
+    h("div", {class:"pr-head"}, logo,
+      h("div", null, h("div", {class:"pr-kurum"}, SITE.alt_baslik || ""), h("div", {class:"pr-title"}, s.baslik), alt ? h("div", {class:"pr-kurum"}, alt) : null),
+      icon(s._sistem)),
+    h("div", {class:"pr-meta"}, h("span", null, "Biyopsi no: "), h("span", null, "Tarih: "), h("span", null, "Hekim: ")));
+}
+function prFoot(s, extra){
+  return h("div", {class:"pr-foot"}, (SITE.ad || "") + (extra ? " · " + extra : "") + " · Kaynaklar: " + (s.kaynaklar || []).join("; "));
+}
+function prSec(title, ...kids){ return h("section", {class:"pr-sec"}, h("h2", null, title), kids); }
+function printNode(node){
+  const pa = document.getElementById("print-area");
+  pa.innerHTML = ""; pa.append(node);
+  window.print();
+}
+function printFilled(s, st){
+  const d = h("div");
+  d.append(prHead(s, "Rapor taslağı · " + SEVIYE[st.lvl] + " seviye"));
+  const mk = makroText(s, st, false); if (mk) d.append(prSec(s.makro_baslik || "Makroskopi", h("pre", null, mk)));
+  if (st.mikro.trim()) d.append(prSec("Mikroskopi", h("pre", null, st.mikro.trim())));
+  d.append(prSec("Tanı", h("pre", null, taniText(s, st, false))));
+  const ep = epikrizText(s, st, false); if (ep) d.append(prSec("Epikriz", h("pre", null, "1-\n" + ep)));
+  d.append(prFoot(s, new Date().toLocaleDateString("tr-TR")));
+  printNode(d);
+}
+function fieldRows(list, lvl, depth, rows){
+  (list || []).forEach(a => {
+    if (!visible(a, lvl)) return;
+    const lab = h("td", {class:"l"}, a.seviye === 1 ? h("span", {class:"core"}) : null, a.etiket);
+    let ctl;
+    if (!a.tip){ rows.push(h("tr", {class:"grp ind" + depth}, h("td", {colspan:"2"}, a.etiket))); fieldRows(a.alt, lvl, depth + 1, rows); return; }
+    if (a.tip === "secim" || a.tip === "coklu"){
+      ctl = h("td", null, (a.secenekler || []).map(o => h("span", {class:"cb"}, blanks(o))), a.serbest ? h("span", {class:"cb"}, "Diğer: ", h("span", {class:"bl w"})) : null,
+        a.tip === "coklu" ? h("span", {style:"font:7.5pt var(--sans);color:#777"}, " (birden fazla işaretlenebilir)") : null);
+    } else if (a.tip === "metin") ctl = h("td", null, a.kalip ? blanks(a.kalip) : h("span", {class:"bl w"}));
+    else ctl = h("td", null, a.kalip ? blanks(a.kalip) : [h("span", {class:"bl"}), " ", a.birim || ""]);
+    rows.push(h("tr", {class:"ind" + Math.min(depth, 2)}, lab, ctl));
+    fieldRows(a.alt, lvl, depth + 1, rows);
+  });
+  return rows;
+}
+function makroBlankNodes(text, alanlar){
+  const ids = {}; alanlar.forEach(a => ids[a.id] = a);
+  const out = []; let last = 0;
+  text.replace(TOKEN, (m, id, idx) => {
+    if (idx > last) out.push(...blanks(text.slice(last, idx)));
+    const a = ids[id] || {}, o = a.secenekler || [];
+    if (a.tip === "secim" && o.length && o.length <= 4 && o.every(x => x.length <= 32)) out.push(...o.map(x => h("span", {class:"cb"}, blanks(x))));
+    else out.push(h("span", {class:"bl" + (a.tip && a.tip !== "metin" ? "" : " w"), title:a.etiket || id}));
+    last = idx + m.length; return m;
+  });
+  if (last < text.length) out.push(...blanks(text.slice(last)));
+  return out;
+}
+function printBlank(s, st){
+  const d = h("div");
+  d.append(prHead(s, "Boş şablon · " + SEVIYE[st.lvl] + " seviye"));
+  const m = s.makroskopi;
+  if (m){
+    const v = m.varyantlar[st.varyant] || m.varyantlar[0];
+    const paras = (v.metin || []).map(t => h("p", {style:"margin:0 0 5pt"}, makroBlankNodes(cap(t), m.alanlar)));
+    if (v.tekrar) paras.push(h("p", {style:"margin:0 0 5pt"}, makroBlankNodes(cap(v.tekrar.metin), m.alanlar), h("span", {style:"font:8pt var(--sans);color:#777"}, "  (" + v.tekrar.etiket.toLocaleLowerCase("tr") + ")")));
+    const orn = v.ornekleme || [];
+    const tbl = orn.length ? h("table", {class:"pr-tbl"},
+      h("thead", null, h("tr", null, h("th", null, "Kod"), h("th", null, "Açıklama"), h("th", null, "Parça"), h("th", null, "Blok"), h("th", null, "Kaset"))),
+      h("tbody", null, orn.map(o => h("tr", null, h("td", null, o.tek ? "Tümü" : o.kod), h("td", null, o.tek ? "tümü takibe alındı" : o.aciklama), h("td", {class:"e"}), h("td", {class:"e"}), h("td", {class:"e"}))))) : null;
+    const todo = (m.yapilacaklar || []).length ? h("div", {class:"pr-todo"}, h("b", null, "Yapılacaklar"), m.yapilacaklar.map(y => h("div", null, h("span", {class:"cb"}, y)))) : null;
+    d.append(prSec((s.makro_baslik || "Makroskopi") + (m.varyantlar.length > 1 ? " — " + v.ad : ""), paras, tbl, todo));
+  }
+  d.append(prSec("Mikroskopi", (s.mikroskopi || []).map(l => h("p", {style:"margin:0 0 4pt"}, blanks(l))), h("div", {class:"pr-lines"}, h("div"), h("div"), h("div"))));
+  const tf = taniTokens(s, st, true);
+  d.append(prSec("Tanı" + (s.tani_alternatif ? " — uygun olanı işaretleyin" : ""),
+    h("ul", {class:"pr-tani"}, (s.tani || []).map(l => h("li", {style: l.startsWith("-") ? "padding-left:16pt" : null}, h("span", {class:"cb"}, blanks(tf(l).replace(/^-\s*/, "– ")))))),
+    h("div", {class:"pr-lines"}, h("div"), h("div"))));
+  const rows = [];
+  if (s.tekrar_blok){ rows.push(h("tr", {class:"grp"}, h("td", {colspan:"2"}, "Kod: ", h("span", {class:"bl"}), "  — " + s.tekrar_blok.aciklama))); fieldRows(s.tekrar_blok.alanlar, st.lvl, 1, rows); }
+  fieldRows(s.epikriz, st.lvl, 0, rows);
+  d.append(prSec("Epikriz", h("table", {class:"pr-fields"}, h("tbody", null, rows))));
+  d.append(prFoot(s, SEVIYE[st.lvl] + " seviye; ● çekirdek alan"));
+  printNode(d);
+}
+
+/* ---------- kişisel / paylaşılan şablon varyantları ---------- */
+const VKEY = "spr-varyantlar";
+function localVars(){ try { return JSON.parse(localStorage.getItem(VKEY) || "{}"); } catch(e){ return {}; } }
+function saveLocalVars(o){ try { localStorage.setItem(VKEY, JSON.stringify(o)); return true; } catch(e){ return false; } }
+function sharedVars(baseId){ return (DATA.varyantlar || []).filter(v => v.temel === baseId); }
+function localVarsFor(baseId){ const o = localVars()[baseId] || {}; return Object.keys(o).map(k => Object.assign({key:k, yerel:true}, o[k])); }
+function findVar(baseId, key){ return sharedVars(baseId).find(v => v.key === key) || localVarsFor(baseId).find(v => v.key === key); }
+function slug(x){ return String(x).toLocaleLowerCase("tr").replace(/ç/g,"c").replace(/ğ/g,"g").replace(/ı/g,"i").replace(/ö/g,"o").replace(/ş/g,"s").replace(/ü/g,"u").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"") || "sablon"; }
+const effCache = {};
+function applyVariant(base, v){
+  const s = JSON.parse(JSON.stringify(base));
+  const ed = v.alanlar || {};
+  const walk = list => (list || []).filter(a => !(ed[a.id] && ed[a.id].gizle)).map(a => {
+    const e = ed[a.id];
+    if (e){ ["etiket","seviye","secenekler","not","kalip"].forEach(k => { if (e[k] !== undefined) a[k] = e[k]; }); }
+    if (a.alt) a.alt = walk(a.alt);
+    return a;
+  });
+  s.epikriz = walk(s.epikriz);
+  (v.ekle || []).forEach(a => s.epikriz.push(JSON.parse(JSON.stringify(a))));
+  if (v.sira && v.sira.length){
+    const pos = {}; v.sira.forEach((id, i) => pos[id] = i);
+    s.epikriz.sort((a, b) => (a.id in pos ? pos[a.id] : 1e4) - (b.id in pos ? pos[b.id] : 1e4));
+  }
+  if (v.tani && v.tani.length) s.tani = v.tani.slice();
+  if (v.mikroskopi) s.mikroskopi = v.mikroskopi.slice();
+  s.baslik = base.baslik; s._varAd = v.ad; s._vkey = v.key; s._yerel = !!v.yerel;
+  s._key = base.id + "::" + (v.yerel ? "y:" : "p:") + v.key;
+  s._defaults = v.varsayilanlar || {};
+  return s;
+}
+function effective(base, full){
+  if (!full) return base;
+  const key = full.slice(2);
+  const v = full.startsWith("y:") ? localVarsFor(base.id).find(x => x.key === key) : sharedVars(base.id).find(x => x.key === key);
+  if (!v) return base;
+  const ck = base.id + "::" + full;
+  if (!effCache[ck]) effCache[ck] = applyVariant(base, v);
+  return effCache[ck];
+}
+function toYaml(o, ind){
+  ind = ind || "";
+  const q = x => JSON.stringify(x);
+  if (Array.isArray(o)){
+    if (!o.length) return " []";
+    return o.map(x => "\n" + ind + "- " + (x !== null && typeof x === "object" ? toYaml(x, ind + "  ").replace(/^\n\s*/, "") : q(x))).join("");
+  }
+  if (o !== null && typeof o === "object"){
+    const ks = Object.keys(o); if (!ks.length) return " {}";
+    return ks.map(k => "\n" + ind + (/^[a-z0-9_]+$/.test(k) ? k : q(k)) + ":" + (o[k] !== null && typeof o[k] === "object" ? toYaml(o[k], ind + "  ") : " " + q(o[k]))).join("");
+  }
+  return " " + q(o);
+}
+function variantPicker(base, s){
+  const shared = sharedVars(base.id), local = localVarsFor(base.id);
+  const cur = s._vkey ? (s._yerel ? "y:" : "p:") + s._vkey : "";
+  const sel = h("select", {"aria-label":"Şablon sürümü", style:"max-width:320px", onchange:e => {
+      const v = e.target.value;
+      if (v === "+yeni") location.hash = "#/yeni/" + base.id + (s._vkey ? "/" + (s._yerel ? "y:" : "p:") + s._vkey : "");
+      else if (v === "+duzenle") location.hash = "#/yeni/" + base.id + "/" + cur + "/duzenle";
+      else if (v === "+sil"){ if (confirm("“" + s._varAd + "” bu tarayıcıdan silinsin mi?")){ const o = localVars(); delete (o[base.id] || {})[s._vkey]; saveLocalVars(o); location.hash = "#/s/" + base.id; } else e.target.value = cur; }
+      else location.hash = "#/s/" + base.id + (v ? "/v/" + v : "");
+    }},
+    h("option", {value:"", selected: !cur}, "Standart şablon"),
+    shared.length ? h("optgroup", {label:"Bölümde paylaşılan"}, shared.map(v => h("option", {value:"p:" + v.key, selected: cur === "p:" + v.key}, v.ad))) : null,
+    local.length ? h("optgroup", {label:"Bu tarayıcıda kayıtlı"}, local.map(v => h("option", {value:"y:" + v.key, selected: cur === "y:" + v.key}, v.ad))) : null,
+    h("optgroup", {label:"İşlemler"},
+      h("option", {value:"+yeni"}, s._vkey ? "+ Bu sürümden yeni şablon oluştur" : "+ Yeni şablon oluştur"),
+      s._yerel ? h("option", {value:"+duzenle"}, "Seçili şablonu düzenle") : null,
+      s._yerel ? h("option", {value:"+sil"}, "Seçili şablonu sil") : null));
+  return sel;
+}
+
+/* ---------- şablon oluşturucu ---------- */
+function renderBuilder(base, fromKey, editMode){
+  app.innerHTML = "";
+  let src = null;
+  if (fromKey){ const k = fromKey.slice(2); src = fromKey.startsWith("y:") ? localVarsFor(base.id).find(v => v.key === k) : sharedVars(base.id).find(v => v.key === k); }
+  const start = src ? applyVariant(base, src) : base;
+  const baseFields = {}; allFields(base.epikriz).forEach(a => baseFields[a.id] = a);
+  // çalışma kopyası
+  const work = {
+    ad: editMode && src ? src.ad : (src ? src.ad + " (kopya)" : ""),
+    aciklama: src && src.aciklama || "", yazar: src && src.yazar || "",
+    tani: (start.tani || []).join("\n"), mikro: (start.mikroskopi || []).join("\n"),
+    top: [], ed: {}, ekle: JSON.parse(JSON.stringify((src && src.ekle) || [])),
+    defaults: !!(src && src.varsayilanlar), keepDefaults: src ? src.varsayilanlar : null
+  };
+  // üst düzey sıra: temel + gizlenenler dahil
+  const hidden = new Set(Object.keys((src && src.alanlar) || {}).filter(k => src.alanlar[k].gizle));
+  const baseTop = base.epikriz.map(a => a.id);
+  const order = src && src.sira && src.sira.length ? src.sira.filter(id => baseTop.includes(id)).concat(baseTop.filter(id => !src.sira.includes(id))) : baseTop;
+  work.top = order;
+  Object.keys(baseFields).forEach(id => {
+    const b = baseFields[id], e = (src && src.alanlar && src.alanlar[id]) || {};
+    work.ed[id] = {inc: !hidden.has(id), etiket: e.etiket !== undefined ? e.etiket : b.etiket, seviye: e.seviye !== undefined ? e.seviye : b.seviye,
+      secenekler: (e.secenekler || b.secenekler || []).join("\n")};
+  });
+  const cur = states[start._key || base.id];
+
+  function fieldRow(a, depth, i, n){
+    const w = work.ed[a.id], row = h("div", {class:"fld", style: depth ? "margin-left:" + depth * 18 + "px" : null});
+    const inc = h("input", {type:"checkbox", checked:w.inc, "aria-label":"Şablona dahil", onchange:e => { w.inc = e.target.checked; body.style.opacity = w.inc ? 1 : .45; }});
+    const body = h("div", {style: w.inc ? null : "opacity:.45"},
+      h("div", {class:"opts", style:"gap:8px"},
+        h("input", {type:"text", value:w.etiket, "aria-label":"Alan adı", style:"flex:1;min-width:180px", oninput:e => w.etiket = e.target.value}),
+        a.seviye !== 0 ? h("select", {"aria-label":"Seviye", style:"width:auto", onchange:e => w.seviye = +e.target.value},
+          [1,2,3].map(l => h("option", {value:l, selected: w.seviye === l}, ["", "Çekirdek", "Standart", "Geniş"][l]))) : h("span", {class:"tag"}, "tanı satırı"),
+        depth === 0 ? h("span", {class:"tools"},
+          h("button", {type:"button", class:"btn small", disabled: i === 0, "aria-label":"Yukarı taşı", onclick:() => { const t = work.top; [t[i-1], t[i]] = [t[i], t[i-1]]; drawFields(); }}, "↑"),
+          h("button", {type:"button", class:"btn small", disabled: i === n - 1, "aria-label":"Aşağı taşı", onclick:() => { const t = work.top; [t[i+1], t[i]] = [t[i], t[i+1]]; drawFields(); }}, "↓")) : null),
+      (a.tip === "secim" || a.tip === "coklu") ? h("details", {style:"margin-top:4px"}, h("summary", null, "Seçenekler (" + w.secenekler.split("\n").filter(Boolean).length + ")"),
+        (() => { const ta = h("textarea", {rows:Math.min(10, w.secenekler.split("\n").length + 1), "aria-label":"Seçenekler, her satıra bir", oninput:e => w.secenekler = e.target.value}); ta.value = w.secenekler; return ta; })(),
+        h("div", {class:"muted", style:"font-size:12px"}, "Her satıra bir seçenek.")) : null);
+    row.append(h("div", {style:"display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start"}, inc, body));
+    const out = [row];
+    (a.alt || []).forEach(b => out.push(...fieldRow(b, depth + 1, 0, 0)));
+    return out;
+  }
+  const fieldsBox = h("div"), customBox = h("div");
+  function drawFields(){
+    fieldsBox.innerHTML = "";
+    work.top.forEach((id, i) => { const a = base.epikriz.find(x => x.id === id); if (a) fieldsBox.append(...fieldRow(a, 0, i, work.top.length)); });
+  }
+  function drawCustom(){
+    customBox.innerHTML = "";
+    work.ekle.forEach((a, i) => {
+      const ta = h("textarea", {rows:3, placeholder:"Her satıra bir seçenek", oninput:e => a.secenekler = e.target.value.split("\n").map(x => x.trim()).filter(Boolean)});
+      ta.value = (a.secenekler || []).join("\n");
+      customBox.append(h("div", {class:"panel", style:"background:var(--bg)"},
+        h("div", {class:"opts", style:"gap:8px"},
+          h("input", {type:"text", value:a.etiket, placeholder:"Alan adı", "aria-label":"Yeni alan adı", style:"flex:1;min-width:180px", oninput:e => a.etiket = e.target.value}),
+          h("select", {"aria-label":"Alan tipi", style:"width:auto", onchange:e => { a.tip = e.target.value; drawCustom(); }},
+            [["secim","Tek seçim"],["coklu","Çoklu seçim"],["metin","Metin"],["olcu","Ölçüm"]].map(([v, t]) => h("option", {value:v, selected:a.tip === v}, t))),
+          h("select", {"aria-label":"Seviye", style:"width:auto", onchange:e => a.seviye = +e.target.value}, [1,2,3].map(l => h("option", {value:l, selected:a.seviye === l}, ["", "Çekirdek", "Standart", "Geniş"][l]))),
+          h("button", {type:"button", class:"btn small", onclick:() => { work.ekle.splice(i, 1); drawCustom(); }}, "Kaldır")),
+        (a.tip === "secim" || a.tip === "coklu") ? ta : null,
+        a.tip === "olcu" ? h("input", {type:"text", value:a.birim || "", placeholder:"Birim (ör. mm)", style:"max-width:160px;margin-top:6px", oninput:e => a.birim = e.target.value}) : null));
+    });
+    customBox.append(h("button", {type:"button", class:"btn small", onclick:() => { work.ekle.push({id:"", etiket:"", seviye:2, tip:"secim", secenekler:[]}); drawCustom(); }}, "+ Alan ekle"));
+  }
+  drawFields(); drawCustom();
+
+  function buildVariant(){
+    const v = {temel: base.id, ad: work.ad.trim()};
+    if (work.aciklama.trim()) v.aciklama = work.aciklama.trim();
+    if (work.yazar.trim()) v.yazar = work.yazar.trim();
+    const al = {};
+    Object.keys(work.ed).forEach(id => {
+      const w = work.ed[id], b = baseFields[id], e = {};
+      if (!w.inc){ al[id] = {gizle:true}; return; }
+      if (w.etiket.trim() && w.etiket.trim() !== b.etiket) e.etiket = w.etiket.trim();
+      if (b.seviye !== 0 && w.seviye !== b.seviye) e.seviye = w.seviye;
+      if (b.secenekler){ const ns = w.secenekler.split("\n").map(x => x.trim()).filter(Boolean); if (ns.join("\n") !== b.secenekler.join("\n")) e.secenekler = ns; }
+      if (Object.keys(e).length) al[id] = e;
+    });
+    if (Object.keys(al).length) v.alanlar = al;
+    if (work.top.join() !== base.epikriz.map(a => a.id).join()) v.sira = work.top.slice();
+    const used = new Set(Object.keys(baseFields));
+    const ek = work.ekle.filter(a => a.etiket.trim()).map(a => {
+      let id = "x_" + slug(a.etiket).replace(/-/g, "_"); while (used.has(id)) id += "_2"; used.add(id);
+      const f = {id, etiket:a.etiket.trim(), seviye:a.seviye || 2, tip:a.tip};
+      if (a.tip === "secim" || a.tip === "coklu") f.secenekler = (a.secenekler || []).length ? a.secenekler : ["…"];
+      if (a.tip === "olcu" && a.birim) f.birim = a.birim;
+      if (a.tip === "secim") f.serbest = true;
+      return f;
+    });
+    if (ek.length) v.ekle = ek;
+    const tl = work.tani.split("\n").map(x => x.replace(/\s+$/, "")).filter(Boolean);
+    if (tl.join("\n") !== (base.tani || []).join("\n")) v.tani = tl;
+    const ml = work.mikro.split("\n").map(x => x.trim()).filter(Boolean);
+    if (ml.join("\n") !== (base.mikroskopi || []).join("\n")) v.mikroskopi = ml;
+    if (work.defaults){
+      if (cur){
+        const d = {};
+        const ev = {}; Object.keys(cur.vals).forEach(k => { if (cur.vals[k]) ev[k] = cur.vals[k]; }); if (Object.keys(ev).length) d.epikriz = ev;
+        const mv = {}; Object.keys(cur.mvals).forEach(k => { if (cur.mvals[k]) mv[k] = cur.mvals[k]; }); if (Object.keys(mv).length) d.makro = mv;
+        if (cur.orn) d.ornekleme = {varyant: cur.orn.v, satirlar: cur.orn.rows.map(r => ({kod:r.kod, aciklama:r.aciklama, parca:r.parca, kaset:r.kaset, dahil:r.inc}))};
+        if (cur.mikro.trim()) d.mikro = cur.mikro.trim();
+        if (Object.keys(d).length) v.varsayilanlar = d;
+      } else if (work.keepDefaults) v.varsayilanlar = work.keepDefaults;
+    }
+    return v;
+  }
+  const msg = h("p", {class:"muted", role:"status", style:"min-height:1.4em"});
+  function need(){ if (!work.ad.trim()){ msg.textContent = "Kaydetmeden önce şablona bir ad verin (ör. “Ceyhan Hoca”)."; return false; } return true; }
+  const fname = () => "sablonlar/varyant/" + base.id + "--" + slug(work.ad) + ".yaml";
+  const yamlText = () => "# " + base.baslik + " — " + work.ad.trim() + "\n# Bu dosyayı depoda " + fname() + " yoluna koyun.\n" + toYaml(buildVariant()).replace(/^\n/, "") + "\n";
+
+  const inp = (label, key, ph) => h("label", {style:"display:block;margin-bottom:8px"}, h("div", {class:"lbl", style:"font-size:14px;font-weight:500;margin-bottom:4px"}, label),
+    h("input", {type:"text", value:work[key], placeholder:ph || "", oninput:e => work[key] = e.target.value}));
+  const taF = (key, rows) => { const t = h("textarea", {rows, oninput:e => work[key] = e.target.value}); t.value = work[key]; return t; };
+
+  app.append(
+    h("div", {class:"head"},
+      h("div", {class:"pagehead"}, icon(base._sistem, "lg", base._sistem), h("div", null,
+        h("div", {class:"muted", style:"font-size:13px"}, h("a", {href:"#/"}, "Şablonlar"), " / ", h("a", {href:"#/s/" + base.id}, base.baslik)),
+        h("h1", null, editMode ? "Şablonu düzenle" : "Yeni şablon oluştur"),
+        h("p", {class:"muted", style:"margin:0"}, "Temel: " + base.baslik + (src && !editMode ? " · başlangıç: " + src.ad : "")))),
+    ),
+    h("div", {class:"work", style:"grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)"},
+      h("div", {class:"form"},
+        h("section", {class:"panel"}, h("h2", null, "Genel"), inp("Şablon adı", "ad", "ör. Ceyhan Hoca, kısa rapor, konsültasyon"), inp("Açıklama", "aciklama", "Ne zaman kullanılır?"), inp("Hazırlayan", "yazar", "")),
+        h("section", {class:"panel"}, h("h2", null, "Epikriz alanları"),
+          h("p", {class:"muted", style:"margin:0 0 8px;font-size:13px"}, "İşareti kaldırılan alan bu şablonda görünmez. Adını, seviyesini ve seçeneklerini değiştirebilir, üst düzey alanların sırasını ↑ ↓ ile düzenleyebilirsiniz."),
+          fieldsBox, h("h3", null, "Yeni alanlar"), customBox),
+        h("section", {class:"panel"}, h("h2", null, "Tanı satırları"), h("p", {class:"muted", style:"margin:0 0 6px;font-size:13px"}, "Her satır bir tanı seçeneği; “-” ile başlayan satır üstteki tanıya bağlıdır. {alan} yer tutucuları korunmalıdır."), taF("tani", 6)),
+        h("section", {class:"panel"}, h("h2", null, "Mikroskopi kalıpları"), taF("mikro", 3)),
+        h("section", {class:"panel"}, h("h2", null, "Varsayılan değerler"),
+          h("label", {class:"opts"}, h("input", {type:"checkbox", checked:work.defaults, onchange:e => work.defaults = e.target.checked}),
+            cur ? "Şablon sayfasında doldurduğum değerleri (makroskopi, örnekleme, epikriz, mikroskopi) bu şablonun varsayılanı yap" : "Varsayılan değerleri koru (şablon sayfasında doldurup buradan kaydederseniz güncellenir)"))),
+      h("div", {class:"sheetwrap"}, h("section", {class:"panel"}, h("h2", null, "Kaydet ve paylaş"),
+        h("p", {style:"margin:0 0 10px;font-size:14px"}, "“Bu tarayıcıya kaydet” şablonu yalnızca bu bilgisayarda kullanılabilir yapar. Bölümdeki herkesin görmesi için şablonu depoya ekleyin: GitHub düğmesi dosyayı hazır doldurulmuş olarak açar; yetkiniz yoksa değişiklik önerisi (pull request) olarak gönderilir."),
+        h("div", {class:"tools"},
+          h("button", {type:"button", class:"btn primary", onclick:() => {
+            if (!need()) return;
+            const v = buildVariant(), o = localVars(); o[base.id] = o[base.id] || {};
+            const key = editMode && src && src.yerel ? src.key : slug(work.ad) + "-" + Date.now().toString(36);
+            o[base.id][key] = v;
+            if (!saveLocalVars(o)){ msg.textContent = "Tarayıcı depolaması kullanılamıyor; şablonu YAML olarak indirin."; return; }
+            Object.keys(effCache).filter(k => k.startsWith(base.id + "::y:" + key)).forEach(k => { delete effCache[k]; delete states[k]; });
+            location.hash = "#/s/" + base.id + "/v/y:" + key;
+          }}, "Bu tarayıcıya kaydet"),
+          h("button", {type:"button", class:"btn", onclick:() => {
+            if (!need()) return;
+            const a = h("a", {href:URL.createObjectURL(new Blob([yamlText()], {type:"text/yaml"})), download: base.id + "--" + slug(work.ad) + ".yaml"}); document.body.append(a); a.click(); a.remove();
+          }}, "YAML indir"),
+          SITE.depo ? h("button", {type:"button", class:"btn", onclick:() => {
+            if (!need()) return;
+            const url = "https://github.com/" + SITE.depo + "/new/main?filename=" + encodeURIComponent(fname()) + "&value=" + encodeURIComponent(yamlText());
+            if (url.length > 7500){ msg.textContent = "Şablon GitHub bağlantısı için çok uzun; YAML indirip depoya dosya olarak ekleyin."; return; }
+            window.open(url, "_blank", "noopener");
+          }}, "GitHub'da paylaş") : null,
+          h("a", {class:"btn", href:"#/s/" + base.id + (src ? "/v/" + fromKey : "")}, "Vazgeç")),
+        msg)))
+  );
 }
 
 /* ---------- template state ---------- */
 function stateFor(s){
-  if (states[s.id]) return states[s.id];
+  const sk = s._key || s.id;
+  if (states[sk]) return states[sk];
   const st = {lvl:2, vals:{}, showEmpty:false, tani:null, taniEdit:null, varyant:0, mvals:{}, rows:[{}], orn:null, kisa:false, ek:[], mikro:""};
   const lines = s.tani || [];
   if (s.tani_alternatif){ st.tani = {sec: lines.findIndex(l => !l.startsWith("-")), dash: lines.map(l => l.startsWith("-"))}; }
   else st.tani = {inc: lines.map(() => true)};
-  states[s.id] = st; return st;
+  const d = s._defaults;
+  if (d){
+    Object.assign(st.vals, d.epikriz || {}); Object.assign(st.mvals, d.makro || {});
+    if (d.mikro) st.mikro = d.mikro;
+    if (d.ornekleme && s.makroskopi && s.makroskopi.varyantlar[d.ornekleme.varyant]){
+      st.varyant = d.ornekleme.varyant;
+      st.orn = {v:d.ornekleme.varyant, rows:(d.ornekleme.satirlar || []).map(r => ({kod:r.kod, aciklama:r.aciklama, parca:r.parca || "", kaset:r.kaset || "", tek:false, inc:r.dahil !== false}))};
+      const vv = s.makroskopi.varyantlar[st.varyant]; (vv.ornekleme || []).forEach((o, i) => { if (st.orn.rows[i] && o.tek) st.orn.rows[i].tek = true; });
+    }
+  }
+  states[sk] = st; return st;
 }
 function ornFor(s, st){
   const v = s.makroskopi && s.makroskopi.varyantlar[st.varyant];
@@ -296,7 +719,7 @@ function taniTokens(s, st, blank){
   return line => line.replace(TOKEN, (m, id) => {
     const a = fs[id], mv = st.mvals || {};
     const v = st.vals[id] || mv[id] || (id === "lateralite" ? mv.taraf : "") || (id === "taraf" ? mv.taraf : "");
-    if (!blank && v) return v;
+    if (!blank && v) return (a && a.secenekler && a.secenekler.includes(v)) ? v.charAt(0).toLocaleLowerCase("tr") + v.slice(1) : v;
     if (a && a.secenekler && a.secenekler.length <= 3) return a.secenekler.map(x => x.toLocaleLowerCase("tr")).join(" / ");
     return "…";
   });
@@ -448,6 +871,7 @@ function fieldBlock(a, st, lvl, onchg, vals){
 
 /* ---------- template page ---------- */
 function renderSablon(s){
+  const base = BY[s.id];
   const st = stateFor(s);
   app.innerHTML = "";
   const pre = h("pre");
@@ -455,12 +879,12 @@ function renderSablon(s){
   const levelSeg = h("div", {class:"seg", role:"group", "aria-label":"Rapor seviyesi"},
     [1,2,3].map(l => h("button", {type:"button", "aria-pressed": st.lvl === l ? "true" : "false", onclick:() => { st.lvl = l; renderSablon(s); }}, SEVIYE[l])));
   const head = h("div", {class:"head"},
-    h("div", null, h("div", {class:"muted", style:"font-size:13px"}, h("a", {href:"#/"}, "Şablonlar"), " / " + s._sistem),
-      h("h1", null, s.baslik), h("span", {class:"tag " + s._grup}, GRUP[s._grup])),
+    h("div", {class:"pagehead"}, icon(s._sistem, "lg", s._sistem), h("div", null, h("div", {class:"muted", style:"font-size:13px"}, h("a", {href:"#/"}, "Şablonlar"), " / " + s._sistem),
+      h("h1", null, s.baslik), h("div", {class:"opts", style:"gap:10px"}, h("span", {class:"tag " + s._grup}, GRUP[s._grup]), variantPicker(base, s)))),
     h("div", {class:"tools"}, levelSeg,
       h("a", {class:"btn", href:"#/r/" + s.id}, "Rehber"),
-      h("button", {type:"button", class:"btn", onclick:() => printDoc(s.baslik, "Boş şablon · " + SEVIYE[st.lvl] + " seviye", fullText(s, st, true))}, "Boş şablonu yazdır"),
-      h("button", {type:"button", class:"btn", onclick:() => printDoc(s.baslik, "Doldurulmuş rapor", fullText(s, st, false))}, "Raporu yazdır")));
+      h("button", {type:"button", class:"btn", onclick:() => printBlank(s, st)}, "Boş şablonu yazdır"),
+      h("button", {type:"button", class:"btn", onclick:() => printFilled(s, st)}, "Raporu yazdır")));
 
   // tanı
   const taniBox = (() => {
@@ -627,9 +1051,9 @@ function renderRehber(s){
         m.ek_materyaller.map(r => { const md = MOD[r]; return h("div", {class:"fb"}, h("h4", null, md.ad), h("pre", null, cap(makroToken(md.alanlar, null, true)(md.metin))), (md.yapilacaklar || []).length ? h("ul", null, md.yapilacaklar.map(y => h("li", null, y))) : null); })] : null));
   }
   const read = h("article", {class:"read"}, h("div", {class:"muted", style:"font:13px var(--sans)"}, h("a", {href:"#/"}, "Şablonlar"), " / " + s._sistem),
-    h("h1", {style:"font-family:var(--sans)"}, s.baslik + " — rehber"),
+    h("div", {class:"pagehead", style:"font-family:var(--sans)"}, icon(s._sistem, "lg", s._sistem), h("h1", {style:"font-family:var(--sans)"}, s.baslik + " — rehber")),
     h("div", {class:"tools", style:"font-family:var(--sans);margin:10px 0"}, h("a", {class:"btn primary", href:"#/s/" + s.id}, "Şablonu aç"),
-      h("button", {type:"button", class:"btn", onclick:() => printDoc(s.baslik + " — rehber", s._sistem + " · " + GRUP[s._grup], read.cloneNode(true), true)}, "Rehberi yazdır")),
+      h("button", {type:"button", class:"btn", onclick:() => printNode(h("div", null, prHead(s, "Rehber · " + s._sistem + " · " + GRUP[s._grup]), h("div", {class:"guideprint"}, read.cloneNode(true)), prFoot(s)))}, "Rehberi yazdır")),
     body);
   const toc = h("nav", {class:"toc", "aria-label":"Rehber bölümleri"}, secs.map(([id, t]) => h("a", {href:"#g-" + id, onclick:e => { e.preventDefault(); document.getElementById("g-" + id).scrollIntoView({behavior:"smooth"}); }}, t)));
   app.append(h("div", {class:"guide"}, toc, read));
@@ -638,7 +1062,8 @@ function renderRehber(s){
 /* ---------- router ---------- */
 function route(){
   const p = (location.hash.slice(1) || "/").split("/");
-  if (p[1] === "s" && BY[p[2]]) renderSablon(BY[p[2]]);
+  if (p[1] === "s" && BY[p[2]]) renderSablon(effective(BY[p[2]], p[3] === "v" ? decodeURIComponent(p[4] || "") : null));
+  else if (p[1] === "yeni" && BY[p[2]]) renderBuilder(BY[p[2]], p[3] ? decodeURIComponent(p[3]) : null, p[4] === "duzenle");
   else if (p[1] === "r" && BY[p[2]]) renderRehber(BY[p[2]]);
   else renderHome();
   window.scrollTo(0, 0);

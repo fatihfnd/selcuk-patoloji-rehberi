@@ -2,3 +2,7 @@
 ad: Selçuk Patoloji Rehberi
 alt_baslik: Selçuk Üniversitesi Tıp Fakültesi Tıbbi Patoloji Anabilim Dalı
 aciklama: Raporlama şablonları, makroskopi ve tanısal rehber
+# Logo dosyasını assets/ klasörüne koyduktan sonra alttaki satırın başındaki # işaretini kaldırın:
+# logo: assets/selcuk-logo.png
+# Paylaşılan şablon önerileri için GitHub deposu (sahip/ad)
+depo: fatihfnd/selcuk-patoloji-rehberi
