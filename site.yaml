@@ -11,5 +11,5 @@ depo: fatihfnd/selcuk-patoloji-rehberi
 
 # Üyelik ve kişisel şablonlar (Supabase). Kurulum: docs/UYELIK.md
 # Anon key herkese açık olacak şekilde tasarlanmıştır; güvenlik veritabanı kurallarıyla (RLS) sağlanır.
-# supabase_url: https://XXXX.supabase.co
-# supabase_anon_key: eyJ...
+supabase_url: https://kqqcebkccgresaobjzcv.supabase.co
+supabase_anon_key: sb_publishable_oHB52rafFLGVdlBZ06wEUQ_BAgOd0oi
