@@ -317,7 +317,7 @@ def main():
     # --- paylaşılan şablon sürümleri (sablonlar/varyant/<temel>--<ad>.yaml) ---
     varyantlar = []
     tum = {x["id"]: x for x in paket}
-    V_ANAHTAR = {"temel", "ad", "aciklama", "yazar", "alanlar", "sira", "ekle", "tani", "mikroskopi", "varsayilanlar"}
+    V_ANAHTAR = {"temel", "ad", "aciklama", "yazar", "alanlar", "sira", "ekle", "tani", "mikroskopi", "varsayilanlar", "makro"}
     for f in sorted(glob.glob(os.path.join(KOK, "sablonlar", "varyant", "*.yaml"))):
         ad = os.path.splitext(os.path.basename(f))[0]
         v = yaml.safe_load(open(f, encoding="utf-8")) or {}
@@ -338,6 +338,21 @@ def main():
                 sys.exit(f"HATA {f}: eklenen alan kimliği 'x_' ile başlamalı ve tekil olmalı: {a.get('id')}")
             if a.get("tip") not in TIPLER or not a.get("etiket"):
                 sys.exit(f"HATA {f}: eklenen alan geçersiz: {a}")
+        mk = v.get("makro")
+        if mk:
+            tm = tum[v["temel"]].get("makroskopi")
+            if not tm:
+                sys.exit(f"HATA {f}: temel şablonda makroskopi yok")
+            mids = {a["id"] for a in tm["alanlar"]} | {a["id"] for a in mk.get("ekle_alanlar") or []}
+            for i, o in (mk.get("varyantlar") or {}).items():
+                if int(i) >= len(tm["varyantlar"]):
+                    sys.exit(f"HATA {f}: makroskopi varyant numarası geçersiz: {i}")
+                for t in (o.get("metin") or []) + [o.get("tekrar") or ""]:
+                    eksik = set(TOKEN.findall(t)) - mids
+                    if eksik:
+                        sys.exit(f"HATA {f}: makroskopi metninde tanınmayan alan {eksik}")
+            if set(mk.get("alanlar") or {}) - mids:
+                sys.exit(f"HATA {f}: makroskopide olmayan alan {set(mk['alanlar']) - mids}")
         v["key"] = ad.split("--", 1)[1]
         varyantlar.append(v)
     veri = {"sablonlar": app_sablon, "varyantlar": varyantlar, "makro_moduller": {k: v for k, v in mod.items() if k.startswith("makro.")},
@@ -345,6 +360,9 @@ def main():
             "site": yaml.safe_load(open(os.path.join(KOK, "site.yaml"), encoding="utf-8"))}
     js = json.dumps(veri, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     html = open(os.path.join(KOK, "app", "index.template.html"), encoding="utf-8").read().replace("/*__DATA__*/null", js)
+    sb = veri["site"] or {}
+    if sb.get("supabase_url") and sb.get("supabase_anon_key"):
+        html = html.replace("<!--__SUPABASE__-->", '<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>')
     site = os.path.join(KOK, "site")
     os.makedirs(os.path.join(site, "indir"), exist_ok=True)
     open(os.path.join(site, "index.html"), "w", encoding="utf-8").write(html)

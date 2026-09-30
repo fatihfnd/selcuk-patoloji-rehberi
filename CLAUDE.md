@@ -21,10 +21,22 @@ etiketin tırnaksız yazılması, tanınmayan anahtar, ASCII olmayan `id`, metin
 - `katalog.yaml` — yol haritası; `site.yaml` — site adı
 - `app/index.template.html` — arayüz (veri derlemede `/*__DATA__*/null` yerine gömülür)
 
+## Üyelik (isteğe bağlı, Supabase)
+
+- `site.yaml`'da `supabase_url` + `supabase_anon_key` varsa derleme supabase-js'i ekler; yoksa site üyeliksiz çalışır.
+- Şema ve güvenlik kuralları: `supabase/schema.sql`; kurulum adımları: `docs/UYELIK.md`. `service_role` anahtarı asla depoya girmez.
+- Kişisel şablonlar `sablon_surumleri` tablosunda (`paylasim`='kisisel'); `bolum_uyeleri`'ndeki kullanıcılar 'bolum' paylaşabilir.
+
+## Arayüz notları
+
+- Önizlemede "Rapor metni" ve "Sarı boşluklu" görünüm (rapor editörüyle ileride eşlenecek; boşluk = `…`).
+- Yazdır menüsü: makroskopi ve tanı-epikriz ayrı sayfa, istenen bölümü basma, sayfaya sığdırma (en az %80 ölçek).
+
 ## Şablon sürümleri (hekime özgü / kısa / konsültasyon)
 
 - Paylaşılan sürümler `sablonlar/varyant/<temel>--<ad>.yaml`; yalnız temel şablondan farkları içerir
-  (`alanlar`: gizle/etiket/seviye/secenekler, `sira`, `ekle` (id `x_` ile başlar), `tani`, `mikroskopi`, `varsayilanlar`).
+  (`alanlar`: gizle/etiket/seviye/secenekler, `sira`, `ekle` (id `x_` ile başlar), `tani`, `mikroskopi`, `varsayilanlar`,
+  `makro`: alanlar/secenekler, varyantlar.<n>.metin/tekrar/ornekleme, yapilacaklar).
 - Sitede şablon sayfasındaki sürüm listesinden oluşturulur; "Bu tarayıcıya kaydet" localStorage'a yazar,
   "YAML indir" / "GitHub'da paylaş" depoya eklenecek dosyayı üretir. Gelen dosyayı `python build.py` ile doğrula.
 - Temel şablonda bir alanın `id`'si değişirse o temele bağlı sürümleri de güncelle (derleyici bilinmeyen alanda durur).

@@ -144,7 +144,18 @@ textarea{resize:vertical;min-height:38px}
 .pagehead{display:flex;gap:16px;align-items:flex-start}
 .brand img{height:30px;width:auto;display:block}
 .brand .sub{display:block;font-size:11.5px;font-weight:400;color:var(--muted);line-height:1.2}
-#print-area{display:none}
+.ydoc{font:14.5px/1.9 var(--serif)}
+.yline{min-height:1.2em;white-space:pre-wrap}
+.yb{background:#FFE55C;color:#1B1F2E;border-radius:3px;padding:0 4px;min-width:1.4em;display:inline-block;outline:none;line-height:1.5}
+.yb:empty::before{content:attr(data-ph);color:#7A6A12;font-style:italic;font-size:.9em}
+.yb.dolu{background:#FFF6C2}
+.yb:focus{box-shadow:0 0 0 2px var(--hema)}
+select.ych{field-sizing:content;font:inherit;border:0;appearance:none;-webkit-appearance:none;padding:0 6px;max-width:100%;cursor:pointer;width:auto}
+.printmenu{position:relative}
+.printmenu>summary{list-style:none}
+.printmenu>summary::-webkit-details-marker{display:none}
+.printpanel{position:absolute;right:0;top:calc(100% + 6px);z-index:20;width:300px;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.printpanel .opts{margin:4px 0}
 @media (max-width:980px){
   .work{grid-template-columns:1fr}
   .sheetwrap{position:static}
@@ -154,45 +165,51 @@ textarea{resize:vertical;min-height:38px}
   .row{grid-template-columns:1fr;gap:6px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.drawin .ico *{stroke-dashoffset:0!important}}
-@page{size:A4;margin:14mm 14mm 16mm;@bottom-right{content:counter(page) " / " counter(pages);font:8pt "IBM Plex Sans",sans-serif;color:#666}}
+@page{size:A4;margin:11mm 12mm 13mm;@bottom-right{content:counter(page) " / " counter(pages);font:7.5pt "IBM Plex Sans",sans-serif;color:#666}}
+#print-area{display:none;color:#111;background:#fff;font:9.6pt/1.42 var(--serif)}
+#print-area.measure{display:block;position:absolute;left:-99999px;top:0;width:186mm}
+.pr-page{break-after:page;page-break-after:always}
+.pr-page:last-child{break-after:auto;page-break-after:auto}
+.pr-head{display:grid;grid-template-columns:auto 1fr auto;gap:10pt;align-items:center;border-bottom:1.4pt solid #3D3B93;padding-bottom:5pt;margin-bottom:6pt}
+.pr-head img{height:34pt;width:auto}
+.pr-kurum{font:8pt/1.3 var(--sans);color:#444}
+.pr-title{font:600 12.5pt/1.2 var(--sans);color:#111;margin-top:1pt}
+.pr-head .ico{width:34pt;height:34pt;color:#C4466F}
+.pr-meta{display:flex;gap:14pt;font:8.5pt var(--sans);margin:0 0 7pt;color:#333}
+.pr-meta span{flex:1;border-bottom:.6pt solid #999;padding-bottom:1pt}
+.pr-sec{margin-top:7pt}
+.pr-sec>h2{font:600 9pt var(--sans);letter-spacing:.02em;color:#3D3B93;border-bottom:.6pt solid #3D3B93;padding-bottom:1.5pt;margin:0 0 4pt}
+.pr-sec pre{white-space:pre-wrap;font:inherit;margin:0}
+.pr-sec p{margin:0 0 3.5pt}
+.pr-foot{margin-top:9pt;padding-top:4pt;border-top:.6pt solid #bbb;font:7pt/1.35 var(--sans);color:#666}
+.bl{display:inline-block;min-width:30pt;border-bottom:.6pt solid #555;height:1em;vertical-align:-2pt;margin:0 1pt}
+.bl.w{min-width:110pt}
+.cb{display:inline;margin-right:8pt}
+.cb::before{content:"";display:inline-block;width:6.5pt;height:6.5pt;border:.7pt solid #333;border-radius:1pt;margin-right:2.5pt;vertical-align:-.5pt}
+.pr-tani .cb{display:block;margin:0;padding-left:11pt;text-indent:-11pt}
+.pr-fields{column-count:2;column-gap:12pt;column-rule:.4pt solid #ddd}
+.pf{display:grid;grid-template-columns:30% 1fr;gap:4pt;break-inside:avoid;padding:1.6pt 0;border-bottom:.4pt solid #e2e2e2;font-size:8.8pt;line-height:1.35}
+.pf .l{font:500 8pt/1.3 var(--sans)}
+.pf .l .core{width:4.5pt;height:4.5pt;background:#C4466F;border-radius:50%;display:inline-block;margin-right:3pt;transform:translateY(-1pt)}
+.pf.ind1 .l{padding-left:8pt}.pf.ind2 .l{padding-left:15pt}
+.pf.grp{break-after:avoid;display:block;font:600 8pt var(--sans);background:#F1F0F9;padding:1.6pt 3pt}
+.pf .cb{margin-right:6pt}
+.pr-tbl{width:100%;border-collapse:collapse;font:8.5pt var(--sans);margin-top:4pt}
+.pr-tbl th,.pr-tbl td{border:.5pt solid #999;padding:1.8pt 4pt;text-align:left}
+.pr-tbl th{background:#F1F0F9;font-weight:600}
+.pr-tbl td.e{width:34pt}
+.pr-cols{display:grid;grid-template-columns:1fr 36%;gap:10pt;align-items:start}
+.pr-todo{border:.6pt solid #bbb;background:#F6F6F6;padding:5pt 7pt;font:7.8pt/1.4 var(--sans);break-inside:avoid}
+.pr-todo b{display:block;margin-bottom:2pt}
+.pr-lines div{border-bottom:.5pt solid #aaa;height:13pt}
+.pr-tani li{margin:1.5pt 0;list-style:none}
+.pr-tani{padding-left:0;margin:0}
+#print-area .guideprint{font-size:9.5pt}
+#print-area .guideprint .tools,#print-area .guideprint>.muted{display:none}
 @media print{
   body{background:#fff;color:#000}
-  .bar,main{display:none!important}
-  #print-area{display:block!important;color:#111;font:10.5pt/1.55 var(--serif)}
-  .pr-head{display:grid;grid-template-columns:auto 1fr auto;gap:12pt;align-items:center;border-bottom:1.6pt solid #3D3B93;padding-bottom:7pt;margin-bottom:8pt}
-  .pr-head img{height:40pt;width:auto}
-  .pr-kurum{font:8.5pt/1.35 var(--sans);color:#444}
-  .pr-title{font:600 13.5pt/1.25 var(--sans);color:#111;margin-top:2pt}
-  .pr-head .ico{width:40pt;height:40pt;color:#C4466F}
-  .pr-meta{display:flex;gap:18pt;font:9pt var(--sans);margin:0 0 10pt;color:#333}
-  .pr-meta span{flex:1;border-bottom:.6pt solid #999;padding-bottom:1pt}
-  .pr-sec{break-inside:auto;margin-top:10pt}
-  .pr-sec>h2{font:600 9.5pt var(--sans);letter-spacing:.02em;color:#3D3B93;border-bottom:.6pt solid #3D3B93;padding-bottom:2pt;margin:0 0 5pt}
-  .pr-sec pre{white-space:pre-wrap;font:inherit;margin:0}
-  .pr-foot{margin-top:14pt;padding-top:5pt;border-top:.6pt solid #bbb;font:7.5pt/1.4 var(--sans);color:#666}
-  .bl{display:inline-block;min-width:34pt;border-bottom:.6pt solid #555;height:1em;vertical-align:-2pt;margin:0 1pt}
-  .bl.w{min-width:120pt}
-  .cb{display:inline;margin-right:10pt}
-  .cb::before{content:"";display:inline-block;width:7pt;height:7pt;border:.7pt solid #333;border-radius:1pt;margin-right:3pt;vertical-align:-.5pt}
-  .pr-tani .cb{display:block;margin:0;padding-left:12pt;text-indent:-12pt}
-  .pr-fields{width:100%;border-collapse:collapse}
-  .pr-fields td{border-bottom:.4pt solid #ddd;padding:3pt 4pt;vertical-align:top}
-  .pr-fields td.l{width:32%;font:500 9pt var(--sans)}
-  .pr-fields tr{break-inside:avoid}
-  .pr-fields td.l .core{width:5pt;height:5pt;background:#C4466F;border-radius:50%;display:inline-block;margin-right:4pt;transform:translateY(-1pt)}
-  .pr-fields .ind1 td.l{padding-left:14pt}.pr-fields .ind2 td.l{padding-left:26pt}
-  .pr-fields .grp td{font:600 9pt var(--sans);background:#F1F0F9}
-  .pr-tbl{width:100%;border-collapse:collapse;font:9pt var(--sans);margin-top:5pt}
-  .pr-tbl th,.pr-tbl td{border:.5pt solid #999;padding:3pt 5pt;text-align:left}
-  .pr-tbl th{background:#F1F0F9;font-weight:600}
-  .pr-tbl td.e{width:40pt}
-  .pr-todo{border:.6pt solid #bbb;background:#F6F6F6;padding:6pt 9pt;margin-top:7pt;font:8.5pt/1.45 var(--sans);break-inside:avoid}
-  .pr-todo b{display:block;margin-bottom:2pt}
-  .pr-lines div{border-bottom:.5pt solid #aaa;height:15pt}
-  .pr-tani li{margin:2pt 0;list-style:none}
-  .pr-tani{padding-left:0;margin:0}
-  #print-area .guideprint{font-size:10pt}
-  #print-area .guideprint .tools,#print-area .guideprint>.muted{display:none}
+  .bar,main,dialog{display:none!important}
+  #print-area{display:block!important;position:static!important;width:auto!important}
 }
 </style>
 </head>
@@ -200,10 +217,12 @@ textarea{resize:vertical;min-height:38px}
 <header class="bar"><div class="bar-in">
   <a class="brand" href="#/" id="brand"><i aria-hidden="true"></i><span><span id="site-ad">Selçuk Patoloji Rehberi</span><span class="sub" id="site-alt"></span></span></a>
   <span class="sp"></span>
+  <span id="auth" class="tools"></span>
   <button class="theme" id="theme" type="button" aria-label="Renk temasını değiştir">Tema</button>
 </div></header>
 <main id="app"></main>
 <div id="print-area"></div>
+<!--__SUPABASE__-->
 <script>const DATA = /*__DATA__*/null;</script>
 <script>
 (function(){
@@ -216,6 +235,7 @@ if (DATA.site){
     const b = document.getElementById("brand"), img = new Image();
     img.src = SITE.logo; img.alt = "Selçuk Üniversitesi logosu";
     img.onload = () => { const dot = b.querySelector("i"); if (dot) dot.replaceWith(img); };
+    img.onerror = () => {};
   }
 }
 const S = DATA.sablonlar, BY = {}, MOD = DATA.makro_moduller, SIN = DATA.siniflama;
@@ -341,7 +361,7 @@ function renderHome(){
       list.append(h("section", {class:"sys"}, h("h2", null, icon(sys, "md"), sys),
         ss.map(s => h("div", {class:"row"},
           h("div", {class:"t"}, s.baslik, h("small", null, s.materyal + " · " + (s.kaynaklar||[])[0] +
-            ((n => n ? " · " + n + " ek sürüm" : "")(sharedVars(s.id).length + localVarsFor(s.id).length)))),
+            ((n => n ? " · " + n + " ek sürüm" : "")(allVarsFor(s.id).length)))),
           h("span", {class:"tag " + s._grup, title:GRUP[s._grup]}, GKISA[s._grup]),
           h("div", {class:"acts"}, h("a", {class:"btn small primary", href:"#/s/" + s.id}, "Şablon"), h("a", {class:"btn small", href:"#/r/" + s.id}, "Rehber"))
         ))));
@@ -362,11 +382,16 @@ function blanks(str, wide){
   parts.forEach((p, i) => { if (p) out.push(p); if (i < parts.length - 1) out.push(h("span", {class:"bl" + (wide ? " w" : "")})); });
   return out;
 }
+function logoImg(){
+  if (!SITE.logo) return h("span");
+  const img = h("img", {src:SITE.logo, alt:""});
+  img.onerror = () => img.remove();
+  return img;
+}
 function prHead(s, alt){
-  const logo = SITE.logo ? h("img", {src:SITE.logo, alt:""}) : h("span");
   return h("div", null,
-    h("div", {class:"pr-head"}, logo,
-      h("div", null, h("div", {class:"pr-kurum"}, SITE.alt_baslik || ""), h("div", {class:"pr-title"}, s.baslik), alt ? h("div", {class:"pr-kurum"}, alt) : null),
+    h("div", {class:"pr-head"}, logoImg(),
+      h("div", null, h("div", {class:"pr-kurum"}, SITE.alt_baslik || ""), h("div", {class:"pr-title"}, s.baslik + (s._varAd ? " — " + s._varAd : "")), alt ? h("div", {class:"pr-kurum"}, alt) : null),
       icon(s._sistem)),
     h("div", {class:"pr-meta"}, h("span", null, "Biyopsi no: "), h("span", null, "Tarih: "), h("span", null, "Hekim: ")));
 }
@@ -374,33 +399,36 @@ function prFoot(s, extra){
   return h("div", {class:"pr-foot"}, (SITE.ad || "") + (extra ? " · " + extra : "") + " · Kaynaklar: " + (s.kaynaklar || []).join("; "));
 }
 function prSec(title, ...kids){ return h("section", {class:"pr-sec"}, h("h2", null, title), kids); }
-function printNode(node){
+function prPage(s, alt, secs, foot, fit){
+  return h("div", {class:"pr-page", "data-fit": fit ? "1" : null}, h("div", {class:"pr-in"}, prHead(s, alt), secs, foot));
+}
+const MM = 3.7795;
+function fitPages(pa){
+  pa.classList.add("measure");
+  const maxH = 268 * MM;
+  pa.querySelectorAll(".pr-page[data-fit]").forEach(pg => {
+    const inn = pg.querySelector(".pr-in"); inn.style.zoom = "";
+    const hgt = inn.getBoundingClientRect().height;
+    if (hgt > maxH) inn.style.zoom = Math.max(0.8, (maxH / hgt) * 0.985).toFixed(3);
+  });
+  pa.classList.remove("measure");
+}
+function printNode(node, fit){
   const pa = document.getElementById("print-area");
   pa.innerHTML = ""; pa.append(node);
+  if (fit) fitPages(pa);
   window.print();
-}
-function printFilled(s, st){
-  const d = h("div");
-  d.append(prHead(s, "Rapor taslağı · " + SEVIYE[st.lvl] + " seviye"));
-  const mk = makroText(s, st, false); if (mk) d.append(prSec(s.makro_baslik || "Makroskopi", h("pre", null, mk)));
-  if (st.mikro.trim()) d.append(prSec("Mikroskopi", h("pre", null, st.mikro.trim())));
-  d.append(prSec("Tanı", h("pre", null, taniText(s, st, false))));
-  const ep = epikrizText(s, st, false); if (ep) d.append(prSec("Epikriz", h("pre", null, "1-\n" + ep)));
-  d.append(prFoot(s, new Date().toLocaleDateString("tr-TR")));
-  printNode(d);
 }
 function fieldRows(list, lvl, depth, rows){
   (list || []).forEach(a => {
     if (!visible(a, lvl)) return;
-    const lab = h("td", {class:"l"}, a.seviye === 1 ? h("span", {class:"core"}) : null, a.etiket);
+    const ind = " ind" + Math.min(depth, 2);
+    if (!a.tip){ rows.push(h("div", {class:"pf grp" + ind}, a.etiket)); fieldRows(a.alt, lvl, depth + 1, rows); return; }
     let ctl;
-    if (!a.tip){ rows.push(h("tr", {class:"grp ind" + depth}, h("td", {colspan:"2"}, a.etiket))); fieldRows(a.alt, lvl, depth + 1, rows); return; }
-    if (a.tip === "secim" || a.tip === "coklu"){
-      ctl = h("td", null, (a.secenekler || []).map(o => h("span", {class:"cb"}, blanks(o))), a.serbest ? h("span", {class:"cb"}, "Diğer: ", h("span", {class:"bl w"})) : null,
-        a.tip === "coklu" ? h("span", {style:"font:7.5pt var(--sans);color:#777"}, " (birden fazla işaretlenebilir)") : null);
-    } else if (a.tip === "metin") ctl = h("td", null, a.kalip ? blanks(a.kalip) : h("span", {class:"bl w"}));
-    else ctl = h("td", null, a.kalip ? blanks(a.kalip) : [h("span", {class:"bl"}), " ", a.birim || ""]);
-    rows.push(h("tr", {class:"ind" + Math.min(depth, 2)}, lab, ctl));
+    if (a.tip === "secim" || a.tip === "coklu") ctl = [(a.secenekler || []).map(o => h("span", {class:"cb"}, blanks(o))), a.serbest ? h("span", {class:"cb"}, "Diğer: ", h("span", {class:"bl"})) : null];
+    else if (a.tip === "metin") ctl = a.kalip ? blanks(a.kalip) : h("span", {class:"bl w"});
+    else ctl = a.kalip ? blanks(a.kalip) : [h("span", {class:"bl"}), " ", a.birim || ""];
+    rows.push(h("div", {class:"pf" + ind}, h("div", {class:"l"}, a.seviye === 1 ? h("span", {class:"core"}) : null, a.etiket), h("div", {class:"o"}, ctl)));
     fieldRows(a.alt, lvl, depth + 1, rows);
   });
   return rows;
@@ -418,41 +446,212 @@ function makroBlankNodes(text, alanlar){
   if (last < text.length) out.push(...blanks(text.slice(last)));
   return out;
 }
-function printBlank(s, st){
-  const d = h("div");
-  d.append(prHead(s, "Boş şablon · " + SEVIYE[st.lvl] + " seviye"));
+function blankSections(s, st){
+  const out = {makro:[], rapor:[]};
   const m = s.makroskopi;
   if (m){
     const v = m.varyantlar[st.varyant] || m.varyantlar[0];
-    const paras = (v.metin || []).map(t => h("p", {style:"margin:0 0 5pt"}, makroBlankNodes(cap(t), m.alanlar)));
-    if (v.tekrar) paras.push(h("p", {style:"margin:0 0 5pt"}, makroBlankNodes(cap(v.tekrar.metin), m.alanlar), h("span", {style:"font:8pt var(--sans);color:#777"}, "  (" + v.tekrar.etiket.toLocaleLowerCase("tr") + ")")));
+    const paras = (v.metin || []).map(t => h("p", null, makroBlankNodes(cap(t), m.alanlar)));
+    if (v.tekrar) paras.push(h("p", null, makroBlankNodes(cap(v.tekrar.metin), m.alanlar), h("span", {style:"font:7.5pt var(--sans);color:#777"}, "  (" + v.tekrar.etiket.toLocaleLowerCase("tr") + ")")));
     const orn = v.ornekleme || [];
     const tbl = orn.length ? h("table", {class:"pr-tbl"},
       h("thead", null, h("tr", null, h("th", null, "Kod"), h("th", null, "Açıklama"), h("th", null, "Parça"), h("th", null, "Blok"), h("th", null, "Kaset"))),
       h("tbody", null, orn.map(o => h("tr", null, h("td", null, o.tek ? "Tümü" : o.kod), h("td", null, o.tek ? "tümü takibe alındı" : o.aciklama), h("td", {class:"e"}), h("td", {class:"e"}), h("td", {class:"e"}))))) : null;
     const todo = (m.yapilacaklar || []).length ? h("div", {class:"pr-todo"}, h("b", null, "Yapılacaklar"), m.yapilacaklar.map(y => h("div", null, h("span", {class:"cb"}, y)))) : null;
-    d.append(prSec((s.makro_baslik || "Makroskopi") + (m.varyantlar.length > 1 ? " — " + v.ad : ""), paras, tbl, todo));
+    out.makro.push(prSec((s.makro_baslik || "Makroskopi") + (m.varyantlar.length > 1 ? " — " + v.ad : ""), paras,
+      todo && tbl ? h("div", {class:"pr-cols"}, tbl, todo) : [tbl, todo]));
   }
-  d.append(prSec("Mikroskopi", (s.mikroskopi || []).map(l => h("p", {style:"margin:0 0 4pt"}, blanks(l))), h("div", {class:"pr-lines"}, h("div"), h("div"), h("div"))));
+  out.rapor.push(prSec("Mikroskopi", (s.mikroskopi || []).map(l => h("p", null, blanks(l))), h("div", {class:"pr-lines"}, h("div"), h("div"), h("div"))));
   const tf = taniTokens(s, st, true);
-  d.append(prSec("Tanı" + (s.tani_alternatif ? " — uygun olanı işaretleyin" : ""),
-    h("ul", {class:"pr-tani"}, (s.tani || []).map(l => h("li", {style: l.startsWith("-") ? "padding-left:16pt" : null}, h("span", {class:"cb"}, blanks(tf(l).replace(/^-\s*/, "– ")))))),
-    h("div", {class:"pr-lines"}, h("div"), h("div"))));
+  out.rapor.push(prSec("Tanı" + (s.tani_alternatif ? " — uygun olanı işaretleyin" : ""),
+    h("ul", {class:"pr-tani"}, (s.tani || []).map(l => h("li", {style: l.startsWith("-") ? "padding-left:14pt" : null}, h("span", {class:"cb"}, blanks(tf(l).replace(/^-\s*/, "– ")))))),
+    h("div", {class:"pr-lines"}, h("div"))));
   const rows = [];
-  if (s.tekrar_blok){ rows.push(h("tr", {class:"grp"}, h("td", {colspan:"2"}, "Kod: ", h("span", {class:"bl"}), "  — " + s.tekrar_blok.aciklama))); fieldRows(s.tekrar_blok.alanlar, st.lvl, 1, rows); }
+  if (s.tekrar_blok){ rows.push(h("div", {class:"pf grp"}, "Kod: ", h("span", {class:"bl"}), "  — " + s.tekrar_blok.aciklama)); fieldRows(s.tekrar_blok.alanlar, st.lvl, 1, rows); }
   fieldRows(s.epikriz, st.lvl, 0, rows);
-  d.append(prSec("Epikriz", h("table", {class:"pr-fields"}, h("tbody", null, rows))));
-  d.append(prFoot(s, SEVIYE[st.lvl] + " seviye; ● çekirdek alan"));
-  printNode(d);
+  out.rapor.push(prSec("Epikriz", h("div", {class:"pr-fields"}, rows)));
+  return out;
+}
+function filledSections(s, st){
+  const out = {makro:[], rapor:[]};
+  const mk = makroText(s, st, false); if (mk) out.makro.push(prSec(s.makro_baslik || "Makroskopi", h("pre", null, mk)));
+  if (st.mikro.trim()) out.rapor.push(prSec("Mikroskopi", h("pre", null, st.mikro.trim())));
+  out.rapor.push(prSec("Tanı", h("pre", null, taniText(s, st, false))));
+  const ep = epikrizText(s, st, false); if (ep) out.rapor.push(prSec("Epikriz", h("pre", null, "1-\n" + ep)));
+  return out;
+}
+function printTemplate(s, st, mode){
+  const o = st.pr, bos = mode === "bos";
+  const sec = bos ? blankSections(s, st) : filledSections(s, st);
+  const alt = (bos ? "Boş şablon" : "Rapor taslağı") + " · " + SEVIYE[st.lvl] + " seviye";
+  const foot = () => prFoot(s, bos ? "● çekirdek alan" : new Date().toLocaleDateString("tr-TR"));
+  const parts = [];
+  if (o.makro && sec.makro.length) parts.push(["makro", sec.makro]);
+  if (o.rapor) parts.push(["rapor", sec.rapor]);
+  if (!parts.length) return;
+  const d = h("div");
+  if (o.ayri) parts.forEach(([, secs]) => d.append(prPage(s, alt, secs, foot(), o.sigdir)));
+  else d.append(prPage(s, alt, parts.flatMap(p => p[1]), foot(), o.sigdir));
+  printNode(d, o.sigdir);
+}
+function printPanel(s, st){
+  const o = st.pr;
+  const cb = (k, label) => h("label", {class:"opts"}, h("input", {type:"checkbox", checked:o[k], onchange:e => o[k] = e.target.checked}), label);
+  return h("details", {class:"printmenu"}, h("summary", {class:"btn"}, "Yazdır"),
+    h("div", {class:"panel printpanel"},
+      h("div", {style:"font-weight:600;margin-bottom:6px"}, "Yazdırılacak bölümler"),
+      s.makroskopi ? cb("makro", (s.makro_baslik || "Makroskopi")) : null,
+      cb("rapor", "Mikroskopi, tanı ve epikriz"),
+      h("div", {style:"font-weight:600;margin:10px 0 6px"}, "Düzen"),
+      cb("ayri", "Makroskopi ile tanı-epikriz ayrı sayfalarda"),
+      cb("sigdir", "Her bölümü tek sayfaya sığdır"),
+      h("div", {class:"tools", style:"margin-top:10px"},
+        h("button", {type:"button", class:"btn primary", onclick:() => printTemplate(s, st, "bos")}, "Boş şablon"),
+        h("button", {type:"button", class:"btn", onclick:() => printTemplate(s, st, "dolu")}, "Doldurulmuş rapor"))));
 }
 
-/* ---------- kişisel / paylaşılan şablon varyantları ---------- */
+/* ---------- sarı boşluklu rapor ---------- */
+function yBlank(val, onset, ph){
+  const sp = h("span", {class:"yb" + (val ? " dolu" : ""), contenteditable:"true", spellcheck:"false", "data-ph": ph || "…"});
+  sp.textContent = val || "";
+  sp.addEventListener("input", () => { const t = sp.textContent.trim(); sp.classList.toggle("dolu", !!t); if (onset) onset(t); });
+  sp.addEventListener("keydown", e => { if (e.key === "Enter"){ e.preventDefault(); } });
+  return sp;
+}
+function yChoice(opts, val, onset){
+  const sel = h("select", {class:"yb ych" + (val ? " dolu" : ""), "aria-label":"Seçenek"}, h("option", {value:""}, "…"), opts.map(o => h("option", {value:o, selected:o === val}, o)));
+  if (val && !opts.includes(val)) sel.append(h("option", {value:val, selected:true}, val));
+  sel.addEventListener("change", () => { sel.classList.toggle("dolu", !!sel.value); if (onset) onset(sel.value); });
+  return sel;
+}
+function yText(t){ const parts = String(t).split("…"), out = []; parts.forEach((p, i) => { if (p) out.push(p); if (i < parts.length - 1) out.push(yBlank("", null)); }); return out; }
+function ySer(node){
+  if (node.nodeType === 3) return node.textContent;
+  if (node.tagName === "SELECT") return node.value || "…";
+  if (node.classList && node.classList.contains("yb")) return node.textContent.trim() || "…";
+  let t = ""; node.childNodes.forEach(c => t += ySer(c));
+  return t;
+}
+function yDocText(root){ return [...root.children].map(l => ySer(l)).join("\n").replace(/\n{3,}/g, "\n\n").trim(); }
+function buildYellow(s, st, onchg){
+  const root = h("div", {class:"ydoc"});
+  const line = (...parts) => { const d = h("div", {class:"yline"}, parts); root.append(d); return d; };
+  const head = t => line(h("b", null, t));
+  if (s.makroskopi){
+    const m = s.makroskopi, v = m.varyantlar[st.varyant] || m.varyantlar[0], ids = {};
+    m.alanlar.forEach(a => ids[a.id] = a);
+    const tok = (t, vals) => { const parts = []; t = cap(t); let last = 0;
+      t.replace(TOKEN, (mm, id, idx) => {
+        parts.push(...yText(t.slice(last, idx)));
+        const a = ids[id] || {}, set = x => { vals[id] = x; onchg(); };
+        parts.push(a.tip === "secim" && (a.secenekler || []).length ? yChoice(a.secenekler, vals[id], set) : yBlank(vals[id], set, a.etiket));
+        last = idx + mm.length; return mm; });
+      parts.push(...yText(t.slice(last))); return parts; };
+    head((s.makro_baslik || "Makroskopi").toLocaleUpperCase("tr") + ":");
+    (v.metin || []).forEach(t => line(...tok(t, st.mvals)));
+    if (v.tekrar) st.rows.forEach(r => line(...tok(v.tekrar.metin, r)));
+    const rows = ornFor(s, st).filter(r => r.inc);
+    if (rows.length){
+      const pk = r => st.kisa ? [yBlank(r.parca, x => { r.parca = x; onchg(); }), "P", yBlank(r.kaset, x => { r.kaset = x; onchg(); }), "K"]
+                              : [yBlank(r.parca, x => { r.parca = x; onchg(); }), " parça ", yBlank(r.kaset, x => { r.kaset = x; onchg(); }), " kasette"];
+      if (rows.length === 1 && rows[0].tek) line(...(st.kisa ? [rows[0].kod, ...pk(rows[0])] : ["Tümü ", ...pk(rows[0]), " takibe alındı."]));
+      else { const parts = st.kisa ? [] : ["Alınan parçalar: "]; rows.forEach((r, i) => { if (i) parts.push(", "); parts.push(r.kod + " (" + r.aciklama + "): ", ...pk(r)); }); if (!st.kisa) parts.push(" takibe alındı."); line(...parts); }
+    }
+    st.ek.forEach(e => { const md = MOD[e.ref]; line(...yText(cap(makroToken(md.alanlar, e.vals, false)(md.metin)))); });
+    line("");
+  }
+  const mik = st.mikro.trim() || (s.mikroskopi || []).join("\n");
+  if (mik){ head("MİKROSKOPİ:"); mik.split("\n").forEach(l => line(...yText(l))); line(""); }
+  head("TANI:");
+  const fs = {}; allFields(s.epikriz).forEach(a => fs[a.id] = a);
+  const taniLine = (pre, l) => { const parts = [pre]; let last = 0;
+    l.replace(TOKEN, (mm, id, idx) => { parts.push(...yText(l.slice(last, idx))); const a = fs[id];
+      const set = x => { st.vals[id] = x; st.taniEdit = null; onchg(); };
+      parts.push(a && (a.secenekler || []).length ? yChoice(a.secenekler, st.vals[id], set) : yBlank(st.vals[id], set, a ? a.etiket : id));
+      last = idx + mm.length; return mm; });
+    parts.push(...yText(l.slice(last))); line(...parts); };
+  const lines = s.tani || [];
+  if (s.tani_alternatif){ if (st.tani.sec >= 0) taniLine("1- ", lines[st.tani.sec]); lines.forEach((l, i) => { if (l.startsWith("-") && st.tani.dash[i]) taniLine("   ", l); }); }
+  else { let no = 0; lines.forEach((l, i) => { if (!st.tani.inc[i]) return; if (l.startsWith("-")) taniLine("   ", l); else taniLine((++no) + "- ", l); }); }
+  line("");
+  head("EPİKRİZ:"); line("1-");
+  const field = (a, vals, depth) => {
+    if (!visible(a, st.lvl)) return;
+    const pre = "   ".repeat(depth) + "- " + a.etiket + ":" + (a.tip ? " " : "");
+    const set = x => { vals[a.id] = x; onchg(); };
+    if (!a.tip) line(pre);
+    else if ((a.tip === "secim" || a.tip === "coklu") && (a.secenekler || []).length) line(pre, yChoice(a.secenekler, vals[a.id], set));
+    else if (a.kalip && !vals[a.id]){
+      const box = h("span", null, yText(a.kalip));
+      box.addEventListener("input", () => { vals[a.id] = ySer(box); onchg(); });
+      line(pre, box);
+    } else line(pre, yBlank(vals[a.id], set, a.etiket), a.birim && a.tip !== "metin" ? " " + a.birim : "");
+    (a.alt || []).forEach(b => field(b, vals, depth + 1));
+  };
+  if (s.tekrar_blok) (st.tekrar || [{kod:"", vals:{}}]).forEach(r => { line("- ", yBlank(r.kod, x => { r.kod = x; onchg(); }, "kod"), ":"); s.tekrar_blok.alanlar.forEach(a => field(a, r.vals, 1)); });
+  s.epikriz.forEach(a => field(a, st.vals, 0));
+  return root;
+}
+
+/* ---------- üyelik (Supabase; site.yaml'da ayar varsa) ---------- */
+let SB = null, USER = null, DBV = [], UYE = false;
+async function loadDB(){
+  if (!SB) return;
+  const r = await SB.from("sablon_surumleri").select("id,sahip,sahip_ad,temel,ad,veri,paylasim,guncelleme").order("ad");
+  DBV = r.error ? [] : (r.data || []);
+  UYE = false;
+  if (USER){ const u = await SB.from("bolum_uyeleri").select("uid").eq("uid", USER.id).maybeSingle(); UYE = !!(u && u.data); }
+  Object.keys(effCache).forEach(k => { if (k.includes("::d:")) delete effCache[k]; });
+}
+function drawAuth(){
+  const slot = document.getElementById("auth"); if (!slot) return;
+  slot.innerHTML = "";
+  if (!SB) return;
+  if (USER) slot.append(h("span", {class:"muted", style:"font-size:13px"}, USER.email), h("button", {type:"button", class:"theme", onclick:async () => { await SB.auth.signOut(); }}, "Çıkış"));
+  else slot.append(h("button", {type:"button", class:"theme", onclick:openLogin}, "Giriş / Üye ol"));
+}
+function openLogin(){
+  const msg = h("p", {class:"muted", role:"status", style:"min-height:1.4em;font-size:14px"});
+  const em = h("input", {type:"email", placeholder:"e-posta adresiniz", "aria-label":"E-posta", autocomplete:"email"});
+  const dlg = h("dialog", {class:"panel", style:"max-width:420px;border:1px solid var(--rule);color:var(--ink)"},
+    h("h2", {style:"margin-top:0"}, "Giriş / üyelik"),
+    h("p", {style:"font-size:14px"}, "E-posta adresinize tek kullanımlık bir giriş bağlantısı gönderilir; şifre gerekmez. İlk girişte üyeliğiniz kendiliğinden oluşur. Üyelikle kendi şablonlarınızı her bilgisayardan kullanabilirsiniz."),
+    em, msg,
+    h("div", {class:"tools"},
+      h("button", {type:"button", class:"btn primary", onclick:async () => {
+        const e = em.value.trim(); if (!/.+@.+\..+/.test(e)){ msg.textContent = "Geçerli bir e-posta adresi yazın."; return; }
+        msg.textContent = "Gönderiliyor…";
+        const r = await SB.auth.signInWithOtp({email:e, options:{emailRedirectTo: location.origin + location.pathname}});
+        msg.textContent = r.error ? "Gönderilemedi: " + r.error.message : "Bağlantı gönderildi. E-postanızdaki bağlantıya bu tarayıcıda tıklayın.";
+      }}, "Giriş bağlantısı gönder"),
+      h("button", {type:"button", class:"btn", onclick:() => { dlg.close(); dlg.remove(); }}, "Kapat")));
+  document.body.append(dlg); dlg.showModal(); em.focus();
+}
+async function initSB(){
+  if (!SITE.supabase_url || !SITE.supabase_anon_key || !window.supabase) return;
+  SB = window.supabase.createClient(SITE.supabase_url, SITE.supabase_anon_key);
+  const ss = await SB.auth.getSession(); USER = ss.data.session ? ss.data.session.user : null;
+  await loadDB(); drawAuth(); route();
+  SB.auth.onAuthStateChange(async (ev, sess) => {
+    const nu = sess ? sess.user : null;
+    if ((nu && nu.id) === (USER && USER.id)) return;
+    USER = nu; await loadDB(); drawAuth(); route();
+  });
+}
+
+/* ---------- şablon sürümleri ---------- */
 const VKEY = "spr-varyantlar";
 function localVars(){ try { return JSON.parse(localStorage.getItem(VKEY) || "{}"); } catch(e){ return {}; } }
 function saveLocalVars(o){ try { localStorage.setItem(VKEY, JSON.stringify(o)); return true; } catch(e){ return false; } }
-function sharedVars(baseId){ return (DATA.varyantlar || []).filter(v => v.temel === baseId); }
-function localVarsFor(baseId){ const o = localVars()[baseId] || {}; return Object.keys(o).map(k => Object.assign({key:k, yerel:true}, o[k])); }
-function findVar(baseId, key){ return sharedVars(baseId).find(v => v.key === key) || localVarsFor(baseId).find(v => v.key === key); }
+function repoVars(baseId){ return (DATA.varyantlar || []).filter(v => v.temel === baseId).map(v => Object.assign({src:"p"}, v)); }
+function dbRowVar(r){ return Object.assign({}, r.veri || {}, {key:r.id, ad:r.ad, temel:r.temel, src:"d", sahip:r.sahip, sahip_ad:r.sahip_ad, paylasim:r.paylasim}); }
+function sharedVars(baseId){ return repoVars(baseId).concat(DBV.filter(r => r.temel === baseId && r.paylasim === "bolum").map(dbRowVar)); }
+function myDbVars(baseId){ return USER ? DBV.filter(r => r.temel === baseId && r.paylasim !== "bolum" && r.sahip === USER.id).map(dbRowVar) : []; }
+function localVarsFor(baseId){ const o = localVars()[baseId] || {}; return Object.keys(o).map(k => Object.assign({key:k, src:"y"}, o[k])); }
+function allVarsFor(baseId){ return sharedVars(baseId).concat(myDbVars(baseId), localVarsFor(baseId)); }
+function fullKey(v){ return v.src + ":" + v.key; }
+function findFull(baseId, full){ return allVarsFor(baseId).find(v => fullKey(v) === full); }
+function canEdit(v){ return v && (v.src === "y" || (v.src === "d" && USER && v.sahip === USER.id)); }
 function slug(x){ return String(x).toLocaleLowerCase("tr").replace(/ç/g,"c").replace(/ğ/g,"g").replace(/ı/g,"i").replace(/ö/g,"o").replace(/ş/g,"s").replace(/ü/g,"u").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"") || "sablon"; }
 const effCache = {};
 function applyVariant(base, v){
@@ -472,16 +671,24 @@ function applyVariant(base, v){
   }
   if (v.tani && v.tani.length) s.tani = v.tani.slice();
   if (v.mikroskopi) s.mikroskopi = v.mikroskopi.slice();
-  s.baslik = base.baslik; s._varAd = v.ad; s._vkey = v.key; s._yerel = !!v.yerel;
-  s._key = base.id + "::" + (v.yerel ? "y:" : "p:") + v.key;
+  if (v.makro && s.makroskopi){
+    const mk = v.makro, m = s.makroskopi;
+    Object.keys(mk.alanlar || {}).forEach(id => { const a = m.alanlar.find(x => x.id === id); if (a) Object.assign(a, mk.alanlar[id]); });
+    (mk.ekle_alanlar || []).forEach(a => m.alanlar.push(JSON.parse(JSON.stringify(a))));
+    Object.keys(mk.varyantlar || {}).forEach(i => { const t = m.varyantlar[+i], o = mk.varyantlar[i]; if (!t) return;
+      if (o.metin) t.metin = o.metin.slice();
+      if (o.tekrar !== undefined && t.tekrar) t.tekrar.metin = o.tekrar;
+      if (o.ornekleme) t.ornekleme = JSON.parse(JSON.stringify(o.ornekleme)); });
+    if (mk.yapilacaklar) m.yapilacaklar = mk.yapilacaklar.slice();
+  }
+  s._varAd = v.ad; s._vkey = v.key; s._vsrc = v.src;
+  s._key = base.id + "::" + fullKey(v);
   s._defaults = v.varsayilanlar || {};
   return s;
 }
 function effective(base, full){
   if (!full) return base;
-  const key = full.slice(2);
-  const v = full.startsWith("y:") ? localVarsFor(base.id).find(x => x.key === key) : sharedVars(base.id).find(x => x.key === key);
-  if (!v) return base;
+  const v = findFull(base.id, full); if (!v) return base;
   const ck = base.id + "::" + full;
   if (!effCache[ck]) effCache[ck] = applyVariant(base, v);
   return effCache[ck];
@@ -500,55 +707,68 @@ function toYaml(o, ind){
   return " " + q(o);
 }
 function variantPicker(base, s){
-  const shared = sharedVars(base.id), local = localVarsFor(base.id);
-  const cur = s._vkey ? (s._yerel ? "y:" : "p:") + s._vkey : "";
-  const sel = h("select", {"aria-label":"Şablon sürümü", style:"max-width:320px", onchange:e => {
+  const shared = sharedVars(base.id), mine = myDbVars(base.id), local = localVarsFor(base.id);
+  const cur = s._vkey ? s._vsrc + ":" + s._vkey : "";
+  const curV = cur ? findFull(base.id, cur) : null;
+  const lab = v => v.ad + (v.src === "d" && v.sahip_ad && v.paylasim === "bolum" ? " · " + v.sahip_ad.split("@")[0] : "");
+  const sel = h("select", {"aria-label":"Şablon sürümü", style:"max-width:340px", onchange:async e => {
       const v = e.target.value;
-      if (v === "+yeni") location.hash = "#/yeni/" + base.id + (s._vkey ? "/" + (s._yerel ? "y:" : "p:") + s._vkey : "");
+      if (v === "+kopya") location.hash = "#/yeni/" + base.id + (cur ? "/" + cur : "");
       else if (v === "+duzenle") location.hash = "#/yeni/" + base.id + "/" + cur + "/duzenle";
-      else if (v === "+sil"){ if (confirm("“" + s._varAd + "” bu tarayıcıdan silinsin mi?")){ const o = localVars(); delete (o[base.id] || {})[s._vkey]; saveLocalVars(o); location.hash = "#/s/" + base.id; } else e.target.value = cur; }
+      else if (v === "+sil"){
+        if (!confirm("“" + s._varAd + "” silinsin mi?")){ e.target.value = cur; return; }
+        if (curV.src === "y"){ const o = localVars(); delete (o[base.id] || {})[s._vkey]; saveLocalVars(o); }
+        else { await SB.from("sablon_surumleri").delete().eq("id", curV.key); await loadDB(); }
+        delete effCache[base.id + "::" + cur]; location.hash = "#/s/" + base.id;
+      }
       else location.hash = "#/s/" + base.id + (v ? "/v/" + v : "");
     }},
     h("option", {value:"", selected: !cur}, "Standart şablon"),
-    shared.length ? h("optgroup", {label:"Bölümde paylaşılan"}, shared.map(v => h("option", {value:"p:" + v.key, selected: cur === "p:" + v.key}, v.ad))) : null,
-    local.length ? h("optgroup", {label:"Bu tarayıcıda kayıtlı"}, local.map(v => h("option", {value:"y:" + v.key, selected: cur === "y:" + v.key}, v.ad))) : null,
+    shared.length ? h("optgroup", {label:"Bölümde paylaşılan"}, shared.map(v => h("option", {value:fullKey(v), selected: cur === fullKey(v)}, lab(v)))) : null,
+    mine.length ? h("optgroup", {label:"Kişisel şablonlarım"}, mine.map(v => h("option", {value:fullKey(v), selected: cur === fullKey(v)}, v.ad))) : null,
+    local.length ? h("optgroup", {label:"Bu tarayıcıda kayıtlı"}, local.map(v => h("option", {value:fullKey(v), selected: cur === fullKey(v)}, v.ad))) : null,
     h("optgroup", {label:"İşlemler"},
-      h("option", {value:"+yeni"}, s._vkey ? "+ Bu sürümden yeni şablon oluştur" : "+ Yeni şablon oluştur"),
-      s._yerel ? h("option", {value:"+duzenle"}, "Seçili şablonu düzenle") : null,
-      s._yerel ? h("option", {value:"+sil"}, "Seçili şablonu sil") : null));
+      h("option", {value:"+kopya"}, "+ Bu şablonun kopyasını oluştur"),
+      canEdit(curV) ? h("option", {value:"+duzenle"}, "Seçili şablonu düzenle") : null,
+      canEdit(curV) ? h("option", {value:"+sil"}, "Seçili şablonu sil") : null));
   return sel;
 }
 
 /* ---------- şablon oluşturucu ---------- */
 function renderBuilder(base, fromKey, editMode){
   app.innerHTML = "";
-  let src = null;
-  if (fromKey){ const k = fromKey.slice(2); src = fromKey.startsWith("y:") ? localVarsFor(base.id).find(v => v.key === k) : sharedVars(base.id).find(v => v.key === k); }
+  const src = fromKey ? findFull(base.id, fromKey) : null;
   const start = src ? applyVariant(base, src) : base;
   const baseFields = {}; allFields(base.epikriz).forEach(a => baseFields[a.id] = a);
-  // çalışma kopyası
+  const edit = editMode && canEdit(src);
   const work = {
-    ad: editMode && src ? src.ad : (src ? src.ad + " (kopya)" : ""),
-    aciklama: src && src.aciklama || "", yazar: src && src.yazar || "",
+    ad: edit ? src.ad : (src ? src.ad + " (kopya)" : ""),
+    aciklama: src && src.aciklama || "", yazar: src && src.yazar || (USER ? USER.email.split("@")[0] : ""),
     tani: (start.tani || []).join("\n"), mikro: (start.mikroskopi || []).join("\n"),
     top: [], ed: {}, ekle: JSON.parse(JSON.stringify((src && src.ekle) || [])),
     defaults: !!(src && src.varsayilanlar), keepDefaults: src ? src.varsayilanlar : null
   };
-  // üst düzey sıra: temel + gizlenenler dahil
   const hidden = new Set(Object.keys((src && src.alanlar) || {}).filter(k => src.alanlar[k].gizle));
   const baseTop = base.epikriz.map(a => a.id);
-  const order = src && src.sira && src.sira.length ? src.sira.filter(id => baseTop.includes(id)).concat(baseTop.filter(id => !src.sira.includes(id))) : baseTop;
-  work.top = order;
+  work.top = src && src.sira && src.sira.length ? src.sira.filter(id => baseTop.includes(id)).concat(baseTop.filter(id => !src.sira.includes(id))) : baseTop.slice();
   Object.keys(baseFields).forEach(id => {
     const b = baseFields[id], e = (src && src.alanlar && src.alanlar[id]) || {};
     work.ed[id] = {inc: !hidden.has(id), etiket: e.etiket !== undefined ? e.etiket : b.etiket, seviye: e.seviye !== undefined ? e.seviye : b.seviye,
       secenekler: (e.secenekler || b.secenekler || []).join("\n")};
   });
+  // makroskopi çalışma kopyası (başlangıç şablonundan)
+  const sm = start.makroskopi, bm = base.makroskopi;
+  const mk = sm ? {
+    vi: 0,
+    vars: sm.varyantlar.map(v => ({ad:v.ad, metin:(v.metin || []).slice(), tekrar: v.tekrar ? v.tekrar.metin : null,
+      orn:(v.ornekleme || []).map(o => Object.assign({}, o))})),
+    alanlar: sm.alanlar.map(a => ({id:a.id, etiket:a.etiket, tip:a.tip, secenekler:(a.secenekler || []).join("\n")})),
+    yap: (sm.yapilacaklar || []).join("\n")
+  } : null;
   const cur = states[start._key || base.id];
 
   function fieldRow(a, depth, i, n){
     const w = work.ed[a.id], row = h("div", {class:"fld", style: depth ? "margin-left:" + depth * 18 + "px" : null});
-    const inc = h("input", {type:"checkbox", checked:w.inc, "aria-label":"Şablona dahil", onchange:e => { w.inc = e.target.checked; body.style.opacity = w.inc ? 1 : .45; }});
     const body = h("div", {style: w.inc ? null : "opacity:.45"},
       h("div", {class:"opts", style:"gap:8px"},
         h("input", {type:"text", value:w.etiket, "aria-label":"Alan adı", style:"flex:1;min-width:180px", oninput:e => w.etiket = e.target.value}),
@@ -558,14 +778,14 @@ function renderBuilder(base, fromKey, editMode){
           h("button", {type:"button", class:"btn small", disabled: i === 0, "aria-label":"Yukarı taşı", onclick:() => { const t = work.top; [t[i-1], t[i]] = [t[i], t[i-1]]; drawFields(); }}, "↑"),
           h("button", {type:"button", class:"btn small", disabled: i === n - 1, "aria-label":"Aşağı taşı", onclick:() => { const t = work.top; [t[i+1], t[i]] = [t[i], t[i+1]]; drawFields(); }}, "↓")) : null),
       (a.tip === "secim" || a.tip === "coklu") ? h("details", {style:"margin-top:4px"}, h("summary", null, "Seçenekler (" + w.secenekler.split("\n").filter(Boolean).length + ")"),
-        (() => { const ta = h("textarea", {rows:Math.min(10, w.secenekler.split("\n").length + 1), "aria-label":"Seçenekler, her satıra bir", oninput:e => w.secenekler = e.target.value}); ta.value = w.secenekler; return ta; })(),
-        h("div", {class:"muted", style:"font-size:12px"}, "Her satıra bir seçenek.")) : null);
+        (() => { const ta = h("textarea", {rows:Math.min(10, w.secenekler.split("\n").length + 1), "aria-label":"Seçenekler, her satıra bir", oninput:e => w.secenekler = e.target.value}); ta.value = w.secenekler; return ta; })()) : null);
+    const inc = h("input", {type:"checkbox", checked:w.inc, "aria-label":"Şablona dahil", onchange:e => { w.inc = e.target.checked; body.style.opacity = w.inc ? 1 : .45; }});
     row.append(h("div", {style:"display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start"}, inc, body));
     const out = [row];
     (a.alt || []).forEach(b => out.push(...fieldRow(b, depth + 1, 0, 0)));
     return out;
   }
-  const fieldsBox = h("div"), customBox = h("div");
+  const fieldsBox = h("div"), customBox = h("div"), makroBox = h("div");
   function drawFields(){
     fieldsBox.innerHTML = "";
     work.top.forEach((id, i) => { const a = base.epikriz.find(x => x.id === id); if (a) fieldsBox.append(...fieldRow(a, 0, i, work.top.length)); });
@@ -587,7 +807,37 @@ function renderBuilder(base, fromKey, editMode){
     });
     customBox.append(h("button", {type:"button", class:"btn small", onclick:() => { work.ekle.push({id:"", etiket:"", seviye:2, tip:"secim", secenekler:[]}); drawCustom(); }}, "+ Alan ekle"));
   }
-  drawFields(); drawCustom();
+  function drawMakro(){
+    makroBox.innerHTML = ""; if (!mk) return;
+    const v = mk.vars[mk.vi];
+    const tokens = mk.alanlar.map(a => h("code", {class:"tag", title:a.etiket, style:"cursor:help"}, "{" + a.id + "}"));
+    const paraBox = h("div");
+    v.metin.forEach((t, i) => {
+      const ta = h("textarea", {rows:3, "aria-label":"Paragraf " + (i + 1), oninput:e => v.metin[i] = e.target.value}); ta.value = t;
+      paraBox.append(h("div", {style:"display:grid;grid-template-columns:1fr auto;gap:6px;margin-bottom:6px"}, ta,
+        h("button", {type:"button", class:"btn small", "aria-label":"Paragrafı sil", onclick:() => { v.metin.splice(i, 1); drawMakro(); }}, "Sil")));
+    });
+    const ornRows = v.orn.map((o, i) => h("tr", null,
+      h("td", null, h("input", {type:"text", value:o.kod, style:"width:70px", "aria-label":"Kod", oninput:e => o.kod = e.target.value})),
+      h("td", null, h("input", {type:"text", value:o.aciklama, "aria-label":"Açıklama", oninput:e => o.aciklama = e.target.value})),
+      h("td", null, h("input", {type:"text", value:o.parca || "", style:"width:55px", "aria-label":"Parça", oninput:e => o.parca = e.target.value})),
+      h("td", null, h("input", {type:"text", value:o.kaset || "", style:"width:55px", "aria-label":"Kaset", oninput:e => o.kaset = e.target.value})),
+      h("td", null, h("button", {type:"button", class:"btn small", onclick:() => { v.orn.splice(i, 1); drawMakro(); }}, "Sil"))));
+    const optFields = mk.alanlar.filter(a => a.tip === "secim" || a.tip === "coklu");
+    makroBox.append(
+      mk.vars.length > 1 ? h("div", {class:"opts", style:"margin-bottom:8px"}, "Varyant: ", h("select", {style:"width:auto", onchange:e => { mk.vi = +e.target.value; drawMakro(); }}, mk.vars.map((x, i) => h("option", {value:i, selected:i === mk.vi}, x.ad)))) : null,
+      h("h3", {style:"margin-top:0"}, "Metin paragrafları"),
+      h("p", {class:"muted", style:"font-size:12.5px;margin:0 0 6px"}, "Süslü parantezli alanlar doldurulabilir boşluk olur; “…” düz boşluk bırakır. Kullanılabilir alanlar: "), h("div", {class:"chips"}, tokens),
+      paraBox, h("button", {type:"button", class:"btn small", onclick:() => { v.metin.push(""); drawMakro(); }}, "+ Paragraf ekle"),
+      v.tekrar !== null ? [h("h3", null, "Her kap için tekrarlanan satır"), (() => { const t = h("textarea", {rows:2, oninput:e => v.tekrar = e.target.value}); t.value = v.tekrar; return t; })()] : null,
+      h("h3", null, "Örnekleme (kaset listesi)"),
+      h("div", {class:"scroll"}, h("table", {class:"tbl"}, h("thead", null, h("tr", null, h("th", null, "Kod"), h("th", null, "Açıklama"), h("th", null, "Parça"), h("th", null, "Kaset"), h("th", null, ""))), h("tbody", null, ornRows))),
+      h("button", {type:"button", class:"btn small", onclick:() => { v.orn.push({kod:"", aciklama:"", parca:"", kaset:""}); drawMakro(); }}, "+ Satır ekle"),
+      optFields.length ? [h("h3", null, "Makroskopi seçenekleri"), optFields.map(a => h("details", null, h("summary", null, a.etiket + " (" + a.secenekler.split("\n").filter(Boolean).length + ")"),
+        (() => { const t = h("textarea", {rows:Math.min(8, a.secenekler.split("\n").length + 1), oninput:e => a.secenekler = e.target.value}); t.value = a.secenekler; return t; })())) ] : null,
+      h("h3", null, "Yapılacaklar listesi"), (() => { const t = h("textarea", {rows:4, oninput:e => mk.yap = e.target.value}); t.value = mk.yap; return t; })());
+  }
+  drawFields(); drawCustom(); drawMakro();
 
   function buildVariant(){
     const v = {temel: base.id, ad: work.ad.trim()};
@@ -603,10 +853,11 @@ function renderBuilder(base, fromKey, editMode){
       if (Object.keys(e).length) al[id] = e;
     });
     if (Object.keys(al).length) v.alanlar = al;
-    if (work.top.join() !== base.epikriz.map(a => a.id).join()) v.sira = work.top.slice();
+    if (work.top.join() !== baseTop.join()) v.sira = work.top.slice();
     const used = new Set(Object.keys(baseFields));
-    const ek = work.ekle.filter(a => a.etiket.trim()).map(a => {
-      let id = "x_" + slug(a.etiket).replace(/-/g, "_"); while (used.has(id)) id += "_2"; used.add(id);
+    const ek = work.ekle.filter(a => (a.etiket || "").trim()).map(a => {
+      let id = a.id && /^x_[a-z0-9_]+$/.test(a.id) && !used.has(a.id) ? a.id : "x_" + slug(a.etiket).replace(/-/g, "_");
+      while (used.has(id)) id += "_2"; used.add(id);
       const f = {id, etiket:a.etiket.trim(), seviye:a.seviye || 2, tip:a.tip};
       if (a.tip === "secim" || a.tip === "coklu") f.secenekler = (a.secenekler || []).length ? a.secenekler : ["…"];
       if (a.tip === "olcu" && a.birim) f.birim = a.birim;
@@ -618,6 +869,25 @@ function renderBuilder(base, fromKey, editMode){
     if (tl.join("\n") !== (base.tani || []).join("\n")) v.tani = tl;
     const ml = work.mikro.split("\n").map(x => x.trim()).filter(Boolean);
     if (ml.join("\n") !== (base.mikroskopi || []).join("\n")) v.mikroskopi = ml;
+    if (mk && bm){
+      const o = {};
+      const al2 = {};
+      mk.alanlar.forEach(a => { const b = bm.alanlar.find(x => x.id === a.id); if (!b || !b.secenekler) return;
+        const ns = a.secenekler.split("\n").map(x => x.trim()).filter(Boolean); if (ns.join("\n") !== b.secenekler.join("\n")) al2[a.id] = {secenekler: ns}; });
+      if (Object.keys(al2).length) o.alanlar = al2;
+      const vv = {};
+      mk.vars.forEach((x, i) => { const b = bm.varyantlar[i], d = {};
+        const met = x.metin.map(t => t.trim()).filter(Boolean);
+        if (met.join("\n") !== (b.metin || []).join("\n")) d.metin = met;
+        if (x.tekrar !== null && b.tekrar && x.tekrar.trim() !== b.tekrar.metin) d.tekrar = x.tekrar.trim();
+        const orn = x.orn.filter(r => (r.kod || "").trim()).map(r => { const z = {kod:r.kod.trim(), aciklama:(r.aciklama || "").trim()}; if (r.parca) z.parca = r.parca; if (r.kaset) z.kaset = r.kaset; if (r.tek) z.tek = true; if (r.not) z.not = r.not; return z; });
+        if (JSON.stringify(orn) !== JSON.stringify((b.ornekleme || []).map(r => { const z = {kod:r.kod, aciklama:r.aciklama}; if (r.parca) z.parca = r.parca; if (r.kaset) z.kaset = r.kaset; if (r.tek) z.tek = true; if (r.not) z.not = r.not; return z; }))) d.ornekleme = orn;
+        if (Object.keys(d).length) vv[i] = d; });
+      if (Object.keys(vv).length) o.varyantlar = vv;
+      const yp = mk.yap.split("\n").map(x => x.trim()).filter(Boolean);
+      if (yp.join("\n") !== (bm.yapilacaklar || []).join("\n")) o.yapilacaklar = yp;
+      if (Object.keys(o).length) v.makro = o;
+    }
     if (work.defaults){
       if (cur){
         const d = {};
@@ -631,56 +901,75 @@ function renderBuilder(base, fromKey, editMode){
     return v;
   }
   const msg = h("p", {class:"muted", role:"status", style:"min-height:1.4em"});
-  function need(){ if (!work.ad.trim()){ msg.textContent = "Kaydetmeden önce şablona bir ad verin (ör. “Ceyhan Hoca”)."; return false; } return true; }
+  function check(){
+    if (!work.ad.trim()){ msg.textContent = "Kaydetmeden önce şablona bir ad verin (ör. “Ceyhan Hoca”)."; return false; }
+    if (mk){ const ids = new Set(mk.alanlar.map(a => a.id)); const bad = [];
+      mk.vars.forEach(x => [...x.metin, x.tekrar || ""].forEach(t => t.replace(TOKEN, (m, id) => { if (!ids.has(id)) bad.push(id); return m; })));
+      if (bad.length){ msg.textContent = "Makroskopi metninde tanınmayan alan: {" + [...new Set(bad)].join("}, {") + "}"; return false; } }
+    return true;
+  }
   const fname = () => "sablonlar/varyant/" + base.id + "--" + slug(work.ad) + ".yaml";
-  const yamlText = () => "# " + base.baslik + " — " + work.ad.trim() + "\n# Bu dosyayı depoda " + fname() + " yoluna koyun.\n" + toYaml(buildVariant()).replace(/^\n/, "") + "\n";
-
+  const yamlText = () => "# " + base.baslik + " — " + work.ad.trim() + "\n# Depoda " + fname() + " yoluna konur.\n" + toYaml(buildVariant()).replace(/^\n/, "") + "\n";
+  function after(full){ Object.keys(effCache).forEach(k => { if (k.startsWith(base.id + "::")) delete effCache[k]; }); Object.keys(states).forEach(k => { if (k === base.id + "::" + full) delete states[k]; }); location.hash = "#/s/" + base.id + "/v/" + full; }
+  async function saveDb(paylasim){
+    if (!check()) return;
+    const v = buildVariant(), row = {temel:base.id, ad:v.ad, veri:v, paylasim, sahip_ad:USER.email, guncelleme:new Date().toISOString()};
+    msg.textContent = "Kaydediliyor…";
+    const r = edit && src.src === "d" ? await SB.from("sablon_surumleri").update(row).eq("id", src.key).select().single()
+                                      : await SB.from("sablon_surumleri").insert(row).select().single();
+    if (r.error){ msg.textContent = "Kaydedilemedi: " + r.error.message; return; }
+    await loadDB(); after("d:" + r.data.id);
+  }
+  function saveLocal(){
+    if (!check()) return;
+    const v = buildVariant(), o = localVars(); o[base.id] = o[base.id] || {};
+    const key = edit && src.src === "y" ? src.key : slug(work.ad) + "-" + Date.now().toString(36);
+    o[base.id][key] = v;
+    if (!saveLocalVars(o)){ msg.textContent = "Tarayıcı depolaması kullanılamıyor; şablonu YAML olarak indirin."; return; }
+    after("y:" + key);
+  }
   const inp = (label, key, ph) => h("label", {style:"display:block;margin-bottom:8px"}, h("div", {class:"lbl", style:"font-size:14px;font-weight:500;margin-bottom:4px"}, label),
     h("input", {type:"text", value:work[key], placeholder:ph || "", oninput:e => work[key] = e.target.value}));
   const taF = (key, rows) => { const t = h("textarea", {rows, oninput:e => work[key] = e.target.value}); t.value = work[key]; return t; };
+  const saveButtons = [];
+  if (SB && USER){
+    saveButtons.push(h("button", {type:"button", class:"btn primary", onclick:() => saveDb("kisisel")}, edit && src.src === "d" && src.paylasim === "kisisel" ? "Kaydet" : "Kişisel şablonlarıma kaydet"));
+    if (UYE) saveButtons.push(h("button", {type:"button", class:"btn", onclick:() => saveDb("bolum")}, edit && src.src === "d" && src.paylasim === "bolum" ? "Kaydet (bölümde)" : "Bölümle paylaş"));
+  } else {
+    saveButtons.push(h("button", {type:"button", class:"btn primary", onclick:saveLocal}, "Bu tarayıcıya kaydet"));
+    if (SB) saveButtons.push(h("button", {type:"button", class:"btn", onclick:openLogin}, "Giriş yap"));
+  }
+  saveButtons.push(h("a", {class:"btn", href:"#/s/" + base.id + (src ? "/v/" + fromKey : "")}, "Vazgeç"));
+  const info = SB && USER
+    ? "Kişisel şablonlarınız hesabınıza kaydedilir, her bilgisayardan kullanılabilir." + (UYE ? " “Bölümle paylaş” şablonu herkesin listesine hemen ekler." : " Bölümle paylaşma yetkisi için yöneticiye başvurun.")
+    : SB ? "Üye olmadan şablon bu tarayıcıya kaydedilir. Giriş yaparsanız kişisel şablonlarınız hesabınızda saklanır ve her bilgisayardan açılır."
+         : "Şablon bu tarayıcıya kaydedilir.";
 
   app.append(
     h("div", {class:"head"},
       h("div", {class:"pagehead"}, icon(base._sistem, "lg", base._sistem), h("div", null,
         h("div", {class:"muted", style:"font-size:13px"}, h("a", {href:"#/"}, "Şablonlar"), " / ", h("a", {href:"#/s/" + base.id}, base.baslik)),
-        h("h1", null, editMode ? "Şablonu düzenle" : "Yeni şablon oluştur"),
-        h("p", {class:"muted", style:"margin:0"}, "Temel: " + base.baslik + (src && !editMode ? " · başlangıç: " + src.ad : "")))),
-    ),
-    h("div", {class:"work", style:"grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)"},
+        h("h1", null, edit ? "Şablonu düzenle" : "Kopya oluştur ve düzenle"),
+        h("p", {class:"muted", style:"margin:0"}, "Temel: " + base.baslik + (src && !edit ? " · kopyalanan: " + src.ad : ""))))),
+    h("div", {class:"work", style:"grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)"},
       h("div", {class:"form"},
         h("section", {class:"panel"}, h("h2", null, "Genel"), inp("Şablon adı", "ad", "ör. Ceyhan Hoca, kısa rapor, konsültasyon"), inp("Açıklama", "aciklama", "Ne zaman kullanılır?"), inp("Hazırlayan", "yazar", "")),
+        mk ? h("section", {class:"panel"}, h("h2", null, base.makro_baslik || "Makroskopi"), makroBox) : null,
+        h("section", {class:"panel"}, h("h2", null, "Mikroskopi kalıpları"), h("p", {class:"muted", style:"margin:0 0 6px;font-size:13px"}, "Her satır bir kalıp cümle."), taF("mikro", 3)),
+        h("section", {class:"panel"}, h("h2", null, "Tanı satırları"), h("p", {class:"muted", style:"margin:0 0 6px;font-size:13px"}, "Her satır bir tanı seçeneği; “-” ile başlayan satır üstteki tanıya bağlıdır."), taF("tani", 6)),
         h("section", {class:"panel"}, h("h2", null, "Epikriz alanları"),
-          h("p", {class:"muted", style:"margin:0 0 8px;font-size:13px"}, "İşareti kaldırılan alan bu şablonda görünmez. Adını, seviyesini ve seçeneklerini değiştirebilir, üst düzey alanların sırasını ↑ ↓ ile düzenleyebilirsiniz."),
+          h("p", {class:"muted", style:"margin:0 0 8px;font-size:13px"}, "İşareti kaldırılan alan bu şablonda görünmez. Adını, seviyesini ve seçeneklerini değiştirebilir, üst düzey alanları ↑ ↓ ile sıralayabilirsiniz."),
           fieldsBox, h("h3", null, "Yeni alanlar"), customBox),
-        h("section", {class:"panel"}, h("h2", null, "Tanı satırları"), h("p", {class:"muted", style:"margin:0 0 6px;font-size:13px"}, "Her satır bir tanı seçeneği; “-” ile başlayan satır üstteki tanıya bağlıdır. {alan} yer tutucuları korunmalıdır."), taF("tani", 6)),
-        h("section", {class:"panel"}, h("h2", null, "Mikroskopi kalıpları"), taF("mikro", 3)),
         h("section", {class:"panel"}, h("h2", null, "Varsayılan değerler"),
           h("label", {class:"opts"}, h("input", {type:"checkbox", checked:work.defaults, onchange:e => work.defaults = e.target.checked}),
-            cur ? "Şablon sayfasında doldurduğum değerleri (makroskopi, örnekleme, epikriz, mikroskopi) bu şablonun varsayılanı yap" : "Varsayılan değerleri koru (şablon sayfasında doldurup buradan kaydederseniz güncellenir)"))),
-      h("div", {class:"sheetwrap"}, h("section", {class:"panel"}, h("h2", null, "Kaydet ve paylaş"),
-        h("p", {style:"margin:0 0 10px;font-size:14px"}, "“Bu tarayıcıya kaydet” şablonu yalnızca bu bilgisayarda kullanılabilir yapar. Bölümdeki herkesin görmesi için şablonu depoya ekleyin: GitHub düğmesi dosyayı hazır doldurulmuş olarak açar; yetkiniz yoksa değişiklik önerisi (pull request) olarak gönderilir."),
-        h("div", {class:"tools"},
-          h("button", {type:"button", class:"btn primary", onclick:() => {
-            if (!need()) return;
-            const v = buildVariant(), o = localVars(); o[base.id] = o[base.id] || {};
-            const key = editMode && src && src.yerel ? src.key : slug(work.ad) + "-" + Date.now().toString(36);
-            o[base.id][key] = v;
-            if (!saveLocalVars(o)){ msg.textContent = "Tarayıcı depolaması kullanılamıyor; şablonu YAML olarak indirin."; return; }
-            Object.keys(effCache).filter(k => k.startsWith(base.id + "::y:" + key)).forEach(k => { delete effCache[k]; delete states[k]; });
-            location.hash = "#/s/" + base.id + "/v/y:" + key;
-          }}, "Bu tarayıcıya kaydet"),
-          h("button", {type:"button", class:"btn", onclick:() => {
-            if (!need()) return;
-            const a = h("a", {href:URL.createObjectURL(new Blob([yamlText()], {type:"text/yaml"})), download: base.id + "--" + slug(work.ad) + ".yaml"}); document.body.append(a); a.click(); a.remove();
-          }}, "YAML indir"),
-          SITE.depo ? h("button", {type:"button", class:"btn", onclick:() => {
-            if (!need()) return;
-            const url = "https://github.com/" + SITE.depo + "/new/main?filename=" + encodeURIComponent(fname()) + "&value=" + encodeURIComponent(yamlText());
-            if (url.length > 7500){ msg.textContent = "Şablon GitHub bağlantısı için çok uzun; YAML indirip depoya dosya olarak ekleyin."; return; }
-            window.open(url, "_blank", "noopener");
-          }}, "GitHub'da paylaş") : null,
-          h("a", {class:"btn", href:"#/s/" + base.id + (src ? "/v/" + fromKey : "")}, "Vazgeç")),
-        msg)))
+            cur ? "Şablon sayfasında doldurduğum değerleri bu şablonun varsayılanı yap" : "Kayıtlı varsayılan değerleri koru"))),
+      h("div", {class:"sheetwrap"}, h("section", {class:"panel"}, h("h2", null, "Kaydet"),
+        h("p", {style:"margin:0 0 10px;font-size:14px"}, info),
+        h("div", {class:"tools"}, saveButtons), msg,
+        h("details", {style:"margin-top:10px;font-size:13px"}, h("summary", {class:"muted"}, "Gelişmiş: depoya dosya olarak ekle"),
+          h("p", null, "Şablonu kalıcı olarak depoya eklemek için YAML dosyasını indirin; Claude Code ile " + fname() + " yoluna konur."),
+          h("button", {type:"button", class:"btn small", onclick:() => { if (!check()) return;
+            const a = h("a", {href:URL.createObjectURL(new Blob([yamlText()], {type:"text/yaml"})), download: base.id + "--" + slug(work.ad) + ".yaml"}); document.body.append(a); a.click(); a.remove(); }}, "YAML indir")))))
   );
 }
 
@@ -688,7 +977,8 @@ function renderBuilder(base, fromKey, editMode){
 function stateFor(s){
   const sk = s._key || s.id;
   if (states[sk]) return states[sk];
-  const st = {lvl:2, vals:{}, showEmpty:false, tani:null, taniEdit:null, varyant:0, mvals:{}, rows:[{}], orn:null, kisa:false, ek:[], mikro:""};
+  const st = {lvl:2, vals:{}, showEmpty:false, tani:null, taniEdit:null, varyant:0, mvals:{}, rows:[{}], orn:null, kisa:false, ek:[], mikro:"",
+    view:"metin", pr:{makro:true, rapor:true, ayri:true, sigdir:true}};
   const lines = s.tani || [];
   if (s.tani_alternatif){ st.tani = {sec: lines.findIndex(l => !l.startsWith("-")), dash: lines.map(l => l.startsWith("-"))}; }
   else st.tani = {inc: lines.map(() => true)};
@@ -874,8 +1164,10 @@ function renderSablon(s){
   const base = BY[s.id];
   const st = stateFor(s);
   app.innerHTML = "";
-  const pre = h("pre");
-  const upd = () => { pre.textContent = fullText(s, st, false); taniBox.update(); };
+  const pre = h("pre"), ybox = h("div");
+  let yroot = null, fromY = false;
+  const drawY = () => { ybox.innerHTML = ""; yroot = buildYellow(s, st, () => { fromY = true; upd(); fromY = false; }); ybox.append(yroot); };
+  const upd = () => { pre.textContent = fullText(s, st, false); taniBox.update(); if (st.view === "sari" && !fromY) drawY(); };
   const levelSeg = h("div", {class:"seg", role:"group", "aria-label":"Rapor seviyesi"},
     [1,2,3].map(l => h("button", {type:"button", "aria-pressed": st.lvl === l ? "true" : "false", onclick:() => { st.lvl = l; renderSablon(s); }}, SEVIYE[l])));
   const head = h("div", {class:"head"},
@@ -883,8 +1175,7 @@ function renderSablon(s){
       h("h1", null, s.baslik), h("div", {class:"opts", style:"gap:10px"}, h("span", {class:"tag " + s._grup}, GRUP[s._grup]), variantPicker(base, s)))),
     h("div", {class:"tools"}, levelSeg,
       h("a", {class:"btn", href:"#/r/" + s.id}, "Rehber"),
-      h("button", {type:"button", class:"btn", onclick:() => printBlank(s, st)}, "Boş şablonu yazdır"),
-      h("button", {type:"button", class:"btn", onclick:() => printFilled(s, st)}, "Raporu yazdır")));
+      printPanel(s, st)));
 
   // tanı
   const taniBox = (() => {
@@ -997,10 +1288,14 @@ function renderSablon(s){
     }
   }
 
+  const viewSeg = h("span", {class:"seg", role:"group", "aria-label":"Önizleme biçimi"},
+    h("button", {type:"button", "aria-pressed": st.view === "metin" ? "true" : "false", onclick:() => { st.view = "metin"; renderSablon(s); }}, "Rapor metni"),
+    h("button", {type:"button", "aria-pressed": st.view === "sari" ? "true" : "false", onclick:() => { st.view = "sari"; renderSablon(s); }}, "Sarı boşluklu"));
   const sheet = h("div", {class:"sheetwrap"},
-    h("div", {class:"sheethead"}, h("span", null, "Rapor önizlemesi · " + SEVIYE[st.lvl]),
-      h("span", {class:"tools"}, h("button", {type:"button", class:"btn small primary", onclick:e => copyText(pre.textContent, e.currentTarget)}, "Tümünü kopyala"))),
-    h("div", {class:"sheet"}, pre));
+    h("div", {class:"sheethead"}, viewSeg,
+      h("span", {class:"tools"}, h("button", {type:"button", class:"btn small primary", onclick:e => copyText(st.view === "sari" && yroot ? yDocText(yroot) : pre.textContent, e.currentTarget)}, "Tümünü kopyala"))),
+    st.view === "sari" ? h("p", {class:"muted", style:"font-size:12.5px;margin:0 0 6px"}, "Sarı alanlara tıklayıp yazın ya da listeden seçin; doldurulan alanlar açık renge döner. Kopyalanan metinde boş kalanlar “…” olarak görünür.") : null,
+    h("div", {class:"sheet"}, st.view === "sari" ? ybox : pre));
   const form = h("div", {class:"form"}, mkPanel, mikPanel, hidPanel, taniBox, epPanel,
     h("p", {class:"muted", style:"font-size:13px"}, h("span", {class:"core"}), " çekirdek / zorunlu alan. Kısa seviye yalnızca çekirdek alanları, Tam seviye isteğe bağlı alanları da gösterir."));
   app.append(head, h("div", {class:"work"}, form, sheet));
@@ -1070,6 +1365,7 @@ function route(){
 }
 window.addEventListener("hashchange", route);
 route();
+initSB();
 })();
 </script>
 </body>
