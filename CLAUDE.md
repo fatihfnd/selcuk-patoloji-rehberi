@@ -40,6 +40,20 @@ etiketin tırnaksız yazılması, tanınmayan anahtar, ASCII olmayan `id`, metin
 - `sablonlar/serbest.yaml` listede görünmeyen temel şablondur; "Boş şablon oluştur" bunun üzerine sürüm üretir ve sürümdeki
   `sistem` alanına göre ana sayfada "Özel" etiketiyle listelenir.
 
+## Rapor editörüne aktarım (fatihfnd/rapor-editoru)
+
+- `build.py` → `dist/rapor-editoru.json` ve sitede `indir/rapor-editoru.json`: editörün kendi içe aktarma biçimi
+  (`{tur: "rapor-editoru-sablon", surum: 1, sablonlar}`); editörde Şablonlar → İçe aktar ile her sekmede yüklenir.
+- Her şablon için: epikriz → sinoptik form (`type: epikriz`, seviye ≤ 2, gizli alanlar hariç); makroskopi varyantı →
+  metin şablonu (`makro`); mikroskopi → `mikro`; tam rapor (`_rapor`: klinik, makro, [mikro], tanı, epikriz; çok varyantlı
+  şablonda varyant başına bir tane). Ek materyal modülleri bir kez yazılır. `serbest` aktarılmaz.
+- Tanı satırı "Tanı; [taraf] yer, alınma şekli" son virgülden bölünür (dx / loc / proc); taraf ve tek boşluktan ibaret
+  alınma şekli boş bırakılır (editör kendi listesini önerir). Şablon cümle düzenindedir, editörde "Aa dönüştür" Başlık
+  Düzenine çevirir. Boşluk `…` editörde Tab ile doldurulur; "…" içeren seçenekte `other` açılır.
+- Her kayıtta `kaynak: selcuk-patoloji-rehberi` ve `kaynak_id` var (ileride güncelleme / temizleme için).
+- Editörün kendi kuralları: rapor metni sunucuya gitmez, çıktı tek HTML ve `file://` ile çalışır; aktarım yalnız
+  herkese açık şablon verisidir.
+
 ## Arayüz notları
 
 - Önizlemede "Rapor metni" ve "Sarı boşluklu" görünüm (rapor editörüyle ileride eşlenecek; boşluk = `…`).
@@ -76,6 +90,10 @@ etiketin tırnaksız yazılması, tanınmayan anahtar, ASCII olmayan `id`, metin
 - Yaklaşık ROM değerleri (Milan, ISRSFC, Yokohama); akciğer TNM 8/9 baskı seçimi; FIGO 2023 endometrium alt evreleri;
   TUR-P örnekleme kuralı.
 - Histoloji şablonlarına mikroskopi kalıbı eklenip eklenmeyeceği (karar bekliyor).
+- Bulgu dili alana göre değişecek ("Görüldü / Görülmedi" ya da "Saptandı / Saptanmadı"); alan listesi birlikte
+  belirlenecek, o zamana kadar mevcut ifadeler korunur.
+- Editör aktarımında kaset yazımı: rehber bölge kodlarıyla ("MB (meme başı): … parça … kasette"), editör "A1:" ve
+  "2P, 1B, 1K, 1L" biçimiyle çalışıyor; çeviri kararı pilottan sonra.
 
 ## Yol haritası
 

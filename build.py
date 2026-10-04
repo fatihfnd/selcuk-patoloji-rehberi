@@ -5,6 +5,7 @@ Kaynak : sablonlar/*.yaml + moduller/*.yaml
 Çıktı  : dist/sablonlar.json          (editör / PatoLIS için çözülmüş tek dosya)
          dist/metin/<id>_<seviye>.txt (Enlil'e yapıştırmalık düz metin; kisa/standart/tam)
          dist/Sablon_Arsivi.md / .docx (elle kullanım için basılı arşiv)
+         dist/rapor-editoru.json      (rapor editörünün içe aktarma biçimi; sitede indir/ altında)
 
 Seviye: 0 = gizli (yalnız tanı satırını besler), 1 = çekirdek (ICCR core / CAP required),
         2 = standart, 3 = geniş (isteğe bağlı / araştırma).
@@ -227,6 +228,137 @@ def rapor_metni(s, seviye):
     return "\n".join(out)
 
 
+# ---------- rapor editörü dışa aktarımı (fatihfnd/rapor-editoru, Şablonlar → İçe aktar) ----------
+# Biçim editörün kendi JSON'u: metin {type: modül, name, text, html} · form {type, name, lines}
+# · tam rapor {type: '_rapor', name, rapor: {opts, modules}}. Boşluk "…" editörde Tab ile doldurulur.
+EDITOR_SEVIYE = 2  # forma girecek en geniş seviye (standart)
+EDITOR_KAYNAK = "selcuk-patoloji-rehberi"
+
+
+def html_kac(t):
+    return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def editor_satirlari(alanlar, derinlik=0):
+    out = []
+    for a in alanlar:
+        if a.get("gizli") or a["seviye"] == 0 or a["seviye"] > EDITOR_SEVIYE:
+            continue
+        lab = ("  " if derinlik else "") + a["etiket"]
+        t, sec = a.get("tip"), [str(x) for x in a.get("secenekler") or []]
+        if t == "secim":
+            # "…" içeren seçenek editörde serbest kutuya aktarılıp doldurulur; bunun için other açık olmalı
+            l = {"kind": "select", "label": lab, "options": sec, "other": bool(a.get("serbest")) or any("…" in x for x in sec)}
+        elif t == "coklu":
+            l = {"kind": "multi", "label": lab, "options": sec}
+        elif t == "sayi" or (t == "olcu" and not a.get("kalip")):
+            l = {"kind": "number", "label": lab, "unit": a.get("birim", "")}
+        elif t in ("metin", "olcu"):
+            l = {"kind": "input", "label": lab, "placeholder": a.get("kalip", "")}
+        else:  # başlık (tip yok): sabit metin satırı, alt alanlar altına girintili
+            l = {"kind": "text", "label": "", "html": html_kac(a["etiket"]) + ":"}
+        out.append(l)
+        out += editor_satirlari(a.get("alt", []), derinlik + 1)
+    return out
+
+
+def editor_form_satirlari(s):
+    out = []
+    if "tekrar_blok" in s:
+        tb = s["tekrar_blok"]
+        out.append({"kind": "text", "label": "", "html": html_kac(tb["etiket"].replace("{kor_kodu}", "… (kor kodu)")) + ":"})
+        out += editor_satirlari(tb["alanlar"], 1)
+    return out + editor_satirlari(s["epikriz"])
+
+
+def editor_makro_paragraflari(m, v):
+    f = makro_token({a["id"]: a for a in m["alanlar"]})
+    p = [(lambda x: x[:1].upper() + x[1:])(TOKEN.sub(f, t)) for t in v.get("metin", [])]
+    if "tekrar" in v:
+        p.append(TOKEN.sub(f, v["tekrar"]["metin"]))
+    if v.get("ornekleme"):
+        p.append(ornekleme_metni(v["ornekleme"], False))
+    return p
+
+
+def editor_tani_satirlari(s):
+    alan = {a["id"]: a for a in allfields(s["epikriz"])}
+
+    def yerine(mt):
+        a = alan.get(mt.group(1))
+        if a and a.get("secenekler") and len(a["secenekler"]) <= 3:
+            return " / ".join(str(x).lower() for x in a["secenekler"])
+        return "…"
+
+    def taraf_mi(tok):
+        return "Sağ" in [str(x) for x in (alan.get(tok) or {}).get("secenekler") or []]
+
+    # "Tanı; [taraf] alındığı yer, alınma şekli" → editörün dx / lat / loc / proc alanları.
+    # Taraf ve tek boşluktan ibaret alınma şekli boş bırakılır: editör kendi listesini önerir, boşsa uyarır.
+    rows = []
+    for t in s["tani"]:
+        alt = t.startswith("-")
+        dx, _, yer = t.lstrip("- ").partition(";")
+        yer = yer.strip()
+        bas = TOKEN.match(yer)
+        if bas and taraf_mi(bas.group(1)):
+            yer = yer[bas.end():].strip()
+        elif yer.lower().startswith("sağ / sol "):
+            yer = yer[len("sağ / sol "):]
+        loc, virgul, sekil = yer.rpartition(", ")
+        if not virgul:
+            loc, sekil = yer, ""
+        proc = [] if not sekil or TOKEN.fullmatch(sekil) else [TOKEN.sub(yerine, sekil)]
+        r = {"dx": html_kac(TOKEN.sub(yerine, dx).strip()), "lat": "", "loc": TOKEN.sub(yerine, loc), "proc": proc, "extra": ""}
+        if alt:
+            r["sub"] = True
+        rows.append(r)
+    return rows
+
+
+def editor_disa_aktar(paket, mod):
+    out, ek_gorulen = [], set()
+    etiket = lambda s: {"kaynak": EDITOR_KAYNAK, "kaynak_id": s["id"]}
+    p_html = lambda ps: "".join(f"<p>{html_kac(x)}</p>" for x in ps)
+    for s in paket:
+        if s["id"] == "serbest":
+            continue
+        ad = s["baslik"]
+        satirlar_ = editor_form_satirlari(s)
+        out.append({"type": "epikriz", "name": ad, "lines": satirlar_, **etiket(s)})
+        mik = s.get("mikroskopi") or []
+        if mik:
+            out.append({"type": "mikro", "name": ad, "text": "\n".join(mik), "html": p_html(mik), **etiket(s)})
+        m = s["makroskopi"]
+        vs = m["varyantlar"]
+        for v in vs:
+            vad = ad if len(vs) == 1 else f"{ad} — {v['ad']}"
+            ps = editor_makro_paragraflari(m, v)
+            out.append({"type": "makro", "name": vad, "text": "\n".join(ps), "html": p_html(ps), **etiket(s)})
+            moduller = [{"type": "klinik", "html": ""}, {"type": "makro", "html": p_html(ps)}]
+            if mik:
+                moduller.append({"type": "mikro", "html": p_html(mik)})
+            moduller.append({"type": "tani", "rows": editor_tani_satirlari(s), "style": "sentence", "num": "1-"})
+            moduller.append({"type": "epikriz", "lines": [dict(l, value="", values=[]) for l in satirlar_]})
+            out.append({"type": "_rapor", "name": vad, "rapor": {"opts": {}, "modules": moduller}, **etiket(s)})
+        for r in m.get("ek_materyaller", []):
+            if r in ek_gorulen:
+                continue
+            ek_gorulen.add(r)
+            em = mod[r]
+            t = TOKEN.sub(makro_token({a["id"]: a for a in em["alanlar"]}), em["metin"])
+            out.append({"type": "makro", "name": f"Ek materyal — {em['ad']}", "text": t, "html": p_html([t]),
+                        "kaynak": EDITOR_KAYNAK, "kaynak_id": r})
+    for t in out:
+        if t["type"] == "epikriz" and not t["lines"]:
+            sys.exit(f"HATA editör aktarımı: {t['kaynak_id']} formunda satır yok")
+    adlar = [(t["type"], t["name"]) for t in out]
+    cift = {x for x in adlar if adlar.count(x) > 1}
+    if cift:
+        sys.exit(f"HATA editör aktarımı: aynı tür ve adla birden çok şablon {cift}")
+    return {"tur": "rapor-editoru-sablon", "surum": 1, "kaynak": EDITOR_KAYNAK, "sablonlar": out}
+
+
 # ---------- basılı arşiv (markdown → docx) ----------
 def alan_tablosu(alanlar, derinlik=0):
     rows = []
@@ -393,13 +525,15 @@ def main():
         shutil.copytree(os.path.join(KOK, "assets"), os.path.join(site, "assets"), dirs_exist_ok=True)
     json.dump({"surum": 1, "sablonlar": paket}, open(os.path.join(DIST, "sablonlar.json"), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
+    json.dump(editor_disa_aktar(paket, mod), open(os.path.join(DIST, "rapor-editoru.json"), "w", encoding="utf-8"),
+              ensure_ascii=False, indent=1)
     open(os.path.join(DIST, "Sablon_Arsivi.md"), "w", encoding="utf-8").write("\n".join(md))
     if shutil.which("pandoc"):
         subprocess.run(["pandoc", os.path.join(DIST, "Sablon_Arsivi.md"), "-o",
                         os.path.join(DIST, "Sablon_Arsivi.docx"), "--toc"], check=True)
     else:
         print("uyarı: pandoc yok, docx üretilmedi")
-    for ad in ("sablonlar.json", "Sablon_Arsivi.docx"):
+    for ad in ("sablonlar.json", "rapor-editoru.json", "Sablon_Arsivi.docx"):
         if os.path.exists(os.path.join(DIST, ad)):
             shutil.copy(os.path.join(DIST, ad), os.path.join(site, "indir", ad))
     print(f"{len(paket)} şablon derlendi.")
