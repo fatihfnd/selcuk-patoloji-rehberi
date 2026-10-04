@@ -10,7 +10,7 @@ Kaynak : sablonlar/*.yaml + moduller/*.yaml
 Seviye: 0 = gizli (yalnız tanı satırını besler), 1 = çekirdek (ICCR core / CAP required),
         2 = standart, 3 = geniş (isteğe bağlı / araştırma).
 """
-import copy, glob, json, os, re, shutil, subprocess, sys
+import copy, glob, html, json, os, re, shutil, subprocess, sys
 import yaml
 
 KOK = os.path.dirname(os.path.abspath(__file__))
@@ -228,10 +228,12 @@ def rapor_metni(s, seviye):
     return "\n".join(out)
 
 
-# ---------- rapor editörü dışa aktarımı (fatihfnd/rapor-editoru, Şablonlar → İçe aktar) ----------
-# Biçim editörün kendi JSON'u: metin {type: modül, name, text, html} · form {type, name, lines}
+# ---------- rapor editörü aktarımı (fatihfnd/rapor-editoru: "Selçuk Rehberi" hazır şablon grubu) ----------
+# Biçim editörün kendi şablon JSON'u: metin {type: modül, name, text, html} · form {type, name, lines}
 # · tam rapor {type: '_rapor', name, rapor: {opts, modules}}. Boşluk "…" editörde Tab ile doldurulur.
-EDITOR_SEVIYE = 2  # forma girecek en geniş seviye (standart)
+# Editör bu dosyayı gömülü taşır ve çevrimiçiyken sitedeki indir/rapor-editoru.json'dan günceller.
+EDITOR_FORMLAR = ((1, "kısa"), (2, "standart"), (3, "tam"))  # (en geniş seviye, ad)
+EDITOR_RAPOR_SEVIYE = 2  # tam rapor şablonundaki epikriz: standart
 EDITOR_KAYNAK = "selcuk-patoloji-rehberi"
 
 
@@ -239,10 +241,10 @@ def html_kac(t):
     return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def editor_satirlari(alanlar, derinlik=0):
+def editor_satirlari(alanlar, seviye, derinlik=0):
     out = []
     for a in alanlar:
-        if a.get("gizli") or a["seviye"] == 0 or a["seviye"] > EDITOR_SEVIYE:
+        if a.get("gizli") or a["seviye"] == 0 or a["seviye"] > seviye:
             continue
         lab = ("  " if derinlik else "") + a["etiket"]
         t, sec = a.get("tip"), [str(x) for x in a.get("secenekler") or []]
@@ -258,17 +260,17 @@ def editor_satirlari(alanlar, derinlik=0):
         else:  # başlık (tip yok): sabit metin satırı, alt alanlar altına girintili
             l = {"kind": "text", "label": "", "html": html_kac(a["etiket"]) + ":"}
         out.append(l)
-        out += editor_satirlari(a.get("alt", []), derinlik + 1)
+        out += editor_satirlari(a.get("alt", []), seviye, derinlik + 1)
     return out
 
 
-def editor_form_satirlari(s):
+def editor_form_satirlari(s, seviye):
     out = []
     if "tekrar_blok" in s:
         tb = s["tekrar_blok"]
         out.append({"kind": "text", "label": "", "html": html_kac(tb["etiket"].replace("{kor_kodu}", "… (kor kodu)")) + ":"})
-        out += editor_satirlari(tb["alanlar"], 1)
-    return out + editor_satirlari(s["epikriz"])
+        out += editor_satirlari(tb["alanlar"], seviye, 1)
+    return out + editor_satirlari(s["epikriz"], seviye)
 
 
 def editor_makro_paragraflari(m, v):
@@ -282,6 +284,7 @@ def editor_makro_paragraflari(m, v):
 
 
 def editor_tani_satirlari(s):
+    """Her tanı satırı → editörün {dx, lat, loc, proc} satırı (sub: üstteki tanıya bağlı "-" satırı)."""
     alan = {a["id"]: a for a in allfields(s["epikriz"])}
 
     def yerine(mt):
@@ -293,12 +296,15 @@ def editor_tani_satirlari(s):
     def taraf_mi(tok):
         return "Sağ" in [str(x) for x in (alan.get(tok) or {}).get("secenekler") or []]
 
-    # "Tanı; [taraf] alındığı yer, alınma şekli" → editörün dx / lat / loc / proc alanları.
-    # Taraf ve tek boşluktan ibaret alınma şekli boş bırakılır: editör kendi listesini önerir, boşsa uyarır.
+    # "Tanı; [taraf] alındığı yer, alınma şekli" → editörün dx / lat / loc / proc alanları. Tanı metni de ";"
+    # içerebildiğinden yer son ";"ten sonradır. Taraf ve tek boşluktan ibaret alınma şekli boş bırakılır:
+    # editör kendi listesini önerir, boşsa uyarır.
     rows = []
     for t in s["tani"]:
         alt = t.startswith("-")
-        dx, _, yer = t.lstrip("- ").partition(";")
+        dx, _, yer = t.lstrip("- ").rpartition(";")
+        if not _:
+            dx, yer = yer, ""
         yer = yer.strip()
         bas = TOKEN.match(yer)
         if bas and taraf_mi(bas.group(1)):
@@ -316,42 +322,57 @@ def editor_tani_satirlari(s):
     return rows
 
 
-def editor_disa_aktar(paket, mod):
-    out, ek_gorulen = [], set()
-    etiket = lambda s: {"kaynak": EDITOR_KAYNAK, "kaynak_id": s["id"]}
+def editor_disa_aktar(paket, mod, sistemler):
+    """Kayıtlarda kaynak/kaynak_id (rehber şablon id'si) ve sistem (organ sistemi) bulunur; editör "bu şablonun"
+    seçeneklerini (makroskopi varyantları, tanı alternatifleri, kısa/standart/tam form) bunlarla öne alır.
+    Tam rapor şablonunda opts.rehber = şablon id'si."""
+    out, ek = [], {}
     p_html = lambda ps: "".join(f"<p>{html_kac(x)}</p>" for x in ps)
     for s in paket:
         if s["id"] == "serbest":
             continue
-        ad = s["baslik"]
-        satirlar_ = editor_form_satirlari(s)
-        out.append({"type": "epikriz", "name": ad, "lines": satirlar_, **etiket(s)})
+        ad, etiket = s["baslik"], {"kaynak": EDITOR_KAYNAK, "kaynak_id": s["id"], "sistem": sistemler[s["id"]][0]}
+        onceki = None
+        for sv, sad in EDITOR_FORMLAR:  # içeriği bir alt seviyeyle aynı olan form yazılmaz
+            ls = editor_form_satirlari(s, sv)
+            if ls and ls != onceki:
+                out.append({"type": "epikriz", "name": f"{ad} ({sad})", "etiket": f"{sad.capitalize()} form", "form": sad,
+                            "lines": ls, **etiket})
+            onceki = ls
         mik = s.get("mikroskopi") or []
         if mik:
-            out.append({"type": "mikro", "name": ad, "text": "\n".join(mik), "html": p_html(mik), **etiket(s)})
+            out.append({"type": "mikro", "name": ad, "etiket": "Mikroskopi kalıbı", "text": "\n".join(mik), "html": p_html(mik), **etiket})
+        rows = editor_tani_satirlari(s)
+        if s.get("tani_alternatif"):
+            # alternatifler tanı modülünün "+ Şablon" menüsüne; raporda tanısı boş tek satır (+ bağlı "-" satırları)
+            for r in rows:
+                if not r.get("sub"):
+                    duz = html.unescape(r["dx"])
+                    out.append({"type": "tani", "name": f"{ad}: {duz}", "etiket": duz, "text": duz, "html": r["dx"],
+                                "loc": r["loc"], "proc": r["proc"], **etiket})
+            ilk = next(r for r in rows if not r.get("sub"))
+            rows = [dict(ilk, dx="")] + [r for r in rows if r.get("sub")]
+        satir_std = editor_form_satirlari(s, EDITOR_RAPOR_SEVIYE)
         m = s["makroskopi"]
         vs = m["varyantlar"]
         for v in vs:
             vad = ad if len(vs) == 1 else f"{ad} — {v['ad']}"
             ps = editor_makro_paragraflari(m, v)
-            out.append({"type": "makro", "name": vad, "text": "\n".join(ps), "html": p_html(ps), **etiket(s)})
+            out.append({"type": "makro", "name": vad, "etiket": "Makroskopi" if len(vs) == 1 else f"Makroskopi — {v['ad']}",
+                        "text": "\n".join(ps), "html": p_html(ps), **etiket})
             moduller = [{"type": "klinik", "html": ""}, {"type": "makro", "html": p_html(ps)}]
             if mik:
                 moduller.append({"type": "mikro", "html": p_html(mik)})
-            moduller.append({"type": "tani", "rows": editor_tani_satirlari(s), "style": "sentence", "num": "1-"})
-            moduller.append({"type": "epikriz", "lines": [dict(l, value="", values=[]) for l in satirlar_]})
-            out.append({"type": "_rapor", "name": vad, "rapor": {"opts": {}, "modules": moduller}, **etiket(s)})
+            moduller.append({"type": "tani", "rows": rows, "style": "sentence", "num": "1-"})
+            moduller.append({"type": "epikriz", "lines": [dict(l, value="", values=[]) for l in satir_std]})
+            out.append({"type": "_rapor", "name": vad, "rapor": {"opts": {"rehber": s["id"]}, "modules": moduller}, **etiket})
         for r in m.get("ek_materyaller", []):
-            if r in ek_gorulen:
-                continue
-            ek_gorulen.add(r)
-            em = mod[r]
-            t = TOKEN.sub(makro_token({a["id"]: a for a in em["alanlar"]}), em["metin"])
-            out.append({"type": "makro", "name": f"Ek materyal — {em['ad']}", "text": t, "html": p_html([t]),
-                        "kaynak": EDITOR_KAYNAK, "kaynak_id": r})
-    for t in out:
-        if t["type"] == "epikriz" and not t["lines"]:
-            sys.exit(f"HATA editör aktarımı: {t['kaynak_id']} formunda satır yok")
+            ek.setdefault(r, []).append(s["id"])
+    for r, ids in ek.items():  # ortak ek materyal metinleri bir kez; hangi şablonlarda kullanıldığı "sablonlar"da
+        em = mod[r]
+        t = TOKEN.sub(makro_token({a["id"]: a for a in em["alanlar"]}), em["metin"])
+        out.append({"type": "makro", "name": f"Ek materyal — {em['ad']}", "etiket": f"Ek materyal — {em['ad']}", "text": t, "html": p_html([t]),
+                    "kaynak": EDITOR_KAYNAK, "kaynak_id": r, "sistem": "Ek materyal", "sablonlar": ids})
     adlar = [(t["type"], t["name"]) for t in out]
     cift = {x for x in adlar if adlar.count(x) > 1}
     if cift:
@@ -525,8 +546,8 @@ def main():
         shutil.copytree(os.path.join(KOK, "assets"), os.path.join(site, "assets"), dirs_exist_ok=True)
     json.dump({"surum": 1, "sablonlar": paket}, open(os.path.join(DIST, "sablonlar.json"), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
-    json.dump(editor_disa_aktar(paket, mod), open(os.path.join(DIST, "rapor-editoru.json"), "w", encoding="utf-8"),
-              ensure_ascii=False, indent=1)
+    json.dump(editor_disa_aktar(paket, mod, sin["sablonlar"]), open(os.path.join(DIST, "rapor-editoru.json"), "w", encoding="utf-8"),
+              ensure_ascii=False, separators=(",", ":"))
     open(os.path.join(DIST, "Sablon_Arsivi.md"), "w", encoding="utf-8").write("\n".join(md))
     if shutil.which("pandoc"):
         subprocess.run(["pandoc", os.path.join(DIST, "Sablon_Arsivi.md"), "-o",
