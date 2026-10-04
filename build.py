@@ -331,7 +331,8 @@ def editor_disa_aktar(paket, mod, sistemler):
     for s in paket:
         if s["id"] == "serbest":
             continue
-        ad, etiket = s["baslik"], {"kaynak": EDITOR_KAYNAK, "kaynak_id": s["id"], "sistem": sistemler[s["id"]][0]}
+        ad, etiket = s["baslik"], {"kaynak": EDITOR_KAYNAK, "kaynak_id": s["id"], "sistem": sistemler[s["id"]][0],
+                                   "organ": s.get("organ", "")}  # organ aramada kullanılır ("safra" → Kolesistektomi)
         onceki = None
         for sv, sad in EDITOR_FORMLAR:  # içeriği bir alt seviyeyle aynı olan form yazılmaz
             ls = editor_form_satirlari(s, sv)
