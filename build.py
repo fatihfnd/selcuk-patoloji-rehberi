@@ -322,7 +322,7 @@ def editor_tani_satirlari(s):
     return rows
 
 
-def editor_disa_aktar(paket, mod, sistemler):
+def editor_disa_aktar(paket, mod, sistemler, sira):
     """Kayıtlarda kaynak/kaynak_id (rehber şablon id'si) ve sistem (organ sistemi) bulunur; editör "bu şablonun"
     seçeneklerini (makroskopi varyantları, tanı alternatifleri, kısa/standart/tam form) bunlarla öne alır.
     Tam rapor şablonunda opts.rehber = şablon id'si."""
@@ -374,6 +374,9 @@ def editor_disa_aktar(paket, mod, sistemler):
         t = TOKEN.sub(makro_token({a["id"]: a for a in em["alanlar"]}), em["metin"])
         out.append({"type": "makro", "name": f"Ek materyal — {em['ad']}", "etiket": f"Ek materyal — {em['ad']}", "text": t, "html": p_html([t]),
                     "kaynak": EDITOR_KAYNAK, "kaynak_id": r, "sistem": "Ek materyal", "sablonlar": ids})
+    # editör listeleri bu sırayla gruplar: sitedeki organ sistemi sırası, ek materyaller sonda. Sıralama kararlıdır;
+    # sistem içinde şablon ve tanı alternatiflerinin kendi sırası (sık olan önce) korunur.
+    out.sort(key=lambda t: sira.index(t["sistem"]) if t["sistem"] in sira else len(sira))
     adlar = [(t["type"], t["name"]) for t in out]
     cift = {x for x in adlar if adlar.count(x) > 1}
     if cift:
@@ -547,7 +550,7 @@ def main():
         shutil.copytree(os.path.join(KOK, "assets"), os.path.join(site, "assets"), dirs_exist_ok=True)
     json.dump({"surum": 1, "sablonlar": paket}, open(os.path.join(DIST, "sablonlar.json"), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
-    json.dump(editor_disa_aktar(paket, mod, sin["sablonlar"]), open(os.path.join(DIST, "rapor-editoru.json"), "w", encoding="utf-8"),
+    json.dump(editor_disa_aktar(paket, mod, sin["sablonlar"], sin["sistemler"]), open(os.path.join(DIST, "rapor-editoru.json"), "w", encoding="utf-8"),
               ensure_ascii=False, separators=(",", ":"))
     open(os.path.join(DIST, "Sablon_Arsivi.md"), "w", encoding="utf-8").write("\n".join(md))
     if shutil.which("pandoc"):
